@@ -21,8 +21,8 @@ coming soon...
 
 
 ## IDE
-Visual Studio 2017 (http://visualstudio.microsoft.com)
-Unity 2018.1 (https://store.unity.com/download)
+1. Visual Studio 2017 (http://visualstudio.microsoft.com)
+2. Unity 2018.1 (https://store.unity.com/download)
 
 
 ## License
