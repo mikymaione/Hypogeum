@@ -2,7 +2,7 @@
 Repository for OGD and AIVG project
 
 # Hypogeum
-<img src="https://github.com/andreadecosmo/LamaOGDAIVG/blob/master/Lama/lama.png" alt="logo" /> Choose your side, race against your opponents and defeat them for the supremacy! 
+Choose your side, race against your opponents and defeat them for the supremacy! 
 
 
 ## Minimum system requirements
@@ -23,6 +23,7 @@ coming soon...
 ## IDE
 Visual Studio 2017 (http://visualstudio.microsoft.com)
 Unity 2018.1 (https://store.unity.com/download)
+
 
 ## License
 Copyright 2019 (c) Team Lama. All rights reserved.
