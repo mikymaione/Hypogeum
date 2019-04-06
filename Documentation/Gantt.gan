@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Hypogeum" company="Team Lama" webLink="http://www.maionemiky.it" view-date="2019-03-04" view-index="0" gantt-divider-location="1" resource-divider-location="300" version="2.8.10" locale="it_IT">
+    <description><![CDATA[Since humans had left the Earth, centuries have passed and the blue Planet is now inhabited only by the animals, that have learned to manage the tech-nology of our descendants and to create their own. From that moment, a long war among the different species has taken act, to establish which was the best one. Inspired by the ancient books on “mythology”, they decided to set their battles in a huge arena: the Hypogeum. Rather than kill each other in “primitive” ways, they clashed each other using different cars, depending on the species they belong. Now, only four teams have left – Eagles, Lions, Rhinos and Sharks – and the outcome is more uncertain than ev-er. Who will be the audience’s favorite? Who will win the war? And, most important, who will obtain the supremacy?]]></description>
+    <view zooming-state="default:7" id="gantt-chart">
+        <field id="tpd3" name="Nome" width="15" order="0"/>
+        <field id="tpd4" name="Data d'inizio" width="15" order="1"/>
+        <field id="tpd5" name="Data di fine" width="15" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nome" width="210" order="0"/>
+        <field id="1" name="Ruolo predefinito" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="0" mon="0" tue="0" wed="0" thu="0" fri="0" sat="0"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="" month="1" date="1" type="HOLIDAY"><![CDATA[New Years Day]]></date>
+        <date year="" month="1" date="6" type="HOLIDAY"><![CDATA[Epiphany]]></date>
+        <date year="" month="4" date="25" type="HOLIDAY"><![CDATA[Liberation Day]]></date>
+        <date year="" month="5" date="1" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="" month="6" date="2" type="HOLIDAY"><![CDATA[Republic Day]]></date>
+        <date year="" month="8" date="15" type="HOLIDAY"><![CDATA[Assumption Day]]></date>
+        <date year="" month="11" date="1" type="HOLIDAY"><![CDATA[All Saints Day]]></date>
+        <date year="" month="12" date="8" type="HOLIDAY"><![CDATA[Immaculate Conception Day]]></date>
+        <date year="" month="12" date="25" type="HOLIDAY"><![CDATA[Christmas Day]]></date>
+        <date year="" month="12" date="26" type="HOLIDAY"><![CDATA[St. Stephen's Day]]></date>
+        <date year="2005" month="3" date="28" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2006" month="4" date="17" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2007" month="4" date="9" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2008" month="3" date="24" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2009" month="4" date="13" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2010" month="4" date="5" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2011" month="4" date="25" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2012" month="4" date="9" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2013" month="4" date="1" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2014" month="4" date="21" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2015" month="4" date="6" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2016" month="3" date="28" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2017" month="4" date="17" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2018" month="4" date="2" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+        <date year="2019" month="4" date="22" type="HOLIDAY"><![CDATA[Easter Monday]]></date>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="game concept" color="#8cb6ce" meeting="false" start="2019-03-14" duration="12" complete="0" thirdDate="2019-04-06" thirdDate-constraint="0" expand="true"/>
+        <task id="3" name="GDD 1.0 &amp; GTD 1:0" color="#8cb6ce" meeting="false" start="2019-03-26" duration="21" complete="0" thirdDate="2019-04-06" thirdDate-constraint="0" expand="true"/>
+        <task id="5" name="GDD 2.0 &amp; GTD 2.0" color="#8cb6ce" meeting="false" start="2019-04-16" duration="32" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+        <task id="7" name="GDD final &amp; GTD final + storyboard" color="#8cb6ce" meeting="false" start="2019-05-21" duration="20" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+        <task id="9" name="trailer + gameplay" color="#8cb6ce" meeting="false" start="2019-06-11" duration="6" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+        <task id="13" name="prototype" color="#8cb6ce" meeting="false" start="2019-06-17" duration="4" complete="0" thirdDate="2019-02-11" thirdDate-constraint="0" expand="true"/>
+        <task id="15" name="NGD" color="#8cb6ce" meeting="false" start="2019-06-21" duration="7" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Maione" function="SoftwareDevelopment:2" contacts="" phone=""/>
+        <resource id="1" name="Carrarini" function="SoftwareDevelopment:5" contacts="" phone=""/>
+        <resource id="2" name="De Cosmo" function="Default:1" contacts="" phone=""/>
+        <resource id="3" name="Cerrato" function="SoftwareDevelopment:2" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="3" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="5" resource-id="0" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="7" resource-id="0" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="9" resource-id="0" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="13" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="15" resource-id="0" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="0" resource-id="1" function="SoftwareDevelopment:5" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="1" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
+        <allocation task-id="5" resource-id="1" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
+        <allocation task-id="7" resource-id="1" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
+        <allocation task-id="9" resource-id="1" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
+        <allocation task-id="13" resource-id="1" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
+        <allocation task-id="15" resource-id="1" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
+        <allocation task-id="0" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="3" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="5" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="7" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="9" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="13" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="15" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="0" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="5" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="7" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="9" resource-id="3" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="15" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
