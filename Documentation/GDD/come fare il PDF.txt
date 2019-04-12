@@ -1,5 +1,0 @@
-aprire il file 1 MASTER.docx
-premere su View > Outline > Show Document + Expand Subdocuments
-premere su View > Read mode
-premere su File > Export > Create PDF
-premere su Options > METTERE SPUNTE SOLO A: All, Document, Create Bookmarks using, Headings, Document properties, Document structure tags
