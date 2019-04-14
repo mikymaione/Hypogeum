@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Hypogeum" company="Team Lama" webLink="http://www.maionemiky.it" view-date="2019-03-04" view-index="0" gantt-divider-location="1" resource-divider-location="300" version="2.8.10" locale="it_IT">
+<?xml version="1.0" encoding="UTF-8"?><project name="Hypogeum" company="Team Lama" webLink="http://www.maionemiky.it" view-date="2019-03-01" view-index="0" gantt-divider-location="343" resource-divider-location="300" version="2.8.10" locale="it_IT">
     <description><![CDATA[Since humans had left the Earth, centuries have passed and the blue Planet is now inhabited only by the animals, that have learned to manage the tech-nology of our descendants and to create their own. From that moment, a long war among the different species has taken act, to establish which was the best one. Inspired by the ancient books on “mythology”, they decided to set their battles in a huge arena: the Hypogeum. Rather than kill each other in “primitive” ways, they clashed each other using different cars, depending on the species they belong. Now, only four teams have left – Eagles, Lions, Rhinos and Sharks – and the outcome is more uncertain than ev-er. Who will be the audience’s favorite? Who will win the war? And, most important, who will obtain the supremacy?]]></description>
-    <view zooming-state="default:7" id="gantt-chart">
-        <field id="tpd3" name="Nome" width="15" order="0"/>
-        <field id="tpd4" name="Data d'inizio" width="15" order="1"/>
-        <field id="tpd5" name="Data di fine" width="15" order="2"/>
+    <view zooming-state="default:9" id="gantt-chart">
+        <field id="tpd3" name="Nome" width="174" order="0"/>
+        <field id="tpd4" name="Data d'inizio" width="88" order="1"/>
+        <field id="tpd5" name="Data di fine" width="77" order="2"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Nome" width="210" order="0"/>
@@ -58,13 +58,18 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="game concept" color="#8cb6ce" meeting="false" start="2019-03-14" duration="12" complete="0" thirdDate="2019-04-06" thirdDate-constraint="0" expand="true"/>
-        <task id="3" name="GDD 1.0 &amp; GTD 1:0" color="#8cb6ce" meeting="false" start="2019-03-26" duration="21" complete="0" thirdDate="2019-04-06" thirdDate-constraint="0" expand="true"/>
-        <task id="5" name="GDD 2.0 &amp; GTD 2.0" color="#8cb6ce" meeting="false" start="2019-04-16" duration="32" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
-        <task id="7" name="GDD final &amp; GTD final + storyboard" color="#8cb6ce" meeting="false" start="2019-05-21" duration="20" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
-        <task id="9" name="trailer + gameplay" color="#8cb6ce" meeting="false" start="2019-06-11" duration="6" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
-        <task id="13" name="prototype" color="#8cb6ce" meeting="false" start="2019-06-17" duration="4" complete="0" thirdDate="2019-02-11" thirdDate-constraint="0" expand="true"/>
-        <task id="15" name="NGD" color="#8cb6ce" meeting="false" start="2019-06-21" duration="7" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+        <task id="0" name="marketing research" color="#8cb6ce" meeting="false" start="2019-03-14" duration="12" complete="0" thirdDate="2019-04-06" thirdDate-constraint="0" expand="true"/>
+        <task id="20" name="concept" color="#8cb6ce" meeting="false" start="2019-03-26" duration="20" complete="0" thirdDate="2019-03-26" thirdDate-constraint="0" expand="true"/>
+        <task id="21" name="game design" meeting="false" start="2019-04-15" duration="33" complete="0" expand="true"/>
+        <task id="22" name="prototype" meeting="false" start="2019-05-21" duration="115" complete="0" expand="true"/>
+        <task id="3" name="models and animations" color="#8cb6ce" meeting="false" start="2019-07-01" duration="122" complete="0" thirdDate="2019-04-06" thirdDate-constraint="0" expand="true"/>
+        <task id="5" name="audio" color="#8cb6ce" meeting="false" start="2019-07-01" duration="62" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+        <task id="23" name="programming" color="#8cb6ce" meeting="false" start="2019-08-01" duration="296" complete="0" thirdDate="2019-03-01" thirdDate-constraint="0" expand="true"/>
+        <task id="24" name="gui" color="#8cb6ce" meeting="false" start="2020-02-01" duration="120" complete="0" thirdDate="2020-02-01" thirdDate-constraint="0" expand="true"/>
+        <task id="7" name="alpha" color="#8cb6ce" meeting="false" start="2020-06-01" duration="60" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+        <task id="9" name="beta" color="#8cb6ce" meeting="false" start="2020-08-01" duration="91" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+        <task id="13" name="public beta" color="#8cb6ce" meeting="false" start="2020-11-02" duration="114" complete="0" thirdDate="2019-02-11" thirdDate-constraint="0" expand="true"/>
+        <task id="15" name="release" color="#8cb6ce" meeting="false" start="2021-03-01" duration="31" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Maione" function="SoftwareDevelopment:2" contacts="" phone=""/>
