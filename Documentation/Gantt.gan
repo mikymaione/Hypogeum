@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Hypogeum" company="Team Lama" webLink="http://www.maionemiky.it" view-date="2018-12-01" view-index="0" gantt-divider-location="343" resource-divider-location="300" version="2.8.10" locale="it">
+<?xml version="1.0" encoding="UTF-8"?><project name="Hypogeum" company="Team Lama" webLink="http://www.maionemiky.it" view-date="2019-03-01" view-index="0" gantt-divider-location="330" resource-divider-location="300" version="2.8.10" locale="it">
     <description><![CDATA[Since humans had left the Earth, centuries have passed and the blue Planet is now inhabited only by the animals, that have learned to manage the tech-nology of our descendants and to create their own. From that moment, a long war among the different species has taken act, to establish which was the best one. Inspired by the ancient books on “mythology”, they decided to set their battles in a huge arena: the Hypogeum. Rather than kill each other in “primitive” ways, they clashed each other using different cars, depending on the species they belong. Now, only four teams have left – Eagles, Lions, Rhinos and Sharks – and the outcome is more uncertain than ev-er. Who will be the audience’s favorite? Who will win the war? And, most important, who will obtain the supremacy?]]></description>
     <view zooming-state="default:11" id="gantt-chart">
-        <field id="tpd3" name="Nome" width="174" order="0"/>
-        <field id="tpd4" name="Data d'inizio" width="88" order="1"/>
-        <field id="tpd5" name="Data di fine" width="77" order="2"/>
+        <field id="tpd3" name="Nome" width="167" order="0"/>
+        <field id="tpd4" name="Data d'inizio" width="85" order="1"/>
+        <field id="tpd5" name="Data di fine" width="74" order="2"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Nome" width="210" order="0"/>
