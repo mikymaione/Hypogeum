@@ -8,8 +8,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 namespace HypogeumDBW.DB
 {
-    class partecipanti
+    public class Partecipanti
     {
+        string codice_unet { get; }
+        int id_utente { get; }
+        int punti { get; }
+        int posizione { get; }
+
+        Utente[] utenti { get; }
 
     }
 }
