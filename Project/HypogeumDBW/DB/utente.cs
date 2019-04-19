@@ -13,6 +13,7 @@ namespace HypogeumDBW.DB
         public int id_utente { get; set; }
         public string facebook_key { get; set; }
         public string descrizione { get; set; }
-
+        public string email { get; set; }
+        
     }
 }
