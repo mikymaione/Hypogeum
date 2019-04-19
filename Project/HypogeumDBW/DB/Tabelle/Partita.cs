@@ -14,13 +14,12 @@ namespace HypogeumDBW.DB.Tabelle
     public sealed class Partita : TabellaBase
     {
         [PrimaryKey]
-        public string codice_unet { get; }
+        public string codice_unet;
 
-        public DateTime inizio { get; }
-        public DateTime fine { get; }
-        public bool abortita { get; }
+        public DateTime inizio, fine;
+        public bool abortita;
 
-        public Partecipanti[] partecipanti { get; }
+        public Partecipanti[] partecipanti { get; };
 
     }
 }

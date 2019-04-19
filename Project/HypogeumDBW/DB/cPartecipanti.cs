@@ -13,25 +13,42 @@ namespace HypogeumDBW.DB
 {
     public sealed class cPartecipanti : DataWrapper.Base.cBaseEntity<Partecipanti>
     {
-  
+
         protected override Partecipanti Carica_Record(ref DbDataReader dr)
         {
-            throw new System.NotImplementedException();
+            return new Partecipanti()
+            {
+                codice_unet = DrTo<string>(dr, "codice_unet"),
+                id_utente = DrTo<int>(dr, "id_utente"),
+                posizione = DrTo<int>(dr, "posizione"),
+                punti = DrTo<int>(dr, "punti")
+            };
         }
 
         protected override DbParameter[] Inserisci_Parametri(Partecipanti entita)
         {
-            throw new System.NotImplementedException();
+            return new DbParameter[] {
+                cDB.NewPar("codice_unet", entita.codice_unet),
+                cDB.NewPar("id_utente", entita.id_utente),
+                cDB.NewPar("posizione", entita.posizione),
+                cDB.NewPar("punti", entita.punti),
+            };
         }
 
         protected override DbParameter[] Modifica_Parametri(Partecipanti entita)
         {
-            throw new System.NotImplementedException();
+            return new DbParameter[] {                
+                cDB.NewPar("id_utente", entita.id_utente),
+                cDB.NewPar("posizione", entita.posizione),
+                cDB.NewPar("punti", entita.punti),
+            };
         }
 
         protected override DbParameter[] Ricerca_Parametri(Partecipanti entita)
         {
-            throw new System.NotImplementedException();
+            return new DbParameter[] {
+                cDB.NewPar("codice_unet", entita.codice_unet),
+            };
         }
 
     }

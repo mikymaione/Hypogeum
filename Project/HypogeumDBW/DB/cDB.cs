@@ -17,12 +17,12 @@ namespace HypogeumDBW.DB
     sealed class cDB
     {
 
-        internal enum eTipoEvento
+        public enum eTipoEvento
         {
             Modifica, Elimina, Inserisci, Carica, Ricerca, RicercaEx
         }
 
-        internal enum DataBase
+        public enum DataBase
         {
             Access,
             SQLite,

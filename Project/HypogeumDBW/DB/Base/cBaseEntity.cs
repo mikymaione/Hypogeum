@@ -111,6 +111,10 @@ namespace HypogeumDBW.DB.DataWrapper.Base
             //entita.CFModifica = cGB.ObjectToString(dr["CFModifica"]);
         }
 
+        protected J DrTo<J>(DbDataReader dr, string campo)
+        {
+            return (J)dr[campo];
+        }
 
     }
 }

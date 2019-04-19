@@ -11,12 +11,9 @@ using HypogeumDBW.DB.DataWrapper.Tabelle;
 namespace HypogeumDBW.DB.Tabelle
 {
     public sealed class Partecipanti : TabellaBase
-    {        
-        public string codice_unet { get; }
-
-        public int id_utente { get; }
-        public int punti { get; }
-        public int posizione { get; }
+    {
+        public string codice_unet;
+        public int id_utente, punti, posizione;
 
         public Utente[] utenti { get; }
 
