@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 
 namespace HypogeumDBW.DB
 {
-    sealed class cDB
+    public sealed class cDB
     {
 
         public enum eTipoEvento

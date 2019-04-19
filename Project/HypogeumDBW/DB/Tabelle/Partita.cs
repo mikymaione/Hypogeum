@@ -19,7 +19,7 @@ namespace HypogeumDBW.DB.Tabelle
         public DateTime inizio, fine;
         public bool abortita;
 
-        public Partecipanti[] partecipanti { get; };
+        public Partecipanti[] partecipanti { get; }
 
     }
 }

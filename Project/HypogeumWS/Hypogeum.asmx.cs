@@ -50,19 +50,19 @@ namespace HypogeumWS
         }
 
         [WebMethod]
-        public HypogeumDBW.DB.Partita StatoPartita(string codice_unet)
+        public HypogeumDBW.DB.Tabelle.Partita StatoPartita(string codice_unet)
         {
-            return new HypogeumDBW.DB.Partita();
+            return new HypogeumDBW.DB.Tabelle.Partita();
         }
 
         [WebMethod]
-        public HypogeumDBW.DB.Partita[] ListaPartite(DateTime dal, DateTime al)
+        public HypogeumDBW.DB.Tabelle.Partita[] ListaPartite(DateTime dal, DateTime al)
         {
-            return new HypogeumDBW.DB.Partita[] {
-                new HypogeumDBW.DB.Partita(),
-                new HypogeumDBW.DB.Partita(),
-                new HypogeumDBW.DB.Partita(),
-                new HypogeumDBW.DB.Partita()
+            return new HypogeumDBW.DB.Tabelle.Partita[] {
+                new HypogeumDBW.DB.Tabelle.Partita(),
+                new HypogeumDBW.DB.Tabelle.Partita(),
+                new HypogeumDBW.DB.Tabelle.Partita(),
+                new HypogeumDBW.DB.Tabelle.Partita()
             };
         }
 
