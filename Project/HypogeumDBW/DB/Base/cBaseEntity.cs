@@ -18,7 +18,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
         protected abstract DbParameter[] Modifica_Parametri(TableEntity entita);
         protected abstract TableEntity Carica_Record(ref DbDataReader dr);
 
-        internal cRisultatoSQL<int> Modifica(TableEntity entita, string PrimaryKeyName)
+        public cRisultatoSQL<int> Modifica(TableEntity entita, string PrimaryKeyName)
         {
             var modP = Modifica_Parametri(entita);
 
@@ -34,7 +34,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
             return cDB.EseguiSQLNoQuery(getQuery(cDB.eTipoEvento.Modifica, PrimaryKeyName, false, p.ToArray()), p);
         }
 
-        internal virtual cRisultatoSQL<Tuple<int, int>> Inserisci(TableEntity entita, string PrimaryKeyName, bool PrimaryKeyIsAutoInc)
+        public virtual cRisultatoSQL<Tuple<int, int>> Inserisci(TableEntity entita, string PrimaryKeyName, bool PrimaryKeyIsAutoInc)
         {
             DbParameter outp = null;
             var insP = Inserisci_Parametri(entita);
@@ -67,7 +67,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
             }
         }
 
-        internal cRisultatoSQL<int> Elimina(object key)
+        public cRisultatoSQL<int> Elimina(object key)
         {
             var e = Carica(key);
 

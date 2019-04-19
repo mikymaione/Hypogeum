@@ -10,21 +10,21 @@ using System;
 
 namespace HypogeumDBW.DB
 {
-    sealed class cRisultatoSQL<T>
+    public sealed class cRisultatoSQL<T>
     {
 
-        internal bool Errore { get; }
+        public bool Errore { get; }
 
-        internal T Risultato { get; }
+        public T Risultato { get; }
 
-        internal Exception Eccezione { get; }
+        public Exception Eccezione { get; }
 
-        internal cRisultatoSQL(T Risultato_p)
+        public cRisultatoSQL(T Risultato_p)
         {
             Risultato = Risultato_p;
         }
 
-        internal cRisultatoSQL(Exception Eccezione_p)
+        public cRisultatoSQL(Exception Eccezione_p)
         {
             Errore = true;
             Eccezione = Eccezione_p;

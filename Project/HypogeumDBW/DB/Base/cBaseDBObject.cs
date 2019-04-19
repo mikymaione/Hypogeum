@@ -49,7 +49,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
             return z;
         }
 
-        internal cRisultatoSQL<List<TableEntity>> Ricerca(TableEntity entita)
+        public cRisultatoSQL<List<TableEntity>> Ricerca(TableEntity entita)
         {
             var r = new List<TableEntity>();
 
@@ -80,7 +80,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
             return new cRisultatoSQL<List<TableEntity>>(r);
         }
 
-        internal cRisultatoSQL<System.Data.DataTable> Ricerca(int MaxRows, TableEntity entita)
+        public cRisultatoSQL<System.Data.DataTable> Ricerca(int MaxRows, TableEntity entita)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
             }
         }
 
-        internal cRisultatoSQL<System.Data.DataTable> Ricerca(object key)
+        public cRisultatoSQL<System.Data.DataTable> Ricerca(object key)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
             }
         }
 
-        internal cRisultatoSQL<TableEntity> Carica(object key)
+        public cRisultatoSQL<TableEntity> Carica(object key)
         {
             try
             {
