@@ -16,22 +16,38 @@ namespace HypogeumDBW.DB
 
         protected override Utente Carica_Record(ref DbDataReader dr)
         {
-            throw new System.NotImplementedException();
+            return new Utente()
+            {
+                descrizione = DrTo<string>(dr, "descrizione"),
+                email = DrTo<string>(dr, "email"),
+                facebook_key = DrTo<string>(dr, "facebook_key"),
+                id_utente = DrTo<int>(dr, "id_utente"),
+            };
         }
 
         protected override DbParameter[] Inserisci_Parametri(Utente entita)
         {
-            throw new System.NotImplementedException();
+            return new DbParameter[] {
+                cDB.NewPar("id_utente", entita.id_utente),
+                cDB.NewPar("facebook_key", entita.facebook_key),
+                cDB.NewPar("email", entita.email),
+                cDB.NewPar("descrizione", entita.descrizione),                                          
+            };
         }
 
         protected override DbParameter[] Modifica_Parametri(Utente entita)
         {
-            throw new System.NotImplementedException();
+            return new DbParameter[] {                
+                cDB.NewPar("descrizione", entita.descrizione),                
+            };
         }
 
         protected override DbParameter[] Ricerca_Parametri(Utente entita)
         {
-            throw new System.NotImplementedException();
+            return new DbParameter[] {
+                cDB.NewPar("id_utente", entita.id_utente),              
+                cDB.NewPar("email", entita.email),             
+            };
         }
 
     }
