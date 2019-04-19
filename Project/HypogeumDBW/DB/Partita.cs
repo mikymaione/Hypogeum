@@ -12,12 +12,12 @@ namespace HypogeumDBW.DB
 {
     public class Partita
     {
-        string codice_unet { get; }
-        DateTime inizio { get; }
-        DateTime fine { get; }
-        bool abortita { get; }
+        public string codice_unet { get; }
+        public DateTime inizio { get; }
+        public DateTime fine { get; }
+        public bool abortita { get; }
 
-        Partecipanti[] partecipanti { get; }
+        public Partecipanti[] partecipanti { get; }
 
     }
 }

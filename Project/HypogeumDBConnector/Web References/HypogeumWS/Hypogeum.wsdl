@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.maionemiky.it/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.maionemiky.it/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.maionemiky.it/">
+      <s:element name="LoginUtente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="facebook_key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUtenteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoginUtenteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Partecipa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codice_unet" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_utente" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PartecipaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PartecipaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Muori">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codice_unet" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_utente" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="punti" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="posizione" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MuoriResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MuoriResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IniziaPartita">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codice_unet" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IniziaPartitaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IniziaPartitaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinePartita">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codice_unet" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinePartitaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FinePartitaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatoPartita">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codice_unet" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatoPartitaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StatoPartitaResult" type="tns:Partita" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Partita" />
+      <s:element name="ListaPartite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dal" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="al" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaPartiteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaPartiteResult" type="tns:ArrayOfPartita" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPartita">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Partita" nillable="true" type="tns:Partita" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginUtenteSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginUtente" />
+  </wsdl:message>
+  <wsdl:message name="LoginUtenteSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginUtenteResponse" />
+  </wsdl:message>
+  <wsdl:message name="PartecipaSoapIn">
+    <wsdl:part name="parameters" element="tns:Partecipa" />
+  </wsdl:message>
+  <wsdl:message name="PartecipaSoapOut">
+    <wsdl:part name="parameters" element="tns:PartecipaResponse" />
+  </wsdl:message>
+  <wsdl:message name="MuoriSoapIn">
+    <wsdl:part name="parameters" element="tns:Muori" />
+  </wsdl:message>
+  <wsdl:message name="MuoriSoapOut">
+    <wsdl:part name="parameters" element="tns:MuoriResponse" />
+  </wsdl:message>
+  <wsdl:message name="IniziaPartitaSoapIn">
+    <wsdl:part name="parameters" element="tns:IniziaPartita" />
+  </wsdl:message>
+  <wsdl:message name="IniziaPartitaSoapOut">
+    <wsdl:part name="parameters" element="tns:IniziaPartitaResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinePartitaSoapIn">
+    <wsdl:part name="parameters" element="tns:FinePartita" />
+  </wsdl:message>
+  <wsdl:message name="FinePartitaSoapOut">
+    <wsdl:part name="parameters" element="tns:FinePartitaResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatoPartitaSoapIn">
+    <wsdl:part name="parameters" element="tns:StatoPartita" />
+  </wsdl:message>
+  <wsdl:message name="StatoPartitaSoapOut">
+    <wsdl:part name="parameters" element="tns:StatoPartitaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaPartiteSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaPartite" />
+  </wsdl:message>
+  <wsdl:message name="ListaPartiteSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaPartiteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="HypogeumSoap">
+    <wsdl:operation name="LoginUtente">
+      <wsdl:input message="tns:LoginUtenteSoapIn" />
+      <wsdl:output message="tns:LoginUtenteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Partecipa">
+      <wsdl:input message="tns:PartecipaSoapIn" />
+      <wsdl:output message="tns:PartecipaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Muori">
+      <wsdl:input message="tns:MuoriSoapIn" />
+      <wsdl:output message="tns:MuoriSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IniziaPartita">
+      <wsdl:input message="tns:IniziaPartitaSoapIn" />
+      <wsdl:output message="tns:IniziaPartitaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinePartita">
+      <wsdl:input message="tns:FinePartitaSoapIn" />
+      <wsdl:output message="tns:FinePartitaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StatoPartita">
+      <wsdl:input message="tns:StatoPartitaSoapIn" />
+      <wsdl:output message="tns:StatoPartitaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaPartite">
+      <wsdl:input message="tns:ListaPartiteSoapIn" />
+      <wsdl:output message="tns:ListaPartiteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HypogeumSoap" type="tns:HypogeumSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginUtente">
+      <soap:operation soapAction="http://www.maionemiky.it/LoginUtente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Partecipa">
+      <soap:operation soapAction="http://www.maionemiky.it/Partecipa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Muori">
+      <soap:operation soapAction="http://www.maionemiky.it/Muori" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IniziaPartita">
+      <soap:operation soapAction="http://www.maionemiky.it/IniziaPartita" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinePartita">
+      <soap:operation soapAction="http://www.maionemiky.it/FinePartita" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatoPartita">
+      <soap:operation soapAction="http://www.maionemiky.it/StatoPartita" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaPartite">
+      <soap:operation soapAction="http://www.maionemiky.it/ListaPartite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HypogeumSoap12" type="tns:HypogeumSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginUtente">
+      <soap12:operation soapAction="http://www.maionemiky.it/LoginUtente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Partecipa">
+      <soap12:operation soapAction="http://www.maionemiky.it/Partecipa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Muori">
+      <soap12:operation soapAction="http://www.maionemiky.it/Muori" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IniziaPartita">
+      <soap12:operation soapAction="http://www.maionemiky.it/IniziaPartita" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinePartita">
+      <soap12:operation soapAction="http://www.maionemiky.it/FinePartita" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatoPartita">
+      <soap12:operation soapAction="http://www.maionemiky.it/StatoPartita" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaPartite">
+      <soap12:operation soapAction="http://www.maionemiky.it/ListaPartite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Hypogeum">
+    <wsdl:port name="HypogeumSoap" binding="tns:HypogeumSoap">
+      <soap:address location="http://www.maionemiky.it/Hypogeum.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HypogeumSoap12" binding="tns:HypogeumSoap12">
+      <soap12:address location="http://www.maionemiky.it/Hypogeum.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
