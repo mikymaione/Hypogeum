@@ -45,7 +45,7 @@ namespace HypogeumDBW.DB
         protected override DbParameter[] Ricerca_Parametri(Utente entita)
         {
             return new DbParameter[] {
-                cDB.NewPar("id_utente", entita.id_utente),              
+                //cDB.NewPar("id_utente", entita.id_utente),              
                 cDB.NewPar("email", entita.email),             
             };
         }

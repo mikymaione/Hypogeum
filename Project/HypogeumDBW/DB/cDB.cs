@@ -287,33 +287,31 @@ namespace HypogeumDBW.DB
 
             if (z == null || z.Equals(""))
             {
-                var path_to_sql = "";
-                path_to_sql = Application_StartupPath;
-                path_to_sql = System.IO.Path.Combine(path_to_sql, "DB");
-                path_to_sql = System.IO.Path.Combine(path_to_sql, "SQL");
-                path_to_sql = System.IO.Path.Combine(path_to_sql, percorso);
-                path_to_sql = System.IO.Path.ChangeExtension(path_to_sql, ".sql");
+                var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                var risorse = assembly.GetManifestResourceNames();
+                var resourceName = $"HypogeumDBW.DB.SQL.{percorso}.sql";
 
-                if (!System.IO.File.Exists(path_to_sql))
-                    throw new System.IO.FileNotFoundException("Il file " + path_to_sql + " non esiste.");
+                foreach (var risorsa in risorse)
+                    if (risorsa.Equals(resourceName))
+                    {
+                        using (var stream = assembly.GetManifestResourceStream(resourceName))
+                        using (var reader = new System.IO.StreamReader(stream))
+                            z = reader.ReadToEnd();
 
-                using (var sr = new System.IO.StreamReader(path_to_sql))
-                {
-                    while (sr.Peek() != -1)
-                        z += sr.ReadLine() + Environment.NewLine;
+                        if (DataBaseAttuale == DataBase.SQLite)
+                        {
+                            z = z.Replace("Datepart('d',", "strftime('%d',");
+                            z = z.Replace("Datepart('yyyy',", "strftime('%Y',");
+                            z = z.Replace("Format(m.data, 'yyyy')", "strftime('%Y',m.data)");
+                            z = z.Replace("Format(m.data, 'yyyy/mm')", "strftime('%Y/%m',m.data)");
+                        }
 
-                    sr.Close();
-                }
+                        QueriesGiaLette.Add(percorso, z);
 
-                if (DataBaseAttuale == DataBase.SQLite)
-                {
-                    z = z.Replace("Datepart('d',", "strftime('%d',");
-                    z = z.Replace("Datepart('yyyy',", "strftime('%Y',");
-                    z = z.Replace("Format(m.data, 'yyyy')", "strftime('%Y',m.data)");
-                    z = z.Replace("Format(m.data, 'yyyy/mm')", "strftime('%Y/%m',m.data)");
-                }
+                        return z;
+                    }
 
-                QueriesGiaLette.Add(percorso, z);
+                throw new System.IO.FileNotFoundException("Il file " + resourceName + " non esiste.");
             }
 
             return z;

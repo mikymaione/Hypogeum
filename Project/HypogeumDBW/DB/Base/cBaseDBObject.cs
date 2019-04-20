@@ -28,7 +28,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
 
         protected string getQuery(string NomeEvento)
         {
-            return cDB.LeggiQuery(typeof(TableEntity).Name + @"/" + NomeEvento);
+            return cDB.LeggiQuery(typeof(TableEntity).Name + "." + NomeEvento);
         }
 
         protected string getQuery(cDB.eTipoEvento NomeEvento, string PrimaryKeyName = "", bool PrimaryKeyIsAutoInc = false, DbParameter[] campiDaAggiornare = null)
@@ -38,7 +38,7 @@ namespace HypogeumDBW.DB.DataWrapper.Base
 
             try
             {
-                p = typeof(TableEntity).Name + @"/" + NomeEvento;
+                p = typeof(TableEntity).Name + "." + NomeEvento;
                 z = cDB.LeggiQuery(p);
             }
             catch (System.IO.FileNotFoundException)

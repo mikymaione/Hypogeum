@@ -113,8 +113,17 @@ namespace HypogeumDBW.DB.DataWrapper.Base
 
         protected J DrTo<J>(DbDataReader dr, string campo)
         {
-            return (J)dr[campo];
+            try
+            {
+                return (J)dr[campo];
+            }
+            catch
+            {
+                //null
+                return default(J);
+            }
         }
+
 
     }
 }

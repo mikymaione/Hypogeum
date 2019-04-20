@@ -9,6 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 using HypogeumDBW.DB;
 using HypogeumDBW.DB.Tabelle;
 using System;
+using System.Collections.Generic;
 using System.Web.Services;
 
 namespace HypogeumWS
@@ -31,10 +32,13 @@ namespace HypogeumWS
         }
 
         [WebMethod]
-        public cRisultatoSQL<Utente> LoginUtenteEmail(string email)
+        public cRisultatoSQL<List<Utente>> LoginUtenteEmail(string email)
         {
             var classeUtente = new cUtente();
-            var utente = classeUtente.Carica(email);
+            var utente = classeUtente.Ricerca(new Utente()
+            {
+                email = email
+            });
 
             return utente;
         }
@@ -43,7 +47,7 @@ namespace HypogeumWS
         public cRisultatoSQL<Tuple<int, int>> RegistraUtente(string email, string descrizione)
         {
             var classeUtente = new cUtente();
-
+            
             var rInserimento = classeUtente.Inserisci(new Utente()
             {
                 descrizione = descrizione,
