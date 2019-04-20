@@ -19,6 +19,9 @@ namespace HypogeumDBW.DB
 
         public Exception Eccezione { get; }
 
+
+        public cRisultatoSQL() { } //costruttore vuoto per WebService SOAP
+
         public cRisultatoSQL(T Risultato_p)
         {
             Risultato = Risultato_p;

@@ -33,20 +33,14 @@ namespace HypogeumDBW.DB
 
         private static DbConnection Connessione;
         private static DataBase DataBaseAttuale = DataBase.Access;
-        internal static DateTime UltimaModifica = DateTime.MinValue;
+        public static DateTime UltimaModifica = DateTime.MinValue;
 
         public static object Application { get; private set; }
 
         public static string ActualConnectionString { get; private set; }
-        public static string Application_StartupPath { get; private set; }
+        public static string Application_StartupPath { get; set; }
 
         public static bool ConnessioneEffettuata { get; private set; }
-
-
-        public cDB(string Application_StartupPath_)
-        {
-            Application_StartupPath = Application_StartupPath_; //System.Windows.Forms.Application.StartupPath            
-        }
 
 
         private static string DammiStringaConnessione(string path_db = "", string server = "", string username = "", string psw = "")
@@ -71,17 +65,17 @@ namespace HypogeumDBW.DB
             return s;
         }
 
-        internal static cRisultatoSQL<int> EseguiSQLNoQuery(string sql, List<DbParameter> param)
+        public static cRisultatoSQL<int> EseguiSQLNoQuery(string sql, List<DbParameter> param)
         {
             return EseguiSQLNoQuery(sql, param.ToArray());
         }
 
-        internal static cRisultatoSQL<int> EseguiSQLNoQuery(ref DbTransaction Trans, string sql, List<DbParameter> param)
+        public static cRisultatoSQL<int> EseguiSQLNoQuery(ref DbTransaction Trans, string sql, List<DbParameter> param)
         {
             return EseguiSQLNoQuery(ref Trans, sql, param.ToArray());
         }
 
-        internal static cRisultatoSQL<int> EseguiSQLNoQuery(ref DbTransaction Trans, string sql, DbParameter[] param)
+        public static cRisultatoSQL<int> EseguiSQLNoQuery(ref DbTransaction Trans, string sql, DbParameter[] param)
         {
             var i = -1;
             var cm = CreaCommandNoConnection(sql, param);
@@ -104,24 +98,24 @@ namespace HypogeumDBW.DB
             }
         }
 
-        internal static cRisultatoSQL<int> EseguiSQLNoQuery(string sql)
+        public static cRisultatoSQL<int> EseguiSQLNoQuery(string sql)
         {
             return EseguiSQLNoQuery(sql, new List<DbParameter>());
         }
 
-        internal static cRisultatoSQL<int> EseguiSQLNoQuery(string sql, DbParameter[] param)
+        public static cRisultatoSQL<int> EseguiSQLNoQuery(string sql, DbParameter[] param)
         {
             DbTransaction tr = null;
 
             return EseguiSQLNoQuery(ref tr, sql, param);
         }
 
-        internal static DataTable EseguiSQLDataTable(string sql)
+        public static DataTable EseguiSQLDataTable(string sql)
         {
             return EseguiSQLDataTable(sql, null);
         }
 
-        internal static DataTable EseguiSQLDataTable(string sql, DbParameter[] param, int MaxRows = -1)
+        public static DataTable EseguiSQLDataTable(string sql, DbParameter[] param, int MaxRows = -1)
         {
             var t = new DataTable();
 
@@ -183,26 +177,26 @@ namespace HypogeumDBW.DB
             return cm;
         }
 
-        internal static DbDataReader EseguiSQLDataReader(string sql)
+        public static DbDataReader EseguiSQLDataReader(string sql)
         {
             DbTransaction tr = null;
 
             return EseguiSQLDataReader(ref tr, sql, null);
         }
 
-        internal static DbDataReader EseguiSQLDataReader(string sql, List<DbParameter> param)
+        public static DbDataReader EseguiSQLDataReader(string sql, List<DbParameter> param)
         {
             return EseguiSQLDataReader(sql, param.ToArray());
         }
 
-        internal static DbDataReader EseguiSQLDataReader(string sql, DbParameter[] param)
+        public static DbDataReader EseguiSQLDataReader(string sql, DbParameter[] param)
         {
             DbTransaction tr = null;
 
             return EseguiSQLDataReader(ref tr, sql, param);
         }
 
-        internal static DbDataReader EseguiSQLDataReader(ref DbTransaction Trans, string sql, DbParameter[] param)
+        public static DbDataReader EseguiSQLDataReader(ref DbTransaction Trans, string sql, DbParameter[] param)
         {
             var cm = CreaCommandNoConnection(sql, param);
 
@@ -212,7 +206,7 @@ namespace HypogeumDBW.DB
             return cm.ExecuteReader();
         }
 
-        internal static string ComponiQuery(string percorso, eTipoEvento evento, string tabella, string primaryKeyName, bool primaryKeyIsAutoInc, DbParameter[] campiAggiornamento)
+        public static string ComponiQuery(string percorso, eTipoEvento evento, string tabella, string primaryKeyName, bool primaryKeyIsAutoInc, DbParameter[] campiAggiornamento)
         {
             var z = "";
 
@@ -260,8 +254,22 @@ namespace HypogeumDBW.DB
 
                     z += " ) ";
 
-                    if (primaryKeyIsAutoInc)
-                        z += "returning " + primaryKeyName;
+                    switch (DataBaseAttuale)
+                    {
+                        case DataBase.Access:
+                            throw new NotImplementedException();
+                            break;
+                        case DataBase.SQLite:
+                            z += ";select last_insert_rowid();";
+                            break;
+                        case DataBase.FireBird:
+                            if (primaryKeyIsAutoInc)
+                                z += "returning " + primaryKeyName;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                            break;
+                    }
                 }
 
                 QueriesGiaLette.Add(percorso, z);
@@ -270,7 +278,7 @@ namespace HypogeumDBW.DB
             return z;
         }
 
-        internal static string LeggiQuery(string percorso)
+        public static string LeggiQuery(string percorso)
         {
             var z = "";
 
@@ -311,7 +319,7 @@ namespace HypogeumDBW.DB
             return z;
         }
 
-        internal static void AddPar(ref DbParameter[] parametri, string Nome, object Valore)
+        public static void AddPar(ref DbParameter[] parametri, string Nome, object Valore)
         {
             var o = parametri.Length;
 
@@ -321,12 +329,12 @@ namespace HypogeumDBW.DB
         }
 
 
-        internal static DbParameter NewPar(Tuple<string, dynamic> campo, ParameterDirection direction = ParameterDirection.Input)
+        public static DbParameter NewPar(Tuple<string, dynamic> campo, ParameterDirection direction = ParameterDirection.Input)
         {
             return NewPar(campo.Item1, campo.Item2, direction);
         }
 
-        internal static DbParameter NewPar(string Nome, object Valore, ParameterDirection direction = ParameterDirection.Input)
+        public static DbParameter NewPar(string Nome, object Valore, ParameterDirection direction = ParameterDirection.Input)
         {
             DbParameter o = null;
 
@@ -391,12 +399,12 @@ namespace HypogeumDBW.DB
                 }
             }
 
-            o.Direction = direction;
+            //o.Direction = direction;
 
             return o;
         }
 
-        internal static DbParameter NewPar(string Nome, object Valore, DbType tipo)
+        public static DbParameter NewPar(string Nome, object Valore, DbType tipo)
         {
             DbParameter o = null;
 
@@ -428,7 +436,7 @@ namespace HypogeumDBW.DB
             return o;
         }
 
-        internal static void ChiudiConnessione()
+        public static void ChiudiConnessione()
         {
             try
             {
@@ -441,22 +449,22 @@ namespace HypogeumDBW.DB
             }
         }
 
-        internal static void ApriConnessione(bool ForceClose)
+        public static void ApriConnessione(bool ForceClose)
         {
             ApriConnessione(DataBase.Access, "", ForceClose);
         }
 
-        internal static void ApriConnessione(DataBase db_, bool ForceClose)
+        public static void ApriConnessione(DataBase db_, bool ForceClose)
         {
             ApriConnessione(db_, "", ForceClose);
         }
 
-        internal static void ApriConnessione(string path_db = "", bool ForceClose = false)
+        public static void ApriConnessione(string path_db = "", bool ForceClose = false)
         {
             ApriConnessione(DataBase.Access, path_db, ForceClose);
         }
 
-        internal static string GetConnectionStringFromProperties(DataBase db, string host_, string Database_, string User_, string Password_)
+        public static string GetConnectionStringFromProperties(DataBase db, string host_, string Database_, string User_, string Password_)
         {
             DbConnectionStringBuilder b = null;
             DataBaseAttuale = db;
@@ -474,7 +482,7 @@ namespace HypogeumDBW.DB
             return b.ConnectionString;
         }
 
-        internal static bool ApriConnessione(string ConnectionFile, DataBase db_)
+        public static bool ApriConnessione(string ConnectionFile, DataBase db_)
         {
             var z = "";
 
@@ -491,7 +499,7 @@ namespace HypogeumDBW.DB
             return ApriConnessione_(db_, z);
         }
 
-        internal static bool ApriConnessione(DataBase db_, string path_db = "", bool ForceClose = false, string server = "", string username = "", string psw = "")
+        public static bool ApriConnessione(DataBase db_, string path_db = "", bool ForceClose = false, string server = "", string username = "", string psw = "")
         {
             DataBaseAttuale = db_;
             var s = DammiStringaConnessione(path_db, server, username, psw);
@@ -499,7 +507,7 @@ namespace HypogeumDBW.DB
             return ApriConnessione_(db_, s, ForceClose);
         }
 
-        internal static bool ApriConnessione(bool ForceClose, string ConnectionString, DataBase db_)
+        public static bool ApriConnessione(bool ForceClose, string ConnectionString, DataBase db_)
         {
             return ApriConnessione_(db_, ConnectionString, ForceClose);
         }
@@ -544,12 +552,12 @@ namespace HypogeumDBW.DB
             return ConnessioneEffettuata;
         }
 
-        internal static DbTransaction CreaTransazione()
+        public static DbTransaction CreaTransazione()
         {
             return Connessione.BeginTransaction();
         }
 
-        internal static int GetColumnType(string TName, string CName)
+        public static int GetColumnType(string TName, string CName)
         {
             var sc = Connessione.GetSchema("Columns");
 
@@ -561,7 +569,7 @@ namespace HypogeumDBW.DB
             return -1;
         }
 
-        internal static object FieldIfExists(DbDataReader dr, string column)
+        public static object FieldIfExists(DbDataReader dr, string column)
         {
             var i = -1;
 

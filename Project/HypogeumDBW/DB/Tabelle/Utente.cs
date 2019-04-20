@@ -13,9 +13,11 @@ namespace HypogeumDBW.DB.Tabelle
     public sealed class Utente : TabellaBase
     {
         [PrimaryAutoIncKey]
-        public int id_utente;
+        public int id_utente { get; set; }
 
-        public string facebook_key, descrizione, email;
+        public string facebook_key { get; set; }
+        public string descrizione { get; set; }
+        public string email { get; set; }
 
     }
 }

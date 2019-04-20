@@ -19,6 +19,11 @@ namespace HypogeumWS
     public class Hypogeum : WebService
     {
 
+        public Hypogeum()
+        {
+            SettaConnessione();
+        }
+
         [WebMethod]
         public int LoginUtenteFB(string facebook_key)
         {
@@ -32,6 +37,21 @@ namespace HypogeumWS
             var utente = classeUtente.Carica(email);
 
             return utente;
+        }
+
+        [WebMethod]
+        public cRisultatoSQL<Tuple<int, int>> RegistraUtente(string email, string descrizione)
+        {
+            var classeUtente = new cUtente();
+
+            var rInserimento = classeUtente.Inserisci(new Utente()
+            {
+                descrizione = descrizione,
+                email = email
+            }, "id_utente", true);
+
+
+            return rInserimento;
         }
 
         [WebMethod]
@@ -99,6 +119,14 @@ namespace HypogeumWS
             };
         }
 
+        private void SettaConnessione()
+        {
+            var App_Data = Server.MapPath("App_Data");
+            var path_db = System.IO.Path.Combine(App_Data, "Hypogeum.sqlite3");
+
+            cDB.Application_StartupPath = App_Data;
+            cDB.ApriConnessione(true, $"Version=3;Data Source={path_db};", cDB.DataBase.SQLite);
+        }
 
     }
 }

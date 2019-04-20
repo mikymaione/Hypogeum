@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Hypogeum\Assembly-CSharp.csproj", "{A987E228-E6EE-CCD3-62F0-E8A9AB18A146}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HypogeumDBW", "HypogeumDBW\HypogeumDBW.csproj", "{1B4ACE3D-29F7-43D9-87F3-8BE191CAE315}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HypogeumWS", "HypogeumWS\HypogeumWS.csproj", "{E49D2338-3122-4476-8241-97A0D15D6BCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HypogeumDBConnector", "HypogeumDBConnector\HypogeumDBConnector.csproj", "{4EE7236D-B73B-422E-A904-BBD5125DDEBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A987E228-E6EE-CCD3-62F0-E8A9AB18A146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A987E228-E6EE-CCD3-62F0-E8A9AB18A146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A987E228-E6EE-CCD3-62F0-E8A9AB18A146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A987E228-E6EE-CCD3-62F0-E8A9AB18A146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B4ACE3D-29F7-43D9-87F3-8BE191CAE315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B4ACE3D-29F7-43D9-87F3-8BE191CAE315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B4ACE3D-29F7-43D9-87F3-8BE191CAE315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B4ACE3D-29F7-43D9-87F3-8BE191CAE315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E49D2338-3122-4476-8241-97A0D15D6BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49D2338-3122-4476-8241-97A0D15D6BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49D2338-3122-4476-8241-97A0D15D6BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49D2338-3122-4476-8241-97A0D15D6BCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE7236D-B73B-422E-A904-BBD5125DDEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE7236D-B73B-422E-A904-BBD5125DDEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE7236D-B73B-422E-A904-BBD5125DDEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE7236D-B73B-422E-A904-BBD5125DDEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {816D7B28-BEC6-47E2-A0BB-016C534584F4}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
