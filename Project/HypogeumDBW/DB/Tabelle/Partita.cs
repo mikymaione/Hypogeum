@@ -8,6 +8,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using HypogeumDBW.DB.DataWrapper.Tabelle;
 using System;
+using System.Collections.Generic;
 
 namespace HypogeumDBW.DB.Tabelle
 {
@@ -21,7 +22,21 @@ namespace HypogeumDBW.DB.Tabelle
 
         public bool abortita { get; set; }
 
-        public Partecipanti[] partecipanti { get; }
+        public List<Partecipanti> partecipanti
+        {
+            get
+            {
+                var classePartecipanti = new cPartecipanti();
+
+                var R = classePartecipanti.Ricerca(new Partecipanti()
+                {
+                    codice_unet = codice_unet
+                });
+
+                return R.Risultato;
+            }
+        }
+
 
     }
 }

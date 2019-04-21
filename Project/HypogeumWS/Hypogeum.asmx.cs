@@ -20,107 +20,105 @@ namespace HypogeumWS
     public class Hypogeum : WebService
     {
 
-        public Hypogeum()
+        public Hypogeum() => SettaConnessione();
+
+
+        [WebMethod]
+        public cRisultatoSQL<List<Utente>> LoginUtenteFB(string facebook_key)
         {
-            SettaConnessione();
+            throw new NotImplementedException();
         }
 
         [WebMethod]
-        public int LoginUtenteFB(string facebook_key)
-        {
-            return -1;
-        }
-
-        [WebMethod]
-        public cRisultatoSQL<List<Utente>> LoginUtenteEmail(string email)
+        public cRisultatoSQL<Utente> LoginUtenteEmail(string email)
         {
             var classeUtente = new cUtente();
-            var utente = classeUtente.Ricerca(new Utente()
-            {
-                email = email
-            });
 
-            return utente;
+            return classeUtente.RicercaByEmail(email);
         }
 
         [WebMethod]
         public cRisultatoSQL<Tuple<int, int>> RegistraUtente(string email, string descrizione)
         {
             var classeUtente = new cUtente();
-            
-            var rInserimento = classeUtente.Inserisci(new Utente()
+
+            return classeUtente.Inserisci(new Utente()
             {
                 descrizione = descrizione,
                 email = email
             }, "id_utente", true);
-
-
-            return rInserimento;
         }
 
         [WebMethod]
-        public bool Partecipa(string codice_unet, int id_utente)
+        public cRisultatoSQL<Tuple<int, int>> Partecipa(string codice_unet, int id_utente)
         {
             var classePartecipanti = new cPartecipanti();
-            var classePartita = new cPartita();
 
-            var lista_partecipanti = classePartecipanti.Ricerca(new Partecipanti()
+            return classePartecipanti.Inserisci(new Partecipanti()
             {
                 codice_unet = codice_unet,
                 id_utente = id_utente
+            }, null, false);
+        }
+
+        [WebMethod]
+        public cRisultatoSQL<int> Muori(string codice_unet, int id_utente, int punti, int posizione)
+        {
+            var classePartecipanti = new cPartecipanti();
+
+            return classePartecipanti.Modifica(new Partecipanti()
+            {
+                codice_unet = codice_unet,
+                id_utente = id_utente,
+                posizione = posizione,
+                punti = punti
+            }, null);
+        }
+
+
+        [WebMethod]
+        public cRisultatoSQL<Tuple<int, int>> IniziaPartita(string codice_unet)
+        {
+            var classePartita = new cPartita();
+
+            return classePartita.Inserisci(new Partita()
+            {
+                codice_unet = codice_unet,
+                inizio = DateTime.Now,
+                fine = DateTime.MaxValue,
+            }, "codice_unet", false);
+        }
+
+        [WebMethod]
+        public cRisultatoSQL<int> FinePartita(string codice_unet)
+        {
+            var classePartita = new cPartita();
+
+            return classePartita.Modifica(new Partita()
+            {
+                codice_unet = codice_unet,
+                fine = DateTime.Now,
+            }, "codice_unet");
+        }
+
+        [WebMethod]
+        public cRisultatoSQL<Partita> StatoPartita(string codice_unet)
+        {
+            var classePartita = new cPartita();
+
+            return classePartita.Carica(codice_unet);
+        }
+
+        [WebMethod]
+        public cRisultatoSQL<List<Partita>> ListaPartite(DateTime dal, DateTime al)
+        {
+            var classePartita = new cPartita();
+
+            return classePartita.Ricerca(new Partita()
+            {
+                inizio = dal,
+                fine = al
             });
-
-            if (lista_partecipanti.Risultato.Count > 0)
-            {
-                //già presente
-                return true;
-            }
-            else
-            {
-                var risultatoInserimento = classePartecipanti.Inserisci(new Partecipanti()
-                {
-                    codice_unet = codice_unet,
-                    id_utente = id_utente
-                }, null, false);
-
-                return (risultatoInserimento.Risultato.Item1 > 0);
-            }
-        }
-
-        [WebMethod]
-        public bool Muori(string codice_unet, int id_utente, int punti, int posizione)
-        {
-            return true;
-        }
-
-
-        [WebMethod]
-        public bool IniziaPartita(string codice_unet)
-        {
-            return true;
-        }
-
-        [WebMethod]
-        public bool FinePartita(string codice_unet)
-        {
-            return true;
-        }
-
-        [WebMethod]
-        public Partita StatoPartita(string codice_unet)
-        {
-            return new Partita();
-        }
-
-        [WebMethod]
-        public Partita[] ListaPartite(DateTime dal, DateTime al)
-        {
-            return new Partita[] {
-                new Partita(),
-                new Partita(),
-                new Partita(),
-                new Partita()
-            };
         }
 
         private void SettaConnessione()
@@ -131,6 +129,7 @@ namespace HypogeumWS
             cDB.Application_StartupPath = App_Data;
             cDB.ApriConnessione(true, $"Version=3;Data Source={path_db};", cDB.DataBase.SQLite);
         }
+
 
     }
 }

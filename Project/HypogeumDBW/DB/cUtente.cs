@@ -31,24 +31,50 @@ namespace HypogeumDBW.DB
                 cDB.NewPar("id_utente", entita.id_utente),
                 cDB.NewPar("facebook_key", entita.facebook_key),
                 cDB.NewPar("email", entita.email),
-                cDB.NewPar("descrizione", entita.descrizione),                                          
+                cDB.NewPar("descrizione", entita.descrizione),
             };
         }
 
         protected override DbParameter[] Modifica_Parametri(Utente entita)
         {
-            return new DbParameter[] {                
-                cDB.NewPar("descrizione", entita.descrizione),                
+            return new DbParameter[] {
+                cDB.NewPar("descrizione", entita.descrizione),
             };
         }
 
         protected override DbParameter[] Ricerca_Parametri(Utente entita)
         {
             return new DbParameter[] {
-                //cDB.NewPar("id_utente", entita.id_utente),              
-                cDB.NewPar("email", entita.email),             
+                cDB.NewPar("id_utente", entita.id_utente),
+                cDB.NewPar("email", entita.email),
             };
         }
+
+        public cRisultatoSQL<Utente> RicercaByEmail(string email)
+        {
+            Utente u = null;
+
+            var dr = cDB.EseguiSQLDataReader(getQuery("RicercaByEmail"), new DbParameter[] {
+                cDB.NewPar("email", email)
+            });
+
+            try
+            {
+                while (dr.HasRows && dr.Read())
+                    u = Carica_RecordSenzaAudit(ref dr);
+            }
+            catch (System.Exception ex1)
+            {
+                dr.Close();
+
+                return new cRisultatoSQL<Utente>(ex1);
+            }
+
+            dr.Close();
+
+            return new cRisultatoSQL<Utente>(u);
+        }
+
 
     }
 }
