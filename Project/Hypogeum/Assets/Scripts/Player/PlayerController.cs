@@ -17,10 +17,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         try
-        {
-            var iniziata = HdbC.IniziaPartita("awjskajsa");
-            var s = HdbC.StatoPartita("asjsakjsa");
+        {            
             var partite = HdbC.ListaPartite(System.DateTime.Now.AddMonths(-1), System.DateTime.Now);
+
+            foreach (var p in partite)
+            {
+
+            }
         }
         catch (System.Exception ex)
         {
