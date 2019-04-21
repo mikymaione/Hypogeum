@@ -17,13 +17,14 @@ namespace HypogeumDBConnector
         public static HypogeumWS.Partita StatoPartita(string codice_unet) => H.StatoPartita(codice_unet);
         public static HypogeumWS.Partita[] ListaPartite(DateTime dal, DateTime al) => H.ListaPartite(dal, al);
 
-        public static bool IniziaPartita(string codice_unet) => H.IniziaPartita(codice_unet);
-        public static bool FinePartita(string codice_unet) => H.FinePartita(codice_unet);
+        public static int IniziaPartita(string codice_unet) => H.IniziaPartita(codice_unet);
+        public static int FinePartita(string codice_unet) => H.FinePartita(codice_unet);
 
-        public static bool Partecipa(string codice_unet, int id_utente) => H.Partecipa(codice_unet, id_utente);
-        public static bool Muori(string codice_unet, int id_utente, int punti, int posizione) => H.Muori(codice_unet, id_utente, punti, posizione);
+        public static int Partecipa(string codice_unet, int id_utente) => H.Partecipa(codice_unet, id_utente);
+        public static int Muori(string codice_unet, int id_utente, int punti, int posizione) => H.Muori(codice_unet, id_utente, punti, posizione);
 
-        public static int LoginUtente(string facebook_key) => H.LoginUtente(facebook_key);
+        public static HypogeumWS.Utente LoginUtenteEmail(string email) => H.LoginUtenteEmail(email);
+        public static HypogeumWS.Utente LoginUtenteFB(string facebook_key) => H.LoginUtenteFB(facebook_key);
 
     }
 }

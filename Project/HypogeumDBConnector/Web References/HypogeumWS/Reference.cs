@@ -27,9 +27,14 @@ namespace HypogeumDBConnector.HypogeumWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="HypogeumSoap", Namespace="http://www.maionemiky.it/")]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BaseDBObject))]
     public partial class Hypogeum : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback LoginUtenteOperationCompleted;
+        private System.Threading.SendOrPostCallback LoginUtenteFBOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LoginUtenteEmailOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RegistraUtenteOperationCompleted;
         
         private System.Threading.SendOrPostCallback PartecipaOperationCompleted;
         
@@ -82,7 +87,13 @@ namespace HypogeumDBConnector.HypogeumWS {
         }
         
         /// <remarks/>
-        public event LoginUtenteCompletedEventHandler LoginUtenteCompleted;
+        public event LoginUtenteFBCompletedEventHandler LoginUtenteFBCompleted;
+        
+        /// <remarks/>
+        public event LoginUtenteEmailCompletedEventHandler LoginUtenteEmailCompleted;
+        
+        /// <remarks/>
+        public event RegistraUtenteCompletedEventHandler RegistraUtenteCompleted;
         
         /// <remarks/>
         public event PartecipaCompletedEventHandler PartecipaCompleted;
@@ -103,41 +114,101 @@ namespace HypogeumDBConnector.HypogeumWS {
         public event ListaPartiteCompletedEventHandler ListaPartiteCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.maionemiky.it/LoginUtente", RequestNamespace="http://www.maionemiky.it/", ResponseNamespace="http://www.maionemiky.it/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int LoginUtente(string facebook_key) {
-            object[] results = this.Invoke("LoginUtente", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.maionemiky.it/LoginUtenteFB", RequestNamespace="http://www.maionemiky.it/", ResponseNamespace="http://www.maionemiky.it/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Utente LoginUtenteFB(string facebook_key) {
+            object[] results = this.Invoke("LoginUtenteFB", new object[] {
                         facebook_key});
+            return ((Utente)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoginUtenteFBAsync(string facebook_key) {
+            this.LoginUtenteFBAsync(facebook_key, null);
+        }
+        
+        /// <remarks/>
+        public void LoginUtenteFBAsync(string facebook_key, object userState) {
+            if ((this.LoginUtenteFBOperationCompleted == null)) {
+                this.LoginUtenteFBOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUtenteFBOperationCompleted);
+            }
+            this.InvokeAsync("LoginUtenteFB", new object[] {
+                        facebook_key}, this.LoginUtenteFBOperationCompleted, userState);
+        }
+        
+        private void OnLoginUtenteFBOperationCompleted(object arg) {
+            if ((this.LoginUtenteFBCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoginUtenteFBCompleted(this, new LoginUtenteFBCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.maionemiky.it/LoginUtenteEmail", RequestNamespace="http://www.maionemiky.it/", ResponseNamespace="http://www.maionemiky.it/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Utente LoginUtenteEmail(string email) {
+            object[] results = this.Invoke("LoginUtenteEmail", new object[] {
+                        email});
+            return ((Utente)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoginUtenteEmailAsync(string email) {
+            this.LoginUtenteEmailAsync(email, null);
+        }
+        
+        /// <remarks/>
+        public void LoginUtenteEmailAsync(string email, object userState) {
+            if ((this.LoginUtenteEmailOperationCompleted == null)) {
+                this.LoginUtenteEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUtenteEmailOperationCompleted);
+            }
+            this.InvokeAsync("LoginUtenteEmail", new object[] {
+                        email}, this.LoginUtenteEmailOperationCompleted, userState);
+        }
+        
+        private void OnLoginUtenteEmailOperationCompleted(object arg) {
+            if ((this.LoginUtenteEmailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoginUtenteEmailCompleted(this, new LoginUtenteEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.maionemiky.it/RegistraUtente", RequestNamespace="http://www.maionemiky.it/", ResponseNamespace="http://www.maionemiky.it/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int RegistraUtente(string email, string descrizione) {
+            object[] results = this.Invoke("RegistraUtente", new object[] {
+                        email,
+                        descrizione});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void LoginUtenteAsync(string facebook_key) {
-            this.LoginUtenteAsync(facebook_key, null);
+        public void RegistraUtenteAsync(string email, string descrizione) {
+            this.RegistraUtenteAsync(email, descrizione, null);
         }
         
         /// <remarks/>
-        public void LoginUtenteAsync(string facebook_key, object userState) {
-            if ((this.LoginUtenteOperationCompleted == null)) {
-                this.LoginUtenteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUtenteOperationCompleted);
+        public void RegistraUtenteAsync(string email, string descrizione, object userState) {
+            if ((this.RegistraUtenteOperationCompleted == null)) {
+                this.RegistraUtenteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRegistraUtenteOperationCompleted);
             }
-            this.InvokeAsync("LoginUtente", new object[] {
-                        facebook_key}, this.LoginUtenteOperationCompleted, userState);
+            this.InvokeAsync("RegistraUtente", new object[] {
+                        email,
+                        descrizione}, this.RegistraUtenteOperationCompleted, userState);
         }
         
-        private void OnLoginUtenteOperationCompleted(object arg) {
-            if ((this.LoginUtenteCompleted != null)) {
+        private void OnRegistraUtenteOperationCompleted(object arg) {
+            if ((this.RegistraUtenteCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.LoginUtenteCompleted(this, new LoginUtenteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.RegistraUtenteCompleted(this, new RegistraUtenteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.maionemiky.it/Partecipa", RequestNamespace="http://www.maionemiky.it/", ResponseNamespace="http://www.maionemiky.it/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool Partecipa(string codice_unet, int id_utente) {
+        public int Partecipa(string codice_unet, int id_utente) {
             object[] results = this.Invoke("Partecipa", new object[] {
                         codice_unet,
                         id_utente});
-            return ((bool)(results[0]));
+            return ((int)(results[0]));
         }
         
         /// <remarks/>
@@ -164,13 +235,13 @@ namespace HypogeumDBConnector.HypogeumWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.maionemiky.it/Muori", RequestNamespace="http://www.maionemiky.it/", ResponseNamespace="http://www.maionemiky.it/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool Muori(string codice_unet, int id_utente, int punti, int posizione) {
+        public int Muori(string codice_unet, int id_utente, int punti, int posizione) {
             object[] results = this.Invoke("Muori", new object[] {
                         codice_unet,
                         id_utente,
                         punti,
                         posizione});
-            return ((bool)(results[0]));
+            return ((int)(results[0]));
         }
         
         /// <remarks/>
@@ -199,10 +270,10 @@ namespace HypogeumDBConnector.HypogeumWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.maionemiky.it/IniziaPartita", RequestNamespace="http://www.maionemiky.it/", ResponseNamespace="http://www.maionemiky.it/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool IniziaPartita(string codice_unet) {
+        public int IniziaPartita(string codice_unet) {
             object[] results = this.Invoke("IniziaPartita", new object[] {
                         codice_unet});
-            return ((bool)(results[0]));
+            return ((int)(results[0]));
         }
         
         /// <remarks/>
@@ -228,10 +299,10 @@ namespace HypogeumDBConnector.HypogeumWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.maionemiky.it/FinePartita", RequestNamespace="http://www.maionemiky.it/", ResponseNamespace="http://www.maionemiky.it/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool FinePartita(string codice_unet) {
+        public int FinePartita(string codice_unet) {
             object[] results = this.Invoke("FinePartita", new object[] {
                         codice_unet});
-            return ((bool)(results[0]));
+            return ((int)(results[0]));
         }
         
         /// <remarks/>
@@ -340,22 +411,321 @@ namespace HypogeumDBConnector.HypogeumWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.maionemiky.it/")]
-    public partial class Partita {
+    public partial class Utente : TabellaBase {
+        
+        private int id_utenteField;
+        
+        private string facebook_keyField;
+        
+        private string descrizioneField;
+        
+        private string emailField;
+        
+        /// <remarks/>
+        public int id_utente {
+            get {
+                return this.id_utenteField;
+            }
+            set {
+                this.id_utenteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string facebook_key {
+            get {
+                return this.facebook_keyField;
+            }
+            set {
+                this.facebook_keyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string descrizione {
+            get {
+                return this.descrizioneField;
+            }
+            set {
+                this.descrizioneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Partecipanti))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Partita))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Utente))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.maionemiky.it/")]
+    public abstract partial class TabellaBase : BaseDBObject {
+        
+        private System.DateTime dataCreazioneField;
+        
+        private System.DateTime dataModificaField;
+        
+        private string cFCreazioneField;
+        
+        private string cFModificaField;
+        
+        /// <remarks/>
+        public System.DateTime DataCreazione {
+            get {
+                return this.dataCreazioneField;
+            }
+            set {
+                this.dataCreazioneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DataModifica {
+            get {
+                return this.dataModificaField;
+            }
+            set {
+                this.dataModificaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CFCreazione {
+            get {
+                return this.cFCreazioneField;
+            }
+            set {
+                this.cFCreazioneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CFModifica {
+            get {
+                return this.cFModificaField;
+            }
+            set {
+                this.cFModificaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TabellaBase))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Partecipanti))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Partita))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Utente))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.maionemiky.it/")]
+    public abstract partial class BaseDBObject {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.maionemiky.it/")]
+    public partial class Partecipanti : TabellaBase {
+        
+        private string codice_unetField;
+        
+        private int id_utenteField;
+        
+        private int puntiField;
+        
+        private int posizioneField;
+        
+        /// <remarks/>
+        public string codice_unet {
+            get {
+                return this.codice_unetField;
+            }
+            set {
+                this.codice_unetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int id_utente {
+            get {
+                return this.id_utenteField;
+            }
+            set {
+                this.id_utenteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int punti {
+            get {
+                return this.puntiField;
+            }
+            set {
+                this.puntiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int posizione {
+            get {
+                return this.posizioneField;
+            }
+            set {
+                this.posizioneField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.maionemiky.it/")]
+    public partial class Partita : TabellaBase {
+        
+        private string codice_unetField;
+        
+        private System.DateTime inizioField;
+        
+        private System.DateTime fineField;
+        
+        private bool abortitaField;
+        
+        private Partecipanti[] partecipantiField;
+        
+        /// <remarks/>
+        public string codice_unet {
+            get {
+                return this.codice_unetField;
+            }
+            set {
+                this.codice_unetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime inizio {
+            get {
+                return this.inizioField;
+            }
+            set {
+                this.inizioField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime fine {
+            get {
+                return this.fineField;
+            }
+            set {
+                this.fineField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool abortita {
+            get {
+                return this.abortitaField;
+            }
+            set {
+                this.abortitaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Partecipanti[] partecipanti {
+            get {
+                return this.partecipantiField;
+            }
+            set {
+                this.partecipantiField = value;
+            }
+        }
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
-    public delegate void LoginUtenteCompletedEventHandler(object sender, LoginUtenteCompletedEventArgs e);
+    public delegate void LoginUtenteFBCompletedEventHandler(object sender, LoginUtenteFBCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LoginUtenteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class LoginUtenteFBCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal LoginUtenteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal LoginUtenteFBCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Utente Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Utente)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    public delegate void LoginUtenteEmailCompletedEventHandler(object sender, LoginUtenteEmailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoginUtenteEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoginUtenteEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Utente Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Utente)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    public delegate void RegistraUtenteCompletedEventHandler(object sender, RegistraUtenteCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RegistraUtenteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RegistraUtenteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -387,10 +757,10 @@ namespace HypogeumDBConnector.HypogeumWS {
         }
         
         /// <remarks/>
-        public bool Result {
+        public int Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((int)(this.results[0]));
             }
         }
     }
@@ -413,10 +783,10 @@ namespace HypogeumDBConnector.HypogeumWS {
         }
         
         /// <remarks/>
-        public bool Result {
+        public int Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((int)(this.results[0]));
             }
         }
     }
@@ -439,10 +809,10 @@ namespace HypogeumDBConnector.HypogeumWS {
         }
         
         /// <remarks/>
-        public bool Result {
+        public int Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((int)(this.results[0]));
             }
         }
     }
@@ -465,10 +835,10 @@ namespace HypogeumDBConnector.HypogeumWS {
         }
         
         /// <remarks/>
-        public bool Result {
+        public int Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((int)(this.results[0]));
             }
         }
     }
