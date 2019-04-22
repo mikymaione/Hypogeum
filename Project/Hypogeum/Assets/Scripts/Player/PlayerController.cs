@@ -14,10 +14,16 @@ public class PlayerController : MonoBehaviour
 {
     private readonly KeyCode[] arrows = { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.DownArrow, KeyCode.UpArrow };
 
+    public float thrust;
+    public Rigidbody rb;
+    public float speed;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+
         try
-        {            
+        {
             var partite = HdbC.ListaPartite(System.DateTime.Now.AddMonths(-1), System.DateTime.Now);
 
             foreach (var p in partite)
@@ -56,26 +62,22 @@ public class PlayerController : MonoBehaviour
 
     private void ArrowKeys()
     {
-        var position = this.transform.position;
-
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            position.x--;
+            rb.AddForce(0, 0, -20f);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            position.x++;
+            rb.AddForce(0, 0, 20f);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            position.y++;
+            rb.AddForce(speed * -6, 0, 0);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            position.y--;
+            rb.AddForce(speed * 6, 0, 0);
         }
-
-        this.transform.position = position;
     }
 
 }
