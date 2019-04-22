@@ -24,8 +24,21 @@ public class AutoGuida : MonoBehaviour
 
     private WheelCollider[] cRuote;
 
+    private void InizializzaCamera()
+    {
+        var cam = Camera.main.GetComponent<cCamera>();
+
+        var GuardaA = GameObject.Find("GuardaA");
+        var Posizione = GameObject.Find("Posizione");
+
+        cam.lookAtTarget = GuardaA.transform;
+        cam.positionTarget = Posizione.transform;
+    }
+
     void Start()
     {
+        InizializzaCamera();
+
         cRuote = GetComponentsInChildren<WheelCollider>();
 
         for (var i = 0; i < cRuote.Length; ++i)

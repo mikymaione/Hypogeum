@@ -63,7 +63,6 @@
     <Compile Include="Assets\Scripts\Camera\cCamera.cs" />
     <Compile Include="Assets\Scripts\Player\AutoGuida.cs" />
     <Compile Include="Assets\Scripts\Player\AutoSospensioni.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

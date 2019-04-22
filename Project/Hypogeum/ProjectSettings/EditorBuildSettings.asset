@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Gioco.unity
-    guid: 7c66436878fdecb45b42806072162836
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HG.unity
     guid: 17f8350c1ef93d64189ed78b73823acb
   m_configObjects: {}
