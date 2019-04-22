@@ -12,16 +12,10 @@ using UnityEngine.Networking;
 
 public class PlayerController : MonoBehaviour
 {
-    private readonly KeyCode[] arrows = { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.DownArrow, KeyCode.UpArrow };
-
-    public float thrust;
-    public Rigidbody rb;
-    public float speed;
+    private readonly KeyCode[] arrows = { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.DownArrow, KeyCode.UpArrow };   
 
     void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-
+    {        
         try
         {
             var partite = HdbC.ListaPartite(System.DateTime.Now.AddMonths(-1), System.DateTime.Now);
@@ -64,19 +58,19 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            rb.AddForce(0, 0, -20f);
+            
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            rb.AddForce(0, 0, 20f);
+            
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            rb.AddForce(speed * -6, 0, 0);
+            
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            rb.AddForce(speed * 6, 0, 0);
+            
         }
     }
 
