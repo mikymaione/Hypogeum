@@ -7,8 +7,9 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class AutoGuida : MonoBehaviour
+public class AutoGuida : NetworkBehaviour
 {
 
     public float AngoloMassimoDiSterzata = 30f;
@@ -56,32 +57,35 @@ public class AutoGuida : MonoBehaviour
 
     void Update()
     {
-        cRuote[0].ConfigureVehicleSubsteps(VelocitaCritica, LimiteInferiore, LimiteSuperiore);
-
-        var angolo = AngoloMassimoDiSterzata * Input.GetAxis("Horizontal");
-        var momentoTorcente = CoppiaMassima * Input.GetAxis("Vertical");
-
-        var frenoAMano = Input.GetKey(KeyCode.X) ? CoppiaFrenante : 0;
-
-        foreach (var ruota in cRuote)
+        if (GetComponent<NetworkIdentity>().isLocalPlayer)
         {
-            if (ruota.transform.localPosition.z > 0)
-                ruota.steerAngle = angolo;
+            cRuote[0].ConfigureVehicleSubsteps(VelocitaCritica, LimiteInferiore, LimiteSuperiore);
 
-            if (ruota.transform.localPosition.z < 0)
-                ruota.brakeTorque = frenoAMano;
+            var angolo = AngoloMassimoDiSterzata * Input.GetAxis("Horizontal");
+            var momentoTorcente = CoppiaMassima * Input.GetAxis("Vertical");
 
-            ruota.motorTorque = momentoTorcente;
+            var frenoAMano = Input.GetKey(KeyCode.X) ? CoppiaFrenante : 0;
 
-            if (Ruote)
+            foreach (var ruota in cRuote)
             {
-                Quaternion q;
-                Vector3 p;
-                ruota.GetWorldPose(out p, out q);
+                if (ruota.transform.localPosition.z > 0)
+                    ruota.steerAngle = angolo;
 
-                var t = ruota.transform.GetChild(0);
-                t.position = p;
-                t.rotation = q;
+                if (ruota.transform.localPosition.z < 0)
+                    ruota.brakeTorque = frenoAMano;
+
+                ruota.motorTorque = momentoTorcente;
+
+                if (Ruote)
+                {
+                    Quaternion q;
+                    Vector3 p;
+                    ruota.GetWorldPose(out p, out q);
+
+                    var t = ruota.transform.GetChild(0);
+                    t.position = p;
+                    t.rotation = q;
+                }
             }
         }
     }
