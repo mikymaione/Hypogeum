@@ -65,35 +65,36 @@
             <depend id="21" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="21" name="game design" color="#8cb6ce" meeting="false" start="2019-04-15" duration="33" complete="0" thirdDate="2019-04-15" thirdDate-constraint="0" expand="true">
+            <depend id="22" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="22" name="prototype" color="#8cb6ce" meeting="false" start="2019-05-21" duration="115" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true">
             <depend id="3" type="2" difference="0" hardness="Strong"/>
             <depend id="5" type="2" difference="0" hardness="Strong"/>
-            <depend id="22" type="2" difference="0" hardness="Strong"/>
             <depend id="23" type="2" difference="0" hardness="Strong"/>
             <depend id="24" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="22" name="prototype" color="#8cb6ce" meeting="false" start="2019-05-21" duration="115" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
-        <task id="3" name="models and animations" color="#8cb6ce" meeting="false" start="2019-05-21" duration="122" complete="0" thirdDate="2019-04-06" thirdDate-constraint="0" expand="true">
+        <task id="3" name="models and animations" color="#8cb6ce" meeting="false" start="2019-09-15" duration="122" complete="0" thirdDate="2019-04-06" thirdDate-constraint="0" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="5" name="audio" color="#8cb6ce" meeting="false" start="2019-05-21" duration="62" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true">
+        <task id="5" name="audio" color="#8cb6ce" meeting="false" start="2019-09-15" duration="62" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="23" name="programming" color="#8cb6ce" meeting="false" start="2019-05-21" duration="296" complete="0" thirdDate="2019-03-01" thirdDate-constraint="0" expand="true">
+        <task id="23" name="programming" color="#8cb6ce" meeting="false" start="2019-09-15" duration="115" complete="0" thirdDate="2019-03-01" thirdDate-constraint="0" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="24" name="gui" color="#8cb6ce" meeting="false" start="2019-05-21" duration="120" complete="0" thirdDate="2020-02-01" thirdDate-constraint="0" expand="true">
+        <task id="24" name="gui" color="#8cb6ce" meeting="false" start="2019-09-15" duration="120" complete="0" thirdDate="2020-02-01" thirdDate-constraint="0" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="7" name="alpha" color="#8cb6ce" meeting="false" start="2020-03-20" duration="60" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true">
+        <task id="7" name="alpha" color="#8cb6ce" meeting="false" start="2020-01-21" duration="60" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true">
             <depend id="9" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="9" name="beta" color="#8cb6ce" meeting="false" start="2020-05-21" duration="91" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true">
+        <task id="9" name="beta" color="#8cb6ce" meeting="false" start="2020-03-21" duration="91" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true">
             <depend id="13" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="13" name="public beta" color="#8cb6ce" meeting="false" start="2020-08-22" duration="114" complete="0" thirdDate="2019-02-11" thirdDate-constraint="0" expand="true">
+        <task id="13" name="public beta" color="#8cb6ce" meeting="false" start="2020-06-23" duration="114" complete="0" thirdDate="2019-02-11" thirdDate-constraint="0" expand="true">
             <depend id="15" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="15" name="release" color="#8cb6ce" meeting="false" start="2020-12-16" duration="31" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
+        <task id="15" name="release" color="#8cb6ce" meeting="false" start="2020-10-16" duration="31" complete="0" thirdDate="2019-03-04" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Maione" function="SoftwareDevelopment:2" contacts="" phone=""/>
