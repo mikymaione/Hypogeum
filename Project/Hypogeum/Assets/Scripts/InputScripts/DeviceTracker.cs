@@ -14,4 +14,6 @@ public abstract class DeviceTracker : MonoBehaviour
         data = new InputData(im.axisCount, im.buttonsCount);
     }
 
+    public abstract void Refresh();
+
 }

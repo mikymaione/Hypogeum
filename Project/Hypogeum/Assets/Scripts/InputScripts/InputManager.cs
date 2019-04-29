@@ -12,6 +12,15 @@ public class InputManager : MonoBehaviour
     public void passInput(InputData data) {
 
     }
+
+    public void refreshTracker() {
+        
+        DeviceTracker dt = (DeviceTracker)GetComponent(typeof(DeviceTracker));
+        if (dt != null)
+        {
+            dt.Refresh();
+        }
+    }
 }
 
 public struct InputData {

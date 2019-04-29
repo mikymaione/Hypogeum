@@ -404,12 +404,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af97e1db87adcfb46a6f16ce628ac0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonKeys: 200000007a0000006b000000
+  buttonKeys: 6e0000006d0000006c000000
   axisKeys:
   - positive: 119
-    negative: 115
-  - positive: 97
     negative: 100
+  - positive: 115
+    negative: 97
 --- !u!114 &1219593794
 MonoBehaviour:
   m_ObjectHideFlags: 0
