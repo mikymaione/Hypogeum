@@ -429,8 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AngoloMassimoDiSterzata: 44
-  CoppiaMassima: 600
+  AngoloMassimoDiSterzata: 50
+  CoppiaMassima: 1600
   CoppiaFrenante: 30000
   Ruote: {fileID: 0}
   VelocitaCritica: 37
