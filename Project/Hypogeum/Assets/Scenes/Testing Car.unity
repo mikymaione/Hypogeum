@@ -165,7 +165,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 2187948641101672348, guid: c46019de5a180274f83c7d18158264ec,
+  m_PlayerPrefab: {fileID: 2187948641101672348, guid: b617e231abb1fcd4aa8689ab00e5bde7,
     type: 3}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1117325208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3949eee057f8c184aa6a230550480ef8, type: 3}
+  m_Script: {fileID: 11500000, guid: 16a2c73e2419f8640bac0c2581e6d1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 6

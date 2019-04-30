@@ -9,7 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class AutoGuida : MonoBehaviour
+public class AutoGuida : NetworkBehaviour
 {
 
     public float AngoloMassimoDiSterzata = 30f;
@@ -57,8 +57,7 @@ public class AutoGuida : MonoBehaviour
 
     void Update()
     {
-        //if (GetComponent<NetworkIdentity>().isLocalPlayer)
-        if (true)
+        if (GetComponent<NetworkIdentity>().isLocalPlayer)
         {
             cRuote[0].ConfigureVehicleSubsteps(VelocitaCritica, LimiteInferiore, LimiteSuperiore);
 

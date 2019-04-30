@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2187948639737705593}
   m_Layer: 0
-  m_Name: Posizione
+  m_Name: Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2187948641267149958}
   m_Layer: 0
-  m_Name: GuardaA
+  m_Name: LookHere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
