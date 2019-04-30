@@ -32,8 +32,11 @@ public class AutoGuida : NetworkBehaviour
         var GuardaA = GameObject.Find("LookHere");
         var Posizione = GameObject.Find("Position");
 
-        cam.lookAtTarget = GuardaA.transform;
-        cam.positionTarget = Posizione.transform;
+        if (cam != null && GuardaA != null && Posizione != null)
+        {
+            cam.lookAtTarget = GuardaA.transform;
+            cam.positionTarget = Posizione.transform;
+        }
     }
 
     void Start()
