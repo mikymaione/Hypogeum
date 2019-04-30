@@ -26,10 +26,10 @@ public class AutoGuida : NetworkBehaviour
     private WheelCollider[] cRuote;
 
 
-    private void InizializzaCamera()
+    public override void OnStartLocalPlayer()
     {
-        var cam = Camera.main.GetComponent<cCamera>();
-
+        var TheCam = Instantiate(Camera.main);
+        var cam = TheCam.GetComponent<cCamera>();
         var GuardaA = GameObject.Find("LookHere");
         var Posizione = GameObject.Find("Position");
 
@@ -38,26 +38,18 @@ public class AutoGuida : NetworkBehaviour
             cam.lookAtTarget = GuardaA.transform;
             cam.positionTarget = Posizione.transform;
         }
-    }
 
-    void Start()
-    {
-        if (GetComponent<NetworkIdentity>().isLocalPlayer)
+        cRuote = GetComponentsInChildren<WheelCollider>();
+
+        for (var i = 0; i < cRuote.Length; ++i)
         {
-            InizializzaCamera();
+            var ruota = cRuote[i];
 
-            cRuote = GetComponentsInChildren<WheelCollider>();
-
-            for (var i = 0; i < cRuote.Length; ++i)
+            // Create wheel shapes only when needed.
+            if (Ruote != null)
             {
-                var ruota = cRuote[i];
-
-                // Create wheel shapes only when needed.
-                if (Ruote != null)
-                {
-                    var ws = Instantiate(Ruote);
-                    ws.transform.parent = ruota.transform;
-                }
+                var ws = Instantiate(Ruote);
+                ws.transform.parent = ruota.transform;
             }
         }
     }
