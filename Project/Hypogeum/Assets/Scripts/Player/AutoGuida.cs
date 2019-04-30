@@ -24,12 +24,13 @@ public class AutoGuida : NetworkBehaviour
     public int LimiteSuperiore = 1;
 
     private WheelCollider[] cRuote;
-
+    private Camera myCamera;
 
     public override void OnStartLocalPlayer()
     {
-        var TheCam = Instantiate(Camera.main);
-        var cam = TheCam.GetComponent<cCamera>();
+        myCamera = Instantiate(Camera.main);
+
+        var cam = myCamera.GetComponent<cCamera>();
         var GuardaA = GameObject.Find("LookHere");
         var Posizione = GameObject.Find("Position");
 
@@ -56,6 +57,8 @@ public class AutoGuida : NetworkBehaviour
 
     void Update()
     {
+        Camera.main.CopyFrom(myCamera);
+
         if (GetComponent<NetworkIdentity>().isLocalPlayer)
         {
             cRuote[0].ConfigureVehicleSubsteps(VelocitaCritica, LimiteInferiore, LimiteSuperiore);
