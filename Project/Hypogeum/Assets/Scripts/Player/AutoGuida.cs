@@ -16,7 +16,7 @@ public class AutoGuida : NetworkBehaviour
     public float CoppiaMassima = 300f;
     public float CoppiaFrenante = 30000f;
 
-    public GameObject Ruote;
+    public GameObject Ruote, LookHere, Position;
 
     [Tooltip("m/s")]
     public float VelocitaCritica = 5f;
@@ -24,23 +24,14 @@ public class AutoGuida : NetworkBehaviour
     public int LimiteSuperiore = 1;
 
     private WheelCollider[] cRuote;
-    private Camera myCamera;
+    private cCamera MyCamera;
 
     public override void OnStartLocalPlayer()
     {
-        myCamera = Instantiate(Camera.main);
-
-        var cam = myCamera.GetComponent<cCamera>();
-        var GuardaA = GameObject.Find("LookHere");
-        var Posizione = GameObject.Find("Position");
-
-        if (cam != null && GuardaA != null && Posizione != null)
-        {
-            cam.lookAtTarget = GuardaA.transform;
-            cam.positionTarget = Posizione.transform;
-        }
-
+        MyCamera = Camera.main.GetComponent<cCamera>();
         cRuote = GetComponentsInChildren<WheelCollider>();
+        LookHere = GameObject.Find("LookHere");
+        Position = GameObject.Find("Position");
 
         for (var i = 0; i < cRuote.Length; ++i)
         {
@@ -55,11 +46,15 @@ public class AutoGuida : NetworkBehaviour
         }
     }
 
+    private void SetCamera()
+    {
+        MyCamera.lookAtTarget = LookHere.transform;
+        MyCamera.positionTarget = Position.transform;
+    }
+
     void Update()
     {
-        Camera.main.CopyFrom(myCamera);
-
-        if (GetComponent<NetworkIdentity>().isLocalPlayer)
+        if (isLocalPlayer)
         {
             cRuote[0].ConfigureVehicleSubsteps(VelocitaCritica, LimiteInferiore, LimiteSuperiore);
 
@@ -89,6 +84,8 @@ public class AutoGuida : NetworkBehaviour
                     t.rotation = q;
                 }
             }
+
+            SetCamera();
         }
     }
 
