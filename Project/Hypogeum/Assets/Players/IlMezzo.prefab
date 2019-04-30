@@ -75,7 +75,7 @@ WheelCollider:
     damper: 6057.266
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -136,7 +136,7 @@ WheelCollider:
     damper: 6469.5635
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -197,7 +197,7 @@ WheelCollider:
     damper: 5530.437
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -260,8 +260,8 @@ GameObject:
   - component: {fileID: 2187948641101672339}
   - component: {fileID: 2187948641101672343}
   - component: {fileID: 2187948641101672340}
-  - component: {fileID: 3746890079060303466}
-  - component: {fileID: 3724933904911799388}
+  - component: {fileID: 8220217227658330132}
+  - component: {fileID: 5425186709744172473}
   m_Layer: 0
   m_Name: IlMezzo
   m_TagString: Untagged
@@ -313,7 +313,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 9c8ce189863613a48b84bc87c9f76fed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &3746890079060303466
+--- !u!114 &8220217227658330132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2187948641101672348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f34be0098564a4792f8daac3710597, type: 3}
+  m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AngoloMassimoDiSterzata: 30
@@ -436,7 +436,7 @@ MonoBehaviour:
   VelocitaCritica: 5
   LimiteInferiore: 5
   LimiteSuperiore: 1
---- !u!114 &3724933904911799388
+--- !u!114 &5425186709744172473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2187948641101672348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9873088f02465144b54f329a0efa3b0, type: 3}
+  m_Script: {fileID: 11500000, guid: fe8b19007d13ffa47a3e85d2ed0f0b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   destrezza: 10
@@ -527,7 +527,7 @@ WheelCollider:
     damper: 5942.7344
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
