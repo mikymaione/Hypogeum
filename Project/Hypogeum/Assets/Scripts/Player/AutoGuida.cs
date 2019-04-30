@@ -9,7 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class AutoGuida : NetworkBehaviour
+public class AutoGuida : MonoBehaviour
 {
 
     public float AngoloMassimoDiSterzata = 30f;
@@ -29,8 +29,8 @@ public class AutoGuida : NetworkBehaviour
     {
         var cam = Camera.main.GetComponent<cCamera>();
 
-        var GuardaA = GameObject.Find("GuardaA");
-        var Posizione = GameObject.Find("Posizione");
+        var GuardaA = GameObject.Find("LookHere");
+        var Posizione = GameObject.Find("Position");
 
         cam.lookAtTarget = GuardaA.transform;
         cam.positionTarget = Posizione.transform;
@@ -57,7 +57,8 @@ public class AutoGuida : NetworkBehaviour
 
     void Update()
     {
-        if (GetComponent<NetworkIdentity>().isLocalPlayer)
+        //if (GetComponent<NetworkIdentity>().isLocalPlayer)
+        if (true)
         {
             cRuote[0].ConfigureVehicleSubsteps(VelocitaCritica, LimiteInferiore, LimiteSuperiore);
 

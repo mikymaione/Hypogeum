@@ -9,8 +9,11 @@ public class InputManager : MonoBehaviour
     [Range(0,20)]
     public int buttonsCount;
 
-    public void passInput(InputData data) {
+    public Controller controller;
 
+    public void passInput(InputData data) {
+        Debug.Log("Movement: " + data.axis[0] + ", " + data.axis[1]);
+        controller.ReadInput(data);
     }
 
     public void refreshTracker() {
