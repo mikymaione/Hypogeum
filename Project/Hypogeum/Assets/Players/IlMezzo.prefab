@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2187948640829662666}
   m_Layer: 0
-  m_Name: AncoraCamera
+  m_Name: CameraAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,10 +432,10 @@ MonoBehaviour:
   AngoloMassimoDiSterzata: 50
   CoppiaMassima: 1600
   CoppiaFrenante: 30000
-  Ruote: {fileID: 0}
   VelocitaCritica: 37
   LimiteInferiore: 5
   LimiteSuperiore: 1
+  Ruote: {fileID: 0}
 --- !u!114 &5425186709744172473
 MonoBehaviour:
   m_ObjectHideFlags: 0

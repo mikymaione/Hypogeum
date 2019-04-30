@@ -16,22 +16,26 @@ public class AutoGuida : NetworkBehaviour
     public float CoppiaMassima = 300f;
     public float CoppiaFrenante = 30000f;
 
-    public GameObject Ruote, LookHere, Position;
-
     [Tooltip("m/s")]
     public float VelocitaCritica = 5f;
     public int LimiteInferiore = 5;
     public int LimiteSuperiore = 1;
 
+    public GameObject Ruote;
+
     private WheelCollider[] cRuote;
     private cCamera MyCamera;
+    private Transform LookHere, Position;
+
 
     public override void OnStartLocalPlayer()
     {
         MyCamera = Camera.main.GetComponent<cCamera>();
         cRuote = GetComponentsInChildren<WheelCollider>();
-        LookHere = GameObject.Find("LookHere");
-        Position = GameObject.Find("Position");
+        LookHere = transform.Find("CameraAnchor/LookHere");
+        Position = transform.Find("CameraAnchor/Position");
+
+        SetCamera();
 
         for (var i = 0; i < cRuote.Length; ++i)
         {
@@ -48,8 +52,8 @@ public class AutoGuida : NetworkBehaviour
 
     private void SetCamera()
     {
-        MyCamera.lookAtTarget = LookHere.transform;
-        MyCamera.positionTarget = Position.transform;
+        MyCamera.lookAtTarget = LookHere;
+        MyCamera.positionTarget = Position;
     }
 
     void Update()
@@ -84,8 +88,6 @@ public class AutoGuida : NetworkBehaviour
                     t.rotation = q;
                 }
             }
-
-            SetCamera();
         }
     }
 
