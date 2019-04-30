@@ -19,21 +19,25 @@ public class AutoGuida : NetworkBehaviour
     public GameObject Ruote;
 
     [Tooltip("m/s")]
-    public float VelocitaCritica = 5f;
+    public float VelocitaCritica = 10f;
     public int LimiteInferiore = 5;
     public int LimiteSuperiore = 1;
 
     private WheelCollider[] cRuote;
 
+    public DrivingController drivingController;
+
+    public InputData data = new InputData();
+
     private void InizializzaCamera()
     {
         var cam = Camera.main.GetComponent<cCamera>();
 
-        var GuardaA = GameObject.Find("LookHere");
-        var Posizione = GameObject.Find("Position");
+        var LookHere = GameObject.Find("LookHere");
+        var Position = GameObject.Find("Position");
 
-        cam.lookAtTarget = GuardaA.transform;
-        cam.positionTarget = Posizione.transform;
+        cam.lookAtTarget = LookHere.transform;
+        cam.positionTarget = Position.transform;
     }
 
     void Start()
@@ -55,38 +59,16 @@ public class AutoGuida : NetworkBehaviour
         }
     }
 
+    public void GetData(InputData inputData)
+    {
+        data = inputData;
+    }
+
     void Update()
     {
         if (GetComponent<NetworkIdentity>().isLocalPlayer)
         {
-            cRuote[0].ConfigureVehicleSubsteps(VelocitaCritica, LimiteInferiore, LimiteSuperiore);
-
-            var angolo = AngoloMassimoDiSterzata * Input.GetAxis("Horizontal");
-            var momentoTorcente = CoppiaMassima * Input.GetAxis("Vertical");
-
-            var frenoAMano = Input.GetKey(KeyCode.X) ? CoppiaFrenante : 0;
-
-            foreach (var ruota in cRuote)
-            {
-                if (ruota.transform.localPosition.z > 0)
-                    ruota.steerAngle = angolo;
-
-                if (ruota.transform.localPosition.z < 0)
-                    ruota.brakeTorque = frenoAMano;
-
-                ruota.motorTorque = momentoTorcente;
-
-                if (Ruote)
-                {
-                    Quaternion q;
-                    Vector3 p;
-                    ruota.GetWorldPose(out p, out q);
-
-                    var t = ruota.transform.GetChild(0);
-                    t.position = p;
-                    t.rotation = q;
-                }
-            }
+            drivingController.ReadInput(data);
         }
     }
 
