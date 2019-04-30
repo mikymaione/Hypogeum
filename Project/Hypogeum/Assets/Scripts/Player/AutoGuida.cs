@@ -25,6 +25,7 @@ public class AutoGuida : NetworkBehaviour
 
     private WheelCollider[] cRuote;
 
+
     private void InizializzaCamera()
     {
         var cam = Camera.main.GetComponent<cCamera>();
@@ -41,19 +42,22 @@ public class AutoGuida : NetworkBehaviour
 
     void Start()
     {
-        InizializzaCamera();
-
-        cRuote = GetComponentsInChildren<WheelCollider>();
-
-        for (var i = 0; i < cRuote.Length; ++i)
+        if (GetComponent<NetworkIdentity>().isLocalPlayer)
         {
-            var ruota = cRuote[i];
+            InizializzaCamera();
 
-            // Create wheel shapes only when needed.
-            if (Ruote != null)
+            cRuote = GetComponentsInChildren<WheelCollider>();
+
+            for (var i = 0; i < cRuote.Length; ++i)
             {
-                var ws = Instantiate(Ruote);
-                ws.transform.parent = ruota.transform;
+                var ruota = cRuote[i];
+
+                // Create wheel shapes only when needed.
+                if (Ruote != null)
+                {
+                    var ws = Instantiate(Ruote);
+                    ws.transform.parent = ruota.transform;
+                }
             }
         }
     }
