@@ -214,8 +214,6 @@ GameObject:
   - component: {fileID: 280170864}
   - component: {fileID: 280170863}
   - component: {fileID: 280170866}
-  - component: {fileID: 280170865}
-  - component: {fileID: 280170868}
   - component: {fileID: 280170867}
   - component: {fileID: 280170869}
   m_Layer: 0
@@ -258,19 +256,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &280170865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 280170862}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06883661720b57745af8d90d859ad7c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 3
 --- !u!65 &280170866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -303,39 +288,6 @@ MonoBehaviour:
   VelocitaCritica: 5
   LimiteInferiore: 5
   LimiteSuperiore: 1
---- !u!114 &280170868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 280170862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 0
-    i1: 0
-    i2: 0
-    i3: 0
-    i4: 0
-    i5: 0
-    i6: 0
-    i7: 0
-    i8: 0
-    i9: 0
-    i10: 0
-    i11: 0
-    i12: 0
-    i13: 0
-    i14: 0
-    i15: 0
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &280170869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1219593793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,7 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axisCount: 2
   buttonsCount: 3
-  controller: {fileID: 280170865}
+  controller: {fileID: 0}
 --- !u!4 &1219593795
 Transform:
   m_ObjectHideFlags: 0
@@ -791,7 +743,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1468656154}
-  - component: {fileID: 1468656155}
   m_Layer: 0
   m_Name: wheels
   m_TagString: Untagged
@@ -817,22 +768,6 @@ Transform:
   m_Father: {fileID: 280170864}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1468656155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468656153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9873088f02465144b54f329a0efa3b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destrezza: 10
-  smorzamento: 0.8
-  distanzaDalCentroDiMassa: 0.03
-  regolaDistanzaMolle: 1
 --- !u!1 &1480990151
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +853,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515968226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 839174529}
