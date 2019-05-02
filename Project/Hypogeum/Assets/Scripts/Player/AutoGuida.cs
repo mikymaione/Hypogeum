@@ -12,80 +12,93 @@ using UnityEngine.Networking;
 public class AutoGuida : NetworkBehaviour
 {
 
-    public float AngoloMassimoDiSterzata = 30f;
-    public float CoppiaMassima = 300f;
-    public float CoppiaFrenante = 30000f;
+    //public float AngoloMassimoDiSterzata = 30f;
+    //public float CoppiaMassima = 300f;
+    //public float CoppiaFrenante = 30000f;
 
-    [Tooltip("m/s")]
-    public float VelocitaCritica = 10f;
-    public int LimiteInferiore = 5;
-    public int LimiteSuperiore = 1;
+    //[Tooltip("m/s")]
+    //public float VelocitaCritica = 5f;
+    //public int LimiteInferiore = 5;
+    //public int LimiteSuperiore = 1;
 
-    public GameObject Ruote;
+    //public GameObject Ruote;
 
-<<<<<<< HEAD
-    public DrivingController drivingController;
+    //private WheelCollider[] wheelColliders;
+    //private cCamera MyCamera;
+    //private Transform LookHere, Position;
 
-    public InputData data = new InputData();
-
-    private void InizializzaCamera()
-    {
-        var cam = Camera.main.GetComponent<cCamera>();
-
-        var LookHere = GameObject.Find("LookHere");
-        var Position = GameObject.Find("Position");
-
-        cam.lookAtTarget = LookHere.transform;
-        cam.positionTarget = Position.transform;
-    }
-
-    void Start()
-=======
-    private WheelCollider[] cRuote;
-    private cCamera MyCamera;
-    private Transform LookHere, Position;
-
+    private Car car;
 
     public override void OnStartLocalPlayer()
->>>>>>> a69381d81f546a014cd029719461ed24e1cfbfeb
     {
-        MyCamera = Camera.main.GetComponent<cCamera>();
-        cRuote = GetComponentsInChildren<WheelCollider>();
-        LookHere = transform.Find("CameraAnchor/LookHere");
-        Position = transform.Find("CameraAnchor/Position");
+        car = GetComponent<Car>();
+        car.SetCar();
+        //MyCamera = Camera.main.GetComponent<cCamera>();
+        //cRuote = GetComponentsInChildren<WheelCollider>();
+        //LookHere = transform.Find("CameraAnchor/LookHere");
+        //Position = transform.Find("CameraAnchor/Position");
 
-        SetCamera();
+        //SetCamera();
 
-        for (var i = 0; i < cRuote.Length; ++i)
-        {
-            var ruota = cRuote[i];
+        //for (var i = 0; i < cRuote.Length; ++i)
+        //{
+        //    var ruota = cRuote[i];
 
-            // Create wheel shapes only when needed.
-            if (Ruote != null)
-            {
-                var ws = Instantiate(Ruote);
-                ws.transform.parent = ruota.transform;
-            }
-        }
+        //    // Create wheel shapes only when needed.
+        //    if (Ruote != null)
+        //    {
+        //        var ws = Instantiate(Ruote);
+        //        ws.transform.parent = ruota.transform;
+        //    }
+        //}
     }
 
-<<<<<<< HEAD
-    public void GetData(InputData inputData)
-    {
-        data = inputData;
-=======
-    private void SetCamera()
-    {
-        MyCamera.lookAtTarget = LookHere;
-        MyCamera.positionTarget = Position;
->>>>>>> a69381d81f546a014cd029719461ed24e1cfbfeb
-    }
+    //private void SetCamera()
+    //{
+    //    MyCamera.lookAtTarget = LookHere;
+    //    MyCamera.positionTarget = Position;
+    //}
+
+    //private Car CreateCar()
+    //{
+    //    car = new Car();
+    //    car.SetCar();
+    //    return car;
+    //}
 
     void Update()
     {
         if (isLocalPlayer)
         {
-            drivingController.ReadInput(data);
+            car.Drive();
+            //cRuote[0].ConfigureVehicleSubsteps(VelocitaCritica, LimiteInferiore, LimiteSuperiore);
+
+            //var angolo = AngoloMassimoDiSterzata * Input.GetAxis("Horizontal");
+            //var momentoTorcente = CoppiaMassima * Input.GetAxis("Vertical");
+
+            //var frenoAMano = Input.GetKey(KeyCode.X) ? CoppiaFrenante : 0;
+
+            //foreach (var ruota in cRuote)
+            //{
+            //    if (ruota.transform.localPosition.z > 0)
+            //        ruota.steerAngle = angolo;
+
+            //    if (ruota.transform.localPosition.z < 0)
+            //        ruota.brakeTorque = frenoAMano;
+
+            //    ruota.motorTorque = momentoTorcente;
+
+            //    if (Ruote)
+            //    {
+            //        Quaternion q;
+            //        Vector3 p;
+            //        ruota.GetWorldPose(out p, out q);
+
+            //        var t = ruota.transform.GetChild(0);
+            //        t.position = p;
+            //        t.rotation = q;
+            //    }
+            //}
         }
     }
 

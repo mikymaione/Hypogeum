@@ -75,7 +75,7 @@ WheelCollider:
     damper: 6057.266
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 0.836
+  m_ForceAppPointDistance: 0.83599997
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -136,7 +136,7 @@ WheelCollider:
     damper: 6469.5635
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.836
+  m_ForceAppPointDistance: 0.83599997
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -197,7 +197,7 @@ WheelCollider:
     damper: 5530.437
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 0.836
+  m_ForceAppPointDistance: 0.83599997
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -260,16 +260,9 @@ GameObject:
   - component: {fileID: 2187948641101672339}
   - component: {fileID: 2187948641101672343}
   - component: {fileID: 2187948641101672340}
-<<<<<<< HEAD
-  - component: {fileID: 3746890079060303466}
-  - component: {fileID: 526138079765472310}
-  - component: {fileID: 3724933904911799388}
-  - component: {fileID: 7383527494039154557}
-  - component: {fileID: 51760834774131896}
-=======
   - component: {fileID: 8220217227658330132}
   - component: {fileID: 5425186709744172473}
->>>>>>> a69381d81f546a014cd029719461ed24e1cfbfeb
+  - component: {fileID: 1501492961027149688}
   m_Layer: 0
   m_Name: IlMezzo
   m_TagString: Untagged
@@ -437,38 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AngoloMassimoDiSterzata: 50
-  CoppiaMassima: 1600
-  CoppiaFrenante: 30000
-  VelocitaCritica: 37
-  LimiteInferiore: 5
-  LimiteSuperiore: 1
-<<<<<<< HEAD
-  drivingController: {fileID: 526138079765472310}
---- !u!114 &526138079765472310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2187948641101672348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8ee9c2021d61814dbf23950dc0c873f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AngoloMassimoDiSterzata: 30
-  CoppiaMassima: 300
-  CoppiaFrenante: 30000
-  Ruote: {fileID: 0}
-  VelocitaCritica: 10
-  LimiteInferiore: 5
-  LimiteSuperiore: 1
---- !u!114 &3724933904911799388
-=======
-  Ruote: {fileID: 0}
 --- !u!114 &5425186709744172473
->>>>>>> a69381d81f546a014cd029719461ed24e1cfbfeb
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -484,7 +446,7 @@ MonoBehaviour:
   smorzamento: 0.8
   distanzaDalCentroDiMassa: 0.03
   regolaDistanzaMolle: 1
---- !u!114 &7383527494039154557
+--- !u!114 &1501492961027149688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -493,31 +455,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2187948641101672348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf308342312788745899f1f5a00366de, type: 3}
+  m_Script: {fileID: 11500000, guid: 99d44ae1a3b48fc4d898dd9c5445cac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisCount: 2
-  buttonsCount: 1
-  controller: {fileID: 0}
-  guida: {fileID: 3746890079060303466}
---- !u!114 &51760834774131896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2187948641101672348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af97e1db87adcfb46a6f16ce628ac0b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonKeys: 00000000
-  axisKeys:
-  - positive: 119
-    negative: 115
-  - positive: 100
-    negative: 97
 --- !u!1 &2187948641267149959
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +533,7 @@ WheelCollider:
     damper: 5942.7344
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.836
+  m_ForceAppPointDistance: 0.83599997
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:

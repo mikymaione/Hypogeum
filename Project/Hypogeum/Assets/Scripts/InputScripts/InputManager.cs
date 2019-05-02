@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AutoGuida))]
 public class InputManager : MonoBehaviour
 {
     [Range(0,10)]
@@ -12,13 +11,9 @@ public class InputManager : MonoBehaviour
 
     public Controller controller;
 
-    public AutoGuida guida;
-
     public void passInput(InputData data) {
         Debug.Log("Movement: " + data.axis[0] + ", " + data.axis[1]);
-        //controller.ReadInput(data);
-        guida = (AutoGuida)GetComponent(typeof(AutoGuida));
-        guida.GetData(data);
+        controller.ReadInput(data);
     }
 
     public void refreshTracker() {
