@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\cCamera.cs" />
     <Compile Include="Assets\Scripts\CarScripts\Car.cs" />
+    <Compile Include="Assets\Scripts\DrivingController.cs" />
     <Compile Include="Assets\Scripts\InputScripts\DeviceTracker.cs" />
     <Compile Include="Assets\Scripts\InputScripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\InputScripts\KeyboardTracker.cs" />
