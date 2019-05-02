@@ -16,15 +16,14 @@ public class AutoGuida : NetworkBehaviour
     public float CoppiaMassima = 300f;
     public float CoppiaFrenante = 30000f;
 
-    public GameObject Ruote;
-
     [Tooltip("m/s")]
     public float VelocitaCritica = 10f;
     public int LimiteInferiore = 5;
     public int LimiteSuperiore = 1;
 
-    private WheelCollider[] cRuote;
+    public GameObject Ruote;
 
+<<<<<<< HEAD
     public DrivingController drivingController;
 
     public InputData data = new InputData();
@@ -41,10 +40,21 @@ public class AutoGuida : NetworkBehaviour
     }
 
     void Start()
-    {
-        InizializzaCamera();
+=======
+    private WheelCollider[] cRuote;
+    private cCamera MyCamera;
+    private Transform LookHere, Position;
 
+
+    public override void OnStartLocalPlayer()
+>>>>>>> a69381d81f546a014cd029719461ed24e1cfbfeb
+    {
+        MyCamera = Camera.main.GetComponent<cCamera>();
         cRuote = GetComponentsInChildren<WheelCollider>();
+        LookHere = transform.Find("CameraAnchor/LookHere");
+        Position = transform.Find("CameraAnchor/Position");
+
+        SetCamera();
 
         for (var i = 0; i < cRuote.Length; ++i)
         {
@@ -59,14 +69,21 @@ public class AutoGuida : NetworkBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void GetData(InputData inputData)
     {
         data = inputData;
+=======
+    private void SetCamera()
+    {
+        MyCamera.lookAtTarget = LookHere;
+        MyCamera.positionTarget = Position;
+>>>>>>> a69381d81f546a014cd029719461ed24e1cfbfeb
     }
 
     void Update()
     {
-        if (GetComponent<NetworkIdentity>().isLocalPlayer)
+        if (isLocalPlayer)
         {
             drivingController.ReadInput(data);
         }
