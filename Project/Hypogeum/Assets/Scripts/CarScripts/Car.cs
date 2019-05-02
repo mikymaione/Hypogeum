@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class Car : MonoBehaviour
 {
     private float maxSteeringAngle = 30f;
-    private float maxTorque = 300f;
+    private float maxTorque = 1000f;
     private float brakingTorque = 30000f;
 
     [Tooltip("m/s")]
