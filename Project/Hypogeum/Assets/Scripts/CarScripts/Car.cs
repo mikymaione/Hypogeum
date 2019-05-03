@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+//TODO create a camera class
 public class Car : MonoBehaviour
 {
     private float maxSteeringAngle = 30f;
-    private float maxTorque = 1000f;
+    private float maxTorque = 300f;
     private float brakingTorque = 30000f;
 
     [Tooltip("m/s")]
-    private float criticSpeed = 5f;
-    private int lowerLimit = 5;
-    private int upperLimit = 1;
+    private float speedThreshold = 5f;
+    private int stepsBelowThreshold = 5;
+    private int stepsAboveThreshold = 1;
 
     private GameObject wheels;
     private WheelCollider[] wheelColliders;
 
     private cCamera MyCamera;
     private Transform LookHere, Position;
+
+    //car in-game stats (Sharks)
+    private int health = 1000;
+    private int maxSpeed = 7;
+    private int agility = 6;
+    private int defense = 7;
 
     public void setWheels()
     {
@@ -37,20 +44,37 @@ public class Car : MonoBehaviour
         }
     }
 
-    private void SetCamera()
+    public void SetCamera()
     {
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
     }
 
+    public void SetInGameStats()
+    {
+
+    }
+
     public void SetCar()
     {
         setWheels();
-        wheelColliders[0].ConfigureVehicleSubsteps(criticSpeed, lowerLimit, upperLimit);
+        //     Configure vehicle sub-stepping parameters.
+        //
+        // Parameters:
+        //   speedThreshold:
+        //     The speed threshold of the sub-stepping algorithm.
+        //
+        //   stepsBelowThreshold:
+        //     Amount of simulation sub-steps when vehicle's speed is below speedThreshold.
+        //
+        //   stepsAboveThreshold:
+        //     Amount of simulation sub-steps when vehicle's speed is above speedThreshold.
+        wheelColliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
         MyCamera = Camera.main.GetComponent<cCamera>();
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         SetCamera();
+        SetInGameStats();
     }
 
     public void Drive()
@@ -58,7 +82,7 @@ public class Car : MonoBehaviour
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");
 
-        var handBrake = Input.GetKey(KeyCode.X) ? brakingTorque : 0;
+        var handBrake = Input.GetKey(KeyCode.M) ? brakingTorque : 0;
 
         foreach (var wheel in wheelColliders)
         {
