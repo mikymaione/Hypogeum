@@ -30,6 +30,9 @@ public class Car : MonoBehaviour
     private int agility = 6;
     private int defense = 7;
 
+    public int Health { get => health; set => health = value; }
+    public int Defense { get => defense; set => defense = value; }
+
     public void setWheels()
     {
         wheelColliders = GetComponentsInChildren<WheelCollider>();
@@ -85,7 +88,9 @@ public class Car : MonoBehaviour
 
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");
-        Debug.Log("Speed: " + rb.velocity.magnitude);
+        
+        //Debug.Log("Speed: " + rb.velocity.magnitude);
+        
         // limiting speed to maxSpeed 
         // not precise, speed can overcome the limit
         // it only stops motor torque when it's above maxSpeed

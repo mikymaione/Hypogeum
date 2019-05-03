@@ -263,9 +263,8 @@ GameObject:
   - component: {fileID: 8220217227658330132}
   - component: {fileID: 5425186709744172473}
   - component: {fileID: 1501492961027149688}
-  - component: {fileID: 1238866528958110004}
   m_Layer: 0
-  m_Name: IlMezzo
+  m_Name: IlMezzo1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,18 +456,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99d44ae1a3b48fc4d898dd9c5445cac2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1238866528958110004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2187948641101672348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a84e324b6f45904e9e3f18de4de9b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2187948641267149959

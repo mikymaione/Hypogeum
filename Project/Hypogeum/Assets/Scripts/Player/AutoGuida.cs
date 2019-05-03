@@ -12,17 +12,21 @@ using UnityEngine.Networking;
 public class AutoGuida : NetworkBehaviour
 {
     private Car car;
+    private CarCollisionManager carCollisionManager;
 
     public override void OnStartLocalPlayer()
     {
         car = GetComponent<Car>();
         car.SetCar();
+        carCollisionManager = GetComponent<CarCollisionManager>();
+        carCollisionManager.SetPlayerCar();
     }
 
     void Update()
     {
         if (isLocalPlayer)
         {
+            //carCollisionManager.OnCollisionEnter();
             car.Drive();
         }
     }
