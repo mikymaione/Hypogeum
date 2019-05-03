@@ -7,8 +7,10 @@ using UnityEngine.Networking;
 public class Car : MonoBehaviour
 {
     private float maxSteeringAngle = 30f;
-    private float maxTorque = 300f;
+    private float maxTorque = 1000f;
     private float brakingTorque = 30000f;
+
+    private float maxSpeed = 20f;
 
     [Tooltip("m/s")]
     private float speedThreshold = 5f;
@@ -20,10 +22,11 @@ public class Car : MonoBehaviour
 
     private cCamera MyCamera;
     private Transform LookHere, Position;
+    private Rigidbody rb;
 
     //car in-game stats (Sharks)
     private int health = 1000;
-    private int maxSpeed = 7;
+    private int speed = 7;
     private int agility = 6;
     private int defense = 7;
 
@@ -52,7 +55,7 @@ public class Car : MonoBehaviour
 
     public void SetInGameStats()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     public void SetCar()
@@ -79,8 +82,17 @@ public class Car : MonoBehaviour
 
     public void Drive()
     {
+
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");
+        Debug.Log("Speed: " + rb.velocity.magnitude);
+        // limiting speed to maxSpeed 
+        // not precise, speed can overcome the limit
+        // it only stops motor torque when it's above maxSpeed
+        if (rb.velocity.magnitude >= maxSpeed)
+        {
+            instantTorque = 0f;
+        }
 
         var handBrake = Input.GetKey(KeyCode.M) ? brakingTorque : 0;
 
