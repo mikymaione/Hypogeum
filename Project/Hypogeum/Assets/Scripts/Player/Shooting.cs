@@ -10,15 +10,19 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    public float speed = 20;
+    public GameObject projectilePrefab;
+
+
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            var projectile = Instantiate(projectilePrefab, transform.position, transform.rotation) as GameObject;
+            var projectile_RB = projectile.GetComponent<Rigidbody>();
+            projectile_RB.velocity = transform.TransformDirection(Vector3.forward * speed);            
+        }       
     }
+
 }
