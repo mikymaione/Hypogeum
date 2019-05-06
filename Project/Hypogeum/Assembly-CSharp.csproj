@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{A987E228-E6EE-CCD3-62F0-E8A9AB18A146}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Scripts\ModelScripts\WalkingController.cs" />
     <Compile Include="Assets\Scripts\Player\AutoGuida.cs" />
     <Compile Include="Assets\Scripts\Player\AutoSospensioni.cs" />
+    <Compile Include="Assets\Scripts\Player\Shooting.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
