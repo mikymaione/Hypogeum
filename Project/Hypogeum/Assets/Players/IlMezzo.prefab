@@ -75,7 +75,7 @@ WheelCollider:
     damper: 6057.266
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -136,7 +136,7 @@ WheelCollider:
     damper: 6469.5635
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -197,7 +197,7 @@ WheelCollider:
     damper: 5530.437
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 5425186709744172473}
   - component: {fileID: 1501492961027149688}
   - component: {fileID: 1238866528958110004}
+  - component: {fileID: 2707923015363895037}
   m_Layer: 0
   m_Name: IlMezzo
   m_TagString: Untagged
@@ -471,6 +472,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a84e324b6f45904e9e3f18de4de9b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2707923015363895037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187948641101672348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8dde35f3adfdc468fca294d8a3341c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100
+  projectilePrefab: {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa,
+    type: 3}
 --- !u!1 &2187948641267149959
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +562,7 @@ WheelCollider:
     damper: 5942.7344
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:

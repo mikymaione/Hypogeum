@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\ModelScripts\WalkingController.cs" />
     <Compile Include="Assets\Scripts\Player\AutoGuida.cs" />
     <Compile Include="Assets\Scripts\Player\AutoSospensioni.cs" />
+    <Compile Include="Assets\Scripts\Player\Shooting.cs" />
     <Compile Include="Assets\Sprites\NextGenSprites\Demo Scene\Assets\BasicFPSCounter.cs" />
     <Compile Include="Assets\Sprites\NextGenSprites\Demo Scene\Assets\DualMaterialExample.cs" />
     <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\DualMaterial.cs" />

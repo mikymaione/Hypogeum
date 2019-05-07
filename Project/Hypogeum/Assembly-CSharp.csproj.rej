@@ -1,0 +1,9 @@
+diff a/Project/Hypogeum/Assembly-CSharp.csproj b/Project/Hypogeum/Assembly-CSharp.csproj	(rejected hunks)
+@@ -61,6 +61,7 @@
+   </ItemGroup>
+   <ItemGroup>
+     <Compile Include="Assets\Scripts\Ability.cs" />
++    <Compile Include="Assets\Scripts\AbilityCoolDown.cs" />
+     <Compile Include="Assets\Scripts\BiteAbility.cs" />
+     <Compile Include="Assets\Scripts\BiteTriggerable.cs" />
+     <Compile Include="Assets\Scripts\Camera\cCamera.cs" />
