@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Default
   StartingHP: 100
+  characterAbilities:
+  - {fileID: 11400000, guid: 92ae5ca22b07c6b4ba40edb1f5b4b502, type: 2}
+  - {fileID: 11400000, guid: 4c1a85e608115db41b475c28d8fe905d, type: 2}

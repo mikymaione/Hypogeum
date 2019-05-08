@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class AbilityCoolDown : MonoBehaviour
 {
-
-    public string abilityButtonAxisName = "Bite";
+    //hardcoded input key
+    public string abilityButtonAxisName = "Fire2";
     public Image darkMask;
     public Text coolDownTextDisplay;
 
-    [SerializeField] private Ability ability;
+    private Ability ability;
     //it should be the gameObject from where the ability comes from
-    [SerializeField] private GameObject ilMezzo;
+    private GameObject ilMezzo;
 
     private Image myButtonImage;
     private AudioSource abilityAudioSource;
@@ -24,7 +24,7 @@ public class AbilityCoolDown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Initialize(ability, ilMezzo);
+        //Initialize(ability, ilMezzo);
     }
 
     public void Initialize(Ability selectedAbility, GameObject ilMezzo)
@@ -45,9 +45,42 @@ public class AbilityCoolDown : MonoBehaviour
         darkMask.enabled = false;
     }
 
+    private void CoolDown()
+    {
+        coolDownTimeLeft -= Time.deltaTime;
+        float roundedCD = Mathf.Round(coolDownTimeLeft);
+        coolDownTextDisplay.text = roundedCD.ToString();
+        darkMask.fillAmount = (coolDownTimeLeft / coolDownDuration);
+    }
+
+    private void ButtonTriggered()
+    {
+        nextReadyTime = coolDownDuration + Time.time;
+        coolDownTimeLeft = coolDownDuration;
+        darkMask.enabled = true;
+        coolDownTextDisplay.enabled = true;
+
+        abilityAudioSource.clip = ability.aSound;
+        abilityAudioSource.Play();
+        ability.TriggerAbility();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        bool coolDownComplete = (Time.deltaTime > nextReadyTime);
+
+        if (coolDownComplete)
+        {
+            AbilityReady();
+            if (Input.GetButtonDown(abilityButtonAxisName))
+                ButtonTriggered();
+        }
+        //if ability cooldown is not complete
+        else
+        {
+            CoolDown();
+        }
         
     }
 }
