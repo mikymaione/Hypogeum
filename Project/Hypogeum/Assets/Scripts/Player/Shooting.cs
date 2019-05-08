@@ -22,23 +22,33 @@ public class Shooting : NetworkBehaviour
     void Update()
     {
         if (isLocalPlayer)
+        {
             if (canShoot && Input.GetMouseButtonDown(0))
             {
                 canShoot = false;
-                CmdShoot();
+
+                var velocity = transform.TransformDirection(Vector3.forward * speed);
+                CmdShoot(gameObject, transform.position, transform.rotation, velocity);
+
                 StartCoroutine(RechargeWeapon());
             }
+        }
     }
 
-    [Command]
-    public void CmdShoot()
+    [ClientRpc]
+    private void RpcAggiungiVelocita(GameObject projectile, Vector3 velocity)
     {
-        var projectile = Instantiate(projectilePrefab, transform.position, transform.rotation) as GameObject;        
-
-        NetworkServer.SpawnWithClientAuthority(projectile, this.gameObject);
-
         var projectile_RB = projectile.GetComponent<Rigidbody>();
-        projectile_RB.velocity = transform.TransformDirection(Vector3.forward * speed);
+        projectile_RB.velocity = velocity;
+    }
+
+    [Command] //host
+    private void CmdShoot(GameObject player, Vector3 position, Quaternion rotation, Vector3 velocity)
+    {
+        var projectile = Instantiate(projectilePrefab, position, rotation);
+        Destroy(projectile, 10);
+        NetworkServer.SpawnWithClientAuthority(projectile, player);
+        RpcAggiungiVelocita(projectile, velocity);
     }
 
     private IEnumerator RechargeWeapon()
