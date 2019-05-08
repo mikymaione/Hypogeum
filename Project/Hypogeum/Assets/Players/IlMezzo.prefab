@@ -75,7 +75,7 @@ WheelCollider:
     damper: 6057.266
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -136,7 +136,7 @@ WheelCollider:
     damper: 6469.5635
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -197,7 +197,7 @@ WheelCollider:
     damper: 5530.437
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -413,15 +413,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.1
+  m_SendInterval: 0
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
+  m_MovementTheshold: 0
+  m_VelocityThreshold: 0
+  m_SnapThreshold: 0
   m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  m_InterpolateMovement: 0
 --- !u!114 &8220217227658330132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,7 +594,7 @@ WheelCollider:
     damper: 5942.7344
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.83599997
+  m_ForceAppPointDistance: 0.836
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:

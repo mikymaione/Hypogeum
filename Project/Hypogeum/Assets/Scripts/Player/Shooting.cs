@@ -47,7 +47,7 @@ public class Shooting : NetworkBehaviour
     {
         var projectile = Instantiate(projectilePrefab, position, rotation);
 
-        Destroy(projectile, 10);
+        //Destroy(projectile, 10); //vi pregooooo voglio macerie ovunque
         NetworkServer.SpawnWithClientAuthority(projectile, player);
 
         RpcShoot(projectile, velocity);
