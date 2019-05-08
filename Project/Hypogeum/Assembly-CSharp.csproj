@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ability.cs" />
+    <Compile Include="Assets\Scripts\AbilityCoolDown.cs" />
     <Compile Include="Assets\Scripts\BiteAbility.cs" />
     <Compile Include="Assets\Scripts\BiteTriggerable.cs" />
     <Compile Include="Assets\Scripts\Camera\cCamera.cs" />
@@ -77,27 +78,52 @@
     <Compile Include="Assets\Scripts\Player\AutoGuida.cs" />
     <Compile Include="Assets\Scripts\Player\AutoSospensioni.cs" />
     <Compile Include="Assets\Scripts\Player\Shooting.cs" />
+
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
       <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
+
+    <Compile Include="Assets\Sprites\NextGenSprites\Demo Scene\Assets\BasicFPSCounter.cs" />
+    <Compile Include="Assets\Sprites\NextGenSprites\Demo Scene\Assets\DualMaterialExample.cs" />
+    <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\DualMaterial.cs" />
+    <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\ExtensionShortcuts.cs" />
+    <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\Models\PropertiesCollection.cs" />
+    <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\PropertiesCollectionBase.cs" />
+    <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\PropertiesCollectionController.cs" />
+    <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\PropertiesCollectionProxyController.cs" />
+    <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\PropertiesCollectionProxyManager.cs" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\Standard Shadowy\NGS_Unlit_Shadow.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\Standard\NGS_Unlit.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\FX\NGS_Lava.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Changelog.txt" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\NGS.cginc" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\FX\NGS_Glass.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Demo Scene\Readme First.txt" />
+    <None Include="Assets\Sprites\Medieval_pixel_art_asset_FREE\pixel_snapping_README.txt" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\Standard Shadowy\NGS_Multi_Shadow.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\Standard\NGS_Single.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\FX\NGS_Unlit_MegaStack.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Readme.txt" />
+    <None Include="Assets\Sprites\FreePixelGear\ReadMe.txt" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\Standard Shadowy\NGS_Single_Shadow.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\Standard\NGS_Multi.shader" />
+    <None Include="Assets\Sprites\NextGenSprites\Shaders\FX\NGS_Liquid.shader" />
+>>>>>>> .merge_file_a15000
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AddOns.Editor">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -301,16 +327,16 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="HypogeumDBConnector">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Assets/Plugins/HypogeumDBConnector.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Assets/Plugins/HypogeumDBConnector.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/mikym/Documents/UniMi/2S/OGD/Lama - OGDAIVG/Project/Hypogeum/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
