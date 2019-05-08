@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91d608c626de4a48b08a0b84c11e301, type: 3}
+  m_Name: BiteAbility2
+  m_EditorClassIdentifier: 
+  aName: BiteAbility2
+  aSprite: {fileID: 21300000, guid: bc15c6ea9b0124465b164fd3e89c578d, type: 3}
+  aSound: {fileID: 0}
+  aBaseCoolDown: 4
+  damage: 1
+  range: 30
+  hitForce: 100
