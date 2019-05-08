@@ -28,7 +28,7 @@ public class Shooting : NetworkBehaviour
                 canShoot = false;
 
                 var velocity = transform.TransformDirection(Vector3.forward * speed);
-                CmdShoot(gameObject, transform.position, transform.rotation, velocity);
+                CmdIstantiateBulletAndShoot(gameObject, transform.position, transform.rotation, velocity);
 
                 StartCoroutine(RechargeWeapon());
             }
@@ -36,19 +36,19 @@ public class Shooting : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void RpcAggiungiVelocita(GameObject projectile, Vector3 velocity)
+    private void RpcShoot(GameObject projectile, Vector3 velocity)
     {
         var projectile_RB = projectile.GetComponent<Rigidbody>();
         projectile_RB.velocity = velocity;
     }
 
     [Command] //host
-    private void CmdShoot(GameObject player, Vector3 position, Quaternion rotation, Vector3 velocity)
+    private void CmdIstantiateBulletAndShoot(GameObject player, Vector3 position, Quaternion rotation, Vector3 velocity)
     {
         var projectile = Instantiate(projectilePrefab, position, rotation);
         Destroy(projectile, 10);
         NetworkServer.SpawnWithClientAuthority(projectile, player);
-        RpcAggiungiVelocita(projectile, velocity);
+        RpcShoot(projectile, velocity);
     }
 
     private IEnumerator RechargeWeapon()
