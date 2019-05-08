@@ -109,7 +109,7 @@
     <None Include="Assets\Sprites\NextGenSprites\Shaders\Standard Shadowy\NGS_Single_Shadow.shader" />
     <None Include="Assets\Sprites\NextGenSprites\Shaders\Standard\NGS_Multi.shader" />
     <None Include="Assets\Sprites\NextGenSprites\Shaders\FX\NGS_Liquid.shader" />
->>>>>>> .merge_file_a15000
+
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Andrea/Documents/LamaOGDAIVG/Project/Hypogeum/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
