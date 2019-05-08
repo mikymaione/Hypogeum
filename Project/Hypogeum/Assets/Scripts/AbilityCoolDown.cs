@@ -68,7 +68,7 @@ public class AbilityCoolDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool coolDownComplete = (Time.deltaTime > nextReadyTime);
+        bool coolDownComplete = (Time.time > nextReadyTime);
 
         if (coolDownComplete)
         {
