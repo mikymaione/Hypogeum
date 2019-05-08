@@ -35,19 +35,21 @@ public class Shooting : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
+    [ClientRpc] //all clients
     private void RpcShoot(GameObject projectile, Vector3 velocity)
     {
         var projectile_RB = projectile.GetComponent<Rigidbody>();
         projectile_RB.velocity = velocity;
     }
 
-    [Command] //host
+    [Command] //only host
     private void CmdIstantiateBulletAndShoot(GameObject player, Vector3 position, Quaternion rotation, Vector3 velocity)
     {
         var projectile = Instantiate(projectilePrefab, position, rotation);
+
         Destroy(projectile, 10);
         NetworkServer.SpawnWithClientAuthority(projectile, player);
+
         RpcShoot(projectile, velocity);
     }
 
