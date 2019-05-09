@@ -1,32 +1,36 @@
 fileFormatVersion: 2
-guid: 081f361d6d24c7547adcf38c274d5792
+guid: a46e8718845c0c144b72e723cb2ca897
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Jeep.1
+    100000: body
     100002: platform
     100004: //RootNode
-    100006: wheel.1
-    100008: wheel.2
-    400000: Jeep.1
+    100006: wheel
+    100008: wheel_1
+    400000: body
     400002: platform
     400004: //RootNode
-    400006: wheel.1
-    400008: wheel.2
-    2100000: platform
-    2100002: tex
-    2300000: Jeep.1
+    400006: wheel
+    400008: wheel_1
+    2100000: tex
+    2100002: Platform
+    2300000: body
     2300002: platform
-    2300004: wheel.1
-    2300006: wheel.2
-    3300000: Jeep.1
+    2300004: wheel
+    2300006: wheel_1
+    2300008: //RootNode
+    3300000: body
     3300002: platform
-    3300004: wheel.1
-    3300006: wheel.2
-    4300000: platform
-    4300002: Jeep.1
-    4300004: wheel.1
-    4300006: wheel.2
+    3300004: wheel
+    3300006: wheel_1
+    3300008: //RootNode
+    4300000: body
+    4300002: wheel_1
+    4300004: wheel
+    4300006: platform
+    7400000: Default Take
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -80,7 +84,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -107,7 +111,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
