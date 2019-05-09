@@ -61,14 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Ability.cs" />
-    <Compile Include="Assets\Scripts\AbilityCoolDown.cs" />
-    <Compile Include="Assets\Scripts\BiteAbility.cs" />
-    <Compile Include="Assets\Scripts\BiteTriggerable.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\CarScripts\AutoGuida.cs" />
+    <Compile Include="Assets\Scripts\CarScripts\AutoSospensioni.cs" />
     <Compile Include="Assets\Scripts\CarScripts\Car.cs" />
-    <Compile Include="Assets\Scripts\Character.cs" />
-    <Compile Include="Assets\Scripts\CharacterSelector.cs" />
     <Compile Include="Assets\Scripts\Colliders\CarCollisionManager.cs" />
     <Compile Include="Assets\Scripts\Editor\InputManagerEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\KeyboardTrackerEditor.cs" />
@@ -77,9 +73,13 @@
     <Compile Include="Assets\Scripts\InputScripts\KeyboardTracker.cs" />
     <Compile Include="Assets\Scripts\ModelScripts\Controller.cs" />
     <Compile Include="Assets\Scripts\ModelScripts\WalkingController.cs" />
-    <Compile Include="Assets\Scripts\Player\AutoGuida.cs" />
-    <Compile Include="Assets\Scripts\Player\AutoSospensioni.cs" />
+    <Compile Include="Assets\Scripts\Player\Ability.cs" />
+    <Compile Include="Assets\Scripts\Player\AbilityCoolDown.cs" />
+    <Compile Include="Assets\Scripts\Player\BiteAbility.cs" />
+    <Compile Include="Assets\Scripts\Player\BiteTriggerable.cs" />
+    <Compile Include="Assets\Scripts\Player\Character.cs" />
     <Compile Include="Assets\Scripts\Player\Shooting.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterSelector.cs" />
     <Compile Include="Assets\Sprites\NextGenSprites\Demo Scene\Assets\BasicFPSCounter.cs" />
     <Compile Include="Assets\Sprites\NextGenSprites\Demo Scene\Assets\DualMaterialExample.cs" />
     <Compile Include="Assets\Sprites\NextGenSprites\Utils\Helpers\DualMaterial.cs" />
