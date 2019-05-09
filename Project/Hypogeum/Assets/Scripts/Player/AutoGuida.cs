@@ -17,6 +17,7 @@ public class AutoGuida : NetworkBehaviour
     {
         car = GetComponent<Car>();
         car.SetCar();
+
         carCollisionManager = GetComponent<CarCollisionManager>();
         carCollisionManager.SetPlayerCar();
     }

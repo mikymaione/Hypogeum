@@ -11,7 +11,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character")]
 public class Character : ScriptableObject
 {
-    public string name = "Default";
+    public string PlayerName = "Default";
     public int StartingHP = 100;
     public Ability[] characterAbilities;
 

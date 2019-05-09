@@ -69,6 +69,7 @@ public class Car : MonoBehaviour
     public void SetCar()
     {
         setWheels();
+
         //     Configure vehicle sub-stepping parameters.
         //
         // Parameters:
@@ -80,10 +81,14 @@ public class Car : MonoBehaviour
         //
         //   stepsAboveThreshold:
         //     Amount of simulation sub-steps when vehicle's speed is above speedThreshold.
+
         wheelColliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
+
         MyCamera = Camera.main.GetComponent<CameraManager>();
+
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
+
         SetCamera();
         SetInGameStats();
     }
@@ -103,7 +108,7 @@ public class Car : MonoBehaviour
             instantTorque = 0f;
         }
 
-        var handBrake = Input.GetKey(KeyCode.M) ? brakingTorque : 0;
+        var handBrake = (Input.GetKey(KeyCode.M) ? brakingTorque : 0);
 
         foreach (var wheel in wheelColliders)
         {
@@ -127,4 +132,5 @@ public class Car : MonoBehaviour
             }
         }
     }
+
 }

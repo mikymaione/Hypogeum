@@ -13,6 +13,7 @@ public class BiteAbility : Ability
 {
     public int damage = 1;
     public float range = 30f;
+
     //in Newtons
     public float hitForce = 100f;
 
@@ -32,4 +33,5 @@ public class BiteAbility : Ability
     {
         biteTriggerable.Bite();
     }
+
 }

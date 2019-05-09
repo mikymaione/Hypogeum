@@ -21,14 +21,17 @@ public class CharacterSelector : MonoBehaviour
     {
         characterSelectPanel.SetActive(false);
         abilityPanel.SetActive(true);
-        GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity) as GameObject;
+
+        GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
         //WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
-        AbilityCoolDown[] coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
-        Character selectedCharacter = characters[characterChoice];
-        for (int i = 0; i < coolDownButtons.Length; i++)
+
+        var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
+        var selectedCharacter = characters[characterChoice];
+
+        for (var i = 0; i < coolDownButtons.Length; i++)
         {
             coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], spawnedPlayer);
         }
-
     }
+
 }
