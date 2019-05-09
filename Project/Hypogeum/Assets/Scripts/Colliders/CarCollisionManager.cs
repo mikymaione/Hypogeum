@@ -11,15 +11,17 @@ using UnityEngine;
 public class CarCollisionManager : MonoBehaviour
 {
     private Car playerCar;
+    private Rigidbody playerCar_RB;
 
     public void SetPlayerCar()
     {
         playerCar = GetComponent<Car>();
+        playerCar_RB = GetComponent<Rigidbody>();
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "IlMezzo(Clone)")
+        if (collision.gameObject.name == "IlMezzo(Clone)") //calcolare con livello, auto, nemici
         {
             Debug.Log("Collision with: " + collision.gameObject.name);
             CalculateCollisionDamage(collision);
@@ -34,9 +36,11 @@ public class CarCollisionManager : MonoBehaviour
 
     public void CalculateCollisionDamage(Collision collision)
     {
-        //not considering a minimum speed threshold might be bad
-        var car = collision.gameObject.GetComponent<Car>();
-        playerCar.Health -= 10 * (car.Defense);
-    }
+        //F = v * m / t
 
+        //var other_car = collision.gameObject.GetComponent<Car>();
+        var F = playerCar_RB.velocity.magnitude * playerCar_RB.mass / 0.1;
+
+        playerCar.Health -= (int)(F - playerCar.Defense);
+    }
 }
