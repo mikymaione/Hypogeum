@@ -8,11 +8,19 @@ ModelImporter:
     100004: //RootNode
     100006: wheel_1
     100008: wheel_2
+    100010: Wheel_BL
+    100012: Wheel_BR
+    100014: Wheel_FL
+    100016: Wheel_FR
     400000: Jeep_1
     400002: platform
     400004: //RootNode
     400006: wheel_1
     400008: wheel_2
+    400010: Wheel_BL
+    400012: Wheel_BR
+    400014: Wheel_FL
+    400016: Wheel_FR
     2100000: platform
     2100002: tex
     2300000: Jeep_1
@@ -20,15 +28,28 @@ ModelImporter:
     2300004: wheel_1
     2300006: wheel_2
     2300008: //RootNode
+    2300010: Wheel_BL
+    2300012: Wheel_BR
+    2300014: Wheel_FL
+    2300016: Wheel_FR
     3300000: Jeep_1
     3300002: platform
     3300004: wheel_1
     3300006: wheel_2
     3300008: //RootNode
+    3300010: Wheel_BL
+    3300012: Wheel_BR
+    3300014: Wheel_FL
+    3300016: Wheel_FR
     4300000: platform
     4300002: Jeep_1
     4300004: wheel_1
     4300006: wheel_2
+    4300008: Rhino_Car
+    4300010: Wheel_FL
+    4300012: Wheel_BL
+    4300014: Wheel_FR
+    4300016: Wheel_BR
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
