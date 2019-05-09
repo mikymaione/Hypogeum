@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{A987E228-E6EE-CCD3-62F0-E8A9AB18A146}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -64,11 +65,13 @@
     <Compile Include="Assets\Scripts\AbilityCoolDown.cs" />
     <Compile Include="Assets\Scripts\BiteAbility.cs" />
     <Compile Include="Assets\Scripts\BiteTriggerable.cs" />
-    <Compile Include="Assets\Scripts\Camera\cCamera.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
     <Compile Include="Assets\Scripts\CarScripts\Car.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\CharacterSelector.cs" />
     <Compile Include="Assets\Scripts\Colliders\CarCollisionManager.cs" />
+    <Compile Include="Assets\Scripts\Editor\InputManagerEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\KeyboardTrackerEditor.cs" />
     <Compile Include="Assets\Scripts\InputScripts\DeviceTracker.cs" />
     <Compile Include="Assets\Scripts\InputScripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\InputScripts\KeyboardTracker.cs" />

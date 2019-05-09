@@ -8,7 +8,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using UnityEngine;
 
-public class cCamera : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
     public float smoothing = 6f;
 
