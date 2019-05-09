@@ -19,8 +19,8 @@ public abstract class DeviceTracker : MonoBehaviour
 
     void Awake()
     {
-        im = (InputManager)GetComponent(typeof(InputManager));
+        im = GetComponent<InputManager>();
         data = new InputData(im.axisCount, im.buttonsCount);
-    }    
+    }
 
 }

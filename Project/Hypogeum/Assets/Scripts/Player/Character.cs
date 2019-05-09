@@ -8,28 +8,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Abilities/BiteAbility")]
-public class BiteAbility : Ability
+[CreateAssetMenu(menuName = "Character")]
+public class Character : ScriptableObject
 {
-    public int damage = 1;
-    public float range = 30f;
-    //in Newtons
-    public float hitForce = 100f;
+    public string PlayerName = "Default";
+    public int StartingHP = 100;
+    public Ability[] characterAbilities;
 
-    private BiteTriggerable biteTriggerable;
-
-    public override void Initialize(GameObject obj)
-    {
-        biteTriggerable = obj.GetComponent<BiteTriggerable>();
-        biteTriggerable.Initialize();
-
-        biteTriggerable.biteDamage = damage;
-        biteTriggerable.range = range;
-        biteTriggerable.hitForce = hitForce;
-    }
-
-    public override void TriggerAbility()
-    {
-        biteTriggerable.Bite();
-    }
 }

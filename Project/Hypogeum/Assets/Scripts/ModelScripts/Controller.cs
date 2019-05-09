@@ -21,4 +21,5 @@ public abstract class Controller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
+
 }

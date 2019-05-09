@@ -10,11 +10,19 @@ using UnityEngine;
 
 public class BiteTriggerable : MonoBehaviour
 {
-    [HideInInspector] public int biteDamage = 1;                         // Set the number of hitpoints that this gun will take away from shot objects with a health script.
-    [HideInInspector] public float range = 30f;                   // Distance in unity units over which the player can fire.
-    [HideInInspector] public float hitForce = 100f;                     // Amount of force which will be added to objects with a rigidbody shot by the player.
+    [HideInInspector]
+    public int biteDamage = 1;                         // Set the number of hitpoints that this gun will take away from shot objects with a health script.
+
+    [HideInInspector]
+    public float range = 30f;                   // Distance in unity units over which the player can fire.
+
+    [HideInInspector]
+    public float hitForce = 100f;                     // Amount of force which will be added to objects with a rigidbody shot by the player.
+
     //public Transform gunEnd;                                            // Holds a reference to the gun end object, marking the muzzle location of the gun.
-    //[HideInInspector] public LineRenderer laserLine;                    // Reference to the LineRenderer component which will display our laserline.
+
+    //[HideInInspector] 
+    //public LineRenderer laserLine;                    // Reference to the LineRenderer component which will display our laserline.
 
     private Camera fpsCam;                                              // Holds a reference to the first person camera.
     private WaitForSeconds shotDuration = new WaitForSeconds(.07f);     // WaitForSeconds object used by our ShotEffect coroutine, determines time laser line will remain visible.

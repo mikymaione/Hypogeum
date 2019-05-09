@@ -35,6 +35,8 @@ public class CarCollisionManager : MonoBehaviour
     public void CalculateCollisionDamage(Collision collision)
     {
         //not considering a minimum speed threshold might be bad
-        playerCar.Health -= 10 * (collision.gameObject.GetComponent<Car>().Defense);
+        var car = collision.gameObject.GetComponent<Car>();
+        playerCar.Health -= 10 * (car.Defense);
     }
+
 }

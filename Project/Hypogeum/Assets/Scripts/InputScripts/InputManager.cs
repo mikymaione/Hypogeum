@@ -8,35 +8,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
-{
-    [Range(0, 10)]
-    public int axisCount;
-    [Range(0, 20)]
-    public int buttonsCount;
-
-    public Controller controller;
-
-    public void passInput(InputData data)
-    {
-        Debug.Log("Movement: " + data.axis[0] + ", " + data.axis[1]);
-        controller.ReadInput(data);
-    }
-
-    public void refreshTracker()
-    {
-        var dt = (DeviceTracker)GetComponent(typeof(DeviceTracker));
-
-        if (dt != null)
-        {
-            dt.Refresh();
-        }
-    }
-}
-
 public struct InputData
 {
-
     //the order depends by your definition inside unity component
     public float[] axis;
     public bool[] buttons;
@@ -54,6 +27,31 @@ public struct InputData
 
         for (var i = 0; i < buttons.Length; i++)
             buttons[i] = false;
+    }
+}
+
+public class InputManager : MonoBehaviour
+{
+    [Range(0, 10)]
+    public int axisCount;
+
+    [Range(0, 20)]
+    public int buttonsCount;
+
+    public Controller controller;
+
+    public void passInput(InputData data)
+    {
+        Debug.Log("Movement: " + data.axis[0] + ", " + data.axis[1]);
+        controller.ReadInput(data);
+    }
+
+    public void refreshTracker()
+    {
+        var dt = GetComponent<DeviceTracker>();
+
+        if (dt != null)
+            dt.Refresh();
     }
 
 }
