@@ -6,19 +6,44 @@ ModelImporter:
     100000: //RootNode
     100002: Mustang
     100004: Platform
+    100006: Lion_Car
+    100008: Wheel_BL
+    100010: Wheel_BR
+    100012: Wheel_FL
+    100014: Wheel_FR
     400000: //RootNode
     400002: Mustang
     400004: Platform
+    400006: Lion_Car
+    400008: Wheel_BL
+    400010: Wheel_BR
+    400012: Wheel_FL
+    400014: Wheel_FR
     2100000: platform
     2100002: car_body
     2300000: Mustang
     2300002: Platform
     2300004: //RootNode
+    2300006: Lion_Car
+    2300008: Wheel_BL
+    2300010: Wheel_BR
+    2300012: Wheel_FL
+    2300014: Wheel_FR
     3300000: Mustang
     3300002: Platform
     3300004: //RootNode
+    3300006: Lion_Car
+    3300008: Wheel_BL
+    3300010: Wheel_BR
+    3300012: Wheel_FL
+    3300014: Wheel_FR
     4300000: Platform
     4300002: Mustang
+    4300004: Wheel_FL
+    4300006: Wheel_BL
+    4300008: Wheel_FR
+    4300010: Wheel_BR
+    4300012: Lion_Car
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
