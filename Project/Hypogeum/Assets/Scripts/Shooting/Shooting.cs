@@ -13,16 +13,21 @@ using UnityEngine.Networking;
 public class Shooting : NetworkBehaviour
 {
 
-    public GameObject projectilePrefab;
+    public GameObject projectilePrefab;   
 
     private Transform FireMouth;
     private Bullet projectileClass;
     private bool canShoot = true;
 
+    private Vector3 target;
+
+
     void Update()
     {
         if (isLocalPlayer)
         {
+            target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));            
+
             if (canShoot && Input.GetMouseButtonDown(0))
             {
                 canShoot = false;
@@ -30,11 +35,18 @@ public class Shooting : NetworkBehaviour
                 if (projectileClass == null)
                 {
                     projectileClass = projectilePrefab.GetComponent<Bullet>();
-
                     FireMouth = transform.Find("FireMouth");
                 }
 
-                var velocity = FireMouth.TransformDirection(Vector3.forward * projectileClass.speed);
+                // NON FUNZIONA BENE
+                var difference = target - transform.position;
+                var rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                var distance = difference.magnitude;
+                var direction = difference / distance;
+                direction.Normalize();
+                // NON FUNZIONA BENE
+
+                var velocity = FireMouth.TransformDirection(direction * projectileClass.speed);
                 CmdIstantiateBulletAndShoot(gameObject, FireMouth.position, FireMouth.rotation, velocity);
 
                 StartCoroutine(RechargeWeapon());

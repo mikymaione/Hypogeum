@@ -71,7 +71,6 @@
     <Compile Include="Assets\Scripts\Player\Abilities\Shark\BiteAbility.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\Shark\BiteTriggerable.cs" />
     <Compile Include="Assets\Scripts\Player\Character.cs" />
-    <Compile Include="Assets\Scripts\Shooting\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Shooting\Shooting.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterSelector.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />

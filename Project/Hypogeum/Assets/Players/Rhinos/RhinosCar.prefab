@@ -200,6 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa,
     type: 3}
+  crosshairs: {fileID: 8665980927205550732, guid: 686167cf625fa5d4daa783280acaff8d,
+    type: 3}
 --- !u!114 &266472995
 MonoBehaviour:
   m_ObjectHideFlags: 0

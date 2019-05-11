@@ -234,6 +234,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_SyncVarDirtyBits: 0
   m_LastSendTime: 0
   m_SyncVarGuard: 0
