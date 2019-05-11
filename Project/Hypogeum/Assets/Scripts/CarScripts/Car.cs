@@ -26,7 +26,7 @@ public class Car : MonoBehaviour
     private WheelCollider[] wheelColliders;
 
     private CameraManager MyCamera;
-    private Transform LookHere, Position;
+    private Transform LookHere, Position, AimPosition;
     private Rigidbody rb;
     private int speed = 7;
     private int agility = 6;
@@ -55,6 +55,7 @@ public class Car : MonoBehaviour
     {
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
+        MyCamera.AimPosition = AimPosition;
     }
 
     public void SetInGameStats()
@@ -79,10 +80,11 @@ public class Car : MonoBehaviour
         //     Amount of simulation sub-steps when vehicle's speed is above speedThreshold.
 
         wheelColliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
-               
+
         MyCamera = Camera.main.GetComponent<CameraManager>();
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
+        AimPosition = transform.Find("CameraAnchor/AimPosition");
 
         SetCamera();
         SetInGameStats();
@@ -127,5 +129,6 @@ public class Car : MonoBehaviour
             }
         }
     }
+
 
 }

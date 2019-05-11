@@ -10,16 +10,46 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+
+    public Transform lookAtTarget, positionTarget, AimPosition;
+
+    public bool Driving = true;
+
     public float smoothing = 6f;
+    public float mouseSensitivity = 100.0f;
+    public float clampAngle = 80.0f;
 
-    public Transform lookAtTarget, positionTarget;
+    private float rotY = 0.0f;
+    private float rotX = 0.0f;
 
-    private void Update()
+
+    void Start()
     {
-        UpdateCamera();
+        if (Driving)
+        {
+
+        }
+        else
+        {
+            StartCameraAim();
+        }
     }
 
-    private void UpdateCamera()
+    void Update()
+    {
+        if (Driving)
+        {
+            UpdateCameraCar();
+        }
+        else
+        {
+            UpdateCameraAim();
+        }
+    }
+
+
+    //////////////////////CAR//////////////////////
+    private void UpdateCameraCar()
     {
         if (lookAtTarget != null && positionTarget != null)
         {
@@ -27,6 +57,34 @@ public class CameraManager : MonoBehaviour
             transform.LookAt(lookAtTarget);
         }
     }
+    //////////////////////CAR//////////////////////
 
+
+    //////////////////////AIM//////////////////////
+    private void StartCameraAim()
+    {
+        var rot = transform.localRotation.eulerAngles;
+        rotY = rot.y;
+        rotX = rot.x;
+    }
+
+    private void UpdateCameraAim()
+    {
+        var mouseX = Input.GetAxis("Mouse X");
+        var mouseY = -Input.GetAxis("Mouse Y");
+
+        rotY += mouseX * mouseSensitivity * Time.deltaTime;
+        rotX += mouseY * mouseSensitivity * Time.deltaTime;
+
+        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+
+        var localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+
+        if (AimPosition != null)
+            transform.position = AimPosition.position;
+
+        transform.rotation = localRotation;
+    }
+    //////////////////////AIM//////////////////////
 
 }
