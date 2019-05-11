@@ -28,15 +28,11 @@ public class Car : MonoBehaviour
     private CameraManager MyCamera;
     private Transform LookHere, Position;
     private Rigidbody rb;
-
-    //car in-game stats (Sharks)
-    private int health = 1000;
     private int speed = 7;
     private int agility = 6;
-    private int defense = 7;
 
-    public int Health { get => health; set => health = value; }
-    public int Defense { get => defense; set => defense = value; }
+    public int Health { get; set; } = 1000;
+    public int Defense { get; set; } = 7;
 
     public void setWheels()
     {
@@ -83,9 +79,8 @@ public class Car : MonoBehaviour
         //     Amount of simulation sub-steps when vehicle's speed is above speedThreshold.
 
         wheelColliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
-
+               
         MyCamera = Camera.main.GetComponent<CameraManager>();
-
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
 
