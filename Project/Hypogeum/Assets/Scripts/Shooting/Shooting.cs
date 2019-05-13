@@ -14,8 +14,7 @@ public class Shooting : NetworkBehaviour
 {
 
     public GameObject projectilePrefab;   
-
-    private Transform FireMouth;
+    
     private Bullet projectileClass;
     private bool canShoot = true;
 
@@ -33,21 +32,10 @@ public class Shooting : NetworkBehaviour
                 canShoot = false;
 
                 if (projectileClass == null)
-                {
                     projectileClass = projectilePrefab.GetComponent<Bullet>();
-                    FireMouth = transform.Find("FireMouth");
-                }
 
-                // NON FUNZIONA BENE
-                var difference = target - transform.position;
-                var rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-                var distance = difference.magnitude;
-                var direction = difference / distance;
-                direction.Normalize();
-                // NON FUNZIONA BENE
-
-                var velocity = FireMouth.TransformDirection(direction * projectileClass.speed);
-                CmdIstantiateBulletAndShoot(gameObject, FireMouth.position, FireMouth.rotation, velocity);
+                var velocity = Camera.main.transform.forward * projectileClass.speed;
+                CmdIstantiateBulletAndShoot(gameObject, Camera.main.transform.position, Camera.main.transform.rotation, velocity);
 
                 StartCoroutine(RechargeWeapon());
             }
