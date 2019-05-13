@@ -15,16 +15,18 @@ public class CameraManager : MonoBehaviour
 
     public bool Driving = true;
 
-    public float smoothing = 6f;
-    public float mouseSensitivity = 100.0f;
-    public float clampAngle = 80.0f;
+    public float smoothing = 6;
+    public float mouseSensitivity = 100;
+    public float clampAngle = 80;
 
-    private float rotY = 0.0f;
-    private float rotX = 0.0f;
+    private float rotY = 0;
+    private float rotX = 0;
 
 
     void Start()
-    {
+    {        
+        Cursor.visible = false;
+
         if (Driving)
         {
 
