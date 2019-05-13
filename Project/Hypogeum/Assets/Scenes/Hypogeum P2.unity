@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -496,9 +496,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3949eee057f8c184aa6a230550480ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 6
   lookAtTarget: {fileID: 0}
   positionTarget: {fileID: 0}
+  AimPosition: {fileID: 0}
+  Driving: 1
+  smoothing: 6
+  mouseSensitivity: 100
+  clampAngle: 80
 --- !u!1 &237060360
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,6 +839,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cf0257a62862d8249bfe60734098bef0, type: 2}
   characterSelectPanel: {fileID: 1078182228}
   abilityPanel: {fileID: 237060360}
+  networkingComponent: {fileID: 0}
 --- !u!1 &1078182228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1517,8 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 266472990, guid: 83099b4382328a24e8211fcf0a5c3b7b, type: 3}
+  m_PlayerPrefab: {fileID: 324947265018251071, guid: 9f94899c1a218ff45974b54d3da06b35,
+    type: 3}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
