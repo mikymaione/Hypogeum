@@ -11,14 +11,12 @@ using UnityEngine.Networking;
 
 public class CharacterSelector : NetworkBehaviour
 {
-    public GameObject player;
+
+    public NetworkManager networkingComponent;
+    public GameObject player, characterSelectPanel, chosenFactionCar, abilityPanel;
     public Vector3 playerSpawnPosition = new Vector3(0, 1, -7);
     public Character[] characters;
 
-    public GameObject characterSelectPanel;
-    public GameObject abilityPanel;
-    public NetworkManager networkingComponent;
-    public GameObject chosenFactionCar;
 
     public void OnCharacterSelect(int characterChoice)
     {
@@ -26,13 +24,10 @@ public class CharacterSelector : NetworkBehaviour
         abilityPanel.SetActive(true);
 
         networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
-        //networkingComponent.playerPrefab = Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Players/Eagles/EaglesCar", ));
-        var aCar = Instantiate(Resources.Load("EaglesCar"));
-        //networkingComponent.playerPrefab
+        networkingComponent.playerPrefab = Instantiate(Resources.Load("EaglesCar")) as GameObject;
 
-
-        GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
-        //WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
+        var spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
+        //var weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
 
         var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
         var selectedCharacter = characters[characterChoice];
