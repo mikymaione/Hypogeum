@@ -13,31 +13,34 @@ using UnityEngine.Networking;
 public class Shooting : NetworkBehaviour
 {
 
-    public GameObject projectilePrefab;   
-    
+    public GameObject projectilePrefab;
+
     private Bullet projectileClass;
     private bool canShoot = true;
 
     private Vector3 target;
+    private Camera cam;
 
+
+    void Start()
+    {
+        cam = Camera.main;
+        projectileClass = projectilePrefab.GetComponent<Bullet>();
+    }
 
     void Update()
     {
         if (isLocalPlayer)
         {
-            target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));            
+            target = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
 
             if (canShoot && Input.GetMouseButtonDown(0))
             {
                 canShoot = false;
-
-                if (projectileClass == null)
-                    projectileClass = projectilePrefab.GetComponent<Bullet>();
-
-                var velocity = Camera.main.transform.forward * projectileClass.speed;
-                CmdIstantiateBulletAndShoot(gameObject, Camera.main.transform.position, Camera.main.transform.rotation, velocity);
-
                 StartCoroutine(RechargeWeapon());
+
+                var velocity = cam.transform.forward * projectileClass.speed;
+                CmdIstantiateBulletAndShoot(gameObject, cam.transform.position, cam.transform.rotation, velocity);
             }
         }
     }

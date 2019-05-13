@@ -207,9 +207,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3949eee057f8c184aa6a230550480ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 6
   lookAtTarget: {fileID: 0}
   positionTarget: {fileID: 0}
+  AimPosition: {fileID: 0}
+  CameraType: 1
+  smoothing: 6
+  mouseSensitivity: 100
+  clampAngle: 80
 --- !u!1 &473156020
 GameObject:
   m_ObjectHideFlags: 0

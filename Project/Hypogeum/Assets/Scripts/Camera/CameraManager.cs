@@ -11,9 +11,14 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
 
+    public enum eCameraType
+    {
+        Shooting, Driving, NotSetted
+    }
+
     public Transform lookAtTarget, positionTarget, AimPosition;
 
-    public bool Driving = true;
+    public eCameraType CameraType = eCameraType.NotSetted;
 
     public float smoothing = 6;
     public float mouseSensitivity = 100;
@@ -24,28 +29,29 @@ public class CameraManager : MonoBehaviour
 
 
     void Start()
-    {        
+    {
         Cursor.visible = false;
 
-        if (Driving)
+        switch (CameraType)
         {
-
-        }
-        else
-        {
-            StartCameraAim();
+            case eCameraType.Shooting:
+                StartCameraAim();
+                break;
+            case eCameraType.Driving:
+                break;
         }
     }
 
     void Update()
     {
-        if (Driving)
+        switch (CameraType)
         {
-            UpdateCameraCar();
-        }
-        else
-        {
-            UpdateCameraAim();
+            case eCameraType.Shooting:
+                UpdateCameraAim();
+                break;
+            case eCameraType.Driving:
+                UpdateCameraCar();
+                break;
         }
     }
 
