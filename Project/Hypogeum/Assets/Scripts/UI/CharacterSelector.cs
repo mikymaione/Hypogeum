@@ -8,7 +8,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEditor;
 
 public class CharacterSelector : NetworkBehaviour
 {
@@ -18,29 +17,28 @@ public class CharacterSelector : NetworkBehaviour
 
     public GameObject characterSelectPanel;
     public GameObject abilityPanel;
-	public NetworkManager networkingComponent;
-	public GameObject chosenFactionCar;
+    public NetworkManager networkingComponent;
+    public GameObject chosenFactionCar;
 
     public void OnCharacterSelect(int characterChoice)
     {
         characterSelectPanel.SetActive(false);
         abilityPanel.SetActive(true);
 
-		networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
-		//networkingComponent.playerPrefab = Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Players/Eagles/EaglesCar", ));
-		networkingComponent.playerPrefab = Instantiate(Resources.Load("EaglesCar"));
+        networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
+        //networkingComponent.playerPrefab = Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Players/Eagles/EaglesCar", ));
+        var aCar = Instantiate(Resources.Load("EaglesCar"));
+        //networkingComponent.playerPrefab
 
 
-		GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
+        GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
         //WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
 
         var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
         var selectedCharacter = characters[characterChoice];
 
         for (var i = 0; i < coolDownButtons.Length; i++)
-        {
             coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], spawnedPlayer);
-        }
     }
 
 }
