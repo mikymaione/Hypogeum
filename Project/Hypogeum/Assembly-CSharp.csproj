@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Player\TeamManager.cs" />
     <Compile Include="Assets\Scripts\Shooting\Shooting.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterSelector.cs" />
+    <Compile Include="Assets\Scripts\UI\GestioneMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Rotator.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
     <Compile Include="Assets\Sprites\NextGenSprites\Demo Scene\Assets\BasicFPSCounter.cs" />
