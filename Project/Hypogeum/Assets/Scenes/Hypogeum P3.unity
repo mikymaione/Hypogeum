@@ -1471,11 +1471,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1325418679}
-  - component: {fileID: 1325418678}
   - component: {fileID: 1325418677}
+  - component: {fileID: 1325418678}
   m_Layer: 0
   m_Name: Networking
-  m_TagString: Networking
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1325418676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -822479833, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e51142bdf5d53d4997170a30ae67222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
@@ -1525,8 +1525,6 @@ MonoBehaviour:
   m_SpawnPrefabs:
   - {fileID: 324947265018251071, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}
   - {fileID: 266472990, guid: 83099b4382328a24e8211fcf0a5c3b7b, type: 3}
-  - {fileID: 2187948641101672348, guid: 1db6c6047398ba049bc70dbac340cd8b, type: 3}
-  - {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1569,7 +1567,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 0500000000000000
+  m_Channels: 
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -1582,6 +1580,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  chosenCharacter: 0
 --- !u!4 &1325418679
 Transform:
   m_ObjectHideFlags: 0

@@ -27,11 +27,11 @@ public class CharacterSelector : NetworkBehaviour
         abilityPanel.SetActive(true);
 
 		networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
-		//networkingComponent.playerPrefab = Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Players/Eagles/EaglesCar", ));
-		networkingComponent.playerPrefab = Resources.Load("EaglesCar");
+		player = Instantiate(Resources.Load("RhinosCar")) as GameObject;
+		networkingComponent.playerPrefab = player;
 
 
-		GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
+		//GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
         //WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
 
         var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
@@ -39,7 +39,7 @@ public class CharacterSelector : NetworkBehaviour
 
         for (var i = 0; i < coolDownButtons.Length; i++)
         {
-            coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], spawnedPlayer);
+            coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], player);
         }
     }
 
