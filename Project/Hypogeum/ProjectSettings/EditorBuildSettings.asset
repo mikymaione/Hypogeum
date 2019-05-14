@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: 
     guid: 17f8350c1ef93d64189ed78b73823acb
   - enabled: 1
-    path: Assets/Scenes/Start Screen.unity
+    path: Assets/Scenes/GameTitle.unity
     guid: 0991061500f069b4aa64474d441f1adc
   - enabled: 1
     path: Assets/Scenes/Car test.unity
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shooting test.unity
     guid: 00e1429d0ba5bb04ebc33fd7a6b95ad5
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: ad170fdfe12d0254cbfe44ca29eb8fd0
   m_configObjects: {}

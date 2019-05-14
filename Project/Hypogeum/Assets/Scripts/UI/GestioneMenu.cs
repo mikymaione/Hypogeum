@@ -17,20 +17,25 @@ public class GestioneMenu : MonoBehaviour
 
 
     void Start()
-    {        
+    {
         void button_sparo_click()
         {
-            SceneManager.LoadScene("Scenes/Shooting test", LoadSceneMode.Single);
+            Play(GB.eGameType.Shooting);
         }
 
         void button_guida_click()
         {
-            SceneManager.LoadScene("Scenes/Car test", LoadSceneMode.Single);            
+            Play(GB.eGameType.Driving);
         }
 
         button_sparo.onClick.AddListener(button_sparo_click);
         button_guida.onClick.AddListener(button_guida_click);
     }
 
+    private void Play(GB.eGameType gt)
+    {
+        GB.GameType = gt;
+        SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+    }
 
 }
