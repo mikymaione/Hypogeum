@@ -21,13 +21,31 @@ public class CharacterSelector : NetworkBehaviour
 	public NetworkManager networkingComponent;
 	public GameObject chosenFactionCar;
 
+	public string getFactionName(int characterChoice)
+	{
+		string factionName;
+
+		switch (characterChoice)
+		{
+			case 0:
+				factionName = "EaglesCar";
+				return factionName;
+			case 1:
+				factionName = "RhinosCar";
+				return factionName;
+		}
+		return null;
+	}
+
     public void OnCharacterSelect(int characterChoice)
     {
         characterSelectPanel.SetActive(false);
         abilityPanel.SetActive(true);
 
+		string factionName = getFactionName(characterChoice);
+
 		networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
-		player = Instantiate(Resources.Load("RhinosCar")) as GameObject;
+		player = Instantiate(Resources.Load(factionName)) as GameObject;
 		networkingComponent.playerPrefab = player;
 
 
@@ -39,6 +57,10 @@ public class CharacterSelector : NetworkBehaviour
 
         for (var i = 0; i < coolDownButtons.Length; i++)
         {
+			/*
+			 * if you don't create the abilities in scriptable objects and assign them to the character in unity
+			 * it goes out of range
+			 */
             coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], player);
         }
     }

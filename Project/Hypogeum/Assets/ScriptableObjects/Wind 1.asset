@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88191d4d2c645942b9e8c5c309286a1, type: 3}
-  m_Name: Lions
+  m_Script: {fileID: 11500000, guid: f0ac165955cb23949beb59b74e2da9cc, type: 3}
+  m_Name: Wind 1
   m_EditorClassIdentifier: 
-  PlayerName: Default
-  StartingHP: 100
-  characterAbilities:
-  - {fileID: 0}
-  - {fileID: 0}
+  aName: New Ability
+  aSprite: {fileID: 21300002, guid: a9c136f9dcfd3954fa0f3fab6260607f, type: 3}
+  aSound: {fileID: 0}
+  aBaseCoolDown: 1
+  damage: 1
+  range: 30
+  hitForce: 100

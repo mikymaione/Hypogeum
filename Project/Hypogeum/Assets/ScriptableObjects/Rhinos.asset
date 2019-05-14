@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d88191d4d2c645942b9e8c5c309286a1, type: 3}
-  m_Name: Lions
+  m_Name: Rhinos
   m_EditorClassIdentifier: 
   PlayerName: Default
   StartingHP: 100

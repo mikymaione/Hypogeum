@@ -121,6 +121,36 @@ Transform:
   m_Father: {fileID: 4419060395900134924}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &218748584835470822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9222361526395712827}
+  m_Layer: 0
+  m_Name: AimPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9222361526395712827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218748584835470822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.985, y: -117.8, z: 236.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4419060395900134924}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &324947265018251071
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +169,8 @@ GameObject:
   - component: {fileID: 7092783778822709423}
   - component: {fileID: 3243681315850885656}
   - component: {fileID: 337468319491981700}
-  - component: {fileID: 4144272811855559384}
+  - component: {fileID: 4168449233636349803}
+  - component: {fileID: 1301559973529547652}
   m_Layer: 0
   m_Name: EaglesCar
   m_TagString: Untagged
@@ -322,7 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa,
     type: 3}
---- !u!114 &4144272811855559384
+--- !u!114 &4168449233636349803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -331,12 +362,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 324947265018251071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7196c1c848d517340814faa129f40ea3, type: 3}
+  m_Script: {fileID: 11500000, guid: 77b6771f647caec48b596a28730f0e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  biteDamage: 1
-  range: 30
-  hitForce: 100
+  windBoxCollider: {fileID: 0}
+--- !u!114 &1301559973529547652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324947265018251071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b6771f647caec48b596a28730f0e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windBoxCollider: {fileID: 0}
 --- !u!1 &585478298614816171
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +840,7 @@ Transform:
   m_Children:
   - {fileID: 7722528145595288193}
   - {fileID: 4323809217756850512}
+  - {fileID: 9222361526395712827}
   m_Father: {fileID: 518718005}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

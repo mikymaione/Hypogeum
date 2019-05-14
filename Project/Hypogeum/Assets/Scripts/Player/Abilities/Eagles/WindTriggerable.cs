@@ -16,7 +16,16 @@ using UnityEngine;
 public class WindTriggerable : MonoBehaviour
 {
 
-    public BoxCollider windBoxCollider; // private?
+	[HideInInspector]
+	public int biteDamage = 1;                         // Set the number of hitpoints that this gun will take away from shot objects with a health script.
+
+	[HideInInspector]
+	public float range = 30f;                   // Distance in unity units over which the player can fire.
+
+	[HideInInspector]
+	public float hitForce = 100f;
+
+	public BoxCollider windBoxCollider; // private?
 
     public void Initialize()
     {
