@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ac165955cb23949beb59b74e2da9cc, type: 3}
   m_Name: Wind 1
   m_EditorClassIdentifier: 
-  aName: New Ability
-  aSprite: {fileID: 21300002, guid: a9c136f9dcfd3954fa0f3fab6260607f, type: 3}
+  aName: Wind 1
+  aSprite: {fileID: 21300002, guid: fb16cc86978e6464d9ecc8802812674a, type: 3}
   aSound: {fileID: 0}
   aBaseCoolDown: 1
   damage: 1
