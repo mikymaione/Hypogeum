@@ -9,52 +9,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class GB
+public class EscKey : MonoBehaviour
 {
 
-    public enum EGameType
+    void Update()
     {
-        Shooting, Driving
-    }
-
-    public enum EAnimal
-    {
-        Rhino, Eagle
-    }
-
-
-    public static EGameType GameType;
-    public static EAnimal Animal;
-
-
-    public static EAnimal getRandomAnimal()
-    {
-        var values = System.Enum.GetValues(typeof(EAnimal));
-        var random = Random.Range(0, values.Length);
-
-        return (EAnimal)values.GetValue(random);
-    }
-
-    public static GameObject LoadAnimalCar(EAnimal animal)
-    {
-        var s = "";
-
-        switch (animal)
-        {
-            case EAnimal.Rhino:
-                s = "RhinosCar";
-                break;
-            case EAnimal.Eagle:
-                s = "EaglesCar";
-                break;
-        }
-
-        return Resources.Load(s) as GameObject;
-    }
-
-    public static void GotoScene(string name)
-    {
-        SceneManager.LoadScene($"Scenes/{name}", LoadSceneMode.Single);
+        if (Input.GetKey(KeyCode.Escape))
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "Game":
+                    GB.GotoScene("LobbyM");
+                    break;
+                case "LobbyM":
+                    GB.GotoScene("GameTitle");
+                    break;
+            }
     }
 
 }
