@@ -12,17 +12,22 @@ using UnityEngine.UI;
 public class GestioneMenu : MonoBehaviour
 {
 
-    public Button button_sparo, button_guida;
+    public Button button_sparo, button_guida, button_start;
 
 
     void Start()
     {
-        button_sparo.onClick.AddListener(() =>
+        button_start?.onClick.AddListener(() =>
+        {
+            GB.GotoScene("LobbyM");
+        });
+
+        button_sparo?.onClick.AddListener(() =>
         {
             Play(GB.EGameType.Shooting);
         });
 
-        button_guida.onClick.AddListener(() =>
+        button_guida?.onClick.AddListener(() =>
         {
             Play(GB.EGameType.Driving);
         });
