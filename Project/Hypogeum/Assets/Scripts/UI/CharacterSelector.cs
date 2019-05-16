@@ -18,7 +18,7 @@ public class CharacterSelector : NetworkBehaviour
 
     public GameObject characterSelectPanel;
     public GameObject abilityPanel;
-	public NetworkManager networkingComponent;
+	public CustomNetworkManager1 customNetworkManager;
 	//public GameObject chosenFactionCar;
 
 	public string serverFactionName;
@@ -43,14 +43,15 @@ public class CharacterSelector : NetworkBehaviour
 	//[Command]
 	//private void foo(string factionName)
 	//{
-	//	networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
+	//	customNetworkManager = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
 	//	player = Instantiate(Resources.Load(factionName)) as GameObject;
-	//	networkingComponent.playerPrefab = player;
+	//	customNetworkManager.playerPrefab = player;
 	//}
 
     public void OnCharacterSelect(int characterChoice)
     {
-        characterSelectPanel.SetActive(false);
+		customNetworkManager = GameObject.FindGameObjectWithTag("Networking").GetComponent<CustomNetworkManager1>();
+		characterSelectPanel.SetActive(false);
         abilityPanel.SetActive(true);
 
 		string factionName = getFactionName(characterChoice);
@@ -62,20 +63,22 @@ public class CharacterSelector : NetworkBehaviour
 			serverFactionName = factionName;
 		}
 
+		customNetworkManager.SetCharacters(characterChoice);
+
 		//GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
 		//WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
 
-		var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
-        var selectedCharacter = characters[characterChoice];
+		//var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
+		//var selectedCharacter = characters[characterChoice];
 
-        for (var i = 0; i < coolDownButtons.Length; i++)
-        {
-			/*
-			 * if you don't create the abilities in scriptable objects and assign them to the character in unity
-			 * it goes out of range
-			 */
-            coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], player);
-        }
-    }
+		//for (var i = 0; i < coolDownButtons.Length; i++)
+		//{
+		//	/*
+		//	 * if you don't create the abilities in scriptable objects and assign them to the character in unity
+		//	 * it goes out of range
+		//	 */
+		//	coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], player);
+		//}
+	}
 
 }
