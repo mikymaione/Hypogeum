@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 1067126408}
   m_Layer: 5
   m_Name: UICanvas
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -839,7 +839,8 @@ MonoBehaviour:
   characterSelectPanel: {fileID: 1078182228}
   abilityPanel: {fileID: 237060360}
   networkingComponent: {fileID: 0}
-  chosenFactionCar: {fileID: 0}
+  serverFactionName: 
+  clientFactionName: 
 --- !u!1 &1078182228
 GameObject:
   m_ObjectHideFlags: 0

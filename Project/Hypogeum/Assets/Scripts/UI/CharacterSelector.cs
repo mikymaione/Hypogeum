@@ -19,7 +19,10 @@ public class CharacterSelector : NetworkBehaviour
     public GameObject characterSelectPanel;
     public GameObject abilityPanel;
 	public NetworkManager networkingComponent;
-	public GameObject chosenFactionCar;
+	//public GameObject chosenFactionCar;
+
+	public string serverFactionName;
+	public string clientFactionName;
 
 	public string getFactionName(int characterChoice)
 	{
@@ -37,6 +40,14 @@ public class CharacterSelector : NetworkBehaviour
 		return null;
 	}
 
+	//[Command]
+	//private void foo(string factionName)
+	//{
+	//	networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
+	//	player = Instantiate(Resources.Load(factionName)) as GameObject;
+	//	networkingComponent.playerPrefab = player;
+	//}
+
     public void OnCharacterSelect(int characterChoice)
     {
         characterSelectPanel.SetActive(false);
@@ -44,15 +55,17 @@ public class CharacterSelector : NetworkBehaviour
 
 		string factionName = getFactionName(characterChoice);
 
-		networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
-		player = Instantiate(Resources.Load(factionName)) as GameObject;
-		networkingComponent.playerPrefab = player;
-
+		if (isLocalPlayer)
+			clientFactionName = factionName;
+		else if (isServer)
+		{
+			serverFactionName = factionName;
+		}
 
 		//GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
-        //WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
+		//WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
 
-        var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
+		var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
         var selectedCharacter = characters[characterChoice];
 
         for (var i = 0; i < coolDownButtons.Length; i++)
