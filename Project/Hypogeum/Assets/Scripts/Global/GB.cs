@@ -13,6 +13,12 @@ public static class GB
         Shooting, Driving
     }
 
+    public enum eAnimal
+    {
+        Rhino, Eagle
+    }
+
     public static eGameType GameType;
+    public static eAnimal Animal;
 
 }

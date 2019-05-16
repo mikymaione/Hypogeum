@@ -1024,6 +1024,11 @@ PrefabInstance:
       propertyPath: m_ForceAppPointDistance
       value: 79.22248
       objectReference: {fileID: 0}
+    - target: {fileID: 4168449233636349803, guid: 9f94899c1a218ff45974b54d3da06b35,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4159041179416774108, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}
     - {fileID: 8487014824044927262, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}
@@ -1035,6 +1040,7 @@ PrefabInstance:
     - {fileID: 4144272811855559384, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}
     - {fileID: 3243681315850885656, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}
     - {fileID: 229310006032605614, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}
+    - {fileID: 4168449233636349803, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}
 --- !u!1 &1190283294
 GameObject:

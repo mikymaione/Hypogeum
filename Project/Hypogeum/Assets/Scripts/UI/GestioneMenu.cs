@@ -35,7 +35,17 @@ public class GestioneMenu : MonoBehaviour
     private void Play(GB.eGameType gt)
     {
         GB.GameType = gt;
-        SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+        GB.Animal = RandomEnumValue<GB.eAnimal>();
+
+        SceneManager.LoadScene("Scenes/LobbyM", LoadSceneMode.Single);
+    }
+
+    private static T RandomEnumValue<T>()
+    {
+        var values = System.Enum.GetValues(typeof(T));
+        var random = Random.Range(0, values.Length);
+
+        return (T)values.GetValue(random);
     }
 
 }
