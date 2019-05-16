@@ -17,10 +17,12 @@ public class GestioneMenu : MonoBehaviour
 
     void Start()
     {
+        Screen.fullScreen = false;
+
         button_eagle?.onClick.AddListener(() =>
-        {
-            SelezionaAnimale(button_eagle);
-        });
+          {
+              SelezionaAnimale(button_eagle);
+          });
         button_rhino?.onClick.AddListener(() =>
         {
             SelezionaAnimale(button_rhino);
