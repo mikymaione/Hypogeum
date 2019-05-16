@@ -23,6 +23,9 @@ public class EscKey : MonoBehaviour
                 case "LobbyM":
                     GB.GotoScene("GameTitle");
                     break;
+                case "GameTitle":
+                    Application.Quit();
+                    break;
             }
     }
 
