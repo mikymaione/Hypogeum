@@ -73,6 +73,7 @@
     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerList.cs" />
     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\Camera\CursorManager.cs" />
     <Compile Include="Assets\Scripts\CarScripts\AutoGuida.cs" />
     <Compile Include="Assets\Scripts\CarScripts\AutoSospensioni.cs" />
     <Compile Include="Assets\Scripts\CarScripts\Car.cs" />

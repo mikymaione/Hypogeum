@@ -16,19 +16,7 @@ public class LobbyManagement : MonoBehaviour
     {
         var networkingComponent = GetComponent<NetworkLobbyManager>();
 
-        var Animale = "";
-        switch (GB.Animal)
-        {            
-            case GB.eAnimal.Rhino:
-                Animale = "RhinosCar";
-                break;
-            case GB.eAnimal.Eagle:
-                Animale = "EaglesCar";
-                break;
-        }
-
-        networkingComponent.gamePlayerPrefab = Resources.Load(Animale) as GameObject;
+        networkingComponent.gamePlayerPrefab = GB.LoadAnimalCar(GB.Animal);
     }
-
 
 }

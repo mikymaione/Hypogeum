@@ -6,19 +6,50 @@ Contributors:
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
+using UnityEngine;
+
 public static class GB
 {
-    public enum eGameType
+
+    public enum EGameType
     {
         Shooting, Driving
     }
 
-    public enum eAnimal
+    public enum EAnimal
     {
         Rhino, Eagle
     }
 
-    public static eGameType GameType;
-    public static eAnimal Animal;
+
+    public static EGameType GameType;
+    public static EAnimal Animal;
+
+
+    public static EAnimal getRandomAnimal()
+    {
+        var values = System.Enum.GetValues(typeof(EAnimal));
+        var random = Random.Range(0, values.Length);
+
+        return (EAnimal)values.GetValue(random);
+    }
+
+    public static GameObject LoadAnimalCar(EAnimal animal)
+    {
+        var s = "";
+
+        switch (animal)
+        {
+            case EAnimal.Rhino:
+                s = "RhinosCar";
+                break;
+            case EAnimal.Eagle:
+                s = "EaglesCar";
+                break;
+        }
+
+        return Resources.Load(s) as GameObject;
+    }
+
 
 }

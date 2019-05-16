@@ -800,6 +800,7 @@ GameObject:
   - component: {fileID: 961319794}
   - component: {fileID: 961319793}
   - component: {fileID: 961319792}
+  - component: {fileID: 961319795}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -871,6 +872,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &961319795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961319791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4516eb0398187e64cb964082df84d88f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &997366452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -942,6 +955,11 @@ PrefabInstance:
     - target: {fileID: 5420681754146531531, guid: 9f94899c1a218ff45974b54d3da06b35,
         type: 3}
       propertyPath: m_TransformSyncMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168449233636349803, guid: 9f94899c1a218ff45974b54d3da06b35,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5439216409224554570, guid: 9f94899c1a218ff45974b54d3da06b35,
@@ -1023,11 +1041,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ForceAppPointDistance
       value: 79.22248
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168449233636349803, guid: 9f94899c1a218ff45974b54d3da06b35,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4159041179416774108, guid: 9f94899c1a218ff45974b54d3da06b35, type: 3}

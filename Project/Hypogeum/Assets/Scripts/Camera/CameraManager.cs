@@ -23,14 +23,12 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        Cursor.visible = false;
-
         switch (GB.GameType)
         {
-            case GB.eGameType.Shooting:
+            case GB.EGameType.Shooting:
                 StartCameraAim();
                 break;
-            case GB.eGameType.Driving:
+            case GB.EGameType.Driving:
                 break;
         }
     }
@@ -39,10 +37,10 @@ public class CameraManager : MonoBehaviour
     {
         switch (GB.GameType)
         {
-            case GB.eGameType.Shooting:
+            case GB.EGameType.Shooting:
                 UpdateCameraAim();
                 break;
-            case GB.eGameType.Driving:
+            case GB.EGameType.Driving:
                 UpdateCameraCar();
                 break;
         }
