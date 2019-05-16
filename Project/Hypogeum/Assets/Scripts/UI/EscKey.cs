@@ -22,7 +22,7 @@ public class EscKey : MonoBehaviour
                     break;
                 case "LobbyM":
                     GB.GotoScene("GameTitle");
-                    break;
+                    break;                
                 case "GameTitle":
                     Application.Quit();
                     break;

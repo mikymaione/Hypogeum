@@ -19,12 +19,12 @@ public static class GB
 
     public enum EAnimal
     {
-        Rhino, Eagle
+        Rhino, Eagle, Shark, Lion
     }
 
 
-    public static EGameType GameType;
-    public static EAnimal Animal;
+    public static EGameType? GameType;
+    public static EAnimal? Animal;
 
 
     public static EAnimal getRandomAnimal()
@@ -35,7 +35,7 @@ public static class GB
         return (EAnimal)values.GetValue(random);
     }
 
-    public static GameObject LoadAnimalCar(EAnimal animal)
+    public static GameObject LoadAnimalCar(EAnimal? animal)
     {
         var s = "";
 

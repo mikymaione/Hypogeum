@@ -12,15 +12,28 @@ using UnityEngine.UI;
 public class GestioneMenu : MonoBehaviour
 {
 
-    public Button button_sparo, button_guida, button_start;
+    public Button button_sparo, button_guida, button_lion, button_shark, button_rhino, button_eagle;
 
 
     void Start()
     {
-        button_start?.onClick.AddListener(() =>
+        button_eagle?.onClick.AddListener(() =>
         {
-            GB.GotoScene("LobbyM");
+            SelezionaAnimale(button_eagle);
         });
+        button_rhino?.onClick.AddListener(() =>
+        {
+            SelezionaAnimale(button_rhino);
+        });
+        button_shark?.onClick.AddListener(() =>
+        {
+            SelezionaAnimale(button_shark);
+        });
+        button_lion?.onClick.AddListener(() =>
+        {
+            SelezionaAnimale(button_lion);
+        });
+
 
         button_sparo?.onClick.AddListener(() =>
         {
@@ -33,11 +46,42 @@ public class GestioneMenu : MonoBehaviour
         });
     }
 
+    private void SelezionaAnimale(Button b_animale)
+    {
+        void coloraButton(Button b, Color c)
+        {
+            b.GetComponent<Image>().color = c;
+        }
+
+        void selezionaButton(Button s)
+        {
+            coloraButton(button_eagle, Color.white);
+            coloraButton(button_lion, Color.white);
+            coloraButton(button_rhino, Color.white);
+            coloraButton(button_shark, Color.white);
+
+            coloraButton(s, Color.green);
+        }
+
+        selezionaButton(b_animale);
+
+        if (b_animale.Equals(button_eagle))
+            GB.Animal = GB.EAnimal.Eagle;
+        else if (b_animale.Equals(button_rhino))
+            GB.Animal = GB.EAnimal.Rhino;
+        else if (b_animale.Equals(button_lion))
+            GB.Animal = GB.EAnimal.Lion;
+        else if (b_animale.Equals(button_shark))
+            GB.Animal = GB.EAnimal.Shark;
+    }
+
     private void Play(GB.EGameType gt)
     {
-        GB.GameType = gt;
-        GB.Animal = GB.getRandomAnimal();
-        GB.GotoScene("LobbyM");
+        if (GB.Animal.HasValue)
+        {
+            GB.GameType = gt;
+            GB.GotoScene("LobbyM");
+        }
     }
 
 
