@@ -49,7 +49,7 @@ public static class GB
                 break;
         }
 
-        return Resources.Load(s) as GameObject;
+        return Resources.Load($"Cars/{s}") as GameObject;
     }
 
     public static void GotoScene(string name)
