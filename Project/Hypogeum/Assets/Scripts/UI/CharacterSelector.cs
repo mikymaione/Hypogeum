@@ -18,8 +18,11 @@ public class CharacterSelector : NetworkBehaviour
 
     public GameObject characterSelectPanel;
     public GameObject abilityPanel;
-	public NetworkManager networkingComponent;
-	public GameObject chosenFactionCar;
+	public CustomNetworkManager1 customNetworkManager;
+	//public GameObject chosenFactionCar;
+
+	public string serverFactionName;
+	public string clientFactionName;
 
 	public string getFactionName(int characterChoice)
 	{
@@ -37,32 +40,45 @@ public class CharacterSelector : NetworkBehaviour
 		return null;
 	}
 
+	//[Command]
+	//private void foo(string factionName)
+	//{
+	//	customNetworkManager = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
+	//	player = Instantiate(Resources.Load(factionName)) as GameObject;
+	//	customNetworkManager.playerPrefab = player;
+	//}
+
     public void OnCharacterSelect(int characterChoice)
     {
-        characterSelectPanel.SetActive(false);
+		customNetworkManager = GameObject.FindGameObjectWithTag("Networking").GetComponent<CustomNetworkManager1>();
+		characterSelectPanel.SetActive(false);
         abilityPanel.SetActive(true);
 
 		string factionName = getFactionName(characterChoice);
 
-		networkingComponent = GameObject.FindGameObjectWithTag("Networking").GetComponent<NetworkManager>();
-		player = Instantiate(Resources.Load(factionName)) as GameObject;
-		networkingComponent.playerPrefab = player;
+		if (isLocalPlayer)
+			clientFactionName = factionName;
+		else if (isServer)
+		{
+			serverFactionName = factionName;
+		}
 
+		customNetworkManager.SetCharacters(characterChoice);
 
 		//GameObject spawnedPlayer = Instantiate(player, playerSpawnPosition, Quaternion.identity);
-        //WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
+		//WeaponMarker weaponMarker = spawnedPlayer.GetComponentInChildren<WeaponMarker>();
 
-        var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
-        var selectedCharacter = characters[characterChoice];
+		//var coolDownButtons = GetComponentsInChildren<AbilityCoolDown>();
+		//var selectedCharacter = characters[characterChoice];
 
-        for (var i = 0; i < coolDownButtons.Length; i++)
-        {
-			/*
-			 * if you don't create the abilities in scriptable objects and assign them to the character in unity
-			 * it goes out of range
-			 */
-            coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], player);
-        }
-    }
+		//for (var i = 0; i < coolDownButtons.Length; i++)
+		//{
+		//	/*
+		//	 * if you don't create the abilities in scriptable objects and assign them to the character in unity
+		//	 * it goes out of range
+		//	 */
+		//	coolDownButtons[i].Initialize(selectedCharacter.characterAbilities[i], player);
+		//}
+	}
 
 }

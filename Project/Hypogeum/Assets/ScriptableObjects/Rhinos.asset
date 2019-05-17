@@ -15,5 +15,5 @@ MonoBehaviour:
   PlayerName: Default
   StartingHP: 100
   characterAbilities:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 2d5432b75e49d3d46b4aa2c73c525e5f, type: 2}
+  - {fileID: 11400000, guid: 5e76b2887f47d2349b408ce676af8c22, type: 2}

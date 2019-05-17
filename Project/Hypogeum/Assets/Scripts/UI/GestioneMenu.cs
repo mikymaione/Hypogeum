@@ -7,35 +7,90 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GestioneMenu : MonoBehaviour
 {
 
-    public Button button_sparo, button_guida;
+    public Button button_fullscreen, button_sparo, button_guida, button_lion, button_shark, button_rhino, button_eagle;
 
 
     void Start()
     {
-        void button_sparo_click()
+        button_fullscreen?.onClick.AddListener(() =>
         {
-            Play(GB.eGameType.Shooting);
-        }
+            Screen.fullScreen = !Screen.fullScreen;
+        });
 
-        void button_guida_click()
+
+        button_eagle?.onClick.AddListener(() =>
         {
-            Play(GB.eGameType.Driving);
-        }
+            SelezionaAnimale(button_eagle);
+        });
+        button_rhino?.onClick.AddListener(() =>
+        {
+            SelezionaAnimale(button_rhino);
+        });
+        button_shark?.onClick.AddListener(() =>
+        {
+            SelezionaAnimale(button_shark);
+        });
+        button_lion?.onClick.AddListener(() =>
+        {
+            SelezionaAnimale(button_lion);
+        });
 
-        button_sparo.onClick.AddListener(button_sparo_click);
-        button_guida.onClick.AddListener(button_guida_click);
+
+        button_sparo?.onClick.AddListener(() =>
+        {
+            Play(GB.EGameType.Shooting);
+        });
+
+        button_guida?.onClick.AddListener(() =>
+        {
+            Play(GB.EGameType.Driving);
+        });
     }
 
-    private void Play(GB.eGameType gt)
+    private void SelezionaAnimale(Button b_animale)
     {
-        GB.GameType = gt;
-        SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+        //inner function
+        void coloraButton(Button b, Color c)
+        {
+            b.GetComponent<Image>().color = c;
+        }
+
+        void selezionaButton(Button s)
+        {
+            coloraButton(button_eagle, Color.white);
+            coloraButton(button_lion, Color.white);
+            coloraButton(button_rhino, Color.white);
+            coloraButton(button_shark, Color.white);
+
+            coloraButton(s, Color.green);
+        }
+        //inner function
+
+        selezionaButton(b_animale);
+
+        if (b_animale.Equals(button_eagle))
+            GB.Animal = GB.EAnimal.Eagle;
+        else if (b_animale.Equals(button_rhino))
+            GB.Animal = GB.EAnimal.Rhino;
+        else if (b_animale.Equals(button_lion))
+            GB.Animal = GB.EAnimal.Lion;
+        else if (b_animale.Equals(button_shark))
+            GB.Animal = GB.EAnimal.Shark;
     }
+
+    private void Play(GB.EGameType gt)
+    {
+        if (GB.Animal.HasValue)
+        {
+            GB.GameType = gt;
+            GB.GotoScene("LobbyM");
+        }
+    }
+
 
 }

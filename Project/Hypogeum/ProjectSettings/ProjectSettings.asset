@@ -79,7 +79,7 @@ PlayerSettings:
   usePlayerLog: 1
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
-  resizableWindow: 0
+  resizableWindow: 1
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
   gpuSkinning: 1
@@ -92,7 +92,7 @@ PlayerSettings:
   visibleInBackground: 1
   allowFullscreenSwitch: 0
   graphicsJobMode: 0
-  fullscreenMode: 0
+  fullscreenMode: 3
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
@@ -629,7 +629,7 @@ PlayerSettings:
   cloudProjectId: 6664ebac-c26e-473a-8ec0-b49b68009ace
   framebufferDepthMemorylessMode: 0
   projectName: Hypogeum
-  organizationId: maione-michele
+  organizationId: team-lama
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 1067126408}
   m_Layer: 5
   m_Name: UICanvas
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -831,15 +831,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5384528cc60d64a910795e5ebfd059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2187948641101672348, guid: c46019de5a180274f83c7d18158264ec, type: 3}
+  player: {fileID: 2187948641101672348, guid: 1db6c6047398ba049bc70dbac340cd8b, type: 3}
   playerSpawnPosition: {x: 0, y: 1, z: -7}
   characters:
-  - {fileID: 11400000, guid: 1229cd21e82cdae49adfcba2c6dad7ae, type: 2}
-  - {fileID: 11400000, guid: cf0257a62862d8249bfe60734098bef0, type: 2}
+  - {fileID: 11400000, guid: 2cd7db6cab2602c41bda83bcd31d28f7, type: 2}
+  - {fileID: 11400000, guid: b99f187756ff25549854af7e159853a3, type: 2}
   characterSelectPanel: {fileID: 1078182228}
   abilityPanel: {fileID: 237060360}
   networkingComponent: {fileID: 0}
-  chosenFactionCar: {fileID: 0}
+  serverFactionName: 
+  clientFactionName: 
 --- !u!1 &1078182228
 GameObject:
   m_ObjectHideFlags: 0
