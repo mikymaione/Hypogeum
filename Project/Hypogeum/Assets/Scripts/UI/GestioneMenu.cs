@@ -12,17 +12,21 @@ using UnityEngine.UI;
 public class GestioneMenu : MonoBehaviour
 {
 
-    public Button button_sparo, button_guida, button_lion, button_shark, button_rhino, button_eagle;
+    public Button button_fullscreen, button_sparo, button_guida, button_lion, button_shark, button_rhino, button_eagle;
 
 
     void Start()
     {
-        Screen.fullScreen = false;
+        button_fullscreen?.onClick.AddListener(() =>
+        {
+            Screen.fullScreen = !Screen.fullScreen;
+        });
+
 
         button_eagle?.onClick.AddListener(() =>
-          {
-              SelezionaAnimale(button_eagle);
-          });
+        {
+            SelezionaAnimale(button_eagle);
+        });
         button_rhino?.onClick.AddListener(() =>
         {
             SelezionaAnimale(button_rhino);
@@ -50,6 +54,7 @@ public class GestioneMenu : MonoBehaviour
 
     private void SelezionaAnimale(Button b_animale)
     {
+        //inner function
         void coloraButton(Button b, Color c)
         {
             b.GetComponent<Image>().color = c;
@@ -64,6 +69,7 @@ public class GestioneMenu : MonoBehaviour
 
             coloraButton(s, Color.green);
         }
+        //inner function
 
         selezionaButton(b_animale);
 
