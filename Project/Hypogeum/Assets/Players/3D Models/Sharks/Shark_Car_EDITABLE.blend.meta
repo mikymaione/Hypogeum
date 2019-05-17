@@ -12,6 +12,10 @@ ModelImporter:
     100012: Wheel_BR
     100014: Wheel_FL
     100016: Wheel_FR
+    100018: shark_Wheel_BL
+    100020: shark_Wheel_BR
+    100022: shark_Wheel_FL
+    100024: shark_Wheel_FR
     400000: body
     400002: platform
     400004: //RootNode
@@ -21,6 +25,10 @@ ModelImporter:
     400012: Wheel_BR
     400014: Wheel_FL
     400016: Wheel_FR
+    400018: shark_Wheel_BL
+    400020: shark_Wheel_BR
+    400022: shark_Wheel_FL
+    400024: shark_Wheel_FR
     2100000: tex
     2100002: Platform
     2300000: body
@@ -32,6 +40,10 @@ ModelImporter:
     2300012: Wheel_BR
     2300014: Wheel_FL
     2300016: Wheel_FR
+    2300018: shark_Wheel_BL
+    2300020: shark_Wheel_BR
+    2300022: shark_Wheel_FL
+    2300024: shark_Wheel_FR
     3300000: body
     3300002: platform
     3300004: wheel
@@ -41,6 +53,10 @@ ModelImporter:
     3300012: Wheel_BR
     3300014: Wheel_FL
     3300016: Wheel_FR
+    3300018: shark_Wheel_BL
+    3300020: shark_Wheel_BR
+    3300022: shark_Wheel_FL
+    3300024: shark_Wheel_FR
     4300000: body
     4300002: wheel_1
     4300004: wheel
@@ -49,6 +65,11 @@ ModelImporter:
     4300010: Wheel_FL
     4300012: Wheel_BR
     4300014: Wheel_FR
+    4300016: shark_body
+    4300018: shark_Wheel_BL
+    4300020: shark_Wheel_FL
+    4300022: shark_Wheel_BR
+    4300024: shark_Wheel_FR
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

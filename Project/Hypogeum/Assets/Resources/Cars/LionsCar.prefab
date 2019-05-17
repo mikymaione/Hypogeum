@@ -152,12 +152,12 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 24
   m_SuspensionSpring:
-    spring: 86199.375
-    damper: 13791.9
+    spring: 86199.4
+    damper: 13791.903
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 11.841433
-  m_Mass: 20
+  m_ForceAppPointDistance: 12.127145
+  m_Mass: 25
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -430,12 +430,12 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 24
   m_SuspensionSpring:
-    spring: 63808.504
-    damper: 10209.361
+    spring: 63808.496
+    damper: 10209.359
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: -8.858568
-  m_Mass: 20
+  m_SuspensionDistance: 0.19620001
+  m_ForceAppPointDistance: -8.572858
+  m_Mass: 25
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -565,12 +565,12 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 24
   m_SuspensionSpring:
-    spring: 63607.086
-    damper: 10177.134
+    spring: 63607.105
+    damper: 10177.137
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: -9.158571
-  m_Mass: 20
+  m_SuspensionDistance: 0.19620003
+  m_ForceAppPointDistance: -8.872861
+  m_Mass: 25
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -799,12 +799,12 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 24
   m_SuspensionSpring:
-    spring: 86385.05
-    damper: 13821.608
+    spring: 86385.02
+    damper: 13821.604
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 12.241432
-  m_Mass: 20
+  m_ForceAppPointDistance: 12.527143
+  m_Mass: 25
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -851,9 +851,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9166404491640522105}
-  m_LocalRotation: {x: 0.000000007064156, y: 0.99859184, z: -0.053050924, w: 0.00000013297056}
+  m_LocalRotation: {x: 0.053050503, y: 0, z: 0, w: 0.99859184}
   m_LocalPosition: {x: -2.6663446, y: 0.34478015, z: -0.25900567}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
   m_Children:
   - {fileID: 2582422659378508889}
   - {fileID: 6321521546214279226}
@@ -861,7 +861,7 @@ Transform:
   - {fileID: 1835760187062352951}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.0820003, y: 0, z: 0}
 --- !u!95 &3055682887054024906
 Animator:
   serializedVersion: 3
