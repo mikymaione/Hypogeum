@@ -66,13 +66,6 @@ namespace Prototype.NetworkLobby
             SetServerInfo("Offline", "None");
         }
 
-        public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
-        {            
-            gamePlayerPrefab = GB.LoadAnimalCar(GB.Animal); // GB.ANIMAL è semp a stess
-
-            base.OnServerAddPlayer(conn, playerControllerId);
-        }
-
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
         {
             if (SceneManager.GetSceneAt(0).name == lobbyScene)
@@ -250,7 +243,7 @@ namespace Prototype.NetworkLobby
         public override void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
         {
             base.OnMatchCreate(success, extendedInfo, matchInfo);
-            _currentMatchID = (System.UInt64)matchInfo.networkId;
+            _currentMatchID = (ulong)matchInfo.networkId;
         }
 
         public override void OnDestroyMatch(bool success, string extendedInfo)
@@ -285,7 +278,7 @@ namespace Prototype.NetworkLobby
 
             LobbyPlayer newPlayer = obj.GetComponent<LobbyPlayer>();
             newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
-
+            newPlayer.animal = GB.Animal; //animale
 
             for (int i = 0; i < lobbySlots.Length; ++i)
             {
@@ -369,13 +362,15 @@ namespace Prototype.NetworkLobby
                 int newFloorTime = Mathf.FloorToInt(remainingTime);
 
                 if (newFloorTime != floorTime)
-                {//to avoid flooding the network of message, we only send a notice to client when the number of plain seconds change.
+                {
+                    //to avoid flooding the network of message, we only send a notice to client when the number of plain seconds change.
                     floorTime = newFloorTime;
 
                     for (int i = 0; i < lobbySlots.Length; ++i)
                     {
                         if (lobbySlots[i] != null)
-                        {//there is maxPlayer slots, so some could be == null, need to test it before accessing!
+                        {
+                            //there is maxPlayer slots, so some could be == null, need to test it before accessing!
                             (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(floorTime);
                         }
                     }
