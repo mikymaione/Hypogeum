@@ -47,6 +47,12 @@ public static class GB
             case EAnimal.Eagle:
                 s = "EaglesCar";
                 break;
+            case EAnimal.Lion:
+                s = "LionsCar";
+                break;
+            case EAnimal.Shark:
+                s = "SharksCar";
+                break;
         }
 
         return Resources.Load($"Cars/{s}") as GameObject;
