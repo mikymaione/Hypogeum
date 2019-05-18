@@ -17,10 +17,16 @@ namespace Prototype.NetworkLobby
     public class LobbyManager : NetworkLobbyManager
     {
 
+        #region Helper functions
+        class KickMsg : MessageBase { }
+
+        public delegate void BackButtonDelegate();
+        public BackButtonDelegate backDelegate;
+        #endregion
+
+        #region Props        
         private static short MsgKicked = MsgType.Highest + 1;
-
         public static LobbyManager s_Singleton;
-
 
         [Header("Unity UI Lobby")]
         [Tooltip("Time in second between all players ready & match start")]
@@ -30,22 +36,14 @@ namespace Prototype.NetworkLobby
         [Header("UI Reference")]
         public LobbyTopPanel topPanel;
 
-        public RectTransform mainMenuPanel;
-        public RectTransform lobbyPanel;
-
+        public Button backButton;
+        public Text statusInfo, hostInfo;
+        public RectTransform mainMenuPanel, lobbyPanel, currentPanel;
         public LobbyInfoPanel infoPanel;
         public LobbyCountdownPanel countdownPanel;
         public GameObject addPlayerButton;
 
-        protected RectTransform currentPanel;
-
-        public Button backButton;
-
-        public Text statusInfo;
-        public Text hostInfo;
-
-        //Client numPlayers from NetworkManager is always 0, so we count (throught connect/destroy in LobbyPlayer) the number
-        //of players, so that even client know how many player there is.
+        //Client numPlayers from NetworkManager is always 0, so we count (throught connect/destroy in LobbyPlayer) the number of players, so that even client know how many player there is.
         [HideInInspector]
         public int _playerNumber = 0;
 
@@ -54,10 +52,9 @@ namespace Prototype.NetworkLobby
         public bool _isMatchmaking = false;
 
         protected bool _disconnectServer = false;
-
         protected ulong _currentMatchID;
-
         protected LobbyHook _lobbyHooks;
+        #endregion
 
         void Start()
         {
@@ -75,6 +72,7 @@ namespace Prototype.NetworkLobby
             gamePlayerPrefab = GB.LoadAnimalCar(GB.Animal);
         }
 
+        #region UI
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
         {
             if (SceneManager.GetSceneAt(0).name == lobbyScene)
@@ -83,25 +81,13 @@ namespace Prototype.NetworkLobby
                 {
                     ChangeTo(lobbyPanel);
 
-                    if (_isMatchmaking)
-                    {
-                        if (conn.playerControllers[0].unetView.isServer)
-                            backDelegate = StopHostClbk;
-                        else
-                            backDelegate = StopClientClbk;
-                    }
+                    if (conn.playerControllers[0].unetView.isServer)
+                        backDelegate = StopHostClbk;
                     else
-                    {
-                        if (conn.playerControllers[0].unetView.isClient)
-                            backDelegate = StopHostClbk;
-                        else
-                            backDelegate = StopClientClbk;
-                    }
+                        backDelegate = StopClientClbk;
                 }
                 else
-                {
                     ChangeTo(mainMenuPanel);
-                }
 
                 topPanel.ToggleVisibility(true);
                 topPanel.isInGame = false;
@@ -128,16 +114,14 @@ namespace Prototype.NetworkLobby
 
             currentPanel = newPanel;
 
-            if (currentPanel != mainMenuPanel)
-            {
-                backButton.gameObject.SetActive(true);
-            }
-            else
+            if (currentPanel == mainMenuPanel)
             {
                 backButton.gameObject.SetActive(false);
                 SetServerInfo("Offline", "None");
                 _isMatchmaking = false;
             }
+            else
+                backButton.gameObject.SetActive(true);
         }
 
         public void DisplayIsConnecting()
@@ -156,16 +140,21 @@ namespace Prototype.NetworkLobby
             hostInfo.text = host;
         }
 
-
-        public delegate void BackButtonDelegate();
-        public BackButtonDelegate backDelegate;
         public void GoBackButton()
         {
             backDelegate();
             topPanel.isInGame = false;
         }
+        #endregion
 
+        #region Server management
         // ----------------- Server management
+        private void IterateOverLobbySlot(System.Action<LobbyPlayer> a)
+        {
+            foreach (LobbyPlayer p in lobbySlots)
+                if (p != null)
+                    a(p);
+        }
 
         public void AddLocalPlayer()
         {
@@ -190,9 +179,7 @@ namespace Prototype.NetworkLobby
                 _disconnectServer = true;
             }
             else
-            {
                 StopHost();
-            }
 
 
             ChangeTo(mainMenuPanel);
@@ -214,18 +201,20 @@ namespace Prototype.NetworkLobby
             ChangeTo(mainMenuPanel);
         }
 
-        class KickMsg : MessageBase { }
-        public void KickPlayer(NetworkConnection conn) => conn.Send(MsgKicked, new KickMsg());
-
+        public void KickPlayer(NetworkConnection conn)
+        {
+            conn.Send(MsgKicked, new KickMsg());
+        }
 
         public void KickedMessageHandler(NetworkMessage netMsg)
         {
             infoPanel.Display("Kicked by Server", "Close", null);
             netMsg.conn.Disconnect();
         }
+        #endregion
 
+        #region Match
         //===================
-
         public override void OnStartHost()
         {
             base.OnStartHost();
@@ -255,19 +244,21 @@ namespace Prototype.NetworkLobby
         //allow to handle the (+) button to add/remove player
         public void OnPlayersNumberModified(int count)
         {
+            var localPlayerCount = 0;
+
             _playerNumber += count;
 
-            var localPlayerCount = 0;
             foreach (var p in ClientScene.localPlayers)
-                localPlayerCount += (p == null || p.playerControllerId == -1) ? 0 : 1;
+                localPlayerCount += ((p == null || p.playerControllerId == -1) ? 0 : 1);
 
             addPlayerButton.SetActive(localPlayerCount < maxPlayersPerConnection && _playerNumber < maxPlayers);
         }
+        #endregion
 
+        #region Server callbacks
         // ----------------- Server callbacks ------------------                
 
-        //we want to disable the button JOIN if we don't have enough player
-        //But OnLobbyClientConnect isn't called on hosting player. So we override the lobbyPlayer creation
+        //We want to disable the button JOIN if we don't have enough player. But OnLobbyClientConnect isn't called on hosting player. So we override the lobbyPlayer creation
         public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId)
         {
             var obj = Instantiate(lobbyPlayerPrefab.gameObject) as GameObject;
@@ -276,46 +267,28 @@ namespace Prototype.NetworkLobby
             newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
             newPlayer.connID = conn.connectionId;
 
-            for (var i = 0; i < lobbySlots.Length; ++i)
-            {
-                var p = lobbySlots[i] as LobbyPlayer;
-
-                if (p != null)
-                {
-                    p.RpcUpdateRemoveButton();
-                    p.ToggleJoinButton(numPlayers + 1 >= minPlayers);
-                }
-            }
+            UpdateRemoveButtonForLobbySlot(numPlayers + 1 >= minPlayers);
 
             return obj;
         }
 
         public override void OnLobbyServerPlayerRemoved(NetworkConnection conn, short playerControllerId)
         {
-            for (var i = 0; i < lobbySlots.Length; ++i)
-            {
-                var p = lobbySlots[i] as LobbyPlayer;
-
-                if (p != null)
-                {
-                    p.RpcUpdateRemoveButton();
-                    p.ToggleJoinButton(numPlayers + 1 >= minPlayers);
-                }
-            }
+            UpdateRemoveButtonForLobbySlot(numPlayers + 1 >= minPlayers);
         }
 
         public override void OnLobbyServerDisconnect(NetworkConnection conn)
         {
-            for (var i = 0; i < lobbySlots.Length; ++i)
-            {
-                var p = lobbySlots[i] as LobbyPlayer;
+            UpdateRemoveButtonForLobbySlot(numPlayers >= minPlayers);
+        }
 
-                if (p != null)
-                {
-                    p.RpcUpdateRemoveButton();
-                    p.ToggleJoinButton(numPlayers >= minPlayers);
-                }
-            }
+        private void UpdateRemoveButtonForLobbySlot(bool Condition)
+        {
+            IterateOverLobbySlot((p) =>
+            {
+                p.RpcUpdateRemoveButton();
+                p.ToggleJoinButton(Condition);
+            });
         }
 
         public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
@@ -328,26 +301,24 @@ namespace Prototype.NetworkLobby
 
         public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)
         {
-            //This hook allows you to apply state data from the lobby-player to the game-player
-            //just subclass "LobbyHook" and add it to the lobby object.
-
+            //This hook allows you to apply state data from the lobby-player to the game-player. Just subclass "LobbyHook" and add it to the lobby object.
             if (_lobbyHooks)
                 _lobbyHooks.OnLobbyServerSceneLoadedForPlayer(this, lobbyPlayer, gamePlayer);
 
             return true;
         }
+        #endregion      
 
+        #region Countdown
         // --- Countdown management
-
         public override void OnLobbyServerPlayersReady()
         {
             var allready = true;
 
-            for (var i = 0; i < lobbySlots.Length; ++i)
+            IterateOverLobbySlot((p) =>
             {
-                if (lobbySlots[i] != null)
-                    allready &= lobbySlots[i].readyToBegin;
-            }
+                allready &= p.readyToBegin;
+            });
 
             if (allready)
                 StartCoroutine(ServerCountdownCoroutine());
@@ -355,7 +326,7 @@ namespace Prototype.NetworkLobby
 
         public IEnumerator ServerCountdownCoroutine()
         {
-            float remainingTime = prematchCountdown;
+            var remainingTime = prematchCountdown;
             var floorTime = Mathf.FloorToInt(remainingTime);
 
             while (remainingTime > 0)
@@ -370,22 +341,27 @@ namespace Prototype.NetworkLobby
                     //to avoid flooding the network of message, we only send a notice to client when the number of plain seconds change.
                     floorTime = newFloorTime;
 
-                    for (var i = 0; i < lobbySlots.Length; ++i)
-                        if (lobbySlots[i] != null)
-                            //there is maxPlayer slots, so some could be == null, need to test it before accessing!
-                            (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(floorTime);
+                    //there is maxPlayer slots, so some could be == null, need to test it before accessing!
+                    UpdateCountdownForLobbySlot(floorTime);
                 }
             }
 
-            for (var i = 0; i < lobbySlots.Length; ++i)
-                if (lobbySlots[i] != null)
-                    (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(0);
+            UpdateCountdownForLobbySlot(0);
 
             ServerChangeScene(playScene);
         }
 
-        // ----------------- Client callbacks ------------------
+        private void UpdateCountdownForLobbySlot(int countdown)
+        {
+            IterateOverLobbySlot((p) =>
+            {
+                p.RpcUpdateCountdown(countdown);
+            });
+        }
+        #endregion
 
+        #region Client callbacks    
+        // ----------------- Client callbacks ------------------
         public override void OnClientConnect(NetworkConnection conn)
         {
             base.OnClientConnect(conn);
@@ -403,11 +379,9 @@ namespace Prototype.NetworkLobby
             }
         }
 
-
         public override void OnClientDisconnect(NetworkConnection conn)
         {
             base.OnClientDisconnect(conn);
-
             ChangeTo(mainMenuPanel);
         }
 
@@ -416,6 +390,7 @@ namespace Prototype.NetworkLobby
             ChangeTo(mainMenuPanel);
             infoPanel.Display("Client error : " + (errorCode == 6 ? "timeout" : errorCode.ToString()), "Close", null);
         }
+        #endregion
 
 
     }
