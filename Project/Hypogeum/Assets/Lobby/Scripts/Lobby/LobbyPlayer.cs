@@ -1,5 +1,7 @@
 /*
-Copyright (c) 2018
+Copyright (c) 2018 Unity Technologies ApS
+Author: Unity Technologies ApS
+Contributors: Maione Michele
 Unity Technologies ApS (“Unity”, “our” or “we”) provides game-development and related software (the “Software”), development-related services (like Unity Teams (“Developer Services”)), and various Unity communities (like Unity Answers and Unity Connect (“Communities”)), provided through or in connection with our website, accessible at unity3d.com or unity.com (collectively, the “Site”). Except to the extent you and Unity have executed a separate agreement, these terms and conditions exclusively govern your access to and use of the Software, Developer Services, Communities and Site (collectively, the “Services”), and constitute a binding legal agreement between you and Unity (the “Terms”).
 If you accept or agree to the Agreement on behalf of a company, organization or other legal entity (a “Legal Entity”), you represent and warrant that you have the authority to bind that Legal Entity to the Agreement and, in such event, “you” and “your” will refer and apply to that company or other legal entity.
 You acknowledge and agree that, by accessing, purchasing or using the services, you are indicating that you have read, understand and agree to be bound by the agreement whether or not you have created a unity account, subscribed to the unity newsletter or otherwise registered with the site. If you do not agree to these terms and all applicable additional terms, then you have no right to access or use any of the services.
@@ -19,14 +21,9 @@ namespace Prototype.NetworkLobby
         //used on server to avoid assigning the same color to two player
         static List<int> _colorInUse = new List<int>();
 
-        public Button colorButton;
         public InputField nameInput;
-        public Button readyButton;
-        public Button waitingPlayerButton;
-        public Button removePlayerButton;
-
-        public GameObject localIcone;
-        public GameObject remoteIcone;
+        public Button colorButton, readyButton, waitingPlayerButton, removePlayerButton;
+        public GameObject localIcone, remoteIcone;
 
         [SyncVar]
         public int connID;
@@ -37,6 +34,9 @@ namespace Prototype.NetworkLobby
 
         [SyncVar(hook = "OnMyColor")]
         public Color playerColor = Color.white;
+
+        [SyncVar(hook = "OnMyAnimal")]
+        public GB.EAnimal animal;
 
 
         public Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
@@ -55,6 +55,7 @@ namespace Prototype.NetworkLobby
             base.OnClientEnterLobby();
 
             LobbyManager.s_Singleton?.OnPlayersNumberModified(1);
+
             LobbyPlayerList._instance.AddPlayer(this);
             LobbyPlayerList._instance.DisplayDirectServerWarning(isServer && LobbyManager.s_Singleton.matchMaker == null);
 
@@ -63,10 +64,10 @@ namespace Prototype.NetworkLobby
             else
                 SetupOtherPlayer();
 
-            //setup the player data on UI. The value are SyncVar so the player
-            //will be created with the right value currently on server
+            //setup the player data on UI. The value are SyncVar so the player will be created with the right value currently on server
             OnMyName(playerName);
             OnMyColor(playerColor);
+            OnMyAnimal(animal);
         }
 
         public override void OnStartAuthority()
@@ -122,6 +123,8 @@ namespace Prototype.NetworkLobby
             //have to use child count of player prefab already setup as "this.slot" is not set yet
             if (playerName.Equals(""))
                 CmdNameChanged("Player" + (LobbyPlayerList._instance.playerListContentTransform.childCount - 1));
+
+            CmdSetAnimal(GB.Animal.Value);
 
             //we switch from simple name display to name input
             colorButton.interactable = true;
@@ -187,7 +190,11 @@ namespace Prototype.NetworkLobby
             GetComponent<Image>().color = (idx % 2 == 0) ? EvenRowColor : OddRowColor;
         }
 
-        ///===== callback from sync var      
+        ///===== callback from sync var        
+        public void OnMyAnimal(GB.EAnimal newAnimal)
+        {
+            animal = newAnimal;
+        }
 
         public void OnMyName(string newName)
         {
@@ -277,7 +284,6 @@ namespace Prototype.NetworkLobby
             while (alreadyInUse);
 
             if (inUseIdx >= 0)
-
                 //if we already add an entry in the colorTabs, we change it
                 _colorInUse[inUseIdx] = idx;
             else
@@ -291,6 +297,12 @@ namespace Prototype.NetworkLobby
         public void CmdNameChanged(string name)
         {
             playerName = name;
+        }
+
+        [Command]
+        public void CmdSetAnimal(GB.EAnimal animal_)
+        {
+            animal = animal_;
         }
 
         //Cleanup thing when get destroy (which happen when client kick or disconnect)

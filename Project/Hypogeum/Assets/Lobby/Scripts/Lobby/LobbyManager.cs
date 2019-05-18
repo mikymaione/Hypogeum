@@ -1,10 +1,13 @@
 /*
-Copyright (c) 2018
+Copyright (c) 2018 Unity Technologies ApS
+Author: Unity Technologies ApS
+Contributors: Maione Michele
 Unity Technologies ApS (“Unity”, “our” or “we”) provides game-development and related software (the “Software”), development-related services (like Unity Teams (“Developer Services”)), and various Unity communities (like Unity Answers and Unity Connect (“Communities”)), provided through or in connection with our website, accessible at unity3d.com or unity.com (collectively, the “Site”). Except to the extent you and Unity have executed a separate agreement, these terms and conditions exclusively govern your access to and use of the Software, Developer Services, Communities and Site (collectively, the “Services”), and constitute a binding legal agreement between you and Unity (the “Terms”).
 If you accept or agree to the Agreement on behalf of a company, organization or other legal entity (a “Legal Entity”), you represent and warrant that you have the authority to bind that Legal Entity to the Agreement and, in such event, “you” and “your” will refer and apply to that company or other legal entity.
 You acknowledge and agree that, by accessing, purchasing or using the services, you are indicating that you have read, understand and agree to be bound by the agreement whether or not you have created a unity account, subscribed to the unity newsletter or otherwise registered with the site. If you do not agree to these terms and all applicable additional terms, then you have no right to access or use any of the services.
 */
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
@@ -27,6 +30,8 @@ namespace Prototype.NetworkLobby
         #region Props        
         private static short MsgKicked = MsgType.Highest + 1;
         public static LobbyManager s_Singleton;
+
+        private Dictionary<int, LobbyPlayer> Players = new Dictionary<int, LobbyPlayer>();
 
         [Header("Unity UI Lobby")]
         [Tooltip("Time in second between all players ready & match start")]
@@ -69,7 +74,7 @@ namespace Prototype.NetworkLobby
 
             SetServerInfo("Offline", "None");
 
-            gamePlayerPrefab = GB.LoadAnimalCar(GB.Animal);
+            gamePlayerPrefab = GB.LoadAnimalCar(GB.EAnimal.Rhino);
         }
 
         #region UI
@@ -256,7 +261,7 @@ namespace Prototype.NetworkLobby
         #endregion
 
         #region Server callbacks
-        // ----------------- Server callbacks ------------------                
+        // ----------------- Server callbacks ------------------                            
 
         //We want to disable the button JOIN if we don't have enough player. But OnLobbyClientConnect isn't called on hosting player. So we override the lobbyPlayer creation
         public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId)
@@ -266,6 +271,8 @@ namespace Prototype.NetworkLobby
             var newPlayer = obj.GetComponent<LobbyPlayer>();
             newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
             newPlayer.connID = conn.connectionId;
+
+            Players.Add(conn.connectionId, newPlayer);
 
             UpdateRemoveButtonForLobbySlot(numPlayers + 1 >= minPlayers);
 
@@ -293,7 +300,8 @@ namespace Prototype.NetworkLobby
 
         public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
         {
-            var car_prefab = GB.LoadAnimalCar(GB.Animal);
+            var lp = Players[conn.connectionId];
+            var car_prefab = GB.LoadAnimalCar(lp.animal);
             var car_instance = Instantiate(car_prefab, startPositions[conn.connectionId].position, Quaternion.identity);
 
             return car_instance;
