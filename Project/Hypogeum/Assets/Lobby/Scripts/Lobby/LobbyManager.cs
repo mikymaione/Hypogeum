@@ -1,3 +1,9 @@
+/*
+Copyright (c) 2018
+Unity Technologies ApS (“Unity”, “our” or “we”) provides game-development and related software (the “Software”), development-related services (like Unity Teams (“Developer Services”)), and various Unity communities (like Unity Answers and Unity Connect (“Communities”)), provided through or in connection with our website, accessible at unity3d.com or unity.com (collectively, the “Site”). Except to the extent you and Unity have executed a separate agreement, these terms and conditions exclusively govern your access to and use of the Software, Developer Services, Communities and Site (collectively, the “Services”), and constitute a binding legal agreement between you and Unity (the “Terms”).
+If you accept or agree to the Agreement on behalf of a company, organization or other legal entity (a “Legal Entity”), you represent and warrant that you have the authority to bind that Legal Entity to the Agreement and, in such event, “you” and “your” will refer and apply to that company or other legal entity.
+You acknowledge and agree that, by accessing, purchasing or using the services, you are indicating that you have read, understand and agree to be bound by the agreement whether or not you have created a unity account, subscribed to the unity newsletter or otherwise registered with the site. If you do not agree to these terms and all applicable additional terms, then you have no right to access or use any of the services.
+*/
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,9 +16,10 @@ namespace Prototype.NetworkLobby
 {
     public class LobbyManager : NetworkLobbyManager
     {
-        static short MsgKicked = MsgType.Highest + 1;
 
-        static public LobbyManager s_Singleton;
+        private static short MsgKicked = MsgType.Highest + 1;
+
+        public static LobbyManager s_Singleton;
 
 
         [Header("Unity UI Lobby")]
@@ -55,7 +62,7 @@ namespace Prototype.NetworkLobby
         void Start()
         {
             s_Singleton = this;
-            _lobbyHooks = GetComponent<Prototype.NetworkLobby.LobbyHook>();
+            _lobbyHooks = GetComponent<LobbyHook>();
             currentPanel = mainMenuPanel;
 
             backButton.gameObject.SetActive(false);
@@ -64,6 +71,8 @@ namespace Prototype.NetworkLobby
             DontDestroyOnLoad(gameObject);
 
             SetServerInfo("Offline", "None");
+
+            gamePlayerPrefab = GB.LoadAnimalCar(GB.Animal);
         }
 
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
@@ -73,27 +82,20 @@ namespace Prototype.NetworkLobby
                 if (topPanel.isInGame)
                 {
                     ChangeTo(lobbyPanel);
+
                     if (_isMatchmaking)
                     {
                         if (conn.playerControllers[0].unetView.isServer)
-                        {
                             backDelegate = StopHostClbk;
-                        }
                         else
-                        {
                             backDelegate = StopClientClbk;
-                        }
                     }
                     else
                     {
                         if (conn.playerControllers[0].unetView.isClient)
-                        {
                             backDelegate = StopHostClbk;
-                        }
                         else
-                        {
                             backDelegate = StopClientClbk;
-                        }
                     }
                 }
                 else
@@ -119,14 +121,10 @@ namespace Prototype.NetworkLobby
         public void ChangeTo(RectTransform newPanel)
         {
             if (currentPanel != null)
-            {
                 currentPanel.gameObject.SetActive(false);
-            }
 
             if (newPanel != null)
-            {
                 newPanel.gameObject.SetActive(true);
-            }
 
             currentPanel = newPanel;
 
@@ -145,7 +143,11 @@ namespace Prototype.NetworkLobby
         public void DisplayIsConnecting()
         {
             var _this = this;
-            infoPanel.Display("Connecting...", "Cancel", () => { _this.backDelegate(); });
+
+            infoPanel.Display("Connecting...", "Cancel", () =>
+            {
+                _this.backDelegate();
+            });
         }
 
         public void SetServerInfo(string status, string host)
@@ -201,9 +203,7 @@ namespace Prototype.NetworkLobby
             StopClient();
 
             if (_isMatchmaking)
-            {
                 StopMatchMaker();
-            }
 
             ChangeTo(mainMenuPanel);
         }
@@ -215,12 +215,7 @@ namespace Prototype.NetworkLobby
         }
 
         class KickMsg : MessageBase { }
-        public void KickPlayer(NetworkConnection conn)
-        {
-            conn.Send(MsgKicked, new KickMsg());
-        }
-
-
+        public void KickPlayer(NetworkConnection conn) => conn.Send(MsgKicked, new KickMsg());
 
 
         public void KickedMessageHandler(NetworkMessage netMsg)
@@ -249,6 +244,7 @@ namespace Prototype.NetworkLobby
         public override void OnDestroyMatch(bool success, string extendedInfo)
         {
             base.OnDestroyMatch(success, extendedInfo);
+
             if (_disconnectServer)
             {
                 StopMatchMaker();
@@ -261,28 +257,28 @@ namespace Prototype.NetworkLobby
         {
             _playerNumber += count;
 
-            int localPlayerCount = 0;
-            foreach (PlayerController p in ClientScene.localPlayers)
+            var localPlayerCount = 0;
+            foreach (var p in ClientScene.localPlayers)
                 localPlayerCount += (p == null || p.playerControllerId == -1) ? 0 : 1;
 
             addPlayerButton.SetActive(localPlayerCount < maxPlayersPerConnection && _playerNumber < maxPlayers);
         }
 
-        // ----------------- Server callbacks ------------------
+        // ----------------- Server callbacks ------------------                
 
         //we want to disable the button JOIN if we don't have enough player
         //But OnLobbyClientConnect isn't called on hosting player. So we override the lobbyPlayer creation
         public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId)
         {
-            GameObject obj = Instantiate(lobbyPlayerPrefab.gameObject) as GameObject;
+            var obj = Instantiate(lobbyPlayerPrefab.gameObject) as GameObject;
 
-            LobbyPlayer newPlayer = obj.GetComponent<LobbyPlayer>();
+            var newPlayer = obj.GetComponent<LobbyPlayer>();
             newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
-            newPlayer.animal = GB.Animal; //animale
+            newPlayer.connID = conn.connectionId;
 
-            for (int i = 0; i < lobbySlots.Length; ++i)
+            for (var i = 0; i < lobbySlots.Length; ++i)
             {
-                LobbyPlayer p = lobbySlots[i] as LobbyPlayer;
+                var p = lobbySlots[i] as LobbyPlayer;
 
                 if (p != null)
                 {
@@ -296,9 +292,9 @@ namespace Prototype.NetworkLobby
 
         public override void OnLobbyServerPlayerRemoved(NetworkConnection conn, short playerControllerId)
         {
-            for (int i = 0; i < lobbySlots.Length; ++i)
+            for (var i = 0; i < lobbySlots.Length; ++i)
             {
-                LobbyPlayer p = lobbySlots[i] as LobbyPlayer;
+                var p = lobbySlots[i] as LobbyPlayer;
 
                 if (p != null)
                 {
@@ -310,9 +306,9 @@ namespace Prototype.NetworkLobby
 
         public override void OnLobbyServerDisconnect(NetworkConnection conn)
         {
-            for (int i = 0; i < lobbySlots.Length; ++i)
+            for (var i = 0; i < lobbySlots.Length; ++i)
             {
-                LobbyPlayer p = lobbySlots[i] as LobbyPlayer;
+                var p = lobbySlots[i] as LobbyPlayer;
 
                 if (p != null)
                 {
@@ -320,7 +316,14 @@ namespace Prototype.NetworkLobby
                     p.ToggleJoinButton(numPlayers >= minPlayers);
                 }
             }
+        }
 
+        public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
+        {
+            var car_prefab = GB.LoadAnimalCar(GB.Animal);
+            var car_instance = Instantiate(car_prefab, startPositions[conn.connectionId].position, Quaternion.identity);
+
+            return car_instance;
         }
 
         public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)
@@ -338,8 +341,9 @@ namespace Prototype.NetworkLobby
 
         public override void OnLobbyServerPlayersReady()
         {
-            bool allready = true;
-            for (int i = 0; i < lobbySlots.Length; ++i)
+            var allready = true;
+
+            for (var i = 0; i < lobbySlots.Length; ++i)
             {
                 if (lobbySlots[i] != null)
                     allready &= lobbySlots[i].readyToBegin;
@@ -352,38 +356,30 @@ namespace Prototype.NetworkLobby
         public IEnumerator ServerCountdownCoroutine()
         {
             float remainingTime = prematchCountdown;
-            int floorTime = Mathf.FloorToInt(remainingTime);
+            var floorTime = Mathf.FloorToInt(remainingTime);
 
             while (remainingTime > 0)
             {
                 yield return null;
 
                 remainingTime -= Time.deltaTime;
-                int newFloorTime = Mathf.FloorToInt(remainingTime);
+                var newFloorTime = Mathf.FloorToInt(remainingTime);
 
                 if (newFloorTime != floorTime)
                 {
                     //to avoid flooding the network of message, we only send a notice to client when the number of plain seconds change.
                     floorTime = newFloorTime;
 
-                    for (int i = 0; i < lobbySlots.Length; ++i)
-                    {
+                    for (var i = 0; i < lobbySlots.Length; ++i)
                         if (lobbySlots[i] != null)
-                        {
                             //there is maxPlayer slots, so some could be == null, need to test it before accessing!
                             (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(floorTime);
-                        }
-                    }
                 }
             }
 
-            for (int i = 0; i < lobbySlots.Length; ++i)
-            {
+            for (var i = 0; i < lobbySlots.Length; ++i)
                 if (lobbySlots[i] != null)
-                {
                     (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(0);
-                }
-            }
 
             ServerChangeScene(playScene);
         }
@@ -399,7 +395,8 @@ namespace Prototype.NetworkLobby
             conn.RegisterHandler(MsgKicked, KickedMessageHandler);
 
             if (!NetworkServer.active)
-            {//only to do on pure client (not self hosting client)
+            {
+                //only to do on pure client (not self hosting client)
                 ChangeTo(lobbyPanel);
                 backDelegate = StopClientClbk;
                 SetServerInfo("Client", networkAddress);
@@ -410,6 +407,7 @@ namespace Prototype.NetworkLobby
         public override void OnClientDisconnect(NetworkConnection conn)
         {
             base.OnClientDisconnect(conn);
+
             ChangeTo(mainMenuPanel);
         }
 
@@ -418,5 +416,7 @@ namespace Prototype.NetworkLobby
             ChangeTo(mainMenuPanel);
             infoPanel.Display("Client error : " + (errorCode == 6 ? "timeout" : errorCode.ToString()), "Close", null);
         }
+
+
     }
 }

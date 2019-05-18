@@ -1,38 +1,46 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Networking;
+﻿/*
+Copyright (c) 2018
+Unity Technologies ApS (“Unity”, “our” or “we”) provides game-development and related software (the “Software”), development-related services (like Unity Teams (“Developer Services”)), and various Unity communities (like Unity Answers and Unity Connect (“Communities”)), provided through or in connection with our website, accessible at unity3d.com or unity.com (collectively, the “Site”). Except to the extent you and Unity have executed a separate agreement, these terms and conditions exclusively govern your access to and use of the Software, Developer Services, Communities and Site (collectively, the “Services”), and constitute a binding legal agreement between you and Unity (the “Terms”).
+If you accept or agree to the Agreement on behalf of a company, organization or other legal entity (a “Legal Entity”), you represent and warrant that you have the authority to bind that Legal Entity to the Agreement and, in such event, “you” and “your” will refer and apply to that company or other legal entity.
+You acknowledge and agree that, by accessing, purchasing or using the services, you are indicating that you have read, understand and agree to be bound by the agreement whether or not you have created a unity account, subscribed to the unity newsletter or otherwise registered with the site. If you do not agree to these terms and all applicable additional terms, then you have no right to access or use any of the services.
+*/
+using UnityEngine;
 using UnityEngine.Networking.Match;
 using UnityEngine.Networking.Types;
-using System.Collections;
+using UnityEngine.UI;
 
 namespace Prototype.NetworkLobby
 {
-    public class LobbyServerEntry : MonoBehaviour 
+    public class LobbyServerEntry : MonoBehaviour
     {
         public Text serverInfoText;
         public Text slotInfo;
         public Button joinButton;
 
-		public void Populate(MatchInfoSnapshot match, LobbyManager lobbyManager, Color c)
-		{
+        public void Populate(MatchInfoSnapshot match, LobbyManager lobbyManager, Color c)
+        {
             serverInfoText.text = match.name;
+            slotInfo.text = match.currentSize.ToString() + "/" + match.maxSize.ToString();
 
-            slotInfo.text = match.currentSize.ToString() + "/" + match.maxSize.ToString(); ;
-
-            NetworkID networkID = match.networkId;
+            var networkID = match.networkId;
 
             joinButton.onClick.RemoveAllListeners();
-            joinButton.onClick.AddListener(() => { JoinMatch(networkID, lobbyManager); });
+            joinButton.onClick.AddListener(() =>
+            {
+                JoinMatch(networkID, lobbyManager);
+            });
 
             GetComponent<Image>().color = c;
         }
 
         void JoinMatch(NetworkID networkID, LobbyManager lobbyManager)
-        {
-			lobbyManager.matchMaker.JoinMatch(networkID, "", "", "", 0, 0, lobbyManager.OnMatchJoined);
-			lobbyManager.backDelegate = lobbyManager.StopClientClbk;
+        {                       
+            lobbyManager.matchMaker.JoinMatch(networkID, "", "", "", 0, 0, lobbyManager.OnMatchJoined);
+            lobbyManager.backDelegate = lobbyManager.StopClientClbk;
             lobbyManager._isMatchmaking = true;
             lobbyManager.DisplayIsConnecting();
         }
+
+
     }
 }

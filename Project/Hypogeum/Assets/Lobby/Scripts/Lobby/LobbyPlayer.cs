@@ -1,3 +1,9 @@
+/*
+Copyright (c) 2018
+Unity Technologies ApS (“Unity”, “our” or “we”) provides game-development and related software (the “Software”), development-related services (like Unity Teams (“Developer Services”)), and various Unity communities (like Unity Answers and Unity Connect (“Communities”)), provided through or in connection with our website, accessible at unity3d.com or unity.com (collectively, the “Site”). Except to the extent you and Unity have executed a separate agreement, these terms and conditions exclusively govern your access to and use of the Software, Developer Services, Communities and Site (collectively, the “Services”), and constitute a binding legal agreement between you and Unity (the “Terms”).
+If you accept or agree to the Agreement on behalf of a company, organization or other legal entity (a “Legal Entity”), you represent and warrant that you have the authority to bind that Legal Entity to the Agreement and, in such event, “you” and “your” will refer and apply to that company or other legal entity.
+You acknowledge and agree that, by accessing, purchasing or using the services, you are indicating that you have read, understand and agree to be bound by the agreement whether or not you have created a unity account, subscribed to the unity newsletter or otherwise registered with the site. If you do not agree to these terms and all applicable additional terms, then you have no right to access or use any of the services.
+*/
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -22,13 +28,16 @@ namespace Prototype.NetworkLobby
         public GameObject localIcone;
         public GameObject remoteIcone;
 
-        public GB.EAnimal? animal;
+        [SyncVar]
+        public int connID;
 
         //OnMyName function will be invoked on clients when server change the value of playerName
         [SyncVar(hook = "OnMyName")]
         public string playerName = "";
+
         [SyncVar(hook = "OnMyColor")]
         public Color playerColor = Color.white;
+
 
         public Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         public Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
@@ -39,26 +48,20 @@ namespace Prototype.NetworkLobby
         static Color TransparentColor = new Color(0, 0, 0, 0);
 
         //static Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
-        //static Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
-
+        //static Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);    
 
         public override void OnClientEnterLobby()
         {
             base.OnClientEnterLobby();
 
-            if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(1);
-
+            LobbyManager.s_Singleton?.OnPlayersNumberModified(1);
             LobbyPlayerList._instance.AddPlayer(this);
             LobbyPlayerList._instance.DisplayDirectServerWarning(isServer && LobbyManager.s_Singleton.matchMaker == null);
 
             if (isLocalPlayer)
-            {
                 SetupLocalPlayer();
-            }
             else
-            {
                 SetupOtherPlayer();
-            }
 
             //setup the player data on UI. The value are SyncVar so the player
             //will be created with the right value currently on server
@@ -78,11 +81,12 @@ namespace Prototype.NetworkLobby
 
         void ChangeReadyButtonColor(Color c)
         {
-            ColorBlock b = readyButton.colors;
+            var b = readyButton.colors;
             b.normalColor = c;
             b.pressedColor = c;
             b.highlightedColor = c;
             b.disabledColor = c;
+
             readyButton.colors = b;
         }
 
@@ -116,7 +120,7 @@ namespace Prototype.NetworkLobby
             readyButton.interactable = true;
 
             //have to use child count of player prefab already setup as "this.slot" is not set yet
-            if (playerName == "")
+            if (playerName.Equals(""))
                 CmdNameChanged("Player" + (LobbyPlayerList._instance.playerListContentTransform.childCount - 1));
 
             //we switch from simple name display to name input
@@ -134,7 +138,7 @@ namespace Prototype.NetworkLobby
 
             //when OnClientEnterLobby is called, the loval PlayerController is not yet created, so we need to redo that here to disable
             //the add button if we reach maxLocalPlayer. We pass 0, as it was already counted on OnClientEnterLobby
-            if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(0);
+            LobbyManager.s_Singleton?.OnPlayersNumberModified(0);
         }
 
         //This enable/disable the remove button depending on if that is the only local player or not
@@ -143,8 +147,8 @@ namespace Prototype.NetworkLobby
             if (!isLocalPlayer)
                 return;
 
-            int localPlayerCount = 0;
-            foreach (PlayerController p in ClientScene.localPlayers)
+            var localPlayerCount = 0;
+            foreach (var p in ClientScene.localPlayers)
                 localPlayerCount += (p == null || p.playerControllerId == -1) ? 0 : 1;
 
             removePlayerButton.interactable = localPlayerCount > 1;
@@ -152,13 +156,15 @@ namespace Prototype.NetworkLobby
 
         public override void OnClientReady(bool readyState)
         {
+            var textComponent = readyButton.transform.GetChild(0).GetComponent<Text>();
+
             if (readyState)
             {
                 ChangeReadyButtonColor(TransparentColor);
 
-                Text textComponent = readyButton.transform.GetChild(0).GetComponent<Text>();
                 textComponent.text = "READY";
                 textComponent.color = ReadyColor;
+
                 readyButton.interactable = false;
                 colorButton.interactable = false;
                 nameInput.interactable = false;
@@ -167,9 +173,9 @@ namespace Prototype.NetworkLobby
             {
                 ChangeReadyButtonColor(isLocalPlayer ? JoinColor : NotReadyColor);
 
-                Text textComponent = readyButton.transform.GetChild(0).GetComponent<Text>();
                 textComponent.text = isLocalPlayer ? "JOIN" : "...";
                 textComponent.color = Color.white;
+
                 readyButton.interactable = isLocalPlayer;
                 colorButton.interactable = isLocalPlayer;
                 nameInput.interactable = isLocalPlayer;
@@ -181,7 +187,7 @@ namespace Prototype.NetworkLobby
             GetComponent<Image>().color = (idx % 2 == 0) ? EvenRowColor : OddRowColor;
         }
 
-        ///===== callback from sync var
+        ///===== callback from sync var      
 
         public void OnMyName(string newName)
         {
@@ -217,12 +223,9 @@ namespace Prototype.NetworkLobby
         public void OnRemovePlayerClick()
         {
             if (isLocalPlayer)
-            {
                 RemovePlayer();
-            }
             else if (isServer)
                 LobbyManager.s_Singleton.KickPlayer(connectionToClient);
-
         }
 
         public void ToggleJoinButton(bool enabled)
@@ -249,38 +252,37 @@ namespace Prototype.NetworkLobby
         [Command]
         public void CmdColorChange()
         {
-            int idx = System.Array.IndexOf(Colors, playerColor);
+            var alreadyInUse = false;
 
-            int inUseIdx = _colorInUse.IndexOf(idx);
+            var idx = System.Array.IndexOf(Colors, playerColor);
+            var inUseIdx = _colorInUse.IndexOf(idx);
 
-            if (idx < 0) idx = 0;
+            if (idx < 0)
+                idx = 0;
 
             idx = (idx + 1) % Colors.Length;
-
-            bool alreadyInUse = false;
 
             do
             {
                 alreadyInUse = false;
-                for (int i = 0; i < _colorInUse.Count; ++i)
-                {
+
+                for (var i = 0; i < _colorInUse.Count; ++i)
                     if (_colorInUse[i] == idx)
-                    {//that color is already in use
+                    {
+                        //that color is already in use
                         alreadyInUse = true;
                         idx = (idx + 1) % Colors.Length;
                     }
-                }
             }
             while (alreadyInUse);
 
             if (inUseIdx >= 0)
-            {//if we already add an entry in the colorTabs, we change it
+
+                //if we already add an entry in the colorTabs, we change it
                 _colorInUse[inUseIdx] = idx;
-            }
             else
-            {//else we add it
+                //else we add it
                 _colorInUse.Add(idx);
-            }
 
             playerColor = Colors[idx];
         }
@@ -295,21 +297,22 @@ namespace Prototype.NetworkLobby
         public void OnDestroy()
         {
             LobbyPlayerList._instance.RemovePlayer(this);
-            if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(-1);
+            LobbyManager.s_Singleton?.OnPlayersNumberModified(-1);
 
-            int idx = System.Array.IndexOf(Colors, playerColor);
+            var idx = System.Array.IndexOf(Colors, playerColor);
 
             if (idx < 0)
                 return;
 
-            for (int i = 0; i < _colorInUse.Count; ++i)
-            {
+            for (var i = 0; i < _colorInUse.Count; ++i)
                 if (_colorInUse[i] == idx)
-                {//that color is already in use
+                {
+                    //that color is already in use
                     _colorInUse.RemoveAt(i);
                     break;
                 }
-            }
         }
+
+
     }
 }
