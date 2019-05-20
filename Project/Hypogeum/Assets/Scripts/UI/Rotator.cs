@@ -22,7 +22,7 @@ public class Rotator : MonoBehaviour
     void Update()
     {
         foreach (var car in cars)
-            car.transform.RotateAround(Vector3.zero, Vector3.up, 0);
+            car.transform.RotateAround(Vector3.zero, Vector3.up, 1);
     }
 
 }
