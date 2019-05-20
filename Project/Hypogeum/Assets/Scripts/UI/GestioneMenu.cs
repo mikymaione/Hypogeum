@@ -13,10 +13,15 @@ public class GestioneMenu : MonoBehaviour
 {
 
     public Button button_fullscreen, button_sparo, button_guida, button_lion, button_shark, button_rhino, button_eagle;
+    public GameObject car_lion, car_rhino, car_shark, car_eagle;
 
+    private GameObject[] cars;
 
     void Start()
     {
+        cars = new GameObject[] { car_lion, car_rhino, car_shark, car_eagle };
+        HideCars(null);
+
         button_fullscreen?.onClick.AddListener(() =>
         {
             Screen.fullScreen = !Screen.fullScreen;
@@ -52,6 +57,14 @@ public class GestioneMenu : MonoBehaviour
         });
     }
 
+    private void HideCars(GameObject tranne)
+    {
+        car_eagle.active = (car_eagle.Equals(tranne));
+        car_rhino.active = (car_rhino.Equals(tranne));
+        car_shark.active = (car_shark.Equals(tranne));
+        car_lion.active = (car_lion.Equals(tranne));
+    }
+
     private void SelezionaAnimale(Button b_animale)
     {
         //inner function
@@ -74,13 +87,25 @@ public class GestioneMenu : MonoBehaviour
         selezionaButton(b_animale);
 
         if (b_animale.Equals(button_eagle))
+        {
             GB.Animal = GB.EAnimal.Eagle;
+            HideCars(car_eagle);
+        }
         else if (b_animale.Equals(button_rhino))
+        {
             GB.Animal = GB.EAnimal.Rhino;
+            HideCars(car_rhino);
+        }
         else if (b_animale.Equals(button_lion))
+        {
             GB.Animal = GB.EAnimal.Lion;
+            HideCars(car_lion);
+        }
         else if (b_animale.Equals(button_shark))
+        {
             GB.Animal = GB.EAnimal.Shark;
+            HideCars(car_shark);
+        }
     }
 
     private void Play(GB.EGameType gt)
