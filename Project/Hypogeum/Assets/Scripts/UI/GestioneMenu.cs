@@ -67,7 +67,7 @@ public class GestioneMenu : MonoBehaviour
             coloraButton(button_rhino, Color.white);
             coloraButton(button_shark, Color.white);
 
-            coloraButton(s, Color.green);
+            coloraButton(s, Color.gray);
         }
         //inner function
 
