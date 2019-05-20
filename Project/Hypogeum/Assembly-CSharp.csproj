@@ -73,13 +73,6 @@
      <Compile Include="Assets\Scripts\Colliders\CarCollisionManager.cs" />
      <Compile Include="Assets\Scripts\Global\GB.cs" />
      <Compile Include="Assets\Scripts\Global\GM.cs" />
-     <Compile Include="Assets\Scripts\InputScripts\DeviceTracker.cs" />
-     <Compile Include="Assets\Scripts\InputScripts\InputManager.cs" />
-     <Compile Include="Assets\Scripts\InputScripts\KeyboardTracker.cs" />
-     <Compile Include="Assets\Scripts\ModelScripts\Controller.cs" />
-     <Compile Include="Assets\Scripts\ModelScripts\WalkingController.cs" />
-     <Compile Include="Assets\Scripts\Networking\CustomNetworkManager.cs" />
-     <Compile Include="Assets\Scripts\Networking\CustomNetworkManager1.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\Ability.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\AbilityCoolDown.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\Eagles\WindAbility.cs" />
