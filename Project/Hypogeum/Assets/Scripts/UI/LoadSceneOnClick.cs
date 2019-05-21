@@ -7,62 +7,25 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Utilities;
 
-public static class GB
+public class LoadSceneOnClick : MonoBehaviour
 {
+    private Button button;
 
-    public enum EGameType
+    public SceneField scena;
+
+
+    void Start()
     {
-        Shooting, Driving
-    }
+        button = GetComponent<Button>();
 
-    public enum EAnimal
-    {
-        Rhino, Eagle, Shark, Lion
-    }
-
-
-    public static EGameType? GameType;
-    public static EAnimal? Animal;
-
-
-    public static EAnimal getRandomAnimal()
-    {
-        var values = System.Enum.GetValues(typeof(EAnimal));
-        var random = Random.Range(0, values.Length);
-
-        return (EAnimal)values.GetValue(random);
-    }
-
-    public static GameObject LoadAnimalCar(EAnimal? animal)
-    {
-        var s = "";
-
-        switch (animal)
+        button?.onClick.AddListener(() =>
         {
-            case EAnimal.Rhino:
-                s = "RhinosCar";
-                break;
-            case EAnimal.Eagle:
-                s = "EaglesCar";
-                break;
-            case EAnimal.Lion:
-                s = "LionsCar";
-                break;
-            case EAnimal.Shark:
-                s = "SharksCar";
-                break;
-        }
-
-        return Resources.Load($"Cars/{s}") as GameObject;
+            GB.GotoScene(scena.SceneName);
+        });
     }
 
-    public static void GotoScene(string name)
-    {
-        var p = (name.Contains("Scenes/") ? name : $"Scenes/{name}");
-
-        SceneManager.LoadScene(p, LoadSceneMode.Single);
-    }
 
 }
