@@ -6,19 +6,58 @@ Contributors:
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GestioneMenu : MonoBehaviour
+public sealed class GestioneMenu : MonoBehaviour
 {
 
-    public Button button_fullscreen, button_sparo, button_guida, button_lion, button_shark, button_rhino, button_eagle;
+    public Button button_fullscreen, button_go;
+
+    public Button button_sparo, button_guida;
+    public Button button_lion, button_shark, button_rhino, button_eagle;
+
     public GameObject car_lion, car_rhino, car_shark, car_eagle;
+
+    private List<sAnimalMapping> buttons_animal_mapping;
+
+
+    private struct sAnimalMapping
+    {
+        internal GameObject car;
+        internal Button button;
+        internal GB.EAnimal animal;
+    }
 
 
     void Start()
     {
-        HideCars();
+        buttons_animal_mapping = new List<sAnimalMapping>() {
+            new sAnimalMapping() {
+                car = car_lion,
+                button = button_lion,
+                animal = GB.EAnimal.Lion
+            },
+            new sAnimalMapping() {
+                car = car_rhino,
+                button = button_rhino,
+                animal = GB.EAnimal.Rhino
+            },
+            new sAnimalMapping() {
+                car = car_shark,
+                button = button_shark,
+                animal = GB.EAnimal.Shark
+            },
+            new sAnimalMapping() {
+                car = car_eagle,
+                button = button_eagle,
+                animal = GB.EAnimal.Eagle
+            }
+        };
+
+
+        SelezionaAnimale();
 
         button_fullscreen?.onClick.AddListener(() =>
         {
@@ -28,81 +67,79 @@ public class GestioneMenu : MonoBehaviour
 
         button_eagle?.onClick.AddListener(() =>
         {
-            SelezionaAnimale(button_eagle);
+            SelezionaAnimale(GB.EAnimal.Eagle);
         });
         button_rhino?.onClick.AddListener(() =>
         {
-            SelezionaAnimale(button_rhino);
+            SelezionaAnimale(GB.EAnimal.Rhino);
         });
         button_shark?.onClick.AddListener(() =>
         {
-            SelezionaAnimale(button_shark);
+            SelezionaAnimale(GB.EAnimal.Shark);
         });
         button_lion?.onClick.AddListener(() =>
         {
-            SelezionaAnimale(button_lion);
+            SelezionaAnimale(GB.EAnimal.Lion);
         });
 
 
         button_sparo?.onClick.AddListener(() =>
         {
-            Play(GB.EGameType.Shooting);
+            SelezionaModalitaGioco(GB.EGameType.Shooting);
         });
 
         button_guida?.onClick.AddListener(() =>
         {
-            Play(GB.EGameType.Driving);
+            SelezionaModalitaGioco(GB.EGameType.Driving);
+        });
+
+
+        button_go?.onClick.AddListener(() =>
+        {
+            if (GB.Animal.HasValue && GB.GameType.HasValue)
+                GB.GotoScene("LobbyM");
         });
     }
 
-    private void HideCars()
+    private void SelezionaModalitaGioco(GB.EGameType m)
     {
-        car_eagle.active = (GB.Animal == GB.EAnimal.Eagle);
-        car_rhino.active = (GB.Animal == GB.EAnimal.Rhino);
-        car_shark.active = (GB.Animal == GB.EAnimal.Shark);
-        car_lion.active = (GB.Animal == GB.EAnimal.Lion);
+        void coloraButtonGioco(Button b, bool disabilita)
+        {
+            var img = b.GetComponent<Image>();
+            img.color = (disabilita ? Color.gray : Color.white);
+        }
+
+        coloraButtonGioco(button_guida, m == GB.EGameType.Driving);
+        coloraButtonGioco(button_sparo, m == GB.EGameType.Shooting);
+
+        GB.GameType = m;
+
+        AbilitaButtonGo();
     }
 
-    private void SelezionaAnimale(Button b_animale)
+    private void AbilitaButtonGo()
     {
-        //inner function
-        void coloraButton(Button b, Color c)
-        {
-            b.GetComponent<Image>().color = c;
-        }
+        var abilitato = (GB.Animal.HasValue && GB.GameType.HasValue);
 
-        void selezionaButton(Button s)
-        {
-            coloraButton(button_eagle, Color.white);
-            coloraButton(button_lion, Color.white);
-            coloraButton(button_rhino, Color.white);
-            coloraButton(button_shark, Color.white);
+        var img = button_go.GetComponent<Image>();
+        img.color = (abilitato ? Color.white : Color.gray);
 
-            coloraButton(s, Color.gray);
-        }
-        //inner function
-
-        selezionaButton(b_animale);
-
-        if (b_animale.Equals(button_eagle))
-            GB.Animal = GB.EAnimal.Eagle;
-        else if (b_animale.Equals(button_rhino))
-            GB.Animal = GB.EAnimal.Rhino;
-        else if (b_animale.Equals(button_lion))
-            GB.Animal = GB.EAnimal.Lion;
-        else if (b_animale.Equals(button_shark))
-            GB.Animal = GB.EAnimal.Shark;
-
-        HideCars();
+        button_go.enabled = abilitato;
     }
 
-    private void Play(GB.EGameType gt)
+    private void SelezionaAnimale(GB.EAnimal? selectedAnimal = null)
     {
-        if (GB.Animal.HasValue)
+        foreach (var el in buttons_animal_mapping)
         {
-            GB.GameType = gt;
-            GB.GotoScene("LobbyM");
+            var color = (selectedAnimal == el.animal ? Color.gray : Color.white);
+            var img = el.button.GetComponent<Image>();
+            img.color = color;
+
+            el.car.active = (selectedAnimal == el.animal);
         }
+
+        GB.Animal = selectedAnimal;
+        AbilitaButtonGo();
     }
 
 

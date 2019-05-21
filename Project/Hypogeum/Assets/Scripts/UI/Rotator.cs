@@ -8,7 +8,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using UnityEngine;
 
-public class Rotator : MonoBehaviour
+public sealed class Rotator : MonoBehaviour
 {
 
     public GameObject Car1, Car2, Car3, Car4;
@@ -24,5 +24,6 @@ public class Rotator : MonoBehaviour
         foreach (var car in cars)
             car.transform.RotateAroundLocal(Vector3.up, 1 * Time.deltaTime);
     }
+
 
 }
