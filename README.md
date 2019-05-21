@@ -25,3 +25,10 @@ coming soon...
 Copyright 2019 (c) Team Lama. All rights reserved.
 
 Licensed under the [MIT](LICENSE) License.
+
+
+### Team Lama
+* Carrarini Andrea
+* Cerrato Loris
+* De Cosmo Andrea
+* Maione Michele
