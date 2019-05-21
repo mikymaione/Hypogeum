@@ -11,15 +11,15 @@ using UnityEngine;
 //TODO create a camera class
 public class Car : MonoBehaviour
 {
-    private float maxSteeringAngle = 30f;
+    private float maxSteeringAngle = 50f;
     private float maxTorque = 1000f;
-    private float brakingTorque = 30000f;
+    private float brakingTorque = 60000f;
 
     private float maxSpeed = 20f;
 
     [Tooltip("m/s")]
-    private float speedThreshold = 5f;
-    private int stepsBelowThreshold = 5;
+    private float speedThreshold = 20f;
+    private int stepsBelowThreshold = 30;
     private int stepsAboveThreshold = 1;
 
     private GameObject wheels;
@@ -105,24 +105,40 @@ public class Car : MonoBehaviour
             instantTorque = 0f;
         }
 
-        var handBrake = (Input.GetKey(KeyCode.M) ? brakingTorque : 0);
+
+        var fullBrake = (Input.GetKey(KeyCode.M) ? brakingTorque : 0);
+        var handBrake = (Input.GetKey(KeyCode.K) ? brakingTorque * 2 : 0);
 
         foreach (var wheel in wheelColliders)
         {
-            if (wheel.transform.localPosition.z > 0)
-                wheel.steerAngle = instantSteeringAngle;
+			if (wheel.transform.localPosition.z > 0)
+			{
+				wheel.steerAngle = instantSteeringAngle;
+				//wheel.motorTorque = instantTorque;
+			}
 
-            if (wheel.transform.localPosition.z < 0)
-                wheel.brakeTorque = handBrake;
+			if (fullBrake > 0)
+				wheel.brakeTorque = fullBrake;
+
+			else if (handBrake > 0)
+			{
+				if (wheel.tag == "BackWheel")
+				{
+					wheel.brakeTorque = handBrake;
+					//wheel.motorTorque = 0;
+				}
+			}
+
+			else
+				wheel.brakeTorque = 0;
 
             wheel.motorTorque = instantTorque;
 
-            if (wheels)
+			if (wheels)
             {
                 Quaternion q;
                 Vector3 p;
                 wheel.GetWorldPose(out p, out q);
-
                 var t = wheel.transform.GetChild(0);
                 t.position = p;
                 t.rotation = q;

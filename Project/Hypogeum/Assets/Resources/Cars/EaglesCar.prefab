@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 5439216409224554570}
   m_Layer: 0
   m_Name: FL
-  m_TagString: Untagged
+  m_TagString: FrontWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 4350052991430586921}
   m_Layer: 0
   m_Name: BL
-  m_TagString: Untagged
+  m_TagString: BackWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 9125096166107960056}
   m_Layer: 0
   m_Name: BR
-  m_TagString: Untagged
+  m_TagString: BackWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 7507070417225407710}
   m_Layer: 0
   m_Name: FR
-  m_TagString: Untagged
+  m_TagString: FrontWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

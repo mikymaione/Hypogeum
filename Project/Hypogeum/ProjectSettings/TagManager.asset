@@ -9,6 +9,8 @@ TagManager:
   - FireMouth
   - Networking
   - UI
+  - BackWheel
+  - FrontWheel
   layers:
   - Default
   - TransparentFX

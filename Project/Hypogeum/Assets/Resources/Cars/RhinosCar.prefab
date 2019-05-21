@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 7924719777497444199}
   m_Layer: 0
   m_Name: FR
-  m_TagString: Untagged
+  m_TagString: FrontWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -706,9 +706,9 @@ WheelCollider:
   m_Radius: 34.52
   m_SuspensionSpring:
     spring: 109871.93
-    damper: 17579.51
+    damper: 17579.508
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620001
+  m_SuspensionDistance: 0.1962
   m_ForceAppPointDistance: 16.591784
   m_Mass: 40
   m_WheelDampingRate: 0.25
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 5854259340953503932}
   m_Layer: 0
   m_Name: BL
-  m_TagString: Untagged
+  m_TagString: BackWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 1591592008680022547}
   m_Layer: 0
   m_Name: FL
-  m_TagString: Untagged
+  m_TagString: FrontWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 3110596621649551167}
   m_Layer: 0
   m_Name: BR
-  m_TagString: Untagged
+  m_TagString: BackWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1044,10 +1044,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 34.52
   m_SuspensionSpring:
-    spring: 90229.8
-    damper: 14436.768
+    spring: 90229.77
+    damper: 14436.765
     targetPosition: 0.5
-  m_SuspensionDistance: 0.1962
+  m_SuspensionDistance: 0.19620001
   m_ForceAppPointDistance: 16.591784
   m_Mass: 40
   m_WheelDampingRate: 0.25
