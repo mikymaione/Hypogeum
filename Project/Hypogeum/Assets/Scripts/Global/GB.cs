@@ -9,6 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//used by GestioneMenu.cs
 public static class GB
 {
 

@@ -9,7 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 using UnityEngine;
 
 //TODO create a camera class
-public class Car : MonoBehaviour
+public class LionsCar : GeneralCar
 {
     private float maxSteeringAngle = 50f;
     private float maxTorque = 1000f;
@@ -34,38 +34,38 @@ public class Car : MonoBehaviour
     public int Health { get; set; } = 1000;
     public int Defense { get; set; } = 7;
 
-    public void setWheels()
-    {
-        wheelColliders = GetComponentsInChildren<WheelCollider>();
-
-        for (var i = 0; i < wheelColliders.Length; ++i)
-        {
-            var wheel = wheelColliders[i];
-
-            // Create wheel shapes only when needed.
-            if (wheels != null)
-            {
-                var ws = Instantiate(wheels);
-                ws.transform.parent = wheel.transform;
-            }
-        }
-    }
-
-    public void SetCamera()
-    {
-        MyCamera.lookAtTarget = LookHere;
-        MyCamera.positionTarget = Position;
-        MyCamera.AimPosition = AimPosition;
-    }
-
-    public void SetInGameStats()
+    public override void SetInGameStats()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    public void SetCar()
+	public override void SetWheels()
+	{
+		wheelColliders = GetComponentsInChildren<WheelCollider>();
+
+		for (var i = 0; i < wheelColliders.Length; ++i)
+		{
+			var wheel = wheelColliders[i];
+
+			// Create wheel shapes only when needed.
+			if (wheels != null)
+			{
+				var ws = Instantiate(wheels);
+				ws.transform.parent = wheel.transform;
+			}
+		}
+	}
+
+	public override void SetCamera()
+	{
+		MyCamera.lookAtTarget = LookHere;
+		MyCamera.positionTarget = Position;
+		MyCamera.AimPosition = AimPosition;
+	}
+
+	public override void SetCar()
     {
-        setWheels();
+        SetWheels();
 
         //     Configure vehicle sub-stepping parameters.
         //
@@ -90,27 +90,25 @@ public class Car : MonoBehaviour
         SetInGameStats();
     }
 
-    public void Drive()
-    {
-        var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
-        var instantTorque = maxTorque * Input.GetAxis("Vertical");
+	public override void Drive()
+	{
+		var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
+		var instantTorque = maxTorque * Input.GetAxis("Vertical");
 
-        //Debug.Log("Speed: " + rb.velocity.magnitude);
-
-        // limiting speed to maxSpeed 
-        // not precise, speed can overcome the limit
-        // it only stops motor torque when it's above maxSpeed
-        if (rb.velocity.magnitude >= maxSpeed)
-        {
-            instantTorque = 0f;
-        }
+		// limiting speed to maxSpeed 
+		// not precise, speed can overcome the limit
+		// it only stops motor torque when it's above maxSpeed
+		if (rb.velocity.magnitude >= maxSpeed)
+		{
+			instantTorque = 0f;
+		}
 
 
-        var fullBrake = (Input.GetKey(KeyCode.M) ? brakingTorque : 0);
-        var handBrake = (Input.GetKey(KeyCode.K) ? brakingTorque * 2 : 0);
+		var fullBrake = (Input.GetKey(KeyCode.M) ? brakingTorque : 0);
+		var handBrake = (Input.GetKey(KeyCode.K) ? brakingTorque * 2 : 0);
 
-        foreach (var wheel in wheelColliders)
-        {
+		foreach (var wheel in wheelColliders)
+		{
 			if (wheel.transform.localPosition.z > 0)
 			{
 				wheel.steerAngle = instantSteeringAngle;
@@ -132,19 +130,17 @@ public class Car : MonoBehaviour
 			else
 				wheel.brakeTorque = 0;
 
-            wheel.motorTorque = instantTorque;
+			wheel.motorTorque = instantTorque;
 
 			if (wheels)
-            {
-                Quaternion q;
-                Vector3 p;
-                wheel.GetWorldPose(out p, out q);
-                var t = wheel.transform.GetChild(0);
-                t.position = p;
-                t.rotation = q;
-            }
-        }
-    }
-
-
+			{
+				Quaternion q;
+				Vector3 p;
+				wheel.GetWorldPose(out p, out q);
+				var t = wheel.transform.GetChild(0);
+				t.position = p;
+				t.rotation = q;
+			}
+		}
+	}
 }

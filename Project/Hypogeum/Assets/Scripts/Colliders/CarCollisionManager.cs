@@ -10,12 +10,12 @@ using UnityEngine;
 
 public class CarCollisionManager : MonoBehaviour
 {
-    private Car playerCar;
+    private LionsCar playerCar;
     private Rigidbody playerCar_RB;
 
     public void SetPlayerCar()
     {
-        playerCar = GetComponent<Car>();
+        playerCar = GetComponent<LionsCar>();
         playerCar_RB = GetComponent<Rigidbody>();
     }
 
@@ -38,7 +38,7 @@ public class CarCollisionManager : MonoBehaviour
     {
         //F = v * m / t
 
-        //var other_car = collision.gameObject.GetComponent<Car>();
+        //var other_car = collision.gameObject.GetComponent<LionsCar>();
         var F = playerCar_RB.velocity.magnitude * playerCar_RB.mass / 0.1;
 
         playerCar.Health -= (int)(F - playerCar.Defense);

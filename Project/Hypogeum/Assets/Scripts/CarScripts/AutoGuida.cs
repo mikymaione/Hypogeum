@@ -10,12 +10,12 @@ using UnityEngine.Networking;
 
 public class AutoGuida : NetworkBehaviour
 {
-    private Car car;
+    private LionsCar car;
     private CarCollisionManager carCollisionManager;
 
     public override void OnStartLocalPlayer()
     {
-        car = GetComponent<Car>();
+        car = GetComponent<LionsCar>();
         car.SetCar();
 
         carCollisionManager = GetComponent<CarCollisionManager>();
