@@ -6,6 +6,7 @@ Unity Technologies ApS (“Unity”, “our” or “we”) provides game-develo
 If you accept or agree to the Agreement on behalf of a company, organization or other legal entity (a “Legal Entity”), you represent and warrant that you have the authority to bind that Legal Entity to the Agreement and, in such event, “you” and “your” will refer and apply to that company or other legal entity.
 You acknowledge and agree that, by accessing, purchasing or using the services, you are indicating that you have read, understand and agree to be bound by the agreement whether or not you have created a unity account, subscribed to the unity newsletter or otherwise registered with the site. If you do not agree to these terms and all applicable additional terms, then you have no right to access or use any of the services.
 */
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class GeneralCar : MonoBehaviour
@@ -42,13 +43,11 @@ public abstract class GeneralCar : MonoBehaviour
     protected int stepsBelowThreshold = 30;
     protected int stepsAboveThreshold = 1;
 
-    protected GameObject wheelShape;
-    protected WheelCollider[] wheelColliders;
+    private Dictionary<WheelCollider, GameObject> wheelsAndColliders = new Dictionary<WheelCollider, GameObject>();
 
     protected CameraManager MyCamera;
     protected Transform LookHere, Position, AimPosition;
     protected Rigidbody rb;
-
 
     protected void SetInGameStats()
     {
@@ -57,19 +56,10 @@ public abstract class GeneralCar : MonoBehaviour
 
     protected void SetWheels()
     {
-        wheelColliders = GetComponentsInChildren<WheelCollider>();
+        var wc = GetComponentsInChildren<WheelCollider>();
 
-        for (var i = 0; i < wheelColliders.Length; ++i)
-        {
-            var wheel = wheelColliders[i];
-
-            // Create wheel shapes only when needed.
-            if (wheelShape != null)
-            {
-                var ws = Instantiate(wheelShape);
-                ws.transform.parent = wheel.transform;
-            }
-        }
+        foreach (var w in wc)
+            wheelsAndColliders.Add(w, GameObject.Find($"Mesh/Wheel_{w.name}"));
     }
 
     protected void SetCamera()
@@ -95,7 +85,12 @@ public abstract class GeneralCar : MonoBehaviour
         //   stepsAboveThreshold:
         //     Amount of simulation sub-steps when vehicle's speed is above speedThreshold.
 
-        wheelColliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
+        foreach (var w in wheelsAndColliders)
+        {
+            //only 1
+            w.Key.ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
+            break;
+        }
 
         MyCamera = Camera.main.GetComponent<CameraManager>();
         LookHere = transform.Find("CameraAnchor/LookHere");
@@ -108,6 +103,9 @@ public abstract class GeneralCar : MonoBehaviour
 
     internal void Drive()
     {
+        Quaternion q;
+        Vector3 p;
+
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");
 
@@ -120,38 +118,32 @@ public abstract class GeneralCar : MonoBehaviour
         var fullBrake = (Input.GetKey(KeyCode.M) ? brakingTorque : 0);
         var handBrake = (Input.GetKey(KeyCode.K) ? brakingTorque * 2 : 0);
 
-        foreach (var wheel in wheelColliders)
+        foreach (var wheel in wheelsAndColliders)
         {
-            if (wheel.transform.localPosition.z > 0)
-                wheel.steerAngle = instantSteeringAngle;
+            if (wheel.Key.transform.localPosition.z > 0)
+                wheel.Key.steerAngle = instantSteeringAngle;
 
             if (fullBrake > 0)
             {
-                wheel.brakeTorque = fullBrake;
+                wheel.Key.brakeTorque = fullBrake;
             }
             else if (handBrake > 0)
             {
-                if (wheel.tag == "BackWheel")
-                    wheel.brakeTorque = handBrake;
+                if (wheel.Key.tag == "BackWheel")
+                    wheel.Key.brakeTorque = handBrake;
             }
             else
             {
-                wheel.brakeTorque = 0;
+                wheel.Key.brakeTorque = 0;
             }
 
-            wheel.motorTorque = instantTorque;
+            wheel.Key.motorTorque = instantTorque;
+            
+            wheel.Key.GetWorldPose(out p, out q);
 
-            if (wheelShape)
-            {
-                Quaternion q;
-                Vector3 p;
-
-                wheel.GetWorldPose(out p, out q);
-
-                var t = wheel.transform.GetChild(0);
-                t.position = p;
-                t.rotation = q;
-            }
+            //rotate the 3d object
+            wheel.Value.transform.position = p;
+            wheel.Value.transform.rotation = q;
         }
     }
 
