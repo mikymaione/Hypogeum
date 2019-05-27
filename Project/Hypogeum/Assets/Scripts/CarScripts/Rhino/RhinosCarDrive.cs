@@ -6,43 +6,18 @@ Contributors:
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
-using UnityEngine;
-
-public class CarCollisionManager : MonoBehaviour
+public class RhinosCarDrive : GeneralCar
 {
-    private GeneralCar playerCar;
-    private Rigidbody playerCar_RB;
 
-    public void SetPlayerCar()
-    {
-        playerCar = GetComponent<GeneralCar>();
-        playerCar_RB = GetComponent<Rigidbody>();
-    }
+    protected override int Health_default() => 1000;
+    protected override int Defense_default() => 4;
+    protected override int Speed_default() => 4;
+    protected override int Agility_default() => 4;
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "IlMezzo(Clone)") //calcolare con livello, auto, nemici
-        {
-            Debug.Log("Collision with: " + collision.gameObject.name);
-            CalculateCollisionDamage(collision);
-            Debug.Log("Health left: " + playerCar.Health);
-        }
-
-        if (collision != null)
-        {
-            Debug.Log("Collision with: " + collision.gameObject.name);
-        }
-    }
-
-    public void CalculateCollisionDamage(Collision collision)
-    {
-        //F = v * m / t
-
-        //var other_car = collision.gameObject.GetComponent<LionsCar>();
-        var F = playerCar_RB.velocity.magnitude * playerCar_RB.mass / 0.1;
-
-        playerCar.Health -= (int)(F - playerCar.Defense);
-    }
+    protected override float maxSteeringAngle_default() => 50f;
+    protected override float maxTorque_default() => 1000f;
+    protected override float brakingTorque_default() => 60000f;
+    protected override float maxSpeed_default() => 20f;
 
 
 }

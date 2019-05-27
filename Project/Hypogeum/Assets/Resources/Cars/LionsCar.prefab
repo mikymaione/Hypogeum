@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 2440915826389304771}
   - component: {fileID: 8952454594305753724}
   - component: {fileID: 379993555704426122}
-  - component: {fileID: 7685377017016119453}
+  - component: {fileID: 4798548572232538498}
   m_Layer: 0
   m_Name: LionsCar
   m_TagString: Untagged
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa,
     type: 3}
---- !u!114 &7685377017016119453
+--- !u!114 &4798548572232538498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1018,6 +1018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e4b7c1fcdd61f4db0e93d4d071b37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 1200
+  Defense: 6
 --- !u!1 &9184946469077461324
 GameObject:
   m_ObjectHideFlags: 0

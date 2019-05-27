@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 266473001}
   - component: {fileID: 266473000}
   - component: {fileID: 266472999}
-  - component: {fileID: 266472998}
   - component: {fileID: 266472997}
   - component: {fileID: 266472996}
+  - component: {fileID: 4905490056784593653}
   m_Layer: 0
   m_Name: RhinosCar
   m_TagString: Untagged
@@ -161,18 +161,6 @@ MonoBehaviour:
   smorzamento: 0.8
   distanzaDalCentroDiMassa: 0.03
   regolaDistanzaMolle: 1
---- !u!114 &266472998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266472990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d44ae1a3b48fc4d898dd9c5445cac2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &266472997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +187,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa,
     type: 3}
+--- !u!114 &4905490056784593653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266472990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62726fd53d669c149bee30c186e258b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 1500
+  Defense: 9
 --- !u!1 &266472991
 GameObject:
   m_ObjectHideFlags: 0

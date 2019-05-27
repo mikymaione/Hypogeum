@@ -166,10 +166,10 @@ GameObject:
   - component: {fileID: 5420681754146531531}
   - component: {fileID: 3053845377116814723}
   - component: {fileID: 6642418710406474209}
-  - component: {fileID: 7092783778822709423}
   - component: {fileID: 3243681315850885656}
   - component: {fileID: 337468319491981700}
   - component: {fileID: 4168449233636349803}
+  - component: {fileID: 3994771030296425966}
   m_Layer: 0
   m_Name: EaglesCar
   m_TagString: Untagged
@@ -314,18 +314,6 @@ MonoBehaviour:
   smorzamento: 0.8
   distanzaDalCentroDiMassa: 0.03
   regolaDistanzaMolle: 1
---- !u!114 &7092783778822709423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324947265018251071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d44ae1a3b48fc4d898dd9c5445cac2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3243681315850885656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +356,20 @@ MonoBehaviour:
   range: 30
   hitForce: 100
   windBoxCollider: {fileID: 4733921685586334601}
+--- !u!114 &3994771030296425966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324947265018251071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d21e3ae77a1aca46ba25eacc7feb6b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 800
+  Defense: 5
 --- !u!1 &585478298614816171
 GameObject:
   m_ObjectHideFlags: 0
