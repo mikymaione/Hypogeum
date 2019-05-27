@@ -14,7 +14,7 @@ public class EaglesCarDrive : GeneralCar
     protected override int Speed_default() => 4;
     protected override int Agility_default() => 4;
 
-    protected override float maxSteeringAngle_default() => 50f;
+    protected override float maxSteeringAngle_default() => 35f;
     protected override float maxTorque_default() => 1000f;
     protected override float brakingTorque_default() => 60000f;
     protected override float maxSpeed_default() => 20f;

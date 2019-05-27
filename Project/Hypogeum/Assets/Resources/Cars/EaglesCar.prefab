@@ -560,13 +560,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887074303556347273}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -68.3, y: 25.4, z: 128.6}
-  m_LocalScale: {x: 0.82699, y: 0.82699, z: 0.82699}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3337216583893118526}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &5439216409224554570
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -575,13 +575,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887074303556347273}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 34.52
+  m_Radius: 28
   m_SuspensionSpring:
     spring: 48565.68
     damper: 7770.509
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 9.931587
+  m_ForceAppPointDistance: 3.4115865
   m_Mass: 15
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -763,13 +763,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3472846717579697610}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -80.3, y: 18.7, z: -121.7}
-  m_LocalScale: {x: 0.88655245, y: 0.88655245, z: 0.88655245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3337216583893118526}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &4350052991430586921
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -778,13 +778,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3472846717579697610}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 34.52
+  m_Radius: 28
   m_SuspensionSpring:
     spring: 50840.715
     damper: 8134.514
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 16.631624
+  m_ForceAppPointDistance: 10.111626
   m_Mass: 15
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -934,13 +934,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5609813478846389644}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 68.1, y: 18.7, z: -121.7}
-  m_LocalScale: {x: 0.88655245, y: 0.88655245, z: 0.88655245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3337216583893118526}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &9125096166107960056
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -949,13 +949,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5609813478846389644}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 34.52
+  m_Radius: 28
   m_SuspensionSpring:
     spring: 51487.016
     damper: 8237.922
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 16.631624
+  m_ForceAppPointDistance: 10.111626
   m_Mass: 15
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -1025,13 +1025,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5708946417759442387}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 55.9, y: 25.4, z: 128.6}
-  m_LocalScale: {x: 0.82699, y: 0.82699, z: 0.82699}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3337216583893118526}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &7507070417225407710
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -1040,13 +1040,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5708946417759442387}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 34.52
+  m_Radius: 28
   m_SuspensionSpring:
     spring: 49106.586
     damper: 7857.053
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 9.931587
+  m_ForceAppPointDistance: 3.4115865
   m_Mass: 15
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
