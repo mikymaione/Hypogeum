@@ -1,10 +1,10 @@
 ﻿/*
-MIT License
-Copyright (c) 2019 Team Lama: Carrarini Andrea, Cerrato Loris, De Cosmo Andrea, Maione Michele
-Author: Carrarini Andrea
-Contributors: Maione Michele
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+Copyright (c) 2018 Unity Technologies ApS
+Author: Unity Technologies ApS
+Contributors: Maione Michele, Carrarini Andrea
+Unity Technologies ApS (“Unity”, “our” or “we”) provides game-development and related software (the “Software”), development-related services (like Unity Teams (“Developer Services”)), and various Unity communities (like Unity Answers and Unity Connect (“Communities”)), provided through or in connection with our website, accessible at unity3d.com or unity.com (collectively, the “Site”). Except to the extent you and Unity have executed a separate agreement, these terms and conditions exclusively govern your access to and use of the Software, Developer Services, Communities and Site (collectively, the “Services”), and constitute a binding legal agreement between you and Unity (the “Terms”).
+If you accept or agree to the Agreement on behalf of a company, organization or other legal entity (a “Legal Entity”), you represent and warrant that you have the authority to bind that Legal Entity to the Agreement and, in such event, “you” and “your” will refer and apply to that company or other legal entity.
+You acknowledge and agree that, by accessing, purchasing or using the services, you are indicating that you have read, understand and agree to be bound by the agreement whether or not you have created a unity account, subscribed to the unity newsletter or otherwise registered with the site. If you do not agree to these terms and all applicable additional terms, then you have no right to access or use any of the services.
 */
 using UnityEngine;
 
@@ -42,7 +42,7 @@ public abstract class GeneralCar : MonoBehaviour
     protected int stepsBelowThreshold = 30;
     protected int stepsAboveThreshold = 1;
 
-    protected GameObject wheels;
+    protected GameObject wheelShape;
     protected WheelCollider[] wheelColliders;
 
     protected CameraManager MyCamera;
@@ -64,9 +64,9 @@ public abstract class GeneralCar : MonoBehaviour
             var wheel = wheelColliders[i];
 
             // Create wheel shapes only when needed.
-            if (wheels != null)
+            if (wheelShape != null)
             {
-                var ws = Instantiate(wheels);
+                var ws = Instantiate(wheelShape);
                 ws.transform.parent = wheel.transform;
             }
         }
@@ -141,11 +141,13 @@ public abstract class GeneralCar : MonoBehaviour
 
             wheel.motorTorque = instantTorque;
 
-            if (wheels)
+            if (wheelShape)
             {
                 Quaternion q;
                 Vector3 p;
+
                 wheel.GetWorldPose(out p, out q);
+
                 var t = wheel.transform.GetChild(0);
                 t.position = p;
                 t.rotation = q;
