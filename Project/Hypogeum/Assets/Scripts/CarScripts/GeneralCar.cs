@@ -49,6 +49,7 @@ public abstract class GeneralCar : MonoBehaviour
     protected Transform LookHere, Position, AimPosition;
     protected Rigidbody rb;
 
+
     protected void SetInGameStats()
     {
         rb = GetComponent<Rigidbody>();
@@ -59,7 +60,10 @@ public abstract class GeneralCar : MonoBehaviour
         var wc = GetComponentsInChildren<WheelCollider>();
 
         foreach (var w in wc)
-            wheelsAndColliders.Add(w, GameObject.Find($"Mesh/Wheel_{w.name}"));
+        {
+            var obj = GameObject.Find($"Mesh/Wheel_{w.name}");
+            wheelsAndColliders.Add(w, obj);
+        }
     }
 
     protected void SetCamera()
@@ -138,10 +142,11 @@ public abstract class GeneralCar : MonoBehaviour
             }
 
             wheel.Key.motorTorque = instantTorque;
-            
+
             wheel.Key.GetWorldPose(out p, out q);
 
-            //rotate the 3d object            
+            //rotate the 3d object                              
+            wheel.Value.transform.position = p;
             wheel.Value.transform.rotation = q;
         }
     }
