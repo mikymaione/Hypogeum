@@ -31,11 +31,5 @@ public class AutoGuida : NetworkBehaviour
         }
     }
 
-    void LateUpdate()
-    {
-        if (isLocalPlayer)
-            car.RotateWheel();
-    }
-
 
 }

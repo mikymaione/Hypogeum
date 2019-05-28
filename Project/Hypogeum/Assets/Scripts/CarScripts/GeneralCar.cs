@@ -43,8 +43,7 @@ public abstract class GeneralCar : MonoBehaviour
     protected int stepsBelowThreshold = 30;
     protected int stepsAboveThreshold = 1;
 
-    private Dictionary<WheelCollider, Quaternion> WheelErrorCorrectionR = new Dictionary<WheelCollider, Quaternion>();
-    private Dictionary<WheelCollider, Vector3> WheelErrorCorrectionP = new Dictionary<WheelCollider, Vector3>();
+    private Dictionary<WheelCollider, Quaternion> WheelErrorCorrectionR = new Dictionary<WheelCollider, Quaternion>();    
     private Dictionary<WheelCollider, GameObject> wheelsAndColliders = new Dictionary<WheelCollider, GameObject>();
 
     protected CameraManager MyCamera;
@@ -71,8 +70,7 @@ public abstract class GeneralCar : MonoBehaviour
             foreach (var w in wc)
             {
                 var obj = GameObject.Find($"Mesh/Wheel_{w.name}");
-
-                WheelErrorCorrectionP.Add(w, obj.transform.position - w.transform.position);
+                                
                 WheelErrorCorrectionR.Add(w, obj.transform.rotation);
                 wheelsAndColliders.Add(w, obj);
             }
@@ -120,6 +118,9 @@ public abstract class GeneralCar : MonoBehaviour
 
     internal void Drive()
     {
+        Quaternion q;
+        Vector3 p;
+
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");
 
@@ -152,20 +153,11 @@ public abstract class GeneralCar : MonoBehaviour
             }
 
             wheel.Key.motorTorque = instantTorque;
-        }
-    }
 
-    internal void RotateWheel()
-    {
-        Quaternion q;
-        Vector3 p;
-
-        foreach (var wheel in wheelsAndColliders)
-        {
             wheel.Key.GetWorldPose(out p, out q);
 
-            //rotate the 3d object
-            wheel.Value.transform.position = p; //<- non funziona
+            //rotate the 3d object            
+            //wheel.Value.transform.position = p;
             wheel.Value.transform.rotation = q * WheelErrorCorrectionR[wheel.Key];
         }
     }
