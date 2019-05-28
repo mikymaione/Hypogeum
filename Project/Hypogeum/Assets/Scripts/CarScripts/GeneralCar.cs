@@ -157,7 +157,7 @@ public abstract class GeneralCar : MonoBehaviour
             wheel.Key.GetWorldPose(out p, out q);
 
             //rotate the 3d object            
-            //wheel.Value.transform.position = p;
+            wheel.Value.transform.position = p;
             wheel.Value.transform.rotation = q * WheelErrorCorrectionR[wheel.Key];
         }
     }
