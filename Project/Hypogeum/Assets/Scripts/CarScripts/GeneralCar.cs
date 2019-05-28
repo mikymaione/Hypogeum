@@ -120,9 +120,6 @@ public abstract class GeneralCar : MonoBehaviour
 
     internal void Drive()
     {
-        Quaternion q;
-        Vector3 p;
-
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");
 
@@ -155,12 +152,21 @@ public abstract class GeneralCar : MonoBehaviour
             }
 
             wheel.Key.motorTorque = instantTorque;
+        }
+    }
 
+    internal void RotateWheel()
+    {
+        Quaternion q;
+        Vector3 p;
+
+        foreach (var wheel in wheelsAndColliders)
+        {
             wheel.Key.GetWorldPose(out p, out q);
 
             //rotate the 3d object
-            //wheel.Value.transform.position = p; //<- non funziona
-            wheel.Value.transform.rotation = q * WheelErrorCorrectionR[wheel.Key];           
+            wheel.Value.transform.position = p; //<- non funziona
+            wheel.Value.transform.rotation = q * WheelErrorCorrectionR[wheel.Key];
         }
     }
 

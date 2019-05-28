@@ -14,7 +14,7 @@ public class AutoGuida : NetworkBehaviour
     private CarCollisionManager carCollisionManager;
 
     public override void OnStartLocalPlayer()
-    {        
+    {
         car = GetComponent<GeneralCar>();
         car.SetCar();
 
@@ -29,6 +29,12 @@ public class AutoGuida : NetworkBehaviour
             //carCollisionManager.OnCollisionEnter();
             car.Drive();
         }
+    }
+
+    void LateUpdate()
+    {
+        if (isLocalPlayer)
+            car.RotateWheel();
     }
 
 
