@@ -49,7 +49,12 @@ public abstract class GeneralCar : MonoBehaviour
 
     protected CameraManager MyCamera;
     protected Transform LookHere, Position, AimPosition;
-    protected Rigidbody rb;
+    private Rigidbody rb;
+
+
+    // var for rotate the 3d object wheels
+    private Quaternion worldPose_rotation;
+    private Vector3 worldPose_position;
 
 
     void Start()
@@ -118,10 +123,7 @@ public abstract class GeneralCar : MonoBehaviour
     }
 
     internal void Drive()
-    {
-        Quaternion q;
-        Vector3 p;
-
+    {     
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");
 
@@ -136,7 +138,7 @@ public abstract class GeneralCar : MonoBehaviour
 
         foreach (var wheel in wheelsAndColliders)
         {
-            if (wheel.Key.tag == "FrontWheel")
+            if (wheel.Key.tag.Equals("FrontWheel"))
                 wheel.Key.steerAngle = instantSteeringAngle;
 
             if (fullBrake > 0)
@@ -145,7 +147,7 @@ public abstract class GeneralCar : MonoBehaviour
             }
             else if (handBrake > 0)
             {
-                if (wheel.Key.tag == "BackWheel")
+                if (wheel.Key.tag.Equals("BackWheel"))
                     wheel.Key.brakeTorque = handBrake;
             }
             else
@@ -155,11 +157,11 @@ public abstract class GeneralCar : MonoBehaviour
 
             wheel.Key.motorTorque = instantTorque;
 
-            wheel.Key.GetWorldPose(out p, out q);
+            //rotate the 3d object
+            wheel.Key.GetWorldPose(out worldPose_position, out worldPose_rotation);
 
-            //rotate the 3d object            
-            wheel.Value.transform.position = p;
-            wheel.Value.transform.rotation = q * WheelErrorCorrectionR[wheel.Key];
+            wheel.Value.transform.position = worldPose_position;
+            wheel.Value.transform.rotation = worldPose_rotation * WheelErrorCorrectionR[wheel.Key];
         }
     }
 
