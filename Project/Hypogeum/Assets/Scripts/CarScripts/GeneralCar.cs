@@ -160,7 +160,7 @@ public abstract class GeneralCar : MonoBehaviour
 
             //rotate the 3d object
             //wheel.Value.transform.position = p; //<- non funziona
-            wheel.Value.transform.rotation = q * WheelErrorCorrectionR[wheel.Key];
+            wheel.Value.transform.rotation = q * WheelErrorCorrectionR[wheel.Key];           
         }
     }
 
