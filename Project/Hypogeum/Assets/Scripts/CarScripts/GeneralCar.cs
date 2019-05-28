@@ -42,14 +42,19 @@ public abstract class GeneralCar : MonoBehaviour
     protected float speedThreshold = 20f;
     protected int stepsBelowThreshold = 30;
     protected int stepsAboveThreshold = 1;
-    
-    private Quaternion WheelErrorCorrectionR;
+
+    public GameObject wheelShape;
     private Dictionary<WheelCollider, GameObject> wheelsAndColliders = new Dictionary<WheelCollider, GameObject>();
 
     protected CameraManager MyCamera;
     protected Transform LookHere, Position, AimPosition;
     protected Rigidbody rb;
 
+
+    void FixedUpdate()
+    {
+        SetWheels();
+    }
 
     protected void SetInGameStats()
     {
@@ -58,14 +63,15 @@ public abstract class GeneralCar : MonoBehaviour
 
     protected void SetWheels()
     {
-        var wc = GetComponentsInChildren<WheelCollider>();
-
-        foreach (var w in wc)
+        if (wheelsAndColliders.Count == 0)
         {
-            var obj = GameObject.Find($"Mesh/Wheel_{w.name}");
+            var wc = GetComponentsInChildren<WheelCollider>();
 
-            WheelErrorCorrectionR = obj.transform.rotation;            
-            wheelsAndColliders.Add(w, obj);
+            foreach (var w in wc)
+            {
+                var ws = Instantiate(wheelShape);                
+                wheelsAndColliders.Add(w, ws);
+            }
         }
     }
 
@@ -148,8 +154,9 @@ public abstract class GeneralCar : MonoBehaviour
 
             wheel.Key.GetWorldPose(out p, out q);
 
-            //rotate the 3d object                                          
-            wheel.Value.transform.rotation = q * WheelErrorCorrectionR;
+            //rotate the 3d object
+            wheel.Value.transform.position = p;
+            wheel.Value.transform.rotation = q;
         }
     }
 
