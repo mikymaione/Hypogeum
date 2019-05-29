@@ -31,14 +31,18 @@ public class AutoGuida : NetworkBehaviour
     {
         var i = 0;
         var wc = GetComponentsInChildren<WheelCollider>();
+        var obj_figli = GetComponentsInChildren<MeshRenderer>();
 
         foreach (var w in wc)
         {
-            var obj = GameObject.Find($"Mesh/Wheel_{w.name}");
-
-            WheelErrorCorrectionR[i] = obj.transform.rotation;
-            Colliders[i] = w;
-            Wheels[i] = obj;
+            foreach (var o in obj_figli)
+                if (o.gameObject.name.Equals($"Wheel_{w.name}"))
+                {
+                    WheelErrorCorrectionR[i] = o.gameObject.transform.rotation;
+                    Colliders[i] = w;
+                    Wheels[i] = o.gameObject;
+                    break;
+                }
 
             i++;
         }
@@ -104,8 +108,8 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.position = worldPose_position;
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
-        }       
+        }
     }
-    
+
 
 }
