@@ -8,14 +8,17 @@ You acknowledge and agree that, by accessing, purchasing or using the services, 
 */
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public abstract class GeneralCar : NetworkBehaviour
+public abstract class GeneralCar : MonoBehaviour
 {
 
     private int? Health_c;
     protected abstract int Health_default();
-    internal int Health { get => (Health_c.HasValue ? Health_c.Value : Health_default()); set => Health_c = value; }
+    internal int Health
+    {
+        get => (Health_c.HasValue ? Health_c.Value : Health_default());
+        set => Health_c = value;
+    }
 
     protected abstract int Defense_default();
     internal int Defense => Defense_default();
@@ -50,7 +53,7 @@ public abstract class GeneralCar : NetworkBehaviour
 
     protected CameraManager MyCamera;
     protected Transform LookHere, Position, AimPosition;
-    private Rigidbody rb;
+    private Rigidbody TheCarRigidBody;
 
 
     // var for rotate the 3d object wheels
@@ -65,7 +68,7 @@ public abstract class GeneralCar : NetworkBehaviour
 
     protected void SetInGameStats()
     {
-        rb = GetComponent<Rigidbody>();
+        TheCarRigidBody = GetComponent<Rigidbody>();
     }
 
     protected void SetWheels()
@@ -124,14 +127,14 @@ public abstract class GeneralCar : NetworkBehaviour
     }
 
     internal void Drive()
-    {     
+    {
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");
 
         // limiting speed to maxSpeed 
         // not precise, speed can overcome the limit
         // it only stops motor torque when it's above maxSpeed
-        if (rb.velocity.magnitude >= maxSpeed)
+        if (TheCarRigidBody.velocity.magnitude >= maxSpeed)
             instantTorque = 0f;
 
         var fullBrake = (Input.GetKey(KeyCode.M) ? brakingTorque : 0);
