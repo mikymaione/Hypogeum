@@ -43,8 +43,6 @@ public class AutoGuida : NetworkBehaviour
             i++;
         }
 
-        Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
-
         generalCar = GeneralCar.IstanziaMe();
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
@@ -63,6 +61,8 @@ public class AutoGuida : NetworkBehaviour
         {
             Quaternion worldPose_rotation;
             Vector3 worldPose_position;
+
+            Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
 
             //freni
             var fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
@@ -103,7 +103,7 @@ public class AutoGuida : NetworkBehaviour
 
                 Wheels[i].transform.position = worldPose_position;
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
-            }            
+            }
         }
     }
 
