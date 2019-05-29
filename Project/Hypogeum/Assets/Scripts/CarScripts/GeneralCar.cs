@@ -8,8 +8,9 @@ You acknowledge and agree that, by accessing, purchasing or using the services, 
 */
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public abstract class GeneralCar : MonoBehaviour
+public abstract class GeneralCar : NetworkBehaviour
 {
 
     private int? Health_c;
