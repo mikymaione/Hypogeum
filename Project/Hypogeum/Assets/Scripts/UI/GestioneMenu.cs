@@ -97,7 +97,7 @@ public sealed class GestioneMenu : MonoBehaviour
         button_go?.onClick.AddListener(() =>
         {
             if (GB.Animal.HasValue && GB.GameType.HasValue)
-                GB.GotoScene("LobbyM");
+                GB.GotoScene(GB.EScenes.LobbyM);
         });
     }
 

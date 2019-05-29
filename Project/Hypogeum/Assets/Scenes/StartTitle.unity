@@ -944,7 +944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scena:
     sceneAsset: {fileID: 102900000, guid: 0991061500f069b4aa64474d441f1adc, type: 3}
-    sceneName: Scenes/GameTitle
+    sceneName: Scenes/PlayerSelection
 --- !u!1001 &820094059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1023,6 +1023,24 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 820094059}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &868836259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 7461a7b0cf97947fd9b9e4502fd2d07b,
+    type: 3}
+  m_PrefabInstance: {fileID: 820094059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &868836260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868836259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536dc00417373724fbe7a4dcf9489b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &945152274
 GameObject:
   m_ObjectHideFlags: 0

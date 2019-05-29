@@ -23,7 +23,7 @@ public class LoadSceneOnClick : MonoBehaviour
 
         button?.onClick.AddListener(() =>
         {
-            GB.GotoScene(scena.SceneName);
+            GB.GotoSceneName(scena.SceneName);
         });
     }
 
