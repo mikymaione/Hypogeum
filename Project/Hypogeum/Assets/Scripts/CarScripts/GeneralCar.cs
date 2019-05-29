@@ -8,8 +8,9 @@ You acknowledge and agree that, by accessing, purchasing or using the services, 
 */
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public abstract class GeneralCar : MonoBehaviour
+public abstract class GeneralCar : NetworkBehaviour
 {
 
     private int? Health_c;
@@ -43,16 +44,16 @@ public abstract class GeneralCar : MonoBehaviour
 
 
     [Tooltip("m/s")]
-    protected float speedThreshold = 20f;
-    protected int stepsBelowThreshold = 30;
-    protected int stepsAboveThreshold = 1;
+    private float speedThreshold = 20f;
+    private int stepsBelowThreshold = 30;
+    private int stepsAboveThreshold = 1;
 
 
     private Dictionary<WheelCollider, Quaternion> WheelErrorCorrectionR = new Dictionary<WheelCollider, Quaternion>();
     private Dictionary<WheelCollider, GameObject> wheelsAndColliders = new Dictionary<WheelCollider, GameObject>();
 
-    protected CameraManager MyCamera;
-    protected Transform LookHere, Position, AimPosition;
+    private CameraManager MyCamera;
+    private Transform LookHere, Position, AimPosition;
     private Rigidbody TheCarRigidBody;
 
 
@@ -61,40 +62,7 @@ public abstract class GeneralCar : MonoBehaviour
     private Vector3 worldPose_position;
 
 
-    void Start()
-    {
-        SetWheels();
-    }
-
-    protected void SetInGameStats()
-    {
-        TheCarRigidBody = GetComponent<Rigidbody>();
-    }
-
-    protected void SetWheels()
-    {
-        if (wheelsAndColliders.Count == 0)
-        {
-            var wc = GetComponentsInChildren<WheelCollider>();
-
-            foreach (var w in wc)
-            {
-                var obj = GameObject.Find($"Mesh/Wheel_{w.name}");
-
-                WheelErrorCorrectionR.Add(w, obj.transform.rotation);
-                wheelsAndColliders.Add(w, obj);
-            }
-        }
-    }
-
-    protected void SetCamera()
-    {
-        MyCamera.lookAtTarget = LookHere;
-        MyCamera.positionTarget = Position;
-        MyCamera.AimPosition = AimPosition;
-    }
-
-    internal void SetCar()
+    public override void OnStartLocalPlayer()
     {
         SetWheels();
 
@@ -126,7 +94,41 @@ public abstract class GeneralCar : MonoBehaviour
         SetInGameStats();
     }
 
-    internal void Drive()
+    void Update()
+    {
+        if (isLocalPlayer)
+            Drive();
+    }
+
+    private void SetInGameStats()
+    {
+        TheCarRigidBody = GetComponent<Rigidbody>();
+    }
+
+    private void SetWheels()
+    {
+        if (wheelsAndColliders.Count == 0)
+        {
+            var wc = GetComponentsInChildren<WheelCollider>();
+
+            foreach (var w in wc)
+            {
+                var obj = GameObject.Find($"Mesh/Wheel_{w.name}");
+
+                WheelErrorCorrectionR.Add(w, obj.transform.rotation);
+                wheelsAndColliders.Add(w, obj);
+            }
+        }
+    }
+
+    private void SetCamera()
+    {
+        MyCamera.lookAtTarget = LookHere;
+        MyCamera.positionTarget = Position;
+        MyCamera.AimPosition = AimPosition;
+    }
+
+    private void Drive()
     {
         var instantSteeringAngle = maxSteeringAngle * Input.GetAxis("Horizontal");
         var instantTorque = maxTorque * Input.GetAxis("Vertical");

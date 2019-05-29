@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 266473003}
   - component: {fileID: 266473002}
   - component: {fileID: 266473001}
-  - component: {fileID: 266473000}
   - component: {fileID: 266472999}
   - component: {fileID: 266472997}
   - component: {fileID: 266472996}
@@ -133,18 +132,6 @@ MonoBehaviour:
   m_SnapThreshold: 0
   m_InterpolateRotation: 1
   m_InterpolateMovement: 0
---- !u!114 &266473000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266472990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &266472999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,10 +692,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 34.52
   m_SuspensionSpring:
-    spring: 112969.29
-    damper: 18075.086
+    spring: 112969.266
+    damper: 18075.084
     targetPosition: 0.5
-  m_SuspensionDistance: 0.1962
+  m_SuspensionDistance: 0.19620003
   m_ForceAppPointDistance: 84.29971
   m_Mass: 40
   m_WheelDampingRate: 0.25
@@ -1047,7 +1034,7 @@ WheelCollider:
     spring: 88943.63
     damper: 14230.981
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620003
+  m_SuspensionDistance: 0.19620001
   m_ForceAppPointDistance: 84.29971
   m_Mass: 40
   m_WheelDampingRate: 0.25
