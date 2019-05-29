@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 337468319491981700}
   - component: {fileID: 4168449233636349803}
   - component: {fileID: 3994771030296425966}
+  - component: {fileID: 2748803762487443077}
   m_Layer: 0
   m_Name: EaglesCar
   m_TagString: Untagged
@@ -353,6 +354,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d21e3ae77a1aca46ba25eacc7feb6b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2748803762487443077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324947265018251071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &585478298614816171

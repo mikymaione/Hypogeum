@@ -836,6 +836,7 @@ GameObject:
   - component: {fileID: 8952454594305753724}
   - component: {fileID: 379993555704426122}
   - component: {fileID: 4798548572232538498}
+  - component: {fileID: 6780422611394226995}
   m_Layer: 0
   m_Name: LionsCar
   m_TagString: Untagged
@@ -1003,6 +1004,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31e4b7c1fcdd61f4db0e93d4d071b37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6780422611394226995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166404491640522105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9184946469077461324
