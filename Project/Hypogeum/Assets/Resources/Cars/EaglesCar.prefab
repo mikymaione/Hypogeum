@@ -160,7 +160,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 518718005}
-  - component: {fileID: 8487014824044927262}
   - component: {fileID: 4159041179416774108}
   - component: {fileID: 229310006032605614}
   - component: {fileID: 5420681754146531531}
@@ -168,7 +167,6 @@ GameObject:
   - component: {fileID: 3243681315850885656}
   - component: {fileID: 337468319491981700}
   - component: {fileID: 4168449233636349803}
-  - component: {fileID: 3994771030296425966}
   - component: {fileID: 2748803762487443077}
   m_Layer: 0
   m_Name: EaglesCar
@@ -196,25 +194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8487014824044927262
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324947265018251071}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b2fd60ab76f52084fa5f95fe46d80be5, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &4159041179416774108
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -344,18 +323,6 @@ MonoBehaviour:
   range: 30
   hitForce: 100
   windBoxCollider: {fileID: 4733921685586334601}
---- !u!114 &3994771030296425966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324947265018251071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d21e3ae77a1aca46ba25eacc7feb6b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2748803762487443077
 MonoBehaviour:
   m_ObjectHideFlags: 0

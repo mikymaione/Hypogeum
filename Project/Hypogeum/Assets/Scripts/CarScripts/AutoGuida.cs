@@ -6,7 +6,6 @@ Contributors:
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -18,36 +17,35 @@ public class AutoGuida : NetworkBehaviour
     private int stepsBelowThreshold = 30;
     private int stepsAboveThreshold = 1;
 
-    private Dictionary<WheelCollider, Quaternion> WheelErrorCorrectionR = new Dictionary<WheelCollider, Quaternion>();
-    private Dictionary<WheelCollider, GameObject> wheelsAndColliders = new Dictionary<WheelCollider, GameObject>();
+    private Quaternion[] WheelErrorCorrectionR = new Quaternion[4];
+    private WheelCollider[] Colliders = new WheelCollider[4];
+    private GameObject[] Wheels = new GameObject[4];
 
     private CameraManager MyCamera;
     private Transform LookHere, Position, AimPosition;
     private Rigidbody TheCarRigidBody;
-
-
-    // var for rotate the 3d object wheels
-    private Quaternion worldPose_rotation;
-    private Vector3 worldPose_position;
-
     private GeneralCar generalCar;
 
 
-    void Start()
-    {
-        SetWheels();
-    }
-
     public override void OnStartLocalPlayer()
     {
-        foreach (var w in wheelsAndColliders)
+        var i = 0;
+        var wc = GetComponentsInChildren<WheelCollider>();
+
+        foreach (var w in wc)
         {
-            //only 1
-            w.Key.ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
-            break;
+            var obj = GameObject.Find($"Mesh/Wheel_{w.name}");
+
+            WheelErrorCorrectionR[i] = obj.transform.rotation;
+            Colliders[i] = w;
+            Wheels[i] = obj;
+
+            i++;
         }
 
-        generalCar = GetComponent<GeneralCar>();
+        Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
+
+        generalCar = GeneralCar.IstanziaMe();
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
         LookHere = transform.Find("CameraAnchor/LookHere");
@@ -62,65 +60,50 @@ public class AutoGuida : NetworkBehaviour
     void Update()
     {
         if (isLocalPlayer)
-            Drive();
-    }
-
-    private void SetWheels()
-    {
-        if (wheelsAndColliders.Count == 0)
         {
-            var wc = GetComponentsInChildren<WheelCollider>();
+            Quaternion worldPose_rotation;
+            Vector3 worldPose_position;
 
-            foreach (var w in wc)
+            //freni
+            var fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
+            var handBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque * 2 : 0);
+
+            //DX-SX
+            var instantSteeringAngle = generalCar.maxSteeringAngle * Input.GetAxis("Horizontal");
+
+            //Avanti-dietro
+            var instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
+
+            if (TheCarRigidBody.velocity.magnitude >= generalCar.maxSpeed)
+                instantTorque = 0f;
+
+            for (var i = 0; i < Colliders.Length; i++)
             {
-                var obj = GameObject.Find($"Mesh/Wheel_{w.name}");
+                if (Colliders[i].tag.Equals("FrontWheel"))
+                    Colliders[i].steerAngle = instantSteeringAngle;
 
-                WheelErrorCorrectionR.Add(w, obj.transform.rotation);
-                wheelsAndColliders.Add(w, obj);
-            }
-        }
-    }
+                if (fullBrake > 0)
+                {
+                    Colliders[i].brakeTorque = fullBrake;
+                }
+                else if (handBrake > 0)
+                {
+                    if (Colliders[i].tag.Equals("BackWheel"))
+                        Colliders[i].brakeTorque = handBrake;
+                }
+                else
+                {
+                    Colliders[i].brakeTorque = 0;
+                }
 
-    private void Drive()
-    {
-        var instantSteeringAngle = generalCar.maxSteeringAngle * Input.GetAxis("Horizontal");
-        var instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
+                Colliders[i].motorTorque = instantTorque;
 
-        // limiting speed to maxSpeed 
-        // not precise, speed can overcome the limit
-        // it only stops motor torque when it's above maxSpeed
-        if (TheCarRigidBody.velocity.magnitude >= generalCar.maxSpeed)
-            instantTorque = 0f;
+                //rotate the 3d object
+                Colliders[i].GetWorldPose(out worldPose_position, out worldPose_rotation);
 
-        var fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
-        var handBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque * 2 : 0);
-
-        foreach (var wheel in wheelsAndColliders)
-        {
-            if (wheel.Key.tag.Equals("FrontWheel"))
-                wheel.Key.steerAngle = instantSteeringAngle;
-
-            if (fullBrake > 0)
-            {
-                wheel.Key.brakeTorque = fullBrake;
-            }
-            else if (handBrake > 0)
-            {
-                if (wheel.Key.tag.Equals("BackWheel"))
-                    wheel.Key.brakeTorque = handBrake;
-            }
-            else
-            {
-                wheel.Key.brakeTorque = 0;
-            }
-
-            wheel.Key.motorTorque = instantTorque;
-
-            //rotate the 3d object
-            wheel.Key.GetWorldPose(out worldPose_position, out worldPose_rotation);
-
-            wheel.Value.transform.position = worldPose_position;
-            wheel.Value.transform.rotation = worldPose_rotation * WheelErrorCorrectionR[wheel.Key];
+                Wheels[i].transform.position = worldPose_position;
+                Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
+            }            
         }
     }
 

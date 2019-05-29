@@ -7,45 +7,44 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class CarCollisionManager : NetworkBehaviour
+public class CarCollisionManager : MonoBehaviour
 {
 
-    private GeneralCar playerCar;
-    private Rigidbody playerCar_RB;
+    //private GeneralCar playerCar;
+    //private Rigidbody playerCar_RB;
 
 
-    void Start()
-    {
-        playerCar = GetComponent<GeneralCar>();
-        playerCar_RB = GetComponent<Rigidbody>();
-    }
+    //void Start()
+    //{
+    //    playerCar = GeneralCar.IstanziaMe();
+    //    playerCar_RB = GetComponent<Rigidbody>();
+    //}
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "IlMezzo(Clone)") //calcolare con livello, auto, nemici
-        {
-            Debug.Log("Collision with: " + collision.gameObject.name);
-            CalculateCollisionDamage(collision);
-            Debug.Log("Health left: " + playerCar.Health);
-        }
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.name == "IlMezzo(Clone)") //calcolare con livello, auto, nemici
+    //    {
+    //        Debug.Log("Collision with: " + collision.gameObject.name);
+    //        CalculateCollisionDamage(collision);
+    //        Debug.Log("Health left: " + playerCar.Health);
+    //    }
 
-        if (collision != null)
-        {
-            Debug.Log("Collision with: " + collision.gameObject.name);
-        }
-    }
+    //    if (collision != null)
+    //    {
+    //        Debug.Log("Collision with: " + collision.gameObject.name);
+    //    }
+    //}
 
-    public void CalculateCollisionDamage(Collision collision)
-    {
-        //F = v * m / t
+    //public void CalculateCollisionDamage(Collision collision)
+    //{
+    //    //F = v * m / t
 
-        //var other_car = collision.gameObject.GetComponent<LionsCar>();
-        var F = playerCar_RB.velocity.magnitude * playerCar_RB.mass / 0.1;
+    //    //var other_car = collision.gameObject.GetComponent<LionsCar>();
+    //    var F = playerCar_RB.velocity.magnitude * playerCar_RB.mass / 0.1;
 
-        playerCar.Health -= (int)(F - playerCar.Defense);
-    }
+    //    playerCar.Health -= (int)(F - playerCar.Defense);
+    //}
 
 
 }

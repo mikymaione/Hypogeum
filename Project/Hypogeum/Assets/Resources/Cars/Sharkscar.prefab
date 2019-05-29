@@ -339,7 +339,6 @@ GameObject:
   - component: {fileID: 1238866528958110004}
   - component: {fileID: 2707923015363895037}
   - component: {fileID: 8896617275720468330}
-  - component: {fileID: 7618309441900263459}
   - component: {fileID: 7062179990749609757}
   m_Layer: 0
   m_Name: Sharkscar
@@ -494,18 +493,6 @@ MonoBehaviour:
   biteDamage: 1
   range: 30
   hitForce: 100
---- !u!114 &7618309441900263459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2187948641101672348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a0c3dc4c8ec824b9215f652bd7964a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7062179990749609757
 MonoBehaviour:
   m_ObjectHideFlags: 0

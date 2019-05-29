@@ -828,14 +828,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1641117572985455104}
-  - component: {fileID: 3055682887054024906}
   - component: {fileID: 8088880155246270923}
   - component: {fileID: 5359154365258672329}
   - component: {fileID: 5059945338199452388}
   - component: {fileID: 2440915826389304771}
   - component: {fileID: 8952454594305753724}
   - component: {fileID: 379993555704426122}
-  - component: {fileID: 4798548572232538498}
   - component: {fileID: 6780422611394226995}
   m_Layer: 0
   m_Name: LionsCar
@@ -862,25 +860,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &3055682887054024906
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166404491640522105}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2f6f57ae54c958f4f88d7e592919c849, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8088880155246270923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,18 +973,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa,
     type: 3}
---- !u!114 &4798548572232538498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166404491640522105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31e4b7c1fcdd61f4db0e93d4d071b37a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6780422611394226995
 MonoBehaviour:
   m_ObjectHideFlags: 0
