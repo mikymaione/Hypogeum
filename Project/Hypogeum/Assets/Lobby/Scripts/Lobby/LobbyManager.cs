@@ -83,7 +83,7 @@ namespace Prototype.NetworkLobby
 				new Team(GB.EAnimal.Eagle), new Team(GB.EAnimal.Shark) };
         }
 
-		public void RegisterTeam();
+		//public void RegisterTeam();
 
         #region UI
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
