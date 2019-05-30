@@ -71,6 +71,11 @@ public static class GB
         return Resources.Load($"Cars/{s}") as GameObject;
     }
 
+	public static GameObject LoadCannon()
+	{
+		return Resources.Load("Weapons/CannonPrefab") as GameObject;
+	}
+
     public static void GoBackToScene()
     {
         var s = SceneManager.GetActiveScene();

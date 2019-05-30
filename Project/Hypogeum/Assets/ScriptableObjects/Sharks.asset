@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88191d4d2c645942b9e8c5c309286a1, type: 3}
   m_Name: Sharks
   m_EditorClassIdentifier: 
-  PlayerName: Default
+  TeamName: Default
   StartingHP: 100
-  characterAbilities:
-  - {fileID: 0}
-  - {fileID: 0}
+  characterAbilities: []
+  driver: {fileID: 0}
+  shooter: {fileID: 0}

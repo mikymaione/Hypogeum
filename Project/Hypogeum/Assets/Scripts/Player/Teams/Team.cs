@@ -7,12 +7,32 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
+using UnityEngine.Networking.Types;
 
-[CreateAssetMenu(menuName = "Character")]
-public class Character : ScriptableObject
+//[CreateAssetMenu(menuName = "Team")]
+namespace Prototype.NetworkLobby
 {
-    public string PlayerName = "Default";
-    public int StartingHP = 100;
-    public Ability[] characterAbilities;
+	public class Team
+	{
+		public GB.EAnimal? teamAnimal;
+		//public string TeamName = "Default";
+		//public int StartingHP = 100;
+		//public static Ability[] characterAbilities;
 
+		//public static LobbyPlayer driver;
+		//public static LobbyPlayer shooter;
+		public GB.EGameType driver;
+		public GB.EGameType shooter;
+
+		public Tuple<>
+
+		public 
+
+		public Team(GB.EAnimal animal)
+		{
+			teamAnimal = animal;
+		}
+	}
 }
