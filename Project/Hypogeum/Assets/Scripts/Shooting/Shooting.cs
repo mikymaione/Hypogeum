@@ -22,6 +22,7 @@ public class Shooting : NetworkBehaviour
     private Camera cam;
 	private CameraManager cameraManager;
 	private Transform cannonPosition;
+	private Transform cameraPosition;
 
     void Start()
     {
@@ -42,6 +43,8 @@ public class Shooting : NetworkBehaviour
 				var factionCarName = $"{GB.Animal.ToString()}sCar";
 				var factionCar = GameObject.FindGameObjectWithTag(factionCarName);
 				cannonPosition = factionCar?.transform.Find("CannonPosition");
+				cameraPosition = factionCar?.transform.Find("CameraPosition");
+
 				//cannonPosition = Helper.FindComponentInChildWithTag<Transform>(factionCar, "CannonPosition");
 			}
 
@@ -55,7 +58,7 @@ public class Shooting : NetworkBehaviour
                 StartCoroutine(RechargeWeapon());
 
                 var velocity = cam.transform.forward * projectileClass.speed;
-                CmdIstantiateBulletAndShoot(gameObject, cam.transform.position, cam.transform.rotation, velocity);
+                CmdIstantiateBulletAndShoot(gameObject, transform.Find("FireMouth").position, cam.transform.rotation, velocity);
             }
         }
     }
@@ -92,9 +95,9 @@ public class Shooting : NetworkBehaviour
 
 		if (cannonPosition != null)
 		{
-			cam.transform.position = cannonPosition.position;
+			cam.transform.position = cameraPosition.position;
 			transform.position = cannonPosition.position;
-			Debug.Log($"CannonFaction coordinates are: {cannonPosition.position.ToString()}");
+			//Debug.Log($"CannonFaction coordinates are: {cannonPosition.position.ToString()}");
 		}
 
 		transform.rotation = localRotation;

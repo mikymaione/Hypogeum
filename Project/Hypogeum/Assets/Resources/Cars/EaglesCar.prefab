@@ -191,6 +191,7 @@ Transform:
   - {fileID: 1230431643}
   - {fileID: 6717019935734029175}
   - {fileID: 8478256622006358161}
+  - {fileID: 6840474359207850448}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -530,11 +531,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 28
   m_SuspensionSpring:
-    spring: 48578.375
-    damper: 7772.54
+    spring: 48578.402
+    damper: 7772.544
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 55.5632
+  m_SuspensionDistance: 0.1962
+  m_ForceAppPointDistance: 71.47
   m_Mass: 15
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -737,7 +738,7 @@ WheelCollider:
     damper: 8304.589
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 64.9632
+  m_ForceAppPointDistance: 80.87
   m_Mass: 22
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -904,11 +905,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 31
   m_SuspensionSpring:
-    spring: 51384.22
+    spring: 51384.227
     damper: 8221.476
     targetPosition: 0.5
   m_SuspensionDistance: 0.1962
-  m_ForceAppPointDistance: 64.9632
+  m_ForceAppPointDistance: 80.87
   m_Mass: 22
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -995,11 +996,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 28
   m_SuspensionSpring:
-    spring: 48133.71
-    damper: 7701.394
+    spring: 48133.72
+    damper: 7701.3945
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 55.563206
+  m_ForceAppPointDistance: 71.47
   m_Mass: 15
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -1122,6 +1123,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &8672986913596189662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6840474359207850448}
+  m_Layer: 0
+  m_Name: CameraPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6840474359207850448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672986913596189662}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.120858334, y: 128, z: -11.5}
+  m_LocalScale: {x: 83.333336, y: 83.333336, z: 83.333336}
+  m_Children: []
+  m_Father: {fileID: 518718005}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8994212407927372698
 GameObject:
   m_ObjectHideFlags: 0
