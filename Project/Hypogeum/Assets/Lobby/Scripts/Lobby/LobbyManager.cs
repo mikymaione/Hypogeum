@@ -306,23 +306,24 @@ namespace Prototype.NetworkLobby
             });
         }
 
-		//here we instantiate the prefabs in the game scene
+		//here we instantiate the prefabs in the game scene, ONLY RUNS ON GAME SERVER
         public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
         {
-            var lp = Players[conn.connectionId];
+            var lobby_Player = Players[conn.connectionId];
 
-			switch (GB.GameType)
+			//Debug.Log($"GameType is {GB.GameType.ToString()}");
+			switch (lobby_Player.gameType)
 			{
 				case GB.EGameType.Driving:
 
-					var car = GB.LoadAnimalCar(lp.animal);
+					var car = GB.LoadAnimalCar(lobby_Player.animal);
 					var car_instance = Instantiate(car, startPositions[conn.connectionId].position, Quaternion.identity);
 					return car_instance;
 
 				case GB.EGameType.Shooting:
 
 					//Loading the cannon prefab
-					var cannon = GB.LoadCannon();
+					var cannon = GB.LoadCannon(lobby_Player.animal);
 					var cannon_instance = Instantiate(cannon, startPositions[conn.connectionId].position, Quaternion.identity);
 					return cannon_instance;
 			}

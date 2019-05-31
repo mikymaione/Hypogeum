@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\Global\GB.cs" />
      <Compile Include="Assets\Scripts\Global\GM.cs" />
      <Compile Include="Assets\Scripts\Global\SceneField.cs" />
+     <Compile Include="Assets\Scripts\Helper.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\Ability.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\AbilityCoolDown.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\Eagles\WindAbility.cs" />

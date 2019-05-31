@@ -11,6 +11,11 @@ TagManager:
   - UI
   - BackWheel
   - FrontWheel
+  - LionsCar
+  - SharksCar
+  - RhinosCar
+  - EaglesCar
+  - CannonPosition
   layers:
   - Default
   - TransparentFX

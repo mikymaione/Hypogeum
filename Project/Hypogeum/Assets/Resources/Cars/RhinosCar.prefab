@@ -14,11 +14,10 @@ GameObject:
   - component: {fileID: 266473001}
   - component: {fileID: 266472999}
   - component: {fileID: 266472997}
-  - component: {fileID: 266472996}
   - component: {fileID: 111511663713403492}
   m_Layer: 0
   m_Name: RhinosCar
-  m_TagString: Untagged
+  m_TagString: RhinosCar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,6 +37,7 @@ Transform:
   - {fileID: 4829877121395568988}
   - {fileID: 4042957306201697631}
   - {fileID: 4519576318990537995}
+  - {fileID: 4077289604372182174}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -140,20 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a84e324b6f45904e9e3f18de4de9b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &266472996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266472990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb8dde35f3adfdc468fca294d8a3341c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa,
-    type: 3}
 --- !u!114 &111511663713403492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -970,6 +956,36 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!1 &7801801618972389806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4077289604372182174}
+  m_Layer: 0
+  m_Name: CannonPosition
+  m_TagString: CannonPosition
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4077289604372182174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801801618972389806}
+  m_LocalRotation: {x: -0.0006329117, y: -0, z: -0, w: 0.9999999}
+  m_LocalPosition: {x: 0, y: 0.982, z: -0.459}
+  m_LocalScale: {x: 0.61628, y: 0.61628, z: 0.61628}
+  m_Children: []
+  m_Father: {fileID: 266472989}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -0.07300001, y: 0, z: 0}
 --- !u!1 &7971426280167157273
 GameObject:
   m_ObjectHideFlags: 0

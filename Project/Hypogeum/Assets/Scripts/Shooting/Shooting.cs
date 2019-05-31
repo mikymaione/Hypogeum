@@ -20,19 +20,34 @@ public class Shooting : NetworkBehaviour
 
     private Vector3 target;
     private Camera cam;
-
+	private CameraManager cameraManager;
+	private Transform cannonPosition;
 
     void Start()
     {
         cam = Camera.main;
+		cameraManager = cam.GetComponent<CameraManager>();
         projectileClass = projectilePrefab.GetComponent<Bullet>();
+		//Debug.Log($"CannonFaction coordinates are: {cannonPosition.position.ToString()}");
+		//cannonPosition = factionCar.transform.Find("CannonPosition");
+		
     }
 
     void Update()
     {
         if (isLocalPlayer)
         {
+			if (cannonPosition == null)
+			{
+				var factionCarName = $"{GB.Animal.ToString()}sCar";
+				var factionCar = GameObject.FindGameObjectWithTag(factionCarName);
+				cannonPosition = factionCar?.transform.Find("CannonPosition");
+				//cannonPosition = Helper.FindComponentInChildWithTag<Transform>(factionCar, "CannonPosition");
+			}
+
             target = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
+
+			PlaceAndRotateCannon();
 
             if (canShoot && Input.GetMouseButtonDown(0))
             {
@@ -70,5 +85,19 @@ public class Shooting : NetworkBehaviour
         StopCoroutine(RechargeWeapon());
     }
 
+	//place and rotate the cannon along with the camera on axis Y
+	private void PlaceAndRotateCannon()
+	{
+		var localRotation = Quaternion.Euler(0, cameraManager.rotY, 0);
+
+		if (cannonPosition != null)
+		{
+			cam.transform.position = cannonPosition.position;
+			transform.position = cannonPosition.position;
+			Debug.Log($"CannonFaction coordinates are: {cannonPosition.position.ToString()}");
+		}
+
+		transform.rotation = localRotation;
+	}
 
 }

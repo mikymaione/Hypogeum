@@ -29,6 +29,7 @@ namespace Prototype.NetworkLobby
         public int connID;
 
         //OnMyName function will be invoked on clients when server change the value of playerName
+		//
         [SyncVar(hook = "OnMyName")]
         public string playerName = "";
 
@@ -37,6 +38,9 @@ namespace Prototype.NetworkLobby
 
         [SyncVar(hook = "OnMyAnimal")]
         public GB.EAnimal animal;
+
+		[SyncVar(hook = "OnMyGameType")]
+        public GB.EGameType gameType;
 
 
         public Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
@@ -68,6 +72,7 @@ namespace Prototype.NetworkLobby
             OnMyName(playerName);
             OnMyColor(playerColor);
             OnMyAnimal(animal);
+			OnMyGameType(gameType);
         }
 
         public override void OnStartAuthority()
@@ -125,6 +130,8 @@ namespace Prototype.NetworkLobby
                 CmdNameChanged("Player" + (LobbyPlayerList._instance.playerListContentTransform.childCount - 1));
 
             CmdSetAnimal(GB.Animal.Value);
+
+			CmdSetGameType(GB.GameType.Value);
 
             //we switch from simple name display to name input
             colorButton.interactable = true;
@@ -190,13 +197,19 @@ namespace Prototype.NetworkLobby
             GetComponent<Image>().color = (idx % 2 == 0) ? EvenRowColor : OddRowColor;
         }
 
-        ///===== callback from sync var        
+        ///===== callback from sync var 
+		///these are methods called by reflection with string hooks form LobbyPlayer.cs
         public void OnMyAnimal(GB.EAnimal newAnimal)
         {
             animal = newAnimal;
         }
 
-        public void OnMyName(string newName)
+		public void OnMyGameType(GB.EGameType newGameType)
+		{
+			gameType = newGameType;
+		}
+
+		public void OnMyName(string newName)
         {
             playerName = newName;
             nameInput.text = playerName;
@@ -304,6 +317,12 @@ namespace Prototype.NetworkLobby
         {
             animal = animal_;
         }
+
+		[Command]
+		public void CmdSetGameType(GB.EGameType gameType_)
+		{
+			gameType = gameType_;
+		}
 
         //Cleanup thing when get destroy (which happen when client kick or disconnect)
         public void OnDestroy()

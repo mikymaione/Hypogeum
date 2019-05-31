@@ -71,9 +71,9 @@ public static class GB
         return Resources.Load($"Cars/{s}") as GameObject;
     }
 
-	public static GameObject LoadCannon()
+	public static GameObject LoadCannon(EAnimal animal)
 	{
-		return Resources.Load("Weapons/CannonPrefab") as GameObject;
+		return Resources.Load($"Weapons/{animal.ToString()}sCannon") as GameObject;
 	}
 
     public static void GoBackToScene()
@@ -117,6 +117,4 @@ public static class GB
 
         GotoSceneName(name);
     }
-
-
 }

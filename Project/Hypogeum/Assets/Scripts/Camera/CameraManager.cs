@@ -17,8 +17,8 @@ public class CameraManager : MonoBehaviour
     public float mouseSensitivity = 100;
     public float clampAngle = 80;
 
-    private float rotY = 0;
-    private float rotX = 0;
+    internal float rotY = 0;
+    internal float rotX = 0;
 
 
     void Start()
