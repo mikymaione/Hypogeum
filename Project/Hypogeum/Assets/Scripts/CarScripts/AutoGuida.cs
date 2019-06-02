@@ -56,7 +56,7 @@ public class AutoGuida : NetworkBehaviour
 
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
-        MyCamera.AimPosition = AimPosition;
+        MyCamera.AimPosition = AimPosition;        
     }
 
     void Update()
@@ -109,7 +109,7 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
         }
-    }
+    }   
 
 
 }

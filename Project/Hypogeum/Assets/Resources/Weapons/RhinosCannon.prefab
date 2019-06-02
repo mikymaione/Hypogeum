@@ -101,7 +101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262253318469524126}
   m_LocalRotation: {x: 0.0006329117, y: -0, z: -0, w: 0.9999999}
-  m_LocalPosition: {x: 0, y: 1.005, z: 1.019}
+  m_LocalPosition: {x: 0, y: 0.944, z: 0.704}
   m_LocalScale: {x: 1.6226391, y: 1.6226391, z: 1.6226391}
   m_Children: []
   m_Father: {fileID: 3762754772724187504}
@@ -261,6 +261,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &4135503850049998777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9185106412462769369}
+  m_Layer: 0
+  m_Name: CameraPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9185106412462769369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135503850049998777}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.226, z: 0.149}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3762754772724187504}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8553691088267816963
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +317,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8553691088267816963}
-  m_LocalRotation: {x: -0.0006329117, y: -0, z: -0, w: 0.9999999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.61628, y: 0.61628, z: 0.61628}
   m_Children:
@@ -295,9 +325,10 @@ Transform:
   - {fileID: 1307311365957685967}
   - {fileID: 8260102383627494734}
   - {fileID: 3533349198548507180}
+  - {fileID: 9185106412462769369}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.07300001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2337925688864476651
 Animator:
   serializedVersion: 3

@@ -16,6 +16,8 @@ TagManager:
   - RhinosCar
   - EaglesCar
   - CannonPosition
+  - AIM
+  - Canvas
   layers:
   - Default
   - TransparentFX

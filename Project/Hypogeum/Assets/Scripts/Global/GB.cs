@@ -40,6 +40,18 @@ public static class GB
     internal static EAnimal? Animal;
 
 
+    //da testare
+    public static T FindComponentInChildWithTag<T>(GameObject parent, string tag) where T : Component
+    {
+        var t = parent.transform;
+
+        foreach (Transform tr in t)
+            if (tr.CompareTag(tag))
+                return tr.GetComponent<T>();
+
+        return null;
+    }
+
     public static EAnimal getRandomAnimal()
     {
         var values = System.Enum.GetValues(typeof(EAnimal));
@@ -71,10 +83,10 @@ public static class GB
         return Resources.Load($"Cars/{s}") as GameObject;
     }
 
-	public static GameObject LoadCannon(EAnimal animal)
-	{
-		return Resources.Load($"Weapons/{animal.ToString()}sCannon") as GameObject;
-	}
+    public static GameObject LoadCannon(EAnimal animal)
+    {
+        return Resources.Load($"Weapons/{animal.ToString()}sCannon") as GameObject;
+    }
 
     public static void GoBackToScene()
     {
