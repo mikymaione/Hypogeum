@@ -2257,7 +2257,7 @@ GameObject:
   - component: {fileID: 425737620}
   m_Layer: 5
   m_Name: ActualSpeed
-  m_TagString: Untagged
+  m_TagString: SpeedText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

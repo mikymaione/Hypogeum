@@ -8,6 +8,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class AutoGuida : NetworkBehaviour
 {
@@ -25,6 +26,7 @@ public class AutoGuida : NetworkBehaviour
     private Transform LookHere, Position, AimPosition;
     private Rigidbody TheCarRigidBody;
     private GeneralCar generalCar;
+	private Text speedText;
 
 
     public override void OnStartLocalPlayer()
@@ -53,6 +55,7 @@ public class AutoGuida : NetworkBehaviour
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
+		speedText = GameObject.FindGameObjectWithTag("SpeedText").GetComponent<Text>();
 
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
@@ -66,7 +69,11 @@ public class AutoGuida : NetworkBehaviour
             Quaternion worldPose_rotation;
             Vector3 worldPose_position;
 
-            Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
+			//to dispaly the car speed on HUD
+			var actualSpeed = TheCarRigidBody.velocity.magnitude;
+			speedText.text = Mathf.Round(actualSpeed).ToString();
+
+			Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
 
             //freni
             var fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
