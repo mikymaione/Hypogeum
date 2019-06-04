@@ -9,15 +9,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 public class EaglesCarDrive : GeneralCar
 {
 
-    protected override int Health_default() => 1000;
-    protected override int Defense_default() => 4;
-    protected override int Speed_default() => 4;
-    protected override int Agility_default() => 4;
+	protected override int Health_default() => 1000;
+	protected override int Defense_default() => 4;
+	protected override int Speed_default() => 4;
+	protected override int Agility_default() => 4;
 
-    protected override float maxSteeringAngle_default() => 35f;
-    protected override float maxTorque_default() => 1000f;
-    protected override float brakingTorque_default() => 60000f;
-    protected override float maxSpeed_default() => 60f;
+	protected override float maxSteeringAngle_default() => 35f;
+	protected override float maxTorque_default() => 1000f;
+	protected override float brakingTorque_default() => 60000f;
+	protected override float maxSpeed_default() => 60f;
 
-
+	protected override int Max_Health_Default() => 800;
 }

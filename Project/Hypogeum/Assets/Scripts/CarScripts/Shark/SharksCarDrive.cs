@@ -9,14 +9,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 public class SharksCarDrive : GeneralCar
 {
 
-    protected override int Health_default() => 1000;
-    protected override int Defense_default() => 4;
-    protected override int Speed_default() => 4;
-    protected override int Agility_default() => 4;
+	protected override int Health_default() => 1000;
+	protected override int Defense_default() => 4;
+	protected override int Speed_default() => 4;
+	protected override int Agility_default() => 4;
 
-    protected override float maxSteeringAngle_default() => 25f;
-    protected override float maxTorque_default() => 1000f;
-    protected override float brakingTorque_default() => 60000f;
-    protected override float maxSpeed_default() => 50f;
-    
+	protected override float maxSteeringAngle_default() => 25f;
+	protected override float maxTorque_default() => 1000f;
+	protected override float brakingTorque_default() => 60000f;
+	protected override float maxSpeed_default() => 50f;
+
+	protected override int Max_Health_Default() => 1000;
 }

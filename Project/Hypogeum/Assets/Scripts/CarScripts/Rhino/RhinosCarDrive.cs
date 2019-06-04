@@ -19,5 +19,5 @@ public class RhinosCarDrive : GeneralCar
     protected override float brakingTorque_default() => 60000f;
     protected override float maxSpeed_default() => 30f;
 
-
+	protected override int Max_Health_Default() => 1500;
 }

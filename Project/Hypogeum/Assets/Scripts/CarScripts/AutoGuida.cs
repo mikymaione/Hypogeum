@@ -25,8 +25,13 @@ public class AutoGuida : NetworkBehaviour
     private CameraManager MyCamera;
     private Transform LookHere, Position, AimPosition;
     private Rigidbody TheCarRigidBody;
+
+	//The class that owns the stats of the faction
     private GeneralCar generalCar;
+	//To change the speed in the speedometer
 	private Text speedText;
+	//To manage the team Health bar
+	private Slider healthBar;
 
 
     public override void OnStartLocalPlayer()
@@ -56,6 +61,12 @@ public class AutoGuida : NetworkBehaviour
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
 		speedText = GameObject.FindGameObjectWithTag("SpeedText").GetComponent<Text>();
+		healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
+
+		//Setting the start values for Health Bar
+		healthBar.minValue = 0;
+		healthBar.maxValue = generalCar.Max_Health;
+		healthBar.value = generalCar.Health;
 
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
@@ -69,7 +80,10 @@ public class AutoGuida : NetworkBehaviour
             Quaternion worldPose_rotation;
             Vector3 worldPose_position;
 
-			//to dispaly the car speed on HUD
+			//To update the Health Bar
+			healthBar.value = generalCar.Health;
+
+			//To display the car speed on HUD
 			var actualSpeed = TheCarRigidBody.velocity.magnitude;
 			speedText.text = Mathf.Round(actualSpeed).ToString();
 
