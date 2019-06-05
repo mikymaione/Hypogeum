@@ -19,6 +19,7 @@ TagManager:
   - AIM
   - Canvas
   - SpeedText
+  - car
   layers:
   - Default
   - TransparentFX

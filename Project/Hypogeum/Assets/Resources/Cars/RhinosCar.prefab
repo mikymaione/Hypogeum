@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 111511663713403492}
   m_Layer: 0
   m_Name: RhinosCar
-  m_TagString: RhinosCar
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

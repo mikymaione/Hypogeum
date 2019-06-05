@@ -11,40 +11,44 @@ using UnityEngine;
 public class CarCollisionManager : MonoBehaviour
 {
 
-    //private GeneralCar playerCar;
-    //private Rigidbody playerCar_RB;
+	private GeneralCar playerCar;
+	private Rigidbody playerCar_RB;
+	private AutoGuida autoGuida;
 
 
-    //void Start()
-    //{
-    //    playerCar = GeneralCar.IstanziaMe();
-    //    playerCar_RB = GetComponent<Rigidbody>();
-    //}
+	void Start()
+	{
+		//playerCar = GeneralCar.IstanziaMe();
+		autoGuida = GetComponent<AutoGuida>();
+		playerCar = autoGuida.generalCar;
+		playerCar_RB = GetComponent<Rigidbody>();
+	}
 
-    //public void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.name == "IlMezzo(Clone)") //calcolare con livello, auto, nemici
-    //    {
-    //        Debug.Log("Collision with: " + collision.gameObject.name);
-    //        CalculateCollisionDamage(collision);
-    //        Debug.Log("Health left: " + playerCar.Health);
-    //    }
+	//TODO Works but has to be reworked as a CMD/RPC
+	public void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag == "car") //calcolare con livello, auto, nemici
+		{
+			Debug.Log("Collision with: " + collision.gameObject.name);
+			CalculateCollisionDamage(collision);
+			Debug.Log("Health left: " + playerCar.Health);
+		}
 
-    //    if (collision != null)
-    //    {
-    //        Debug.Log("Collision with: " + collision.gameObject.name);
-    //    }
-    //}
+		//if (collision != null)
+		//{
+		//	Debug.Log("Collision with: " + collision.gameObject.name);
+		//}
+	}
 
-    //public void CalculateCollisionDamage(Collision collision)
-    //{
-    //    //F = v * m / t
+	public void CalculateCollisionDamage(Collision collision)
+	{
+		//F = v * m / t
 
-    //    //var other_car = collision.gameObject.GetComponent<LionsCar>();
-    //    var F = playerCar_RB.velocity.magnitude * playerCar_RB.mass / 0.1;
+		//var other_car = collision.gameObject.GetComponent<LionsCar>();
+		//var force = playerCar_RB.velocity.magnitude * playerCar_RB.mass / 1;
 
-    //    playerCar.Health -= (int)(F - playerCar.Defense);
-    //}
+		playerCar.Health -= (int)(playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
+	}
 
 
 }

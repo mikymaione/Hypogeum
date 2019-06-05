@@ -27,7 +27,7 @@ public class AutoGuida : NetworkBehaviour
     private Rigidbody TheCarRigidBody;
 
 	//The class that owns the stats of the faction
-    private GeneralCar generalCar;
+    public GeneralCar generalCar;
 	//To change the speed in the speedometer
 	private Text speedText;
 	//To manage the team Health bar

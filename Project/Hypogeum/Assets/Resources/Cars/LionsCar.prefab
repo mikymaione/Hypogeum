@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 6780422611394226995}
   m_Layer: 0
   m_Name: LionsCar
-  m_TagString: LionsCar
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
