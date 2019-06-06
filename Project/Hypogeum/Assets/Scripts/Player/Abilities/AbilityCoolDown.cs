@@ -84,7 +84,7 @@ public class AbilityCoolDown : MonoBehaviour
                 ButtonTriggered();
         }
         else //if ability cooldown is not complete
-        {            
+        {
             CoolDown();
         }
     }

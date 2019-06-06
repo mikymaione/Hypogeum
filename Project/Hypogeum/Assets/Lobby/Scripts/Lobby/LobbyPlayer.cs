@@ -29,7 +29,7 @@ namespace Prototype.NetworkLobby
         public int connID;
 
         //OnMyName function will be invoked on clients when server change the value of playerName
-		//
+        //
         [SyncVar(hook = "OnMyName")]
         public string playerName = "";
 
@@ -39,7 +39,7 @@ namespace Prototype.NetworkLobby
         [SyncVar(hook = "OnMyAnimal")]
         public GB.EAnimal animal;
 
-		[SyncVar(hook = "OnMyGameType")]
+        [SyncVar(hook = "OnMyGameType")]
         public GB.EGameType gameType;
 
 
@@ -72,7 +72,7 @@ namespace Prototype.NetworkLobby
             OnMyName(playerName);
             OnMyColor(playerColor);
             OnMyAnimal(animal);
-			OnMyGameType(gameType);
+            OnMyGameType(gameType);
         }
 
         public override void OnStartAuthority()
@@ -131,7 +131,7 @@ namespace Prototype.NetworkLobby
 
             CmdSetAnimal(GB.Animal.Value);
 
-			CmdSetGameType(GB.GameType.Value);
+            CmdSetGameType(GB.GameType.Value);
 
             //we switch from simple name display to name input
             colorButton.interactable = true;
@@ -204,12 +204,12 @@ namespace Prototype.NetworkLobby
             animal = newAnimal;
         }
 
-		public void OnMyGameType(GB.EGameType newGameType)
-		{
-			gameType = newGameType;
-		}
+        public void OnMyGameType(GB.EGameType newGameType)
+        {
+            gameType = newGameType;
+        }
 
-		public void OnMyName(string newName)
+        public void OnMyName(string newName)
         {
             playerName = newName;
             nameInput.text = playerName;
@@ -318,11 +318,11 @@ namespace Prototype.NetworkLobby
             animal = animal_;
         }
 
-		[Command]
-		public void CmdSetGameType(GB.EGameType gameType_)
-		{
-			gameType = gameType_;
-		}
+        [Command]
+        public void CmdSetGameType(GB.EGameType gameType_)
+        {
+            gameType = gameType_;
+        }
 
         //Cleanup thing when get destroy (which happen when client kick or disconnect)
         public void OnDestroy()

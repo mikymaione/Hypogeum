@@ -19,5 +19,5 @@ public class LionsCarDrive : GeneralCar
     protected override float brakingTorque_default() => 60000f;
     protected override float maxSpeed_default() => 40f;
 
-	protected override int Max_Health_Default() => 1200;
+    protected override int Max_Health_Default() => 1200;
 }

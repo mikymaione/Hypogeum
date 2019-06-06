@@ -17,23 +17,23 @@ using UnityEngine.UI;
 
 namespace Prototype.NetworkLobby
 {
-	public class LobbyManager : NetworkLobbyManager
-	{
+    public class LobbyManager : NetworkLobbyManager
+    {
 
-		#region Helper functions
-		class KickMsg : MessageBase { }
+        #region Helper functions
+        class KickMsg : MessageBase { }
 
-		public delegate void BackButtonDelegate();
-		public BackButtonDelegate backDelegate;
-		#endregion
+        public delegate void BackButtonDelegate();
+        public BackButtonDelegate backDelegate;
+        #endregion
 
-		#region Props        
-		private static short MsgKicked = MsgType.Highest + 1;
-		public static LobbyManager s_Singleton;
+        #region Props        
+        private static short MsgKicked = MsgType.Highest + 1;
+        public static LobbyManager s_Singleton;
 
-		private Dictionary<int, LobbyPlayer> Players = new Dictionary<int, LobbyPlayer>();
+        private Dictionary<int, LobbyPlayer> Players = new Dictionary<int, LobbyPlayer>();
 
-		public Team[] teams;
+        public Team[] teams;
 
         [Header("Unity UI Lobby")]
         [Tooltip("Time in second between all players ready & match start")]
@@ -78,12 +78,12 @@ namespace Prototype.NetworkLobby
 
             gamePlayerPrefab = GB.LoadAnimalCar(GB.EAnimal.Rhino);
 
-			//creating the teams
-			teams = new Team[] { new Team(GB.EAnimal.Lion), new Team(GB.EAnimal.Rhino),
-				new Team(GB.EAnimal.Eagle), new Team(GB.EAnimal.Shark) };
+            //creating the teams
+            teams = new Team[] { new Team(GB.EAnimal.Lion), new Team(GB.EAnimal.Rhino),
+                new Team(GB.EAnimal.Eagle), new Team(GB.EAnimal.Shark) };
         }
 
-		//public void RegisterTeam();
+        //public void RegisterTeam();
 
         #region UI
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
@@ -306,30 +306,30 @@ namespace Prototype.NetworkLobby
             });
         }
 
-		//here we instantiate the prefabs in the game scene, ONLY RUNS ON GAME SERVER
+        //here we instantiate the prefabs in the game scene, ONLY RUNS ON GAME SERVER
         public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
         {
             var lobby_Player = Players[conn.connectionId];
 
-			//Debug.Log($"GameType is {GB.GameType.ToString()}");
-			switch (lobby_Player.gameType)
-			{
-				case GB.EGameType.Driving:
+            //Debug.Log($"GameType is {GB.GameType.ToString()}");
+            switch (lobby_Player.gameType)
+            {
+                case GB.EGameType.Driving:
 
-					var car = GB.LoadAnimalCar(lobby_Player.animal);
-					var car_instance = Instantiate(car, startPositions[conn.connectionId].position, Quaternion.identity);
-					return car_instance;
+                    var car = GB.LoadAnimalCar(lobby_Player.animal);
+                    var car_instance = Instantiate(car, startPositions[conn.connectionId].position, Quaternion.identity);
+                    return car_instance;
 
-				case GB.EGameType.Shooting:
+                case GB.EGameType.Shooting:
 
-					//Loading the cannon prefab
-					var cannon = GB.LoadCannon(lobby_Player.animal);
-					var cannon_instance = Instantiate(cannon, startPositions[conn.connectionId].position, Quaternion.identity);
-					return cannon_instance;
-			}
+                    //Loading the cannon prefab
+                    var cannon = GB.LoadCannon(lobby_Player.animal);
+                    var cannon_instance = Instantiate(cannon, startPositions[conn.connectionId].position, Quaternion.identity);
+                    return cannon_instance;
+            }
 
-			Debug.Log("Error in GameType switch inside OnLobbyServerCreateGamePlayer");
-			return null;
+            Debug.Log("Error in GameType switch inside OnLobbyServerCreateGamePlayer");
+            return null;
         }
 
         public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)

@@ -19,10 +19,10 @@ public abstract class GeneralCar
         set => Health_c = value;
     }
 
-	protected abstract int Max_Health_Default();
-	internal int Max_Health => Max_Health_Default();
+    protected abstract int Max_Health_Default();
+    internal int Max_Health => Max_Health_Default();
 
-	protected abstract int Defense_default();
+    protected abstract int Defense_default();
     internal int Defense => Defense_default();
 
     protected abstract int Speed_default();

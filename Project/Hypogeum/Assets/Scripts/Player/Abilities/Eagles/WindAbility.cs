@@ -11,26 +11,26 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/WindAbility")]
 public class WindAbility : Ability
 {
-	public int damage = 1;
-	public float range = 30f;
+    public int damage = 1;
+    public float range = 30f;
 
-	//in Newtons
-	public float hitForce = 100f;
+    //in Newtons
+    public float hitForce = 100f;
 
-	private WindTriggerable windTriggerable;
+    private WindTriggerable windTriggerable;
 
-	public override void Initialize(GameObject obj)
-	{
-		windTriggerable = obj.GetComponent<WindTriggerable>();
-		windTriggerable.Initialize();
+    public override void Initialize(GameObject obj)
+    {
+        windTriggerable = obj.GetComponent<WindTriggerable>();
+        windTriggerable.Initialize();
 
-		windTriggerable.biteDamage = damage;
-		windTriggerable.range = range;
-		windTriggerable.hitForce = hitForce;
-	}
+        windTriggerable.biteDamage = damage;
+        windTriggerable.range = range;
+        windTriggerable.hitForce = hitForce;
+    }
 
-	public override void TriggerAbility()
-	{
-		windTriggerable.ActivateWind();
-	}
+    public override void TriggerAbility()
+    {
+        windTriggerable.ActivateWind();
+    }
 }

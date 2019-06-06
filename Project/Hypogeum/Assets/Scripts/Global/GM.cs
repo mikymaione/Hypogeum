@@ -10,10 +10,10 @@ using UnityEngine;
 
 public class GM : MonoBehaviour
 {
-    
+
     void Start()
     {
-        
+
     }
-   
+
 }

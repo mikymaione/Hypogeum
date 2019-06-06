@@ -26,12 +26,12 @@ public class AutoGuida : NetworkBehaviour
     private Transform LookHere, Position, AimPosition;
     private Rigidbody TheCarRigidBody;
 
-	//The class that owns the stats of the faction
+    //The class that owns the stats of the faction
     public GeneralCar generalCar;
-	//To change the speed in the speedometer
-	private Text speedText;
-	//To manage the team Health bar
-	private Slider healthBar;
+    //To change the speed in the speedometer
+    private Text speedText;
+    //To manage the team Health bar
+    private Slider healthBar;
 
 
     public override void OnStartLocalPlayer()
@@ -60,17 +60,17 @@ public class AutoGuida : NetworkBehaviour
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
-		speedText = GameObject.FindGameObjectWithTag("SpeedText").GetComponent<Text>();
-		healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
+        speedText = GameObject.FindGameObjectWithTag("SpeedText").GetComponent<Text>();
+        healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
 
-		//Setting the start values for Health Bar
-		healthBar.minValue = 0;
-		healthBar.maxValue = generalCar.Max_Health;
-		healthBar.value = generalCar.Health;
+        //Setting the start values for Health Bar
+        healthBar.minValue = 0;
+        healthBar.maxValue = generalCar.Max_Health;
+        healthBar.value = generalCar.Health;
 
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
-        MyCamera.AimPosition = AimPosition;        
+        MyCamera.AimPosition = AimPosition;
     }
 
     void Update()
@@ -80,14 +80,14 @@ public class AutoGuida : NetworkBehaviour
             Quaternion worldPose_rotation;
             Vector3 worldPose_position;
 
-			//To update the Health Bar
-			healthBar.value = generalCar.Health;
+            //To update the Health Bar
+            healthBar.value = generalCar.Health;
 
-			//To display the car speed on HUD
-			var actualSpeed = TheCarRigidBody.velocity.magnitude;
-			speedText.text = Mathf.Round(actualSpeed).ToString();
+            //To display the car speed on HUD
+            var actualSpeed = TheCarRigidBody.velocity.magnitude;
+            speedText.text = Mathf.Round(actualSpeed).ToString();
 
-			Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
+            Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
 
             //freni
             var fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
@@ -130,7 +130,7 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
         }
-    }   
+    }
 
 
 }

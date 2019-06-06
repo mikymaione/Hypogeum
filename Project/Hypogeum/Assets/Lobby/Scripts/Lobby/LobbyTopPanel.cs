@@ -33,7 +33,6 @@ namespace Prototype.NetworkLobby
             {
                 ToggleVisibility(!isDisplayed);
             }
-
         }
 
         public void ToggleVisibility(bool visible)
