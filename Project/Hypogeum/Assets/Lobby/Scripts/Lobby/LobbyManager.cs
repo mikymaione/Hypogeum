@@ -31,7 +31,7 @@ namespace Prototype.NetworkLobby
         private static short MsgKicked = MsgType.Highest + 1;
         public static LobbyManager s_Singleton;
 
-        private Dictionary<int, LobbyPlayer> Players = new Dictionary<int, LobbyPlayer>();
+        internal Dictionary<int, LobbyPlayer> Players = new Dictionary<int, LobbyPlayer>();
 
         public Team[] teams;
 

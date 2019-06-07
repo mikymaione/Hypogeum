@@ -12,11 +12,14 @@ public class GM : MonoBehaviour
 {
 	private GeneralCar generalCar;
 	private GB.EAnimal animal;
-    
-    void Start()
-    {
+
+	void Start()
+	{
 		generalCar = GameObject.FindGameObjectWithTag("car").GetComponent<AutoGuida>().generalCar;
-    }
+		//test
+		generalCar.Health = 0;
+		//RemoveTeam(GB.EAnimal.Lion);
+	}
 
 	void Update()
 	{
@@ -25,6 +28,7 @@ public class GM : MonoBehaviour
 			//TODO call to function that disconnects the 2 players of the same team from the game in safe way
 			//must call the server that has to send a msg to clients, notifying that all players in the same team
 			//TeamHasBeenDefeated();
+			RemoveTeam(GB.EAnimal.Lion);
 		}
 	}
 
@@ -36,6 +40,33 @@ public class GM : MonoBehaviour
 			return false;
 		}
 		else return true;
+	}
+
+	
+	public void RemoveTeam(GB.EAnimal animal)
+	{
+		foreach (var lobbyPlayer in Prototype.NetworkLobby.LobbyManager.s_Singleton.Players)
+		{
+			if (lobbyPlayer.Value.animal == animal)
+			{
+				Prototype.NetworkLobby.LobbyManager.s_Singleton.RemovePlayer(lobbyPlayer.Value);
+			}
+		}
+
+		//foreach (var p in Prototype.NetworkLobby.LobbyPlayerList._instance._players)
+		//{
+		//	switch (p.animal)
+		//	{
+		//		case GB.EAnimal.Eagle:
+		//			break;
+		//		case GB.EAnimal.Lion:
+		//			break;
+		//		case GB.EAnimal.Rhino:
+		//			break;
+		//		case GB.EAnimal.Shark:
+		//			break;
+		//	}
+		//}
 	}
    
 }
