@@ -42,9 +42,11 @@ public class Shooting : NetworkBehaviour
             if (cannonPositionMarker == null)
             {
                 var factionCarName = $"{GB.Animal.ToString()}sCar";
-                var factionCar = GameObject.FindGameObjectWithTag(factionCarName);
+                var cars = GameObject.FindGameObjectsWithTag("car");
 
-                cannonPositionMarker = factionCar?.transform.Find("CannonPosition");
+                foreach (var car in cars)
+                    if (car.name.Equals($"{factionCarName}(Clone)"))
+                        cannonPositionMarker = car.transform.Find("CannonPosition");
             }
             else
             {

@@ -7,7 +7,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 using Prototype.NetworkLobby;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -19,11 +18,28 @@ public class CarCollisionManager : NetworkBehaviour
     private AutoGuida autoGuida;
 
 
-    void Start()
+    public override void OnStartLocalPlayer()
     {
         autoGuida = GetComponent<AutoGuida>();
         playerCar = autoGuida.generalCar;
         playerCar_RB = GetComponent<Rigidbody>();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("car"))
+            CalculateCollisionDamage(collision);
+    }
+
+    private void CalculateCollisionDamage(Collision collision)
+    {
+        if (playerCar != null)
+        {
+            playerCar.Health -= (int)(playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
+
+            if (playerCar.Health <= 0)
+                CmdRemoveTeam(GB.Animal.Value);
+        }
     }
 
     [Command] //only host
@@ -47,20 +63,6 @@ public class CarCollisionManager : NetworkBehaviour
                 GB.GotoScene(GB.EScenes.StartTitle);
             });
         }
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("car"))
-            CalculateCollisionDamage(collision);
-    }
-
-    public void CalculateCollisionDamage(Collision collision)
-    {
-        playerCar.Health -= (int)(playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
-
-        if (playerCar.Health <= 0)
-            CmdRemoveTeam(GB.Animal.Value);
     }
 
 
