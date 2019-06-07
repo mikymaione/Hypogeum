@@ -76,7 +76,6 @@
      <Compile Include="Assets\Scripts\CarScripts\Shark\SharksCarDrive.cs" />
      <Compile Include="Assets\Scripts\Colliders\CarCollisionManager.cs" />
      <Compile Include="Assets\Scripts\Global\GB.cs" />
-     <Compile Include="Assets\Scripts\Global\GM.cs" />
      <Compile Include="Assets\Scripts\Global\SceneField.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\Ability.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\AbilityCoolDown.cs" />
