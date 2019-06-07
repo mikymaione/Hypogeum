@@ -20,6 +20,7 @@ TagManager:
   - Canvas
   - SpeedText
   - car
+  - Cannon
   layers:
   - Default
   - TransparentFX

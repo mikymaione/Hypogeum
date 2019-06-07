@@ -95,6 +95,7 @@ public class Shooting : NetworkBehaviour
     private void PlaceAndRotateCannon()
     {
         var localRotation = Quaternion.Euler(0, cameraManager.rotY, 0);
+
         transform.rotation = localRotation;
         transform.position = cannonPositionMarker.position;
         cam.transform.position = CameraPos.position;

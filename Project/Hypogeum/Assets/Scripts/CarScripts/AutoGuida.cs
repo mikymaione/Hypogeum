@@ -26,6 +26,9 @@ public class AutoGuida : NetworkBehaviour
     private Transform LookHere, Position, AimPosition;
     private Rigidbody TheCarRigidBody;
 
+    private GameObject MyCannon;
+    private Transform cannonPositionMarker;
+
     //The class that owns the stats of the faction
     public GeneralCar generalCar;
     //To change the speed in the speedometer
@@ -60,6 +63,7 @@ public class AutoGuida : NetworkBehaviour
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
+        cannonPositionMarker = transform.Find("CannonPosition");
         speedText = GameObject.FindGameObjectWithTag("SpeedText").GetComponent<Text>();
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
 
@@ -128,6 +132,20 @@ public class AutoGuida : NetworkBehaviour
 
                 Wheels[i].transform.position = worldPose_position;
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
+            }
+
+            if (MyCannon == null)
+            {
+                var factionCannonName = $"{GB.Animal.ToString()}sCannon";
+                var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+
+                foreach (var cannon in cannons)
+                    if (cannon.name.Equals($"{factionCannonName}(Clone)"))
+                        MyCannon = cannon;
+            }
+            else
+            {
+                MyCannon.transform.position = cannonPositionMarker.position;
             }
         }
     }
