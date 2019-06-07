@@ -99,6 +99,27 @@ public class Shooting : NetworkBehaviour
         transform.rotation = localRotation;
         transform.position = cannonPositionMarker.position;
         cam.transform.position = CameraPos.position;
+
+        CmdSetRotationOfCannon(gameObject.name, cameraManager.rotY);
+    }
+
+    [Command] //only host
+    private void CmdSetRotationOfCannon(string NomeCannone, float rotY)
+    {
+        RpcSetRotationOfCannonCli(NomeCannone, rotY);
+    }
+
+    [ClientRpc] //all clients
+    private void RpcSetRotationOfCannonCli(string NomeCannone, float rotY)
+    {
+        var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+
+        foreach (var cannon in cannons)
+            if (cannon.name.Equals(NomeCannone))
+            {
+                var localRotation = Quaternion.Euler(0, rotY, 0);
+                cannon.transform.rotation = localRotation;
+            }
     }
 
     private void MostraMirino()
