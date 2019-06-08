@@ -137,18 +137,16 @@ public class Shooting : NetworkBehaviour
     private void RpcSetRotationAndPositionOfCannon_onClient(string NomeCannone, float rotY, float x, float y, float z)
     {
         var factionCannonName = $"{GB.Animal.ToString()}sCannon(Clone)";
+        var cannons = GameObject.FindGameObjectsWithTag("Cannon");
 
-        if (!NomeCannone.Equals(factionCannonName))
-        {
-            var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+        foreach (var cannon in cannons)
+            if (cannon.name.Equals(NomeCannone))
+            {
+                cannon.transform.rotation = Quaternion.Euler(0, rotY, 0);
 
-            foreach (var cannon in cannons)
-                if (cannon.name.Equals(NomeCannone))
-                {
-                    cannon.transform.rotation = Quaternion.Euler(0, rotY, 0);
+                if (!NomeCannone.Equals(factionCannonName)) //il mio cannone è già posizionato
                     cannon.transform.position = new Vector3(x, y, z);
-                }
-        }
+            }
     }
 
     private void MostraMirino()
