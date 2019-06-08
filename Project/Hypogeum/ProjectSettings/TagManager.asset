@@ -22,6 +22,7 @@ TagManager:
   - car
   - Cannon
   - HUD
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -27,13 +27,15 @@ public class CarCollisionManager : NetworkBehaviour
     {
         if (collision.gameObject.CompareTag("car"))
             CalculateCollisionDamage();
+        else if (collision.gameObject.CompareTag("Bullet"))
+            CalculateCollisionDamage(100);
     }
 
-    private void CalculateCollisionDamage()
+    private void CalculateCollisionDamage(int AdditionalDamage = 0)
     {
         if (playerCar != null)
         {
-            playerCar.Health -= (playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
+            playerCar.Health -= AdditionalDamage + (playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
 
             if (playerCar.Health <= 0)
                 CmdRemoveTeam(GB.Animal.Value);
