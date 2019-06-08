@@ -25,9 +25,6 @@ public class AutoGuida : NetworkBehaviour
     private Transform LookHere, Position, AimPosition;
     private Rigidbody TheCarRigidBody;
 
-    private GameObject MyCannon;
-    private Transform cannonPositionMarker;
-
     private HudScriptManager HUD;
 
     //The class that owns the stats of the faction    
@@ -60,7 +57,6 @@ public class AutoGuida : NetworkBehaviour
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
-        cannonPositionMarker = transform.Find("CannonPosition");
 
         var HUDo = GameObject.FindGameObjectWithTag("HUD");
         HUD = HUDo.GetComponent<HudScriptManager>();
@@ -75,7 +71,7 @@ public class AutoGuida : NetworkBehaviour
         if (isLocalPlayer)
         {
             Quaternion worldPose_rotation;
-            Vector3 worldPose_position;            
+            Vector3 worldPose_position;
 
             Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
 
@@ -122,26 +118,37 @@ public class AutoGuida : NetworkBehaviour
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
 
-            SetCannonPosition();
+            SetCannonsPositions();
 
-            HUD.setValues(generalCar);            
+            HUD.setValues(generalCar);
         }
     }
 
-    private void SetCannonPosition()
+    private void SetCannonsPositions()
     {
-        if (MyCannon == null)
-        {
-            var factionCannonName = $"{GB.Animal.ToString()}sCannon";
-            var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+        var weapons = GameObject.FindGameObjectsWithTag("Cannon");
 
-            foreach (var cannon in cannons)
-                if (cannon.name.Equals($"{factionCannonName}(Clone)"))
-                    MyCannon = cannon;
-        }
-        else
+        if (weapons != null)
         {
-            MyCannon.transform.position = cannonPositionMarker.position;
+            var cars = GameObject.FindGameObjectsWithTag("car");
+
+            if (cars != null)
+                foreach (var w in weapons)
+                    foreach (var c in cars)
+                    {
+                        var i = 0;
+
+                        while (w.name[i] == c.name[i])
+                            i++;
+
+                        if (i > 3)
+                        {
+                            //è il mio cannone
+                            var cannonPositionMarker = c.transform.Find("CannonPosition");
+                            w.transform.position = cannonPositionMarker.position;
+                            break;
+                        }
+                    }
         }
     }
 

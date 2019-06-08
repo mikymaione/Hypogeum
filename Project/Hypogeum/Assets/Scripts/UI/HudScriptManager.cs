@@ -24,19 +24,19 @@ public class HudScriptManager : MonoBehaviour
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
 
         setSpeed(0);
-        setHealt(0, 0, 0);
+        setHealth(0, 0, 0);
     }
 
     public void setValues(GeneralCar generalCar)
     {
         if (generalCar != null)
         {
-            setHealt(0, generalCar.Max_Health, generalCar.Health);
+            setHealth(0, generalCar.Max_Health, generalCar.Health);
             setSpeed(generalCar.actualSpeed);
         }
     }
 
-    private void setHealt(int min, int max, int value)
+    private void setHealth(int min, int max, int value)
     {
         healthBar.minValue = min;
         healthBar.maxValue = max;

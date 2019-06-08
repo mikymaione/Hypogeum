@@ -117,36 +117,27 @@ public class Shooting : NetworkBehaviour
     //place and rotate the cannon along with the camera on axis Y
     private void PlaceAndRotateCannon()
     {
-        var lRotation = Quaternion.Euler(0, cameraManager.rotY, 0);
-        var lPos = cannonPositionMarker.position;
-
-        transform.rotation = lRotation;
-        transform.position = lPos;
+        transform.rotation = Quaternion.Euler(0, cameraManager.rotY, 0);
+        transform.position = cannonPositionMarker.position;
         cam.transform.position = CameraPos.position;
 
-        CmdSetRotationAndPositionOfCannon_onServer(gameObject.name, cameraManager.rotY, lPos.x, lPos.y, lPos.z);
+        CmdSetRotationAndPositionOfCannon_onServer(gameObject.name, cameraManager.rotY);
     }
 
     [Command] //only host
-    private void CmdSetRotationAndPositionOfCannon_onServer(string NomeCannone, float rotY, float x, float y, float z)
+    private void CmdSetRotationAndPositionOfCannon_onServer(string NomeCannone, float rotY)
     {
-        RpcSetRotationAndPositionOfCannon_onClient(NomeCannone, rotY, x, y, z);
+        RpcSetRotationAndPositionOfCannon_onClient(NomeCannone, rotY);
     }
 
     [ClientRpc] //all clients
-    private void RpcSetRotationAndPositionOfCannon_onClient(string NomeCannone, float rotY, float x, float y, float z)
+    private void RpcSetRotationAndPositionOfCannon_onClient(string NomeCannone, float rotY)
     {
-        var factionCannonName = $"{GB.Animal.ToString()}sCannon(Clone)";
         var cannons = GameObject.FindGameObjectsWithTag("Cannon");
 
         foreach (var cannon in cannons)
             if (cannon.name.Equals(NomeCannone))
-            {
                 cannon.transform.rotation = Quaternion.Euler(0, rotY, 0);
-
-                if (!NomeCannone.Equals(factionCannonName)) //il mio cannone è già posizionato
-                    cannon.transform.position = new Vector3(x, y, z);
-            }
     }
 
     private void MostraMirino()
