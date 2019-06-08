@@ -52,6 +52,8 @@ public class AutoGuida : NetworkBehaviour
         }
 
         generalCar = GetComponent<GeneralCar>();
+        generalCar.Health = generalCar.Max_Health;
+
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
         LookHere = transform.Find("CameraAnchor/LookHere");

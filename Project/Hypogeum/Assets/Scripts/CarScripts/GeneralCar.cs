@@ -26,9 +26,7 @@ public class GeneralCar : NetworkBehaviour
 
     public float maxSteeringAngle;
     public float maxTorque;
-    public float brakingTorque;
-
-    public GeneralCar() => Health = Max_Health;
+    public float brakingTorque;    
 
 
 }
