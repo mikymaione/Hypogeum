@@ -24,6 +24,10 @@ public class Shooting : NetworkBehaviour
     private CameraManager cameraManager;
     private Transform cannonPositionMarker, CameraPos;
 
+    //The class that owns the stats of the faction    
+    public GeneralCar generalCar;
+    private HudScriptManager HUD;
+
 
     public override void OnStartLocalPlayer()
     {
@@ -32,26 +36,43 @@ public class Shooting : NetworkBehaviour
         projectileClass = projectilePrefab.GetComponent<Bullet>();
         CameraPos = transform.Find("CameraPos");
 
+        var HUDo = GameObject.FindGameObjectWithTag("HUD");
+        HUD = HUDo.GetComponent<HudScriptManager>();
+
         MostraMirino();
     }
 
-    void Update()
+    private GameObject ___car;
+    private GameObject Car
     {
-        if (isLocalPlayer)
+        get
         {
-            if (cannonPositionMarker == null)
+            if (___car == null)
             {
                 var factionCarName = $"{GB.Animal.ToString()}sCar";
                 var cars = GameObject.FindGameObjectsWithTag("car");
 
                 foreach (var car in cars)
                     if (car.name.Equals($"{factionCarName}(Clone)"))
-                        cannonPositionMarker = car.transform.Find("CannonPosition");
+                        ___car = car;
             }
-            else
-            {
+
+            return ___car;
+        }
+    }
+
+    void Update()
+    {
+        if (isLocalPlayer)
+        {
+            if (generalCar == null)
+                generalCar = Car?.GetComponent<GeneralCar>();
+
+            if (cannonPositionMarker == null)
+                cannonPositionMarker = Car?.transform.Find("CannonPosition");
+
+            if (cannonPositionMarker != null)
                 PlaceAndRotateCannon();
-            }
 
             target = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
 
@@ -63,6 +84,8 @@ public class Shooting : NetworkBehaviour
                 var velocity = cam.transform.forward * projectileClass.speed;
                 CmdIstantiateBulletAndShoot(gameObject, cam.transform.position, cam.transform.rotation, velocity);
             }
+
+            HUD.setValues(generalCar);
         }
     }
 
@@ -94,31 +117,32 @@ public class Shooting : NetworkBehaviour
     //place and rotate the cannon along with the camera on axis Y
     private void PlaceAndRotateCannon()
     {
-        var localRotation = Quaternion.Euler(0, cameraManager.rotY, 0);
+        var lRotation = Quaternion.Euler(0, cameraManager.rotY, 0);
+        var lPos = cannonPositionMarker.position;
 
-        transform.rotation = localRotation;
-        transform.position = cannonPositionMarker.position;
+        transform.rotation = lRotation;
+        transform.position = lPos;
         cam.transform.position = CameraPos.position;
 
-        CmdSetRotationOfCannon(gameObject.name, cameraManager.rotY);
+        CmdSetRotationAndPositionOfCannon_onServer(gameObject.name, cameraManager.rotY, lPos.x, lPos.y, lPos.z);
     }
 
     [Command] //only host
-    private void CmdSetRotationOfCannon(string NomeCannone, float rotY)
+    private void CmdSetRotationAndPositionOfCannon_onServer(string NomeCannone, float rotY, float x, float y, float z)
     {
-        RpcSetRotationOfCannonCli(NomeCannone, rotY);
+        RpcSetRotationAndPositionOfCannon_onClient(NomeCannone, rotY, x, y, z);
     }
 
     [ClientRpc] //all clients
-    private void RpcSetRotationOfCannonCli(string NomeCannone, float rotY)
+    private void RpcSetRotationAndPositionOfCannon_onClient(string NomeCannone, float rotY, float x, float y, float z)
     {
         var cannons = GameObject.FindGameObjectsWithTag("Cannon");
 
         foreach (var cannon in cannons)
             if (cannon.name.Equals(NomeCannone))
             {
-                var localRotation = Quaternion.Euler(0, rotY, 0);
-                cannon.transform.rotation = localRotation;
+                cannon.transform.rotation = Quaternion.Euler(0, rotY, 0);
+                cannon.transform.position = new Vector3(x, y, z);
             }
     }
 

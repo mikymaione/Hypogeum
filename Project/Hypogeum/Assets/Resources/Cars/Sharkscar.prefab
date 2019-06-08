@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 1238866528958110004}
   - component: {fileID: 8896617275720468330}
   - component: {fileID: 7062179990749609757}
+  - component: {fileID: 3114238238392715824}
   m_Layer: 0
   m_Name: Sharkscar
   m_TagString: car
@@ -490,6 +491,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalCar: {fileID: 0}
+--- !u!114 &3114238238392715824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187948641101672348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b980ef33455a314ea69501e680dceaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Health: 1000
+  Defense: 4
+  Speed: 50
+  Agility: 4
+  maxSteeringAngle: 25
+  maxTorque: 1000
+  brakingTorque: 60000
 --- !u!1 &2187948641267149959
 GameObject:
   m_ObjectHideFlags: 0

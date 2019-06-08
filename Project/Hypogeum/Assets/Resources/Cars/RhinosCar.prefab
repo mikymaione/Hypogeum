@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 266472999}
   - component: {fileID: 266472997}
   - component: {fileID: 111511663713403492}
+  - component: {fileID: 83172737155604947}
   m_Layer: 0
   m_Name: RhinosCar
   m_TagString: car
@@ -151,6 +152,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalCar: {fileID: 0}
+--- !u!114 &83172737155604947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266472990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b980ef33455a314ea69501e680dceaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Health: 1000
+  Defense: 4
+  Speed: 30
+  Agility: 4
+  maxSteeringAngle: 35
+  maxTorque: 1000
+  brakingTorque: 60000
 --- !u!1 &266472991
 GameObject:
   m_ObjectHideFlags: 0

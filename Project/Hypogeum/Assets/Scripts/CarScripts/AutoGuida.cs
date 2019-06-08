@@ -8,7 +8,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class AutoGuida : NetworkBehaviour
 {
@@ -29,12 +28,10 @@ public class AutoGuida : NetworkBehaviour
     private GameObject MyCannon;
     private Transform cannonPositionMarker;
 
-    //The class that owns the stats of the faction
+    private HudScriptManager HUD;
+
+    //The class that owns the stats of the faction    
     public GeneralCar generalCar;
-    //To change the speed in the speedometer
-    private Text speedText;
-    //To manage the team Health bar
-    private Slider healthBar;
 
 
     public override void OnStartLocalPlayer()
@@ -57,20 +54,16 @@ public class AutoGuida : NetworkBehaviour
             i++;
         }
 
-        generalCar = GeneralCar.IstanziaMe();
+        generalCar = GetComponent<GeneralCar>();
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
         cannonPositionMarker = transform.Find("CannonPosition");
-        speedText = GameObject.FindGameObjectWithTag("SpeedText").GetComponent<Text>();
-        healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
 
-        //Setting the start values for Health Bar
-        healthBar.minValue = 0;
-        healthBar.maxValue = generalCar.Max_Health;
-        healthBar.value = generalCar.Health;
+        var HUDo = GameObject.FindGameObjectWithTag("HUD");
+        HUD = HUDo.GetComponent<HudScriptManager>();
 
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
@@ -84,13 +77,6 @@ public class AutoGuida : NetworkBehaviour
             Quaternion worldPose_rotation;
             Vector3 worldPose_position;
 
-            //To update the Health Bar
-            healthBar.value = generalCar.Health;
-
-            //To display the car speed on HUD
-            var actualSpeed = TheCarRigidBody.velocity.magnitude;
-            speedText.text = Mathf.Round(actualSpeed).ToString();
-
             Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
 
             //freni
@@ -103,7 +89,7 @@ public class AutoGuida : NetworkBehaviour
             //Avanti-dietro
             var instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
 
-            if (TheCarRigidBody.velocity.magnitude >= generalCar.maxSpeed)
+            if (TheCarRigidBody.velocity.magnitude >= generalCar.Speed)
                 instantTorque = 0f;
 
             for (var i = 0; i < Colliders.Length; i++)
@@ -134,6 +120,8 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
 
+            generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
+
             if (MyCannon == null)
             {
                 var factionCannonName = $"{GB.Animal.ToString()}sCannon";
@@ -147,6 +135,8 @@ public class AutoGuida : NetworkBehaviour
             {
                 MyCannon.transform.position = cannonPositionMarker.position;
             }
+
+            HUD.setValues(generalCar);
         }
     }
 

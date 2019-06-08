@@ -21,6 +21,7 @@ TagManager:
   - SpeedText
   - car
   - Cannon
+  - HUD
   layers:
   - Default
   - TransparentFX

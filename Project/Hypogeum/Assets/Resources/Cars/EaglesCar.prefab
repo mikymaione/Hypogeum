@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 3243681315850885656}
   - component: {fileID: 4168449233636349803}
   - component: {fileID: 2748803762487443077}
+  - component: {fileID: 2670722292247242678}
   m_Layer: 0
   m_Name: EaglesCar
   m_TagString: car
@@ -320,6 +321,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalCar: {fileID: 0}
+--- !u!114 &2670722292247242678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324947265018251071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b980ef33455a314ea69501e680dceaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Health: 800
+  Defense: 4
+  Speed: 60
+  Agility: 4
+  maxSteeringAngle: 35
+  maxTorque: 1000
+  brakingTorque: 60000
 --- !u!1 &585478298614816171
 GameObject:
   m_ObjectHideFlags: 0
