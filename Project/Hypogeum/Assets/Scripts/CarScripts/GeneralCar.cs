@@ -12,34 +12,21 @@ public class GeneralCar : NetworkBehaviour
 {
 
     [SyncVar]
-    internal int Health;
-
-    [SyncVar]
-    internal float actualSpeed = 0;
-
+    internal float Health;
 
     [SyncVar]
     public int Max_Health;
 
     [SyncVar]
+    internal float actualSpeed = 0;
+
     public int Defense;
-
-    [SyncVar]
     public int Speed;
-
-    [SyncVar]
     public int Agility;
 
-
-    [SyncVar]
     public float maxSteeringAngle;
-
-    [SyncVar]
     public float maxTorque;
-
-    [SyncVar]
     public float brakingTorque;
-
 
     public GeneralCar() => Health = Max_Health;
 

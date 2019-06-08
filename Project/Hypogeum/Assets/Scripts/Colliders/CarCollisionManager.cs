@@ -15,27 +15,25 @@ public class CarCollisionManager : NetworkBehaviour
 
     private GeneralCar playerCar;
     private Rigidbody playerCar_RB;
-    private AutoGuida autoGuida;
 
 
     public override void OnStartLocalPlayer()
     {
-        autoGuida = GetComponent<AutoGuida>();
-        playerCar = autoGuida.generalCar;
+        playerCar = GetComponent<GeneralCar>();
         playerCar_RB = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("car"))
-            CalculateCollisionDamage(collision);
+            CalculateCollisionDamage();
     }
 
-    private void CalculateCollisionDamage(Collision collision)
+    private void CalculateCollisionDamage()
     {
         if (playerCar != null)
         {
-            playerCar.Health -= (int)(playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
+            playerCar.Health -= (playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
 
             if (playerCar.Health <= 0)
                 CmdRemoveTeam(GB.Animal.Value);

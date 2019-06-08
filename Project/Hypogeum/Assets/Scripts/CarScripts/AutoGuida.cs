@@ -25,10 +25,10 @@ public class AutoGuida : NetworkBehaviour
     private Transform LookHere, Position, AimPosition;
     private Rigidbody TheCarRigidBody;
 
-    private HudScriptManager HUD;
-
     //The class that owns the stats of the faction    
-    public GeneralCar generalCar;
+    private GeneralCar generalCar;
+
+    private HudScriptManager HUD;
 
 
     public override void OnStartLocalPlayer()

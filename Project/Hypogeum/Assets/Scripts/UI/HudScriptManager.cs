@@ -36,7 +36,7 @@ public class HudScriptManager : MonoBehaviour
         }
     }
 
-    private void setHealth(int min, int max, int value)
+    private void setHealth(int min, int max, float value)
     {
         healthBar.minValue = min;
         healthBar.maxValue = max;
@@ -45,7 +45,8 @@ public class HudScriptManager : MonoBehaviour
 
     private void setSpeed(float value)
     {
-        speedText.text = value.ToString("0");
+        var realspeed = value * 2;
+        speedText.text = realspeed.ToString("0");
     }
 
 
