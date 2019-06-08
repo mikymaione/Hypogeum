@@ -75,7 +75,7 @@ public class AutoGuida : NetworkBehaviour
         if (isLocalPlayer)
         {
             Quaternion worldPose_rotation;
-            Vector3 worldPose_position;
+            Vector3 worldPose_position;            
 
             Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
 
@@ -122,21 +122,26 @@ public class AutoGuida : NetworkBehaviour
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
 
-            if (MyCannon == null)
-            {
-                var factionCannonName = $"{GB.Animal.ToString()}sCannon";
-                var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+            SetCannonPosition();
 
-                foreach (var cannon in cannons)
-                    if (cannon.name.Equals($"{factionCannonName}(Clone)"))
-                        MyCannon = cannon;
-            }
-            else
-            {
-                MyCannon.transform.position = cannonPositionMarker.position;
-            }
+            HUD.setValues(generalCar);            
+        }
+    }
 
-            HUD.setValues(generalCar);
+    private void SetCannonPosition()
+    {
+        if (MyCannon == null)
+        {
+            var factionCannonName = $"{GB.Animal.ToString()}sCannon";
+            var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+
+            foreach (var cannon in cannons)
+                if (cannon.name.Equals($"{factionCannonName}(Clone)"))
+                    MyCannon = cannon;
+        }
+        else
+        {
+            MyCannon.transform.position = cannonPositionMarker.position;
         }
     }
 

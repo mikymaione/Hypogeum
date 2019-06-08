@@ -15,7 +15,7 @@ public class GeneralCar : NetworkBehaviour
     internal int Health;
 
     [SyncVar]
-    internal float actualSpeed;
+    internal float actualSpeed = 0;
 
 
     [SyncVar]
@@ -39,6 +39,9 @@ public class GeneralCar : NetworkBehaviour
 
     [SyncVar]
     public float brakingTorque;
+
+
+    public GeneralCar() => Health = Max_Health;
 
 
 }

@@ -136,14 +136,19 @@ public class Shooting : NetworkBehaviour
     [ClientRpc] //all clients
     private void RpcSetRotationAndPositionOfCannon_onClient(string NomeCannone, float rotY, float x, float y, float z)
     {
-        var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+        var factionCannonName = $"{GB.Animal.ToString()}sCannon(Clone)";
 
-        foreach (var cannon in cannons)
-            if (cannon.name.Equals(NomeCannone))
-            {
-                cannon.transform.rotation = Quaternion.Euler(0, rotY, 0);
-                cannon.transform.position = new Vector3(x, y, z);
-            }
+        if (!NomeCannone.Equals(factionCannonName))
+        {
+            var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+
+            foreach (var cannon in cannons)
+                if (cannon.name.Equals(NomeCannone))
+                {
+                    cannon.transform.rotation = Quaternion.Euler(0, rotY, 0);
+                    cannon.transform.position = new Vector3(x, y, z);
+                }
+        }
     }
 
     private void MostraMirino()
