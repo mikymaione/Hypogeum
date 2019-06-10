@@ -311,24 +311,22 @@ namespace Prototype.NetworkLobby
         {
             var lobby_Player = Players[conn.connectionId];
 
-            //Debug.Log($"GameType is {GB.GameType.ToString()}");
             switch (lobby_Player.gameType)
             {
                 case GB.EGameType.Driving:
-
                     var car = GB.LoadAnimalCar(lobby_Player.animal);
                     var car_instance = Instantiate(car, startPositions[conn.connectionId].position, Quaternion.identity);
+
                     return car_instance;
 
                 case GB.EGameType.Shooting:
-
                     //Loading the cannon prefab
                     var cannon = GB.LoadCannon(lobby_Player.animal);
                     var cannon_instance = Instantiate(cannon, startPositions[conn.connectionId].position, Quaternion.identity);
+
                     return cannon_instance;
             }
 
-            Debug.Log("Error in GameType switch inside OnLobbyServerCreateGamePlayer");
             return null;
         }
 
