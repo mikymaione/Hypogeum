@@ -131,7 +131,7 @@ public class AutoGuida : NetworkBehaviour
             }
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
-
+            
             SetCannonsPositions();
 
             HUD.setValues(generalCar);
