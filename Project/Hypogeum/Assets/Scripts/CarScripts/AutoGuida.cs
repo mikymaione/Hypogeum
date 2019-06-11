@@ -21,7 +21,7 @@ public class AutoGuida : NetworkBehaviour
     private GameObject[] Wheels = new GameObject[4];
 
     private CameraManager MyCamera;
-    private Transform LookHere, Position, AimPosition;
+    private Transform LookHere, Position, AimPosition, CentroDiMassa;
     private Rigidbody TheCarRigidBody;
 
     //The class that owns the stats of the faction    
@@ -57,6 +57,7 @@ public class AutoGuida : NetworkBehaviour
 
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
+        CentroDiMassa = transform.Find("CentroDiMassa");
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
@@ -69,7 +70,9 @@ public class AutoGuida : NetworkBehaviour
         MyCamera.positionTarget = Position;
         MyCamera.AimPosition = AimPosition;
 
-        TheCarRigidBody.centerOfMass = new Vector3(0, -0.2f, 1);
+
+        var difCentro = CentroDiMassa.position - transform.position;
+        TheCarRigidBody.centerOfMass = difCentro;
     }
 
     private IEnumerator AbilitaRibalta()
