@@ -337,7 +337,7 @@ MonoBehaviour:
   Defense: 4
   Speed: 60
   Agility: 4
-  maxSteeringAngle: 30
+  maxSteeringAngle: 35
   maxTorque: 1000
   brakingTorque: 60000
 --- !u!1 &585478298614816171

@@ -72,6 +72,18 @@ public class AutoGuida : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+            var Ribalta = Input.GetKey(KeyCode.T);
+
+            if (Ribalta)
+            {
+                var ppp = TheCarRigidBody.gameObject.transform.position;
+
+                TheCarRigidBody.gameObject.transform.SetPositionAndRotation(
+                    new Vector3(ppp.x, 0, ppp.z),
+                    new Quaternion(0, 0, 0, 0)
+                );
+            }
+
             Quaternion worldPose_rotation;
             Vector3 worldPose_position;
 
