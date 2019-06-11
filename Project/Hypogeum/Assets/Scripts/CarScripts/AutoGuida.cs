@@ -12,12 +12,15 @@ using UnityEngine.Networking;
 
 public class AutoGuida : NetworkBehaviour
 {
+    //non servono se usi il fixedupdate
+    //[Tooltip("m/s")]
+    //private float speedThreshold = 200f;
+    //private int stepsBelowThreshold = 200;
+    //private int stepsAboveThreshold = 40;
 
-    [Tooltip("m/s")]
-    private float speedThreshold = 20f;
-    private int stepsBelowThreshold = 30;
-    private int stepsAboveThreshold = 1;
+    private bool RibaltaDisabilitato = false;
 
+    private Quaternion OriginalRotation;
     private Quaternion[] WheelErrorCorrectionR = new Quaternion[4];
     private WheelCollider[] Colliders = new WheelCollider[4];
     private GameObject[] Wheels = new GameObject[4];
@@ -30,6 +33,7 @@ public class AutoGuida : NetworkBehaviour
     private GeneralCar generalCar;
 
     private HudScriptManager HUD;
+    private const int Moltiplicatore = 10;
 
 
     public override void OnStartLocalPlayer()
@@ -60,6 +64,7 @@ public class AutoGuida : NetworkBehaviour
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
+        OriginalRotation = TheCarRigidBody.transform.rotation;
 
         var HUDo = GameObject.FindGameObjectWithTag("HUD");
         HUD = HUDo.GetComponent<HudScriptManager>();
@@ -69,14 +74,13 @@ public class AutoGuida : NetworkBehaviour
         MyCamera.AimPosition = AimPosition;
     }
 
-    private bool RibaltaDisabilitato = false;
     private IEnumerator AbilitaRibalta()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(4);
         RibaltaDisabilitato = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isLocalPlayer)
         {
@@ -89,18 +93,17 @@ public class AutoGuida : NetworkBehaviour
                     RibaltaDisabilitato = true;
 
                     var ppp = TheCarRigidBody.gameObject.transform.position;
+                    TheCarRigidBody.gameObject.transform.SetPositionAndRotation(new Vector3(ppp.x, 0, ppp.z), OriginalRotation);
 
-                    TheCarRigidBody.gameObject.transform.SetPositionAndRotation(
-                        new Vector3(ppp.x, 0, ppp.z),
-                        new Quaternion(0, 0, 0, 0)
-                    );
+                    StartCoroutine(AbilitaRibalta());
                 }
             }
 
             Quaternion worldPose_rotation;
             Vector3 worldPose_position;
 
-            Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
+            //non serve se usi il fixed update
+            //Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
 
             //freni
             var fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
@@ -113,28 +116,29 @@ public class AutoGuida : NetworkBehaviour
             var instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
 
             if (TheCarRigidBody.velocity.magnitude >= generalCar.Speed)
-                instantTorque = 0f;
+                instantTorque = 0;
 
             for (var i = 0; i < Colliders.Length; i++)
             {
                 if (Colliders[i].tag.Equals("FrontWheel"))
+                {
                     Colliders[i].steerAngle = instantSteeringAngle;
+                    Colliders[i].motorTorque = instantTorque * Moltiplicatore;
+                }
 
                 if (fullBrake > 0)
                 {
-                    Colliders[i].brakeTorque = fullBrake;
+                    Colliders[i].brakeTorque = fullBrake * Moltiplicatore;
                 }
                 else if (handBrake > 0)
                 {
                     if (Colliders[i].tag.Equals("BackWheel"))
-                        Colliders[i].brakeTorque = handBrake;
+                        Colliders[i].brakeTorque = handBrake * Moltiplicatore;
                 }
                 else
                 {
                     Colliders[i].brakeTorque = 0;
                 }
-
-                Colliders[i].motorTorque = instantTorque;
 
                 //rotate the 3d object
                 Colliders[i].GetWorldPose(out worldPose_position, out worldPose_rotation);

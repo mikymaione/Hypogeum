@@ -26,7 +26,8 @@ public class GeneralCar : NetworkBehaviour
 
     public float maxSteeringAngle;
     public float maxTorque;
-    public float brakingTorque;    
+
+    internal float brakingTorque => maxTorque * 100;
 
 
 }

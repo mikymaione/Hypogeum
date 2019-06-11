@@ -335,11 +335,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Max_Health: 800
   Defense: 4
-  Speed: 60
+  Speed: 200
   Agility: 4
   maxSteeringAngle: 35
-  maxTorque: 1000
-  brakingTorque: 60000
+  maxTorque: 150
 --- !u!1 &585478298614816171
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,20 +553,20 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.19619998
   m_ForceAppPointDistance: 55.5632
-  m_Mass: 15
+  m_Mass: 6
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.4
-    m_AsymptoteValue: 0.8
-    m_Stiffness: 1
+    m_ExtremumSlip: 0.2
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
+    m_Stiffness: 5
   m_Enabled: 1
 --- !u!1 &2657651327978429553
 GameObject:
@@ -727,20 +726,20 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
   m_ForceAppPointDistance: 64.9632
-  m_Mass: 22
+  m_Mass: 8
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.4
-    m_AsymptoteValue: 0.8
-    m_Stiffness: 1
+    m_ExtremumSlip: 0.2
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
+    m_Stiffness: 5
   m_Enabled: 1
 --- !u!1 &3586462883575452640
 GameObject:
@@ -898,20 +897,20 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
   m_ForceAppPointDistance: 64.9632
-  m_Mass: 22
+  m_Mass: 8
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.4
-    m_AsymptoteValue: 0.8
-    m_Stiffness: 1
+    m_ExtremumSlip: 0.2
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
+    m_Stiffness: 5
   m_Enabled: 1
 --- !u!1 &5665821790427446401
 GameObject:
@@ -989,20 +988,20 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
   m_ForceAppPointDistance: 55.563206
-  m_Mass: 15
+  m_Mass: 6
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.4
-    m_AsymptoteValue: 0.8
-    m_Stiffness: 1
+    m_ExtremumSlip: 0.2
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
+    m_Stiffness: 5
   m_Enabled: 1
 --- !u!1 &5961742264626290765
 GameObject:
