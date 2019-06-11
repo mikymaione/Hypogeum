@@ -82,6 +82,11 @@ public class AutoGuida : NetworkBehaviour
         RibaltaDisabilitato = false;
     }
 
+    private void EffettoVelocitaCamera()
+    {
+        Camera.main.fieldOfView = 60 + (TheCarRigidBody.velocity.magnitude / 2);
+    }
+
     void Update()
     {
         if (isLocalPlayer)
@@ -115,6 +120,8 @@ public class AutoGuida : NetworkBehaviour
 
             if (GB.ms_to_kmh(TheCarRigidBody.velocity.magnitude) >= generalCar.Speed)
                 instantTorque = 0;
+
+            EffettoVelocitaCamera();
         }
     }
 
@@ -156,7 +163,7 @@ public class AutoGuida : NetworkBehaviour
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
 
-            SetCannonsPositions();
+            SetCannonsPositions();            
 
             HUD.setValues(generalCar);
         }
