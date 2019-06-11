@@ -29,7 +29,6 @@ public class AutoGuida : NetworkBehaviour
 
     private HudScriptManager HUD;
     private int Decellerazione = 0;
-    private const int Moltiplicatore = 10;
 
     private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
 
@@ -137,17 +136,17 @@ public class AutoGuida : NetworkBehaviour
                 if (Colliders[i].tag.Equals("FrontWheel"))
                 {
                     Colliders[i].steerAngle = instantSteeringAngle;
-                    Colliders[i].motorTorque = instantTorque * Moltiplicatore;
+                    Colliders[i].motorTorque = instantTorque * generalCar.Accellerazione;
                 }
 
                 if (fullBrake > 0)
                 {
-                    Colliders[i].brakeTorque = fullBrake * Moltiplicatore;
+                    Colliders[i].brakeTorque = fullBrake * generalCar.Accellerazione;
                 }
                 else if (handBrake > 0)
                 {
                     if (Colliders[i].tag.Equals("BackWheel"))
-                        Colliders[i].brakeTorque = handBrake * Moltiplicatore;
+                        Colliders[i].brakeTorque = handBrake * generalCar.Accellerazione;
                 }
                 else
                 {
@@ -163,7 +162,7 @@ public class AutoGuida : NetworkBehaviour
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
 
-            SetCannonsPositions();            
+            SetCannonsPositions();
 
             HUD.setValues(generalCar);
         }
