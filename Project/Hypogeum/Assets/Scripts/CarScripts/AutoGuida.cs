@@ -12,11 +12,6 @@ using UnityEngine.Networking;
 
 public class AutoGuida : NetworkBehaviour
 {
-    //non servono se usi il fixedupdate
-    //[Tooltip("m/s")]
-    //private float speedThreshold = 200f;
-    //private int stepsBelowThreshold = 200;
-    //private int stepsAboveThreshold = 40;
 
     private bool RibaltaDisabilitato = false;
 
@@ -33,6 +28,7 @@ public class AutoGuida : NetworkBehaviour
     private GeneralCar generalCar;
 
     private HudScriptManager HUD;
+    private int Decellerazione = 0;
     private const int Moltiplicatore = 10;
 
 
@@ -72,6 +68,8 @@ public class AutoGuida : NetworkBehaviour
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
         MyCamera.AimPosition = AimPosition;
+
+        TheCarRigidBody.centerOfMass = new Vector3(0, -0.2f, 1);
     }
 
     private IEnumerator AbilitaRibalta()
@@ -80,7 +78,9 @@ public class AutoGuida : NetworkBehaviour
         RibaltaDisabilitato = false;
     }
 
-    void FixedUpdate()
+    private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
+
+    void Update()
     {
         if (isLocalPlayer)
         {
@@ -99,24 +99,29 @@ public class AutoGuida : NetworkBehaviour
                 }
             }
 
-            Quaternion worldPose_rotation;
-            Vector3 worldPose_position;
-
-            //non serve se usi il fixed update
-            //Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
-
             //freni
-            var fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
-            var handBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque * 2 : 0);
+            fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
+            handBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque * 2 : 0);
 
             //DX-SX
-            var instantSteeringAngle = generalCar.maxSteeringAngle * Input.GetAxis("Horizontal");
+            instantSteeringAngle = generalCar.maxSteeringAngle * Input.GetAxis("Horizontal");
 
             //Avanti-dietro
-            var instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
+            instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
+
+            Decellerazione = (instantTorque == 0 ? 1 : 0);
 
             if (TheCarRigidBody.velocity.magnitude >= generalCar.Speed)
                 instantTorque = 0;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isLocalPlayer)
+        {
+            Quaternion worldPose_rotation;
+            Vector3 worldPose_position;
 
             for (var i = 0; i < Colliders.Length; i++)
             {
@@ -137,7 +142,7 @@ public class AutoGuida : NetworkBehaviour
                 }
                 else
                 {
-                    Colliders[i].brakeTorque = 0;
+                    Colliders[i].brakeTorque = 0 + Decellerazione;
                 }
 
                 //rotate the 3d object
