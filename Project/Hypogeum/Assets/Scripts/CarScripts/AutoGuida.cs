@@ -31,6 +31,8 @@ public class AutoGuida : NetworkBehaviour
     private int Decellerazione = 0;
     private const int Moltiplicatore = 10;
 
+    private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
+
 
     public override void OnStartLocalPlayer()
     {
@@ -70,7 +72,6 @@ public class AutoGuida : NetworkBehaviour
         MyCamera.positionTarget = Position;
         MyCamera.AimPosition = AimPosition;
 
-
         var difCentro = CentroDiMassa.position - transform.position;
         TheCarRigidBody.centerOfMass = difCentro;
     }
@@ -80,8 +81,6 @@ public class AutoGuida : NetworkBehaviour
         yield return new WaitForSeconds(4);
         RibaltaDisabilitato = false;
     }
-
-    private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
 
     void Update()
     {
@@ -114,7 +113,7 @@ public class AutoGuida : NetworkBehaviour
 
             Decellerazione = (instantTorque == 0 ? 1 : 0);
 
-            if (TheCarRigidBody.velocity.magnitude >= generalCar.Speed)
+            if (GB.ms_to_kmh(TheCarRigidBody.velocity.magnitude) >= generalCar.Speed)
                 instantTorque = 0;
         }
     }

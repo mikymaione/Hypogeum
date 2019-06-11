@@ -45,8 +45,11 @@ public class HudScriptManager : MonoBehaviour
 
     private void setSpeed(float value)
     {
-        var realspeed = value * 2;
-        speedText.text = realspeed.ToString("0");
+        //value: m/s
+        var realspeed = System.Convert.ToInt16(GB.ms_to_mph(value));
+
+        if (realspeed == 0 || realspeed % 2 == 0)
+            speedText.text = realspeed.ToString("0");
     }
 
 
