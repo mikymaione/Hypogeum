@@ -6,6 +6,7 @@ Contributors:
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -68,20 +69,32 @@ public class AutoGuida : NetworkBehaviour
         MyCamera.AimPosition = AimPosition;
     }
 
+    private bool RibaltaDisabilitato = false;
+    private IEnumerator AbilitaRibalta()
+    {
+        yield return new WaitForSeconds(0.5f);
+        RibaltaDisabilitato = false;
+    }
+
     void Update()
     {
         if (isLocalPlayer)
         {
-            var Ribalta = Input.GetKey(KeyCode.T);
-
-            if (Ribalta)
+            if (!RibaltaDisabilitato)
             {
-                var ppp = TheCarRigidBody.gameObject.transform.position;
+                var Ribalta = Input.GetKey(KeyCode.T);
 
-                TheCarRigidBody.gameObject.transform.SetPositionAndRotation(
-                    new Vector3(ppp.x, 0, ppp.z),
-                    new Quaternion(0, 0, 0, 0)
-                );
+                if (Ribalta)
+                {
+                    RibaltaDisabilitato = true;
+
+                    var ppp = TheCarRigidBody.gameObject.transform.position;
+
+                    TheCarRigidBody.gameObject.transform.SetPositionAndRotation(
+                        new Vector3(ppp.x, 0, ppp.z),
+                        new Quaternion(0, 0, 0, 0)
+                    );
+                }
             }
 
             Quaternion worldPose_rotation;
@@ -131,7 +144,7 @@ public class AutoGuida : NetworkBehaviour
             }
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
-            
+
             SetCannonsPositions();
 
             HUD.setValues(generalCar);
