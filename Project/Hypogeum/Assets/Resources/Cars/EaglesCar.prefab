@@ -339,7 +339,7 @@ MonoBehaviour:
   Speed: 200
   Agility: 4
   Accellerazione: 9
-  maxSteeringAngle: 35
+  maxSteeringAngle: 25
   maxTorque: 150
 --- !u!1 &585478298614816171
 GameObject:
