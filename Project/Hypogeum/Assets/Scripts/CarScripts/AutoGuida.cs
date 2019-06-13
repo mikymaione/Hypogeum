@@ -32,8 +32,12 @@ public class AutoGuida : NetworkBehaviour
 
     private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
 
+	//To manage the sand particle effect
+	private ParticleSystem sandParticle;
+	//private ParticleSystem.MainModule sandParticleMain;
 
-    public override void OnStartLocalPlayer()
+
+	public override void OnStartLocalPlayer()
     {
         var i = 0;
         var wc = GetComponentsInChildren<WheelCollider>();
@@ -73,6 +77,9 @@ public class AutoGuida : NetworkBehaviour
 
         var difCentro = CentroDiMassa.position - transform.position;
         TheCarRigidBody.centerOfMass = difCentro;
+
+		//sandParticleMain = gameObject.GetComponentInChildren<ParticleSystem.MainModule>();
+		sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
     }
 
     private IEnumerator AbilitaRibalta()
@@ -161,6 +168,8 @@ public class AutoGuida : NetworkBehaviour
             }
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
+			//sandParticle.simulationSpeed = generalCar.actualSpeed / 10;
+			sandParticle.playbackSpeed = generalCar.actualSpeed / 10;
 
             SetCannonsPositions();
 
