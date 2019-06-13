@@ -11,12 +11,35 @@ using UnityEngine.Networking;
 
 public class BulletCollisionManager : NetworkBehaviour
 {
+	public GameObject explosion;
+	bool hasExploded = false;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("car"))
-            Destroy(gameObject, 15);
-    }
 
+		if (!hasExploded)
+		{
+			explosion = Instantiate(explosion, transform.position, transform.rotation);
+			string time = Time.time.ToString();
+			explosion.name += time;
+			hasExploded = true;
+		}
+		//Destroy(GameObject.Find("BigExplosionEffect(Clone)"), 0.0f);
+
+		//if (collision.gameObject.CompareTag("car"))
+		//    Destroy(gameObject, 15);
+
+		//Destroy(gameObject);
+
+	}
+
+	void Update()
+	{
+		if (hasExploded)
+		{
+			Destroy(explosion, 3.8f);
+			Destroy(gameObject, 4.0f);
+		}
+	}
 
 }

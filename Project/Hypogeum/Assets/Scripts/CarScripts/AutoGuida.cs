@@ -27,7 +27,7 @@ public class AutoGuida : NetworkBehaviour
     //The class that owns the stats of the faction    
     private GeneralCar generalCar;
 
-    private HudScriptManager HUD;
+    //private HudScriptManager HUD;
     private int Decellerazione = 0;
 
     private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
@@ -64,8 +64,8 @@ public class AutoGuida : NetworkBehaviour
         AimPosition = transform.Find("CameraAnchor/AimPosition");
         OriginalRotation = TheCarRigidBody.transform.rotation;
 
-        var HUDo = GameObject.FindGameObjectWithTag("HUD");
-        HUD = HUDo.GetComponent<HudScriptManager>();
+        //var HUDo = GameObject.FindGameObjectWithTag("HUD");
+        //HUD = HUDo.GetComponent<HudScriptManager>();
 
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
@@ -164,7 +164,7 @@ public class AutoGuida : NetworkBehaviour
 
             SetCannonsPositions();
 
-            HUD.setValues(generalCar);
+            //HUD.setValues(generalCar);
         }
     }
 
