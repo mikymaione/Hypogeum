@@ -12,6 +12,7 @@ using UnityEngine.Networking;
 public class BulletCollisionManager : NetworkBehaviour
 {
 	public GameObject explosion;
+	public GameObject sand;
 	bool hasExploded = false;
 
     private void OnCollisionEnter(Collision collision)
@@ -19,10 +20,17 @@ public class BulletCollisionManager : NetworkBehaviour
 
 		if (!hasExploded)
 		{
-			explosion = Instantiate(explosion, transform.position, transform.rotation);
-			string time = Time.time.ToString();
-			explosion.name += time;
-			hasExploded = true;
+			if (collision.gameObject.name == "Arena")
+			{
+				sand = Instantiate(sand, transform.position, Quaternion.Euler(-90, 0, 0));
+			}
+			else
+			{
+				explosion = Instantiate(explosion, transform.position, transform.rotation);
+				string time = Time.time.ToString();
+				explosion.name += time;
+				hasExploded = true;
+			}
 		}
 		//Destroy(GameObject.Find("BigExplosionEffect(Clone)"), 0.0f);
 
