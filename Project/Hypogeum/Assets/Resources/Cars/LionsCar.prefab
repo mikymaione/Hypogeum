@@ -519,6 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2005704180124698008}
+  - component: {fileID: 5708595878544911849}
   m_Layer: 0
   m_Name: SandPosition
   m_TagString: Untagged
@@ -541,6 +542,18 @@ Transform:
   m_Father: {fileID: 1641117572985455104}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5708595878544911849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994112266502249449}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87aaf670e574374baca826eab169a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5544441849561865147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1258,12 @@ PrefabInstance:
     - target: {fileID: 198000010021673064, guid: 14d81e2c407975245973a11cdfbeb902,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 40
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000010021673064, guid: 14d81e2c407975245973a11cdfbeb902,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14d81e2c407975245973a11cdfbeb902, type: 3}

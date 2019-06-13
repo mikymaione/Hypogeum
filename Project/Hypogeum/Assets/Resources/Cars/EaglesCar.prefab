@@ -1306,12 +1306,17 @@ PrefabInstance:
     - target: {fileID: 198000010021673064, guid: 14d81e2c407975245973a11cdfbeb902,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 198000010021673064, guid: 14d81e2c407975245973a11cdfbeb902,
         type: 3}
       propertyPath: simulationSpeed
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000010021673064, guid: 14d81e2c407975245973a11cdfbeb902,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14d81e2c407975245973a11cdfbeb902, type: 3}

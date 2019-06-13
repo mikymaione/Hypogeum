@@ -168,7 +168,14 @@ public class AutoGuida : NetworkBehaviour
             }
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
-			//sandParticle.simulationSpeed = generalCar.actualSpeed / 10;
+			//if (generalCar.actualSpeed == 0)
+			//{
+			//	sandParticle.Stop();
+			//}
+			//else
+			//{
+			//	sandParticle.Play();
+			//}
 			sandParticle.playbackSpeed = generalCar.actualSpeed / 10;
 
             SetCannonsPositions();

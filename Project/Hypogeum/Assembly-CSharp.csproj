@@ -87,6 +87,7 @@
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerEntry.cs" />
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerList.cs" />
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
+     <Compile Include="Assets\sandEffect.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Camera\CursorManager.cs" />
      <Compile Include="Assets\Scripts\CarScripts\AutoGuida.cs" />
