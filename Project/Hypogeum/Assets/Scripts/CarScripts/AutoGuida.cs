@@ -21,18 +21,23 @@ public class AutoGuida : NetworkBehaviour
     private GameObject[] Wheels = new GameObject[4];
 
     private CameraManager MyCamera;
-    private Transform LookHere, Position, AimPosition;
+    private Transform LookHere, Position, AimPosition, CentroDiMassa;
     private Rigidbody TheCarRigidBody;
 
     //The class that owns the stats of the faction    
     private GeneralCar generalCar;
 
-    private HudScriptManager HUD;
+    //private HudScriptManager HUD;
     private int Decellerazione = 0;
-    private const int Moltiplicatore = 10;
+
+    private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
+
+	//To manage the sand particle effect
+	private ParticleSystem sandParticle;
+	//private ParticleSystem.MainModule sandParticleMain;
 
 
-    public override void OnStartLocalPlayer()
+	public override void OnStartLocalPlayer()
     {
         var i = 0;
         var wc = GetComponentsInChildren<WheelCollider>();
@@ -57,19 +62,24 @@ public class AutoGuida : NetworkBehaviour
 
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
+        CentroDiMassa = transform.Find("CentroDiMassa");
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
         OriginalRotation = TheCarRigidBody.transform.rotation;
 
-        var HUDo = GameObject.FindGameObjectWithTag("HUD");
-        HUD = HUDo.GetComponent<HudScriptManager>();
+        //var HUDo = GameObject.FindGameObjectWithTag("HUD");
+        //HUD = HUDo.GetComponent<HudScriptManager>();
 
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
         MyCamera.AimPosition = AimPosition;
 
-        TheCarRigidBody.centerOfMass = new Vector3(0, -0.2f, 1);
+        var difCentro = CentroDiMassa.position - transform.position;
+        TheCarRigidBody.centerOfMass = difCentro;
+
+		//sandParticleMain = gameObject.GetComponentInChildren<ParticleSystem.MainModule>();
+		sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
     }
 
     private IEnumerator AbilitaRibalta()
@@ -78,7 +88,10 @@ public class AutoGuida : NetworkBehaviour
         RibaltaDisabilitato = false;
     }
 
-    private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
+    private void EffettoVelocitaCamera()
+    {
+        Camera.main.fieldOfView = 60 + (TheCarRigidBody.velocity.magnitude / 2);
+    }
 
     void Update()
     {
@@ -111,8 +124,10 @@ public class AutoGuida : NetworkBehaviour
 
             Decellerazione = (instantTorque == 0 ? 1 : 0);
 
-            if (TheCarRigidBody.velocity.magnitude >= generalCar.Speed)
+            if (GB.ms_to_kmh(TheCarRigidBody.velocity.magnitude) >= generalCar.Speed)
                 instantTorque = 0;
+
+            EffettoVelocitaCamera();
         }
     }
 
@@ -128,17 +143,17 @@ public class AutoGuida : NetworkBehaviour
                 if (Colliders[i].tag.Equals("FrontWheel"))
                 {
                     Colliders[i].steerAngle = instantSteeringAngle;
-                    Colliders[i].motorTorque = instantTorque * Moltiplicatore;
+                    Colliders[i].motorTorque = instantTorque * generalCar.Accellerazione;
                 }
 
                 if (fullBrake > 0)
                 {
-                    Colliders[i].brakeTorque = fullBrake * Moltiplicatore;
+                    Colliders[i].brakeTorque = fullBrake * generalCar.Accellerazione;
                 }
                 else if (handBrake > 0)
                 {
                     if (Colliders[i].tag.Equals("BackWheel"))
-                        Colliders[i].brakeTorque = handBrake * Moltiplicatore;
+                        Colliders[i].brakeTorque = handBrake * generalCar.Accellerazione;
                 }
                 else
                 {
@@ -153,10 +168,12 @@ public class AutoGuida : NetworkBehaviour
             }
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
+			//sandParticle.simulationSpeed = generalCar.actualSpeed / 10;
+			sandParticle.playbackSpeed = generalCar.actualSpeed / 10;
 
             SetCannonsPositions();
 
-            HUD.setValues(generalCar);
+            //HUD.setValues(generalCar);
         }
     }
 
