@@ -52,6 +52,16 @@ public static class GB
         return null;
     }
 
+    public static double ms_to_kmh(float meters_per_seconds)
+    {
+        return meters_per_seconds * 3.6;
+    }
+
+    public static double ms_to_mph(float meters_per_seconds)
+    {
+        return meters_per_seconds * 2.237;
+    }
+
     public static EAnimal getRandomAnimal()
     {
         var values = System.Enum.GetValues(typeof(EAnimal));

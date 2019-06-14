@@ -6,32 +6,38 @@ Contributors:
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class AutoGuida : NetworkBehaviour
 {
 
-    [Tooltip("m/s")]
-    private float speedThreshold = 20f;
-    private int stepsBelowThreshold = 30;
-    private int stepsAboveThreshold = 1;
+    private bool RibaltaDisabilitato = false;
 
+    private Quaternion OriginalRotation;
     private Quaternion[] WheelErrorCorrectionR = new Quaternion[4];
     private WheelCollider[] Colliders = new WheelCollider[4];
     private GameObject[] Wheels = new GameObject[4];
 
     private CameraManager MyCamera;
-    private Transform LookHere, Position, AimPosition;
+    private Transform LookHere, Position, AimPosition, CentroDiMassa;
     private Rigidbody TheCarRigidBody;
 
     //The class that owns the stats of the faction    
     private GeneralCar generalCar;
 
-    private HudScriptManager HUD;
+    //private HudScriptManager HUD;
+    private int Decellerazione = 0;
+
+    private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
+
+	//To manage the sand particle effect
+	private ParticleSystem sandParticle;
+	//private ParticleSystem.MainModule sandParticleMain;
 
 
-    public override void OnStartLocalPlayer()
+	public override void OnStartLocalPlayer()
     {
         var i = 0;
         var wc = GetComponentsInChildren<WheelCollider>();
@@ -56,60 +62,103 @@ public class AutoGuida : NetworkBehaviour
 
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
+        CentroDiMassa = transform.Find("CentroDiMassa");
         LookHere = transform.Find("CameraAnchor/LookHere");
         Position = transform.Find("CameraAnchor/Position");
         AimPosition = transform.Find("CameraAnchor/AimPosition");
+        OriginalRotation = TheCarRigidBody.transform.rotation;
 
-        var HUDo = GameObject.FindGameObjectWithTag("HUD");
-        HUD = HUDo.GetComponent<HudScriptManager>();
+        //var HUDo = GameObject.FindGameObjectWithTag("HUD");
+        //HUD = HUDo.GetComponent<HudScriptManager>();
 
         MyCamera.lookAtTarget = LookHere;
         MyCamera.positionTarget = Position;
         MyCamera.AimPosition = AimPosition;
+
+        var difCentro = CentroDiMassa.position - transform.position;
+        TheCarRigidBody.centerOfMass = difCentro;
+
+		//sandParticleMain = gameObject.GetComponentInChildren<ParticleSystem.MainModule>();
+		sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
+    }
+
+    private IEnumerator AbilitaRibalta()
+    {
+        yield return new WaitForSeconds(4);
+        RibaltaDisabilitato = false;
+    }
+
+    private void EffettoVelocitaCamera()
+    {
+        Camera.main.fieldOfView = 60 + (TheCarRigidBody.velocity.magnitude / 2);
     }
 
     void Update()
     {
         if (isLocalPlayer)
         {
-            Quaternion worldPose_rotation;
-            Vector3 worldPose_position;
+            if (!RibaltaDisabilitato)
+            {
+                var Ribalta = Input.GetKey(KeyCode.T);
 
-            Colliders[0].ConfigureVehicleSubsteps(speedThreshold, stepsBelowThreshold, stepsAboveThreshold);
+                if (Ribalta)
+                {
+                    RibaltaDisabilitato = true;
+
+                    var ppp = TheCarRigidBody.gameObject.transform.position;
+                    TheCarRigidBody.gameObject.transform.SetPositionAndRotation(new Vector3(ppp.x, 0, ppp.z), OriginalRotation);
+
+                    StartCoroutine(AbilitaRibalta());
+                }
+            }
 
             //freni
-            var fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
-            var handBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque * 2 : 0);
+            fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
+            handBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque * 2 : 0);
 
             //DX-SX
-            var instantSteeringAngle = generalCar.maxSteeringAngle * Input.GetAxis("Horizontal");
+            instantSteeringAngle = generalCar.maxSteeringAngle * Input.GetAxis("Horizontal");
 
             //Avanti-dietro
-            var instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
+            instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
 
-            if (TheCarRigidBody.velocity.magnitude >= generalCar.Speed)
-                instantTorque = 0f;
+            Decellerazione = (instantTorque == 0 ? 1 : 0);
+
+            if (GB.ms_to_kmh(TheCarRigidBody.velocity.magnitude) >= generalCar.Speed)
+                instantTorque = 0;
+
+            EffettoVelocitaCamera();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isLocalPlayer)
+        {
+            Quaternion worldPose_rotation;
+            Vector3 worldPose_position;
 
             for (var i = 0; i < Colliders.Length; i++)
             {
                 if (Colliders[i].tag.Equals("FrontWheel"))
+                {
                     Colliders[i].steerAngle = instantSteeringAngle;
+                    Colliders[i].motorTorque = instantTorque * generalCar.Accellerazione;
+                }
 
                 if (fullBrake > 0)
                 {
-                    Colliders[i].brakeTorque = fullBrake;
+                    Colliders[i].brakeTorque = fullBrake * generalCar.Accellerazione;
                 }
                 else if (handBrake > 0)
                 {
                     if (Colliders[i].tag.Equals("BackWheel"))
-                        Colliders[i].brakeTorque = handBrake;
+                        Colliders[i].brakeTorque = handBrake * generalCar.Accellerazione;
                 }
                 else
                 {
-                    Colliders[i].brakeTorque = 0;
+                    Colliders[i].brakeTorque = 0 + Decellerazione;
                 }
-
-                Colliders[i].motorTorque = instantTorque;
 
                 //rotate the 3d object
                 Colliders[i].GetWorldPose(out worldPose_position, out worldPose_rotation);
@@ -119,10 +168,19 @@ public class AutoGuida : NetworkBehaviour
             }
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
+			//if (generalCar.actualSpeed == 0)
+			//{
+			//	sandParticle.Stop();
+			//}
+			//else
+			//{
+			//	sandParticle.Play();
+			//}
+			sandParticle.playbackSpeed = generalCar.actualSpeed / 10;
 
             SetCannonsPositions();
 
-            HUD.setValues(generalCar);
+            //HUD.setValues(generalCar);
         }
     }
 
