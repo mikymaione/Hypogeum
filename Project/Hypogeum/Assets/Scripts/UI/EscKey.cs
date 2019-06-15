@@ -17,7 +17,15 @@ public class EscKey : MonoBehaviour
             GB.GoBackToScene();
 
         if (Input.GetKey(KeyCode.F12))
-            Screen.fullScreen = !Screen.fullScreen;
+            if (Screen.fullScreen)
+            {
+                Screen.fullScreen = false;
+            }
+            else
+            {
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                Screen.fullScreen = true;
+            }
     }
 
 
