@@ -14,4 +14,7 @@ public class Bullet : MonoBehaviour
     public float speed = 100;
     public float add_to_damage = 10;
 
+    internal GB.EAnimal AnimaleCheHaSparatoQuestoColpo;
+
+
 }

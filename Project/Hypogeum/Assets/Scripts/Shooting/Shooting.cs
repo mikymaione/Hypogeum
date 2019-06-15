@@ -26,7 +26,7 @@ public class Shooting : NetworkBehaviour
 
     //The class that owns the stats of the faction    
     public GeneralCar generalCar;
-	//private HudScriptManager HUD;
+    private HudScriptManager HUD;
 
 
     public override void OnStartLocalPlayer()
@@ -36,11 +36,11 @@ public class Shooting : NetworkBehaviour
         projectileClass = projectilePrefab.GetComponent<Bullet>();
         CameraPos = transform.Find("CameraPos");
 
-        //var HUDo = GameObject.FindGameObjectWithTag("HUD");
-        //HUD = HUDo.GetComponent<HudScriptManager>();
+        var HUDo = GameObject.FindGameObjectWithTag("HUD");
+        HUD = HUDo.GetComponent<HudScriptManager>();
 
         MostraMirino();
-	}
+    }
 
     private GameObject ___car;
     private GameObject Car
@@ -82,10 +82,10 @@ public class Shooting : NetworkBehaviour
                 StartCoroutine(RechargeWeapon());
 
                 var velocity = cam.transform.forward * projectileClass.speed;
-                CmdIstantiateBulletAndShoot(gameObject, cam.transform.position, cam.transform.rotation, velocity);
+                CmdIstantiateBulletAndShoot(GB.Animal.Value, gameObject, cam.transform.position, cam.transform.rotation, velocity);
             }
 
-            //HUD.setValues(generalCar);
+            HUD.setValues(generalCar);
         }
     }
 
@@ -97,21 +97,23 @@ public class Shooting : NetworkBehaviour
     }
 
     [Command] //only host
-    private void CmdIstantiateBulletAndShoot(GameObject player, Vector3 position, Quaternion rotation, Vector3 velocity)
+    private void CmdIstantiateBulletAndShoot(GB.EAnimal animal, GameObject player, Vector3 position, Quaternion rotation, Vector3 velocity)
     {
         var projectile = Instantiate(projectilePrefab, position, rotation);
+        var bulletClass = projectile.GetComponent<Bullet>();
+        bulletClass.AnimaleCheHaSparatoQuestoColpo = animal;
 
-        //Destroy(projectile, 10); //vi pregooooo voglio macerie ovunque
+        Destroy(projectile, 10);
         NetworkServer.SpawnWithClientAuthority(projectile, player);
 
         RpcShoot(projectile, velocity);
     }
 
-	//Instantiate the explosion prefab
-	private void PlayExplosion()
-	{
-		
-	}
+    //Instantiate the explosion prefab
+    private void PlayExplosion()
+    {
+
+    }
 
     private IEnumerator RechargeWeapon()
     {

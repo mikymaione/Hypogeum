@@ -26,9 +26,22 @@ public class CarCollisionManager : NetworkBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("car"))
+        {
             CalculateCollisionDamage();
+        }
         else if (collision.gameObject.CompareTag("Bullet"))
-            CalculateCollisionDamage(100);
+        {
+            var bullet = collision.gameObject.GetComponent<Bullet>();
+
+            if (bullet.AnimaleCheHaSparatoQuestoColpo == GB.Animal)
+            {
+                //mi sono sparato da solo
+            }
+            else
+            {
+                CalculateCollisionDamage(100);
+            }
+        }
     }
 
     private void CalculateCollisionDamage(int AdditionalDamage = 0)

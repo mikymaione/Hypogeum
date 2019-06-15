@@ -93,7 +93,6 @@
     <Compile Include="Assets\Scripts\CarScripts\AutoGuida.cs" />
     <Compile Include="Assets\Scripts\CarScripts\AutoSospensioni.cs" />
     <Compile Include="Assets\Scripts\CarScripts\GeneralCar.cs" />
-    <Compile Include="Assets\Scripts\CarScripts\sandEffect.cs" />
     <Compile Include="Assets\Scripts\Colliders\BulletCollisionManager.cs" />
     <Compile Include="Assets\Scripts\Colliders\CarCollisionManager.cs" />
     <Compile Include="Assets\Scripts\Global\GB.cs" />
