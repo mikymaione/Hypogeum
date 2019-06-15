@@ -28,6 +28,8 @@ public class AutoGuida : NetworkBehaviour
     //The class that owns the stats of the faction    
     private GeneralCar generalCar;
 
+    private Vector3 CentroDiMassaAssettoCorsa, CentroDiMassa3D;
+
     //private HudScriptManager HUD;
     private int Decellerazione = 0;
 
@@ -76,8 +78,9 @@ public class AutoGuida : NetworkBehaviour
         MyCamera.positionTarget = Position;
         MyCamera.AimPosition = AimPosition;
 
-        var difCentro = CentroDiMassa.position - transform.position;
-        TheCarRigidBody.centerOfMass = difCentro;
+        CentroDiMassa3D = TheCarRigidBody.centerOfMass;
+        CentroDiMassaAssettoCorsa = CentroDiMassa.position - transform.position;
+        TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
 
         sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
     }
@@ -169,6 +172,14 @@ public class AutoGuida : NetworkBehaviour
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
+
+            var RuoteCheCollidono = 0;
+            for (var i = 0; i < Colliders.Length; i++)
+                if (Colliders[i].isGrounded)
+                    RuoteCheCollidono++;
+
+            //quando sei in aria usa il centro di massa al centro del box 3d, altrimenti usa il centro di massa che Michele ha settato a mano per ogni auto            
+            TheCarRigidBody.centerOfMass = (RuoteCheCollidono == 0 ? CentroDiMassa3D : CentroDiMassaAssettoCorsa);
 
             SetCannonsPositions();
 
