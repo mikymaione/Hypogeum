@@ -52,7 +52,12 @@ public class CameraManager : MonoBehaviour
     {
         if (lookAtTarget != null && positionTarget != null)
         {
-            transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
+            var pos = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
+
+            if (pos.y < 0)
+                pos.y = 0;
+
+            transform.position = pos;
             transform.LookAt(lookAtTarget);
         }
     }

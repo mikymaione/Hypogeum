@@ -100,7 +100,7 @@ public class AutoGuida : NetworkBehaviour
 
     private void EffettoVelocitaCamera()
     {
-        Camera.main.fieldOfView = 60 + (TheCarRigidBody.velocity.magnitude / 2);
+        Camera.main.fieldOfView = 60 + (TheCarRigidBody.velocity.magnitude / 3);
     }
 
     void Update()
