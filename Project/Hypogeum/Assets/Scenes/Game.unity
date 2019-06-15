@@ -2798,7 +2798,7 @@ GameObject:
   m_Component:
   - component: {fileID: 598261377}
   m_Layer: 0
-  m_Name: Oggettistica 2
+  m_Name: Oggettistica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2812,7 +2812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598261376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -323.97, y: 272.6, z: -345.86}
+  m_LocalPosition: {x: -323.97, y: 272.3, z: -345.86}
   m_LocalScale: {x: 1.9157, y: 1.9157, z: 1.9157}
   m_Children:
   - {fileID: 1809768080}

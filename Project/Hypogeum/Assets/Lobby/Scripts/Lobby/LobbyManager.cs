@@ -33,7 +33,6 @@ namespace Prototype.NetworkLobby
 
         internal Dictionary<int, LobbyPlayer> Players = new Dictionary<int, LobbyPlayer>();
 
-        public Team[] teams;
 
         [Header("Unity UI Lobby")]
         [Tooltip("Time in second between all players ready & match start")]
@@ -77,18 +76,12 @@ namespace Prototype.NetworkLobby
             SetServerInfo("Offline", "None");
 
             gamePlayerPrefab = GB.LoadAnimalCar(GB.EAnimal.Rhino);
-
-            //creating the teams
-            teams = new Team[] { new Team(GB.EAnimal.Lion), new Team(GB.EAnimal.Rhino),
-                new Team(GB.EAnimal.Eagle), new Team(GB.EAnimal.Shark) };
         }
-
-        //public void RegisterTeam();
 
         #region UI
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
         {
-            if (SceneManager.GetSceneAt(0).name == lobbyScene)
+            if (SceneManager.GetSceneAt(0).name.Equals(lobbyScene))
             {
                 if (topPanel.isInGame)
                 {
@@ -100,7 +93,9 @@ namespace Prototype.NetworkLobby
                         backDelegate = StopClientClbk;
                 }
                 else
+                {
                     ChangeTo(mainMenuPanel);
+                }
 
                 topPanel.ToggleVisibility(true);
                 topPanel.isInGame = false;
@@ -134,7 +129,9 @@ namespace Prototype.NetworkLobby
                 _isMatchmaking = false;
             }
             else
+            {
                 backButton.gameObject.SetActive(true);
+            }
         }
 
         public void DisplayIsConnecting()
@@ -261,7 +258,7 @@ namespace Prototype.NetworkLobby
 
             _playerNumber += count;
 
-            foreach (var p in ClientScene.localPlayers)
+            foreach (PlayerController p in ClientScene.localPlayers)
                 localPlayerCount += ((p == null || p.playerControllerId == -1) ? 0 : 1);
 
             addPlayerButton.SetActive(localPlayerCount < maxPlayersPerConnection && _playerNumber < maxPlayers);

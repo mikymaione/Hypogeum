@@ -103,7 +103,6 @@
     <Compile Include="Assets\Scripts\Player\Abilities\Eagles\WindTriggerable.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\Shark\BiteAbility.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\Shark\BiteTriggerable.cs" />
-    <Compile Include="Assets\Scripts\Player\Teams\Team.cs" />
     <Compile Include="Assets\Scripts\Shooting\Shooting.cs" />
     <Compile Include="Assets\Scripts\UI\btnFX.cs" />
     <Compile Include="Assets\Scripts\UI\EscKey.cs" />
