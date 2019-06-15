@@ -134,7 +134,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -40, z: -209.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5988093173209365489}
+  - {fileID: 5987481821130908636}
   m_Father: {fileID: 2187948641101672336}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 7062179990749609757}
   - component: {fileID: 3114238238392715824}
   m_Layer: 0
-  m_Name: Sharkscar
+  m_Name: SharksCar
   m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,15 +490,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.11111111
+  m_SendInterval: 0.06666667
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 1
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 5
+  m_MovementTheshold: 0
+  m_VelocityThreshold: 0
+  m_SnapThreshold: 0
+  m_InterpolateRotation: 0
+  m_InterpolateMovement: 0
 --- !u!114 &5425186709744172473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,7 +1227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14d81e2c407975245973a11cdfbeb902, type: 3}
---- !u!4 &5988093173209365489 stripped
+--- !u!4 &5987481821130908636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012573350444, guid: 14d81e2c407975245973a11cdfbeb902,
     type: 3}
