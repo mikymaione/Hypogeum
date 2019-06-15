@@ -13,6 +13,7 @@ using UnityEngine.Networking;
 public class AutoGuida : NetworkBehaviour
 {
 
+    private const short PosizionePavimento = -5;
     private bool RibaltaDisabilitato = false;
 
     private Quaternion OriginalRotation;
@@ -32,12 +33,12 @@ public class AutoGuida : NetworkBehaviour
 
     private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
 
-	//To manage the sand particle effect
-	private ParticleSystem sandParticle;
-	//private ParticleSystem.MainModule sandParticleMain;
+    //To manage the sand particle effect
+    private ParticleSystem sandParticle;
+    //private ParticleSystem.MainModule sandParticleMain;
 
 
-	public override void OnStartLocalPlayer()
+    public override void OnStartLocalPlayer()
     {
         var i = 0;
         var wc = GetComponentsInChildren<WheelCollider>();
@@ -78,8 +79,7 @@ public class AutoGuida : NetworkBehaviour
         var difCentro = CentroDiMassa.position - transform.position;
         TheCarRigidBody.centerOfMass = difCentro;
 
-		//sandParticleMain = gameObject.GetComponentInChildren<ParticleSystem.MainModule>();
-		sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
+        sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
     }
 
     private IEnumerator AbilitaRibalta()
@@ -168,15 +168,7 @@ public class AutoGuida : NetworkBehaviour
             }
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
-			//if (generalCar.actualSpeed == 0)
-			//{
-			//	sandParticle.Stop();
-			//}
-			//else
-			//{
-			//	sandParticle.Play();
-			//}
-			sandParticle.playbackSpeed = generalCar.actualSpeed / 10;
+            sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
             SetCannonsPositions();
 
