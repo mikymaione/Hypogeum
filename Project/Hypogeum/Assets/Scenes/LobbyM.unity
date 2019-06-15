@@ -282,7 +282,7 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
       propertyPath: m_CustomConfig
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
       propertyPath: matchName
@@ -313,6 +313,38 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
         type: 3}
+    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
+      propertyPath: m_NetworkPort
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
+      propertyPath: m_MaxBufferedPackets
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
+      propertyPath: m_MaxDelay
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
+      propertyPath: m_ConnectionConfig.m_PingTimeout
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
+      propertyPath: m_ConnectionConfig.m_DisconnectTimeout
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
+      propertyPath: m_ConnectionConfig.m_ConnectTimeout
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
+      propertyPath: m_ConnectionConfig.m_MinUpdateTimeout
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
+      propertyPath: m_MaxConnections
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 11402578, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 3}
       propertyPath: m_Text
       value: Hypogeum

@@ -341,7 +341,7 @@ MonoBehaviour:
   Agility: 4
   Accellerazione: 9
   maxSteeringAngle: 25
-  maxTorque: 150
+  maxTorque: 200
 --- !u!1 &585478298614816171
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +911,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -40, z: -163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5738845000634460493}
+  - {fileID: 5740485212129718624}
   m_Father: {fileID: 518718005}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1320,7 +1320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14d81e2c407975245973a11cdfbeb902, type: 3}
---- !u!4 &5738845000634460493 stripped
+--- !u!4 &5740485212129718624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012573350444, guid: 14d81e2c407975245973a11cdfbeb902,
     type: 3}
