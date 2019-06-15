@@ -48,19 +48,23 @@ public class CarCollisionManager : NetworkBehaviour
     {
         if (playerCar != null)
         {
-            playerCar.Health -= AdditionalDamage + (playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
+            var v = AdditionalDamage + (playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
 
-            if (playerCar.Health <= 0)
-                CmdRemoveTeam(GB.Animal.Value);
+            CmdTakeDamage(GB.Animal.Value, gameObject, v);
         }
     }
 
     [Command] //only host
-    private void CmdRemoveTeam(GB.EAnimal animal)
+    private void CmdTakeDamage(GB.EAnimal animale, GameObject player, float v)
     {
-        foreach (var lobbyPlayer in LobbyManager.s_Singleton.Players)
-            if (lobbyPlayer.Value.animal == animal)
-                RpcTeamRemoved(lobbyPlayer.Value.animal);
+        var p = player.GetComponent<GeneralCar>();
+
+        p.Health -= v;
+
+        if (p.Health <= 0)
+            foreach (var lobbyPlayer in LobbyManager.s_Singleton.Players)
+                if (lobbyPlayer.Value.animal == animale)
+                    RpcTeamRemoved(lobbyPlayer.Value.animal);
     }
 
     [ClientRpc] //all clients

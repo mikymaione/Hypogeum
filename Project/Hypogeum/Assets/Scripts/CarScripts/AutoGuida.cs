@@ -61,7 +61,7 @@ public class AutoGuida : NetworkBehaviour
         }
 
         generalCar = GetComponent<GeneralCar>();
-        generalCar.Health = generalCar.Max_Health;
+        CmdSetMyHealt(gameObject, generalCar.Max_Health);
 
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
@@ -83,6 +83,13 @@ public class AutoGuida : NetworkBehaviour
         TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
 
         sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
+    }
+
+    [Command] //only host
+    private void CmdSetMyHealt(GameObject player, int v)
+    {
+        var p = player.GetComponent<GeneralCar>();
+        p.Health = v;
     }
 
     private IEnumerator AbilitaRibalta()

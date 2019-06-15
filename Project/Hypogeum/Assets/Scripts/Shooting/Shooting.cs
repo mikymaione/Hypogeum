@@ -25,7 +25,7 @@ public class Shooting : NetworkBehaviour
     private Transform cannonPositionMarker, CameraPos;
 
     //The class that owns the stats of the faction    
-    public GeneralCar generalCar;
+    private GeneralCar generalCar;
     private HudScriptManager HUD;
 
 
