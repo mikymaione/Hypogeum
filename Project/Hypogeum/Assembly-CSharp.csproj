@@ -95,6 +95,8 @@
     <Compile Include="Assets\Scripts\CarScripts\GeneralCar.cs" />
     <Compile Include="Assets\Scripts\Colliders\BulletCollisionManager.cs" />
     <Compile Include="Assets\Scripts\Colliders\CarCollisionManager.cs" />
+    <Compile Include="Assets\Scripts\Colliders\CoinsCollisionManager.cs" />
+    <Compile Include="Assets\Scripts\GameLogics\CoinsSpawner.cs" />
     <Compile Include="Assets\Scripts\Global\GB.cs" />
     <Compile Include="Assets\Scripts\Global\SceneField.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\Ability.cs" />
