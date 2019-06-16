@@ -23,6 +23,8 @@ public class CoinsSpawner : NetworkBehaviour
                 var e = GB.getRandomEnum<GB.ECoin>();
                 var coin = GB.LoadCoin(e);
                 var coin_instance = Instantiate(coin, cs.transform.position, Quaternion.identity);
+
+                NetworkServer.Spawn(coin_instance);
             }
         }
     }
