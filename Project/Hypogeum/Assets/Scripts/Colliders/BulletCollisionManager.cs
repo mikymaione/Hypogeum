@@ -12,8 +12,8 @@ using UnityEngine.Networking;
 public class BulletCollisionManager : NetworkBehaviour
 {
 
-    private GameObject explosion;
-    private GameObject sand;
+    public GameObject explosion;
+    public GameObject sand;
     private bool hasExploded = false;
 
 
