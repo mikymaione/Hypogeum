@@ -23,6 +23,7 @@ TagManager:
   - Cannon
   - HUD
   - Bullet
+  - CoinsSpawner
   layers:
   - Default
   - TransparentFX

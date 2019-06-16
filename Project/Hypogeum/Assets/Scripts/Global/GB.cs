@@ -13,6 +13,12 @@ using UnityEngine.SceneManagement;
 public static class GB
 {
 
+    public enum ECoin
+    {
+        Reason,
+        Instinct
+    }
+
     public enum EGameType
     {
         Driving,
@@ -62,12 +68,12 @@ public static class GB
         return meters_per_seconds * 2.237;
     }
 
-    public static EAnimal getRandomAnimal()
+    public static T getRandomEnum<T>()
     {
-        var values = System.Enum.GetValues(typeof(EAnimal));
+        var values = System.Enum.GetValues(typeof(T));
         var random = Random.Range(0, values.Length);
 
-        return (EAnimal)values.GetValue(random);
+        return (T)values.GetValue(random);
     }
 
     public static GameObject LoadAnimalCar(EAnimal? animal)
@@ -96,6 +102,11 @@ public static class GB
     public static GameObject LoadCannon(EAnimal animal)
     {
         return Resources.Load($"Weapons/{animal.ToString()}sCannon") as GameObject;
+    }
+
+    public static GameObject LoadCoin(ECoin coin)
+    {
+        return Resources.Load($"Coins/Coin{coin.ToString()}") as GameObject;
     }
 
     public static void GoBackToScene()

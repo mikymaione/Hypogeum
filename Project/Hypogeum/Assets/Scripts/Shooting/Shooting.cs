@@ -117,7 +117,7 @@ public class Shooting : NetworkBehaviour
 
     private IEnumerator RechargeWeapon()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.999f);
         canShoot = true;
         StopCoroutine(RechargeWeapon());
     }

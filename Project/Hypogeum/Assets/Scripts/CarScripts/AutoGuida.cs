@@ -107,21 +107,6 @@ public class AutoGuida : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (!RibaltaDisabilitato)
-            {
-                var Ribalta = Input.GetKey(KeyCode.T);
-
-                if (Ribalta)
-                {
-                    RibaltaDisabilitato = true;
-
-                    var ppp = TheCarRigidBody.gameObject.transform.position;
-                    TheCarRigidBody.gameObject.transform.SetPositionAndRotation(new Vector3(ppp.x, 0, ppp.z), OriginalRotation);
-
-                    StartCoroutine(AbilitaRibalta());
-                }
-            }
-
             //freni
             fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
             handBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque * 2 : 0);
@@ -138,6 +123,25 @@ public class AutoGuida : NetworkBehaviour
                 instantTorque = 0;
 
             EffettoVelocitaCamera();
+
+
+            if (!RibaltaDisabilitato)
+            {
+                var Ribalta = Input.GetKey(KeyCode.T);
+
+                if (Ribalta)
+                {
+                    RibaltaDisabilitato = true;
+
+                    instantTorque = 0;
+                    instantSteeringAngle = 0;
+
+                    var ppp = TheCarRigidBody.gameObject.transform.position;
+                    TheCarRigidBody.gameObject.transform.SetPositionAndRotation(new Vector3(ppp.x, 0, ppp.z), OriginalRotation);
+
+                    StartCoroutine(AbilitaRibalta());
+                }
+            }
         }
     }
 
