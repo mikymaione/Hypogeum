@@ -46,6 +46,14 @@ public static class GB
     internal static EAnimal? Animal;
 
 
+    public static void AbilitaButton(UnityEngine.UI.Button b, bool abilitato)
+    {
+        var img = b.GetComponent<UnityEngine.UI.Image>();
+        img.color = (abilitato ? Color.white : Color.gray);
+
+        b.enabled = abilitato;
+    }
+
     //da testare
     public static T FindComponentInChildWithTag<T>(GameObject parent, string tag) where T : Component
     {

@@ -103,14 +103,8 @@ public sealed class GestioneMenu : MonoBehaviour
 
     private void SelezionaModalitaGioco(GB.EGameType m)
     {
-        void coloraButtonGioco(Button b, bool disabilita)
-        {
-            var img = b.GetComponent<Image>();
-            img.color = (disabilita ? Color.gray : Color.white);
-        }
-
-        coloraButtonGioco(button_guida, m == GB.EGameType.Driving);
-        coloraButtonGioco(button_sparo, m == GB.EGameType.Shooting);
+        GB.AbilitaButton(button_guida, m != GB.EGameType.Driving);
+        GB.AbilitaButton(button_sparo, m != GB.EGameType.Shooting);
 
         GB.GameType = m;
 
@@ -121,21 +115,18 @@ public sealed class GestioneMenu : MonoBehaviour
     {
         var abilitato = (GB.Animal.HasValue && GB.GameType.HasValue);
 
-        var img = button_go.GetComponent<Image>();
-        img.color = (abilitato ? Color.white : Color.gray);
-
-        button_go.enabled = abilitato;
+        GB.AbilitaButton(button_go, abilitato);
     }
 
     private void SelezionaAnimale(GB.EAnimal? selectedAnimal = null)
     {
         foreach (var el in buttons_animal_mapping)
         {
-            var color = (selectedAnimal == el.animal ? Color.gray : Color.white);
-            var img = el.button.GetComponent<Image>();
-            img.color = color;
+            var selezionato = (selectedAnimal == el.animal);
 
-            el.car.active = (selectedAnimal == el.animal);
+            GB.AbilitaButton(el.button, !selezionato);
+
+            el.car.active = selezionato;
         }
 
         GB.Animal = selectedAnimal;
