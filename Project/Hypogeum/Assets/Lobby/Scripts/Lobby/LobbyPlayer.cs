@@ -126,7 +126,14 @@ namespace Prototype.NetworkLobby
             readyButton.interactable = true;
 
             if (playerName.Equals(""))
-                CmdNameChanged(System.Environment.UserName);
+            {
+                var n = System.Environment.UserName;
+
+                if (string.IsNullOrEmpty(n))
+                    n = RandomNameGenerator.NameGenerator.GenerateFirstName(RandomNameGenerator.NameGenerator.Gender.Male);
+
+                CmdNameChanged(n);
+            }
 
             CmdSetAnimal(GB.Animal.Value);
             CmdSetGameType(GB.GameType.Value);

@@ -45,6 +45,9 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -99,6 +102,7 @@
     <Compile Include="Assets\Scripts\Global\GB.cs" />
     <Compile Include="Assets\Scripts\Global\RandomNameGenerator.cs" />
     <Compile Include="Assets\Scripts\Global\SceneField.cs" />
+    <Compile Include="Assets\Scripts\Global\VersioneGioco.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\Ability.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\AbilityCoolDown.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\Eagles\WindAbility.cs" />
@@ -124,6 +128,7 @@
     <Compile Include="Assets\UI Samples\Scripts\ScrollDetailTexture.cs" />
     <Compile Include="Assets\UI Samples\Scripts\ShowSliderValue.cs" />
     <Compile Include="Assets\UI Samples\Scripts\TiltWindow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />
     <None Include="Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Particle AddSoft A8.shader" />
@@ -727,6 +732,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\EffectExamples\TutorialInfo\Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
