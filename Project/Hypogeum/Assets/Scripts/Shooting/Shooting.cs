@@ -109,12 +109,6 @@ public class Shooting : NetworkBehaviour
         RpcShoot(projectile, velocity);
     }
 
-    //Instantiate the explosion prefab
-    private void PlayExplosion()
-    {
-
-    }
-
     private IEnumerator RechargeWeapon()
     {
         yield return new WaitForSeconds(0.999f);
