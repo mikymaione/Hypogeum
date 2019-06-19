@@ -76,6 +76,24 @@ namespace Prototype.NetworkLobby
             SetServerInfo("Offline", "None");
 
             gamePlayerPrefab = GB.LoadAnimalCar(GB.EAnimal.Rhino);
+
+            CheckPresenzaMatch();
+        }
+
+        private void CheckPresenzaMatch()
+        {
+            if (matchMaker == null)
+                StartMatchMaker();
+
+            matchMaker.ListMatches(0, 6, "", true, 0, 0, (success, extendedInfo, responseData) =>
+            {
+                if (success)
+                    if (responseData.Count > 0)
+                    {
+                        var lmm = mainMenuPanel.GetComponent<LobbyMainMenu>();
+                        lmm.OnClickOpenServerList();
+                    }
+            });
         }
 
         #region UI

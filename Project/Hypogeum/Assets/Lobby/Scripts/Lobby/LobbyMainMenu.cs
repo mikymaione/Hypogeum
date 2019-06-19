@@ -19,7 +19,6 @@ namespace Prototype.NetworkLobby
         public RectTransform lobbyServerList;
         public RectTransform lobbyPanel;
 
-        public InputField ipInput;
         public InputField matchNameInput;
 
 
@@ -27,8 +26,7 @@ namespace Prototype.NetworkLobby
         {
             lobbyManager.topPanel.ToggleVisibility(true);
 
-            ipInput.onEndEdit.RemoveAllListeners();
-            ipInput.onEndEdit.AddListener(onEndEditIP);
+            matchNameInput.text = RandomNameGenerator.NameGenerator.GenerateFirstName(RandomNameGenerator.NameGenerator.Gender.Female);
 
             matchNameInput.onEndEdit.RemoveAllListeners();
             matchNameInput.onEndEdit.AddListener(onEndEditGameName);
@@ -37,16 +35,6 @@ namespace Prototype.NetworkLobby
         public void OnClickHost()
         {
             lobbyManager.StartHost();
-        }
-
-        public void OnClickJoin()
-        {
-            lobbyManager.ChangeTo(lobbyPanel);
-            lobbyManager.networkAddress = ipInput.text;
-            lobbyManager.StartClient();
-            lobbyManager.backDelegate = lobbyManager.StopClientClbk;
-            lobbyManager.DisplayIsConnecting();
-            lobbyManager.SetServerInfo("Connecting...", lobbyManager.networkAddress);
         }
 
         public void OnClickDedicated()
@@ -61,7 +49,8 @@ namespace Prototype.NetworkLobby
 
         public void OnClickCreateMatchmakingGame()
         {
-            lobbyManager.StartMatchMaker();
+            if (lobbyManager.matchMaker == null)
+                lobbyManager.StartMatchMaker();
 
             lobbyManager.matchMaker.CreateMatch(
                matchNameInput.text,
@@ -80,17 +69,11 @@ namespace Prototype.NetworkLobby
 
         public void OnClickOpenServerList()
         {
-            //lobbyManager.gamers.Add(ipInput.text, GB.Animal.Value);
+            if (lobbyManager.matchMaker == null)
+                lobbyManager.StartMatchMaker();
 
-            lobbyManager.StartMatchMaker();
             lobbyManager.backDelegate = lobbyManager.SimpleBackClbk;
             lobbyManager.ChangeTo(lobbyServerList);
-        }
-
-        void onEndEditIP(string text)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-                OnClickJoin();
         }
 
         void onEndEditGameName(string text)

@@ -61,7 +61,6 @@
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
-    <Compile Include="Assets\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="Assets\Scripts\Colliders\CoinsCollisionManager.cs" />
     <Compile Include="Assets\Scripts\GameLogics\CoinsSpawner.cs" />
     <Compile Include="Assets\Scripts\Global\GB.cs" />
+    <Compile Include="Assets\Scripts\Global\RandomNameGenerator.cs" />
     <Compile Include="Assets\Scripts\Global\SceneField.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\Ability.cs" />
     <Compile Include="Assets\Scripts\Player\Abilities\AbilityCoolDown.cs" />
@@ -724,6 +724,9 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\EffectExamples\TutorialInfo\Scripts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

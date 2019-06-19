@@ -125,12 +125,10 @@ namespace Prototype.NetworkLobby
             readyButton.transform.GetChild(0).GetComponent<Text>().text = "JOIN";
             readyButton.interactable = true;
 
-            //have to use child count of player prefab already setup as "this.slot" is not set yet
             if (playerName.Equals(""))
-                CmdNameChanged("Player" + (LobbyPlayerList._instance.playerListContentTransform.childCount - 1));
+                CmdNameChanged(System.Environment.UserName);
 
             CmdSetAnimal(GB.Animal.Value);
-
             CmdSetGameType(GB.GameType.Value);
 
             //we switch from simple name display to name input
