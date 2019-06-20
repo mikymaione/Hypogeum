@@ -166,10 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b980ef33455a314ea69501e680dceaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max_Health: 1000
-  Defense: 4
+  Max_Health: 1500
+  Defense: 9
   Speed: 130
   Agility: 4
+  Attack: 7
   Accellerazione: 40
   maxSteeringAngle: 25
   maxTorque: 150

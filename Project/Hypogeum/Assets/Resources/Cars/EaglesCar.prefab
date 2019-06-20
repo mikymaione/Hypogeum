@@ -336,9 +336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Max_Health: 800
-  Defense: 4
+  Defense: 5
   Speed: 200
   Agility: 4
+  Attack: 5
   Accellerazione: 15
   maxSteeringAngle: 25
   maxTorque: 200

@@ -23,6 +23,7 @@ public class GeneralCar : NetworkBehaviour
     public int Defense;
     public int Speed;
     public int Agility;
+	public int Attack;
 
     public float Accellerazione;
 

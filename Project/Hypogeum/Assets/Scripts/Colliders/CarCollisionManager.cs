@@ -15,6 +15,8 @@ public class CarCollisionManager : NetworkBehaviour
 
     private GeneralCar playerCar;
     private Rigidbody playerCar_RB;
+	private int otherCarDefense;
+	private float relativeCollisionVelocity;
 
 
     public override void OnStartLocalPlayer()
@@ -27,39 +29,51 @@ public class CarCollisionManager : NetworkBehaviour
     {
         if (collision.gameObject.CompareTag("car"))
         {
-            CalculateCollisionDamage();
+			otherCarDefense = collision.gameObject.GetComponent<GeneralCar>().Defense;
+			relativeCollisionVelocity = collision.relativeVelocity.magnitude;
+            CalculateCollisionDamage(otherCarDefense, relativeCollisionVelocity);
         }
         else if (collision.gameObject.CompareTag("Bullet"))
         {
             var bullet = collision.gameObject.GetComponent<Bullet>();
 
+			//grazie Michele, lo avevo pensato adesso, ma lo hai gia' impostato tu <3
             if (bullet.AnimaleCheHaSparatoQuestoColpo == GB.Animal)
             {
-                //mi sono sparato da solo
+				//mi sono sparato da solo, no damage
+				CalculateBulletDamage(0);
             }
             else
             {
-                CalculateCollisionDamage(100);
+				int otherTeamAttack = GB.GetTeamAttack(bullet.AnimaleCheHaSparatoQuestoColpo);
+                CalculateBulletDamage(otherTeamAttack);
             }
         }
     }
 
-    private void CalculateCollisionDamage(int AdditionalDamage = 0)
+	private void CalculateBulletDamage(int otherTeamAttack)
+	{
+		float damage = otherTeamAttack * 8;
+
+		CmdTakeDamage(GB.Animal.Value, gameObject, damage);
+	}
+
+    private void CalculateCollisionDamage(int otherCarDefense, float relativeCollisionVelocity)
     {
         if (playerCar != null)
         {
-            var v = AdditionalDamage + (playerCar_RB.velocity.magnitude * 5 - playerCar.Defense);
+            float damage = (relativeCollisionVelocity) / (playerCar.Defense * 0.1f);
 
-            CmdTakeDamage(GB.Animal.Value, gameObject, v);
+            CmdTakeDamage(GB.Animal.Value, gameObject, damage);
         }
     }
 
     [Command] //only host
-    private void CmdTakeDamage(GB.EAnimal animale, GameObject player, float v)
+    private void CmdTakeDamage(GB.EAnimal animale, GameObject player, float damage)
     {
         var p = player.GetComponent<GeneralCar>();
 
-        p.Health -= v;
+        p.Health -= damage;
 
         if (p.Health <= 0)
             foreach (var lobbyPlayer in LobbyManager.s_Singleton.Players)

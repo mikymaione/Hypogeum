@@ -107,7 +107,30 @@ public static class GB
         return Resources.Load($"Cars/{s}") as GameObject;
     }
 
-    public static GameObject LoadCannon(EAnimal animal)
+	public static int GetTeamAttack(EAnimal? animal)
+	{
+		int attack = 0;
+
+		switch (animal)
+		{
+			case EAnimal.Rhino:
+				attack = 7;
+				break;
+			case EAnimal.Eagle:
+				attack = 5;
+				break;
+			case EAnimal.Lion:
+				attack = 9;
+				break;
+			case EAnimal.Shark:
+				attack = 7;
+				break;
+		}
+
+		return attack;
+	}
+
+	public static GameObject LoadCannon(EAnimal animal)
     {
         return Resources.Load($"Weapons/{animal.ToString()}sCannon") as GameObject;
     }
