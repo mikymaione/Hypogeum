@@ -221,13 +221,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 5
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 7
   m_Enabled: 1
 --- !u!1 &2187948640682818080
 GameObject:
@@ -282,13 +282,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 5
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 7
   m_Enabled: 1
 --- !u!1 &2187948640688283354
 GameObject:
@@ -343,13 +343,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 5
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 7
   m_Enabled: 1
 --- !u!1 &2187948640829662667
 GameObject:
@@ -572,8 +572,6 @@ MonoBehaviour:
   Agility: 4
   Attack: 7
   Accellerazione: 10
-  MoltiplicatoreFrizioneCentrale: 1
-  MoltiplicatoreFrizioneLaterale: 1
   maxSteeringAngle: 25
   maxTorque: 200
 --- !u!1 &2187948641267149959
@@ -659,13 +657,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 5
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 7
   m_Enabled: 1
 --- !u!1 &3677000189608245629
 GameObject:

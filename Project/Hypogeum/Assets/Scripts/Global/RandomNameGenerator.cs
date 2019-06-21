@@ -15,7 +15,7 @@ namespace RandomNameGenerator
     public static class NameGenerator
     {
 
-        private static Random _random = new Random();
+        private static Random _random = new Random(DateTime.Now.Second);
 
         private static List<string> _ladies = new List<string>
         {
