@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destrezza: 10
-  smorzamento: 0.8
-  distanzaDalCentroDiMassa: 0.03
+  smorzamento: 3
+  distanzaDalCentroDiMassa: 1
   regolaDistanzaMolle: 1
 --- !u!114 &3243681315850885656
 MonoBehaviour:
@@ -336,8 +336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Max_Health: 800
-  Defense: 5
   Speed: 200
+  Defense: 5
   Agility: 4
   Attack: 5
   Accellerazione: 13
@@ -553,10 +553,10 @@ WheelCollider:
   m_Radius: 28
   m_SuspensionSpring:
     spring: 28296.912
-    damper: 4527.506
+    damper: 16978.146
     targetPosition: 0.5
   m_SuspensionDistance: 0.19619998
-  m_ForceAppPointDistance: 55.5632
+  m_ForceAppPointDistance: 54.5932
   m_Mass: 6
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -756,10 +756,10 @@ WheelCollider:
   m_Radius: 31
   m_SuspensionSpring:
     spring: 30233.89
-    damper: 4837.423
+    damper: 18140.336
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 64.9632
+  m_ForceAppPointDistance: 63.993202
   m_Mass: 8
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -958,10 +958,10 @@ WheelCollider:
   m_Radius: 31
   m_SuspensionSpring:
     spring: 29931.307
-    damper: 4789.0093
+    damper: 17958.785
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 64.9632
+  m_ForceAppPointDistance: 63.993202
   m_Mass: 8
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -1049,10 +1049,10 @@ WheelCollider:
   m_Radius: 28
   m_SuspensionSpring:
     spring: 28037.889
-    damper: 4486.0625
+    damper: 16822.734
     targetPosition: 0.5
   m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 55.563206
+  m_ForceAppPointDistance: 54.593204
   m_Mass: 6
   m_WheelDampingRate: 0.25
   m_ForwardFriction:

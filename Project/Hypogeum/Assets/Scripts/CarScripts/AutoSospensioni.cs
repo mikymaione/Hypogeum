@@ -22,7 +22,8 @@ public class AutoSospensioni : MonoBehaviour
 
     public bool regolaDistanzaMolle = true;
 
-    Rigidbody m_Rigidbody;
+    private Rigidbody m_Rigidbody;
+
 
     void Start()
     {
