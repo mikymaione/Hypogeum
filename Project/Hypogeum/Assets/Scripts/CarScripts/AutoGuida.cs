@@ -83,15 +83,6 @@ public class AutoGuida : NetworkBehaviour
         TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
 
         sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
-
-        for (i = 0; i < Colliders.Length; i++)
-        {
-            var ff = Colliders[i].forwardFriction;
-            var sf = Colliders[i].sidewaysFriction;
-
-            ff.stiffness = generalCar.MoltiplicatoreFrizioneCentrale;
-            sf.stiffness = generalCar.MoltiplicatoreFrizioneLaterale;
-        }
     }
 
     [Command] //only host

@@ -26,7 +26,7 @@ namespace Prototype.NetworkLobby
         {
             lobbyManager.topPanel.ToggleVisibility(true);
 
-            matchNameInput.text = RandomNameGenerator.NameGenerator.GenerateFirstName(RandomNameGenerator.NameGenerator.Gender.Female);
+            matchNameInput.text = RandomNameGenerator.NameGenerator.GenerateLadieName();
 
             matchNameInput.onEndEdit.RemoveAllListeners();
             matchNameInput.onEndEdit.AddListener(onEndEditGameName);

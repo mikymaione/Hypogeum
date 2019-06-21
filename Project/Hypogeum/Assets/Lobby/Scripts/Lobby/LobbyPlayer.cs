@@ -130,7 +130,7 @@ namespace Prototype.NetworkLobby
                 var n = System.Environment.UserName;
 
                 if (string.IsNullOrEmpty(n))
-                    n = RandomNameGenerator.NameGenerator.GenerateFirstName(RandomNameGenerator.NameGenerator.Gender.Male);
+                    n = RandomNameGenerator.NameGenerator.GenerateLadieName();
 
                 CmdNameChanged(n);
             }
