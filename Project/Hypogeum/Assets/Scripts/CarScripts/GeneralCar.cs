@@ -36,7 +36,7 @@ public class GeneralCar : NetworkBehaviour
     [Range(1f, 50f)]
     public float Accellerazione;
 
-    [Range(5f, 30f)]
+    [Range(5f, 55f)]
     public float maxSteeringAngle;
 
     [Range(100f, 200f)]
