@@ -83,6 +83,12 @@ public class AutoGuida : NetworkBehaviour
         TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
 
         sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
+
+        for (i = 0; i < Colliders.Length; i++)
+        {
+            var ff = Colliders[i].forwardFriction;
+            ff.stiffness = generalCar.Stiffness;
+        }
     }
 
     [Command] //only host
@@ -185,8 +191,8 @@ public class AutoGuida : NetworkBehaviour
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
             var RuoteCheCollidono = 0;
-            for (var i = 0; i < Colliders.Length; i++)
-                if (Colliders[i].isGrounded)
+            for (var j = 0; j < Colliders.Length; j++)
+                if (Colliders[j].isGrounded)
                     RuoteCheCollidono++;
 
             //quando sei in aria usa il centro di massa al centro del box 3d, altrimenti usa il centro di massa che Michele ha settato a mano per ogni auto            

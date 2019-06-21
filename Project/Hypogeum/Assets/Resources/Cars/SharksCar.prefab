@@ -572,6 +572,7 @@ MonoBehaviour:
   Agility: 4
   Attack: 7
   Accellerazione: 10
+  Stiffness: 5
   maxSteeringAngle: 25
   maxTorque: 200
 --- !u!1 &2187948641267149959
