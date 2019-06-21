@@ -107,6 +107,7 @@ public class CarCollisionManager : NetworkBehaviour
     private IEnumerator EsciDalGioco()
     {
         yield return new WaitForSeconds(2);
+        StopCoroutine(EsciDalGioco());
 
         Cursor.visible = true;
         GB.GotoScene(GB.EScenes.StartTitle);

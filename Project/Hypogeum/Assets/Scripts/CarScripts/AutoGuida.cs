@@ -12,12 +12,6 @@ using UnityEngine.Networking;
 
 public class AutoGuida : NetworkBehaviour
 {
-	private GameObject controlsClosed;
-	private GameObject controlsOpen;
-
-	//Open -> True
-	private bool controls;
-
     public enum eTrazione
     {
         anteriore, posteriore
@@ -40,7 +34,7 @@ public class AutoGuida : NetworkBehaviour
     //The class that owns the stats of the faction    
     private GeneralCar generalCar;
 
-    //private Vector3 CentroDiMassaAssettoCorsa, CentroDiMassa3D;
+    private Vector3 CentroDiMassaAssettoCorsa, CentroDiMassa3D;
 
     private HudScriptManager HUD;
     private int Decellerazione = 0;
@@ -49,19 +43,11 @@ public class AutoGuida : NetworkBehaviour
 
     //To manage the sand particle effect
     private ParticleSystem sandParticle;
-    //private ParticleSystem.MainModule sandParticleMain;
 
 
     public override void OnStartLocalPlayer()
     {
-		//HUD
-		controlsClosed = GameObject.Find("ControlsClosed");
-		controlsOpen = GameObject.Find("ControlsOpen");
-		controlsOpen.SetActive(false);
-		controls = false;
-
-
-		var i = 0;
+        var i = 0;
         var wc = GetComponentsInChildren<WheelCollider>();
         var obj_figli = GetComponentsInChildren<MeshRenderer>();
 
@@ -97,11 +83,11 @@ public class AutoGuida : NetworkBehaviour
         MyCamera.positionTarget = Position;
         MyCamera.AimPosition = AimPosition;
 
-		//CentroDiMassa3D = TheCarRigidBody.centerOfMass;
-		//CentroDiMassaAssettoCorsa = CentroDiMassa.position - transform.position;
-		//TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
+        CentroDiMassa3D = TheCarRigidBody.centerOfMass;
+        CentroDiMassaAssettoCorsa = CentroDiMassa.position - transform.position;
+        TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
 
-		sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
+        sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
     }
 
     [Command] //only host
@@ -114,6 +100,7 @@ public class AutoGuida : NetworkBehaviour
     private IEnumerator AbilitaRibalta()
     {
         yield return new WaitForSeconds(4);
+        StopCoroutine(AbilitaRibalta());
         RibaltaDisabilitato = false;
     }
 
@@ -126,20 +113,6 @@ public class AutoGuida : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-			//HUD
-			if (Input.GetKey(KeyCode.F1) && controls == false)
-			{
-				controls = true;
-				controlsClosed.SetActive(false);
-				controlsOpen.SetActive(true);
-			}
-			else if (Input.GetKey(KeyCode.F1) && controls == true)
-			{
-				controls = false;
-				controlsOpen.SetActive(false);
-				controlsClosed.SetActive(true);
-			}
-
             //freni
             fullBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque : 0);
             handBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque * 2 : 0);
@@ -156,7 +129,6 @@ public class AutoGuida : NetworkBehaviour
                 instantTorque = 0;
 
             EffettoVelocitaCamera();
-
 
             if (!RibaltaDisabilitato)
             {
@@ -233,7 +205,7 @@ public class AutoGuida : NetworkBehaviour
                     RuoteCheCollidono++;
 
             //quando sei in aria usa il centro di massa al centro del box 3d, altrimenti usa il centro di massa che Michele ha settato a mano per ogni auto            
-            //TheCarRigidBody.centerOfMass = (RuoteCheCollidono == 0 ? CentroDiMassa3D : CentroDiMassaAssettoCorsa);
+            TheCarRigidBody.centerOfMass = (RuoteCheCollidono == 0 ? CentroDiMassa3D : CentroDiMassaAssettoCorsa);
 
             SetCannonsPositions();
 
