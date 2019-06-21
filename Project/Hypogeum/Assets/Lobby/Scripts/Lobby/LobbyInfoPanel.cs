@@ -17,6 +17,23 @@ namespace Prototype.NetworkLobby
         public Text buttonText;
         public Button singleButton;
 
+        void Start()
+        {
+            Color normalColor, highlightedColor, pressedColor, disabledColor;
+
+            if (ColorUtility.TryParseHtmlString("#FFB300", out normalColor))
+                if (ColorUtility.TryParseHtmlString("#FF8600", out highlightedColor))
+                    if (ColorUtility.TryParseHtmlString("#E57900", out pressedColor))
+                        if (ColorUtility.TryParseHtmlString("#9A9A9A", out disabledColor))
+                            singleButton.colors = new ColorBlock()
+                            {
+                                normalColor = normalColor,
+                                highlightedColor = highlightedColor,
+                                pressedColor = pressedColor,
+                                disabledColor = disabledColor
+                            };
+        }
+
         public void Display(string info, string buttonInfo, UnityEngine.Events.UnityAction buttonClbk)
         {
             infoText.text = info;

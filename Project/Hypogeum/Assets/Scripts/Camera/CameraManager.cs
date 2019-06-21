@@ -82,6 +82,11 @@ public class CameraManager : MonoBehaviour
 
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
+        if (rotX > 10)
+            rotX = 10;
+        if (rotX < -180)
+            rotX = -180;
+
         var localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
 
         if (AimPosition != null)
