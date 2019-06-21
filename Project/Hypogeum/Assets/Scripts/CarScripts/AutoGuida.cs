@@ -87,7 +87,10 @@ public class AutoGuida : NetworkBehaviour
         for (i = 0; i < Colliders.Length; i++)
         {
             var ff = Colliders[i].forwardFriction;
-            ff.stiffness = generalCar.Stiffness;
+            var sf = Colliders[i].sidewaysFriction;
+
+            ff.stiffness = generalCar.MoltiplicatoreFrizioneCentrale;
+            sf.stiffness = generalCar.MoltiplicatoreFrizioneLaterale;
         }
     }
 

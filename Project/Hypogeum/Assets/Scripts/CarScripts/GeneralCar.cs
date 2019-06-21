@@ -26,7 +26,9 @@ public class GeneralCar : NetworkBehaviour
 	public int Attack;
 
     public float Accellerazione;
-    public int Stiffness;
+
+    public int MoltiplicatoreFrizioneCentrale;
+    public int MoltiplicatoreFrizioneLaterale;
 
     public float maxSteeringAngle;
     public float maxTorque;
