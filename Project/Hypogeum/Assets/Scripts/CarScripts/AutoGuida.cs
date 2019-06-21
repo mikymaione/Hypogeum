@@ -12,6 +12,11 @@ using UnityEngine.Networking;
 
 public class AutoGuida : NetworkBehaviour
 {
+	private GameObject controlsClosed;
+	private GameObject controlsOpen;
+
+	//Open -> True
+	private bool controls;
 
     public enum eTrazione
     {
@@ -49,7 +54,14 @@ public class AutoGuida : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
-        var i = 0;
+		//HUD
+		controlsClosed = GameObject.Find("ControlsClosed");
+		controlsOpen = GameObject.Find("ControlsOpen");
+		controlsOpen.SetActive(false);
+		controls = false;
+
+
+		var i = 0;
         var wc = GetComponentsInChildren<WheelCollider>();
         var obj_figli = GetComponentsInChildren<MeshRenderer>();
 
@@ -85,11 +97,11 @@ public class AutoGuida : NetworkBehaviour
         MyCamera.positionTarget = Position;
         MyCamera.AimPosition = AimPosition;
 
-        //CentroDiMassa3D = TheCarRigidBody.centerOfMass;
-        //CentroDiMassaAssettoCorsa = CentroDiMassa.position - transform.position;
-        //TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
+		//CentroDiMassa3D = TheCarRigidBody.centerOfMass;
+		//CentroDiMassaAssettoCorsa = CentroDiMassa.position - transform.position;
+		//TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
 
-        sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
+		sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
     }
 
     [Command] //only host
@@ -114,9 +126,23 @@ public class AutoGuida : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+			//HUD
+			if (Input.GetKey(KeyCode.F1) && controls == false)
+			{
+				controls = true;
+				controlsClosed.SetActive(false);
+				controlsOpen.SetActive(true);
+			}
+			else if (Input.GetKey(KeyCode.F1) && controls == true)
+			{
+				controls = false;
+				controlsOpen.SetActive(false);
+				controlsClosed.SetActive(true);
+			}
+
             //freni
-            fullBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque : 0);
-            handBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque * 2 : 0);
+            fullBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque : 0);
+            handBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque * 2 : 0);
 
             //DX-SX
             instantSteeringAngle = generalCar.maxSteeringAngle * Input.GetAxis("Horizontal");

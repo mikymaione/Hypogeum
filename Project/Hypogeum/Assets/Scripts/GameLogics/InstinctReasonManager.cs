@@ -2,18 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class InstinctReasonManager : NetworkBehaviour
 {
 
-	//private GameObject instinctCoin;
+	private GameObject none, instinct, reason, damage, control;
+
 	//private GameObject reasonCoin;
 
     // Start is called before the first frame update
     void Start()
     {
-		//instinctCoin = GameObject.Find("CoinInstinct(Clone)");
-		//reasonCoin = GameObject.Find("CoinReason(Clone)");
+		none = GameObject.Find("None");
+		instinct = GameObject.Find("Instinct");
+		reason = GameObject.Find("Reason");
+		damage = GameObject.Find("Damage");
+		control = GameObject.Find("Control");
+
+		instinct.SetActive(false);
+		reason.SetActive(false);
+		damage.SetActive(false);
+		control.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -32,6 +43,14 @@ public class InstinctReasonManager : NetworkBehaviour
 			Destroy(GameObject.Find("CoinReason(Clone)"));
 			//assegna obiettivo al player
 			Destroy(GameObject.Find("CoinInstinct(Clone)"));
+
+			//Changing buttons image
+			none.SetActive(false);
+			instinct.SetActive(true);
+
+			//Showing power-up
+			damage.SetActive(true);
+
 			RpcOnInstinctChosen(animal);
 		}
 	}
@@ -44,7 +63,13 @@ public class InstinctReasonManager : NetworkBehaviour
 			Destroy(GameObject.Find("CoinReason(Clone)"));
 			//assegna obiettivo al player
 			Destroy(GameObject.Find("CoinInstinct(Clone)"));
-			Debug.Log("scelto istinto");
+
+			//Changing buttons image
+			none.SetActive(false);
+			instinct.SetActive(true);
+
+			//Showing power-up
+			damage.SetActive(true);
 		}
 	}
 
@@ -56,6 +81,14 @@ public class InstinctReasonManager : NetworkBehaviour
 			Destroy(GameObject.Find("CoinInstinct(Clone)"));
 			//assegna obiettivo al player
 			Destroy(GameObject.Find("CoinReason(Clone)"));
+
+			//Changing buttons image
+			none.SetActive(false);
+			reason.SetActive(true);
+
+			//Showing power-up
+			control.SetActive(true);
+
 			RpcOnReasonChosen(animal);
 		}
 	}
@@ -68,6 +101,13 @@ public class InstinctReasonManager : NetworkBehaviour
 			Destroy(GameObject.Find("CoinInstinct(Clone)"));
 			//assegna obiettivo al player
 			Destroy(GameObject.Find("CoinReason(Clone)"));
+
+			//Changing buttons image
+			none.SetActive(false);
+			reason.SetActive(true);
+
+			//Showing power-up
+			control.SetActive(true);
 		}
 	}
 

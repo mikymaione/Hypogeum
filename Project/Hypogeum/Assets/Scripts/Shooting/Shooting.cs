@@ -28,10 +28,22 @@ public class Shooting : NetworkBehaviour
     private GeneralCar generalCar;
     private HudScriptManager HUD;
 
+	private GameObject controlsClosed;
+	private GameObject controlsOpen;
 
-    public override void OnStartLocalPlayer()
+	//Open -> True
+	private bool controls;
+
+
+	public override void OnStartLocalPlayer()
     {
-        cam = Camera.main;
+		//HUD
+		controlsClosed = GameObject.Find("ControlsClosed");
+		controlsOpen = GameObject.Find("ControlsOpen");
+		controlsOpen.SetActive(false);
+		controls = false;
+
+		cam = Camera.main;
         cameraManager = cam.GetComponent<CameraManager>();
         projectileClass = projectilePrefab.GetComponent<Bullet>();
         CameraPos = transform.Find("CameraPos");
@@ -65,7 +77,21 @@ public class Shooting : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (generalCar == null)
+			//HUD
+			if (Input.GetKey(KeyCode.F1) && controls == false)
+			{
+				controls = true;
+				controlsClosed.SetActive(false);
+				controlsOpen.SetActive(true);
+			}
+			else if (Input.GetKey(KeyCode.F1) && controls == true)
+			{
+				controls = false;
+				controlsOpen.SetActive(false);
+				controlsClosed.SetActive(true);
+			}
+
+			if (generalCar == null)
                 generalCar = Car?.GetComponent<GeneralCar>();
 
             if (cannonPositionMarker == null)
