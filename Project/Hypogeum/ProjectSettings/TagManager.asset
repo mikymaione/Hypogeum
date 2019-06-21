@@ -24,6 +24,8 @@ TagManager:
   - HUD
   - Bullet
   - CoinsSpawner
+  - Win
+  - Loss
   layers:
   - Default
   - TransparentFX
