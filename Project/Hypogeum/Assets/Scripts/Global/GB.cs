@@ -84,11 +84,11 @@ public static class GB
         return (T)values.GetValue(random);
     }
 
-    public static GameObject LoadAnimalCar(EAnimal? animal)
+    public static GameObject LoadAnimalCar(EAnimal a)
     {
         var s = "";
 
-        switch (animal)
+        switch (a)
         {
             case EAnimal.Rhino:
                 s = "RhinosCar";
@@ -102,35 +102,31 @@ public static class GB
             case EAnimal.Shark:
                 s = "SharksCar";
                 break;
+            default:
+                throw new System.NotImplementedException();
         }
 
         return Resources.Load($"Cars/{s}") as GameObject;
     }
 
-	public static int GetTeamAttack(EAnimal? animal)
-	{
-		int attack = 0;
+    public static int GetTeamAttack(EAnimal a)
+    {
+        switch (a)
+        {
+            case EAnimal.Rhino:
+                return 7;
+            case EAnimal.Eagle:
+                return 5;
+            case EAnimal.Lion:
+                return 9;
+            case EAnimal.Shark:
+                return 7;
+            default:
+                throw new System.NotImplementedException();
+        }
+    }
 
-		switch (animal)
-		{
-			case EAnimal.Rhino:
-				attack = 7;
-				break;
-			case EAnimal.Eagle:
-				attack = 5;
-				break;
-			case EAnimal.Lion:
-				attack = 9;
-				break;
-			case EAnimal.Shark:
-				attack = 7;
-				break;
-		}
-
-		return attack;
-	}
-
-	public static GameObject LoadCannon(EAnimal animal)
+    public static GameObject LoadCannon(EAnimal animal)
     {
         return Resources.Load($"Weapons/{animal.ToString()}sCannon") as GameObject;
     }

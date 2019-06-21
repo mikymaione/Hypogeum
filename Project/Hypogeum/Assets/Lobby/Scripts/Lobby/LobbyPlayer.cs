@@ -28,6 +28,9 @@ namespace Prototype.NetworkLobby
         [SyncVar]
         public int connID;
 
+        [SyncVar]
+        public bool vivo = true;
+
         //OnMyName function will be invoked on clients when server change the value of playerName
         //
         [SyncVar(hook = "OnMyName")]

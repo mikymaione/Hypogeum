@@ -8,6 +8,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 using Prototype.NetworkLobby;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -16,8 +17,6 @@ public class CarCollisionManager : NetworkBehaviour
 
     private GeneralCar playerCar;
     private Rigidbody playerCar_RB;
-    private int otherCarDefense;
-    private float relativeCollisionVelocity;
 
 
     public override void OnStartLocalPlayer()
@@ -28,58 +27,68 @@ public class CarCollisionManager : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("car"))
+        if (isLocalPlayer)
         {
-            otherCarDefense = collision.gameObject.GetComponent<GeneralCar>().Defense;
-            relativeCollisionVelocity = collision.relativeVelocity.magnitude;
-            CalculateCollisionDamage(otherCarDefense, relativeCollisionVelocity);
-        }
-        else if (collision.gameObject.CompareTag("Bullet"))
-        {
-            var bullet = collision.gameObject.GetComponent<Bullet>();
-
-            //grazie Michele, lo avevo pensato adesso, ma lo hai gia' impostato tu <3
-            if (bullet.AnimaleCheHaSparatoQuestoColpo == GB.Animal)
+            if (collision.gameObject.CompareTag("car"))
             {
-                //mi sono sparato da solo, no damage
-                CalculateBulletDamage(0);
+                if (playerCar != null)
+                {
+                    var damage = collision.relativeVelocity.magnitude / (playerCar.Defense * 0.1f);
+
+                    CmdTakeDamage(GB.Animal.Value, gameObject, damage);
+                }
             }
-            else
+            else if (collision.gameObject.CompareTag("Bullet"))
             {
-                int otherTeamAttack = GB.GetTeamAttack(bullet.AnimaleCheHaSparatoQuestoColpo);
-                CalculateBulletDamage(otherTeamAttack);
+                var bullet = collision.gameObject.GetComponent<Bullet>();
+
+                if (bullet.AnimaleCheHaSparatoQuestoColpo != GB.Animal)
+                {
+                    var otherTeamAttack = 8 * GB.GetTeamAttack(bullet.AnimaleCheHaSparatoQuestoColpo);
+
+                    CmdTakeDamage(GB.Animal.Value, gameObject, otherTeamAttack);
+                }
             }
-        }
-    }
-
-    private void CalculateBulletDamage(int otherTeamAttack)
-    {
-        float damage = otherTeamAttack * 8;
-
-        CmdTakeDamage(GB.Animal.Value, gameObject, damage);
-    }
-
-    private void CalculateCollisionDamage(int otherCarDefense, float relativeCollisionVelocity)
-    {
-        if (playerCar != null)
-        {
-            float damage = (relativeCollisionVelocity) / (playerCar.Defense * 0.1f);
-
-            CmdTakeDamage(GB.Animal.Value, gameObject, damage);
         }
     }
 
     [Command] //only host
     private void CmdTakeDamage(GB.EAnimal animale, GameObject player, float damage)
     {
-        var p = player.GetComponent<GeneralCar>();
+        var TeamsVivi = new HashSet<GB.EAnimal>();
 
+        var p = player.GetComponent<GeneralCar>();
         p.Health -= damage;
 
-        if (p.Health <= 0)
-            foreach (var lobbyPlayer in LobbyManager.s_Singleton.Players)
+        foreach (var lobbyPlayer in LobbyManager.s_Singleton.Players)
+        {
+            if (p.Health <= 0)
                 if (lobbyPlayer.Value.animal == animale)
+                {
+                    lobbyPlayer.Value.vivo = false;
                     RpcTeamRemoved(lobbyPlayer.Value.animal);
+                }
+
+            if (lobbyPlayer.Value.vivo)
+                if (!TeamsVivi.Contains(lobbyPlayer.Value.animal))
+                    TeamsVivi.Add(lobbyPlayer.Value.animal);
+        }
+
+        if (TeamsVivi.Count == 1)
+            foreach (var lobbyPlayer in LobbyManager.s_Singleton.Players)
+                if (lobbyPlayer.Value.vivo)
+                    RpcTeamWin(lobbyPlayer.Value.animal);
+    }
+
+    [ClientRpc] //all clients
+    private void RpcTeamWin(GB.EAnimal animale)
+    {
+        if (GB.Animal == animale)
+        {
+            var win = GameObject.FindGameObjectWithTag("Win");
+            win.SetActive(true);
+            StartCoroutine(EsciDalGioco());
+        }
     }
 
     [ClientRpc] //all clients
@@ -92,13 +101,6 @@ public class CarCollisionManager : NetworkBehaviour
             var loss = GameObject.FindGameObjectWithTag("Loss");
             loss.SetActive(true);
             StartCoroutine(EsciDalGioco());
-        }
-        else
-        {
-            //conta players rimasti in campo
-            //var win = GameObject.FindGameObjectsWithTag("Win");
-            //win.SetActive(true);
-            //StartCoroutine(EsciDalGioco());
         }
     }
 

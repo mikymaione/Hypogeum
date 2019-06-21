@@ -12,8 +12,7 @@ using UnityEngine.Networking;
 public class BulletCollisionManager : NetworkBehaviour
 {
 
-    public GameObject explosion;
-    public GameObject sand;
+    public GameObject explosion, sand;
     private bool hasExploded = false;
 
 
@@ -28,10 +27,8 @@ public class BulletCollisionManager : NetworkBehaviour
             else
             {
                 explosion = Instantiate(explosion, transform.position, transform.rotation);
+                explosion.name += Time.time.ToString();
 
-                var time = Time.time.ToString();
-
-                explosion.name += time;
                 hasExploded = true;
             }
         }
@@ -42,7 +39,7 @@ public class BulletCollisionManager : NetworkBehaviour
         if (hasExploded)
         {
             Destroy(explosion, 3.8f);
-            Destroy(gameObject, 4.0f);
+            Destroy(gameObject, 3.6f);
         }
     }
 
