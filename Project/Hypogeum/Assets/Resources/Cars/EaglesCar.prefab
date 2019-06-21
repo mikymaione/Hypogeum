@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8b19007d13ffa47a3e85d2ed0f0b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destrezza: 10
+  destrezza: 20
   smorzamento: 3
   distanzaDalCentroDiMassa: 1
   regolaDistanzaMolle: 1
@@ -323,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88325c96de7f77d41a65c0b82ef76e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Trazione: 1
 --- !u!114 &2670722292247242678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,9 +341,9 @@ MonoBehaviour:
   Defense: 5
   Agility: 4
   Attack: 5
-  Accellerazione: 13
-  maxSteeringAngle: 23
-  maxTorque: 150
+  Accellerazione: 20
+  maxSteeringAngle: 25
+  maxTorque: 100
 --- !u!1 &585478298614816171
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,10 +553,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 28
   m_SuspensionSpring:
-    spring: 28296.912
-    damper: 16978.146
+    spring: 113187.65
+    damper: 33956.293
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19619998
+  m_SuspensionDistance: 0.049049996
   m_ForceAppPointDistance: 54.5932
   m_Mass: 6
   m_WheelDampingRate: 0.25
@@ -570,7 +571,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 5
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!1 &2657651327978429553
 GameObject:
@@ -755,10 +756,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 31
   m_SuspensionSpring:
-    spring: 30233.89
-    damper: 18140.336
+    spring: 120935.56
+    damper: 36280.67
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620003
+  m_SuspensionDistance: 0.049050007
   m_ForceAppPointDistance: 63.993202
   m_Mass: 8
   m_WheelDampingRate: 0.25
@@ -773,7 +774,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 5
+    m_Stiffness: 7
   m_Enabled: 1
 --- !u!1 &3586462883575452640
 GameObject:
@@ -957,10 +958,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 31
   m_SuspensionSpring:
-    spring: 29931.307
-    damper: 17958.785
+    spring: 119725.23
+    damper: 35917.57
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620001
+  m_SuspensionDistance: 0.049050003
   m_ForceAppPointDistance: 63.993202
   m_Mass: 8
   m_WheelDampingRate: 0.25
@@ -975,7 +976,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 5
+    m_Stiffness: 7
   m_Enabled: 1
 --- !u!1 &5665821790427446401
 GameObject:
@@ -1048,10 +1049,10 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 28
   m_SuspensionSpring:
-    spring: 28037.889
-    damper: 16822.734
+    spring: 112151.555
+    damper: 33645.47
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620003
+  m_SuspensionDistance: 0.049050007
   m_ForceAppPointDistance: 54.593204
   m_Mass: 6
   m_WheelDampingRate: 0.25
@@ -1066,7 +1067,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 5
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!1 &5961742264626290765
 GameObject:
