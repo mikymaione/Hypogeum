@@ -13,6 +13,13 @@ using UnityEngine.Networking;
 public class AutoGuida : NetworkBehaviour
 {
 
+    public enum eTrazione
+    {
+        anteriore, posteriore
+    }
+
+    public eTrazione Trazione = eTrazione.anteriore;
+
     private const short PosizionePavimento = -5;
     private bool RibaltaDisabilitato = false;
 
@@ -155,9 +162,19 @@ public class AutoGuida : NetworkBehaviour
             for (var i = 0; i < Colliders.Length; i++)
             {
                 if (Colliders[i].tag.Equals("FrontWheel"))
-                {
                     Colliders[i].steerAngle = instantSteeringAngle;
-                    Colliders[i].motorTorque = instantTorque * generalCar.Accellerazione;
+
+                switch (Trazione)
+                {
+                    case eTrazione.anteriore:
+                        if (Colliders[i].tag.Equals("FrontWheel"))
+                            Colliders[i].motorTorque = instantTorque * generalCar.Accellerazione;
+                        break;
+
+                    case eTrazione.posteriore:
+                        if (Colliders[i].tag.Equals("BackWheel"))
+                            Colliders[i].motorTorque = instantTorque * generalCar.Accellerazione;
+                        break;
                 }
 
                 if (fullBrake > 0)
