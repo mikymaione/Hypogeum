@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="16.0" version="16.0" Modules="simple" RootPath="." Language="en" Id="{2E29D772-66B7-4182-9C88-828C6DA32D67}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;DigCertStoreComponent;MsiAssemblyComponent;MsiClassComponent;MsiServInstComponent;MsiExtComponent;TilesComponent;MsiOrgComponent;FixupComponent;MsiThemeComponent;BackgroundImagesComponent;UpdaterComponent;SerValComponent;MsiInstExSeqComponent;DictionaryComponent;MsiAppSearchComponent;MsiOdbcDataSrcComponent;CPLAppletComponent;ActSyncAppComponent;PreReqComponent;WebApplicationsComponent;MsiJavaComponent;MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;TilesComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_RUN_AS_ADMIN" Value="0"/>
+    <ROW Property="ALLUSERS" Value="1" MultiBuildValue="DefaultBuild:"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPCONTACT" Value="mikymaione@hotmail.it"/>
+    <ROW Property="ARPPRODUCTICON" Value="Hypogeum.exe" Type="8"/>
+    <ROW Property="ARPURLINFOABOUT" Value="http://www.maionemiky.it/"/>
+    <ROW Property="CTRLS" Value="2"/>
+    <ROW Property="Manufacturer" Value="LamaGames"/>
+    <ROW Property="ProductCode" Value="1033:{D390E149-5DE7-46B6-8B70-F595DE775520} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="Hypogeum"/>
+    <ROW Property="ProductVersion" Value="20.19.06.22" Type="32"/>
+    <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{4987E71A-C7C5-4375-A65E-90E2958956FE}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="Browsers_1_Dir" Directory_Parent="__1_Dir" DefaultDir="Browsers"/>
+    <ROW Directory="Browsers_2_Dir" Directory_Parent="__2_Dir" DefaultDir="Browsers"/>
+    <ROW Directory="Browsers_Dir" Directory_Parent="__Dir" DefaultDir="Browsers"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="EmbedRuntime_Dir" Directory_Parent="MonoBleedingEdge_Dir" DefaultDir="EMBEDR~1|EmbedRuntime"/>
+    <ROW Directory="Hypogeum_Data_Dir" Directory_Parent="APPDIR" DefaultDir="HYPOGE~1|Hypogeum_Data"/>
+    <ROW Directory="LamaGames_Dir" Directory_Parent="ProgramMenuFolder" DefaultDir="LAMAGA~1|LamaGames"/>
+    <ROW Directory="Managed_Dir" Directory_Parent="Hypogeum_Data_Dir" DefaultDir="Managed"/>
+    <ROW Directory="MonoBleedingEdge_Dir" Directory_Parent="APPDIR" DefaultDir="MONOBL~1|MonoBleedingEdge"/>
+    <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramMenuFolder" IsPseudoRoot="1"/>
+    <ROW Directory="Resources_Dir" Directory_Parent="Hypogeum_Data_Dir" DefaultDir="RESOUR~1|Resources"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="__1_Dir" Directory_Parent="mono_Dir" DefaultDir="4.0"/>
+    <ROW Directory="__2_Dir" Directory_Parent="mono_Dir" DefaultDir="4.5"/>
+    <ROW Directory="__Dir" Directory_Parent="mono_Dir" DefaultDir="2.0"/>
+    <ROW Directory="etc_Dir" Directory_Parent="MonoBleedingEdge_Dir" DefaultDir="etc"/>
+    <ROW Directory="mconfig_Dir" Directory_Parent="mono_Dir" DefaultDir="mconfig"/>
+    <ROW Directory="mono_Dir" Directory_Parent="etc_Dir" DefaultDir="mono"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="Accessibility.dll" ComponentId="{5A554BF5-B58B-4152-9D50-C7CB902B30DA}" Directory_="Managed_Dir" Attributes="0" KeyPath="Accessibility.dll"/>
+    <ROW Component="AssemblyCSharp.dll" ComponentId="{75DB87A4-2AB3-4888-B2F0-EE106D92A18C}" Directory_="Managed_Dir" Attributes="0" KeyPath="AssemblyCSharp.dll"/>
+    <ROW Component="AssemblyCSharp.dll.mdb" ComponentId="{A798278A-066D-4C96-B660-2A6BBE0A0FC0}" Directory_="Managed_Dir" Attributes="0" KeyPath="AssemblyCSharp.dll.mdb" Type="0"/>
+    <ROW Component="Compat.browser" ComponentId="{EA0394E2-60C3-489E-97C8-17BF8EAF125B}" Directory_="Browsers_Dir" Attributes="0" KeyPath="Compat.browser" Type="0"/>
+    <ROW Component="Compat.browser_1" ComponentId="{117838FA-3E9F-4C73-986B-957025486A2F}" Directory_="Browsers_1_Dir" Attributes="0" KeyPath="Compat.browser_1" Type="0"/>
+    <ROW Component="Compat.browser_2" ComponentId="{F035AB0B-F5B9-4A9C-AA20-60D198EBDEA2}" Directory_="Browsers_2_Dir" Attributes="0" KeyPath="Compat.browser_2" Type="0"/>
+    <ROW Component="DefaultWsdlHelpGenerator.aspx" ComponentId="{1F7ABE80-AF00-4785-AA53-EA5E89A6DE2B}" Directory_="__Dir" Attributes="0" KeyPath="DefaultWsdlHelpGenerator.aspx" Type="0"/>
+    <ROW Component="DefaultWsdlHelpGenerator.aspx_1" ComponentId="{096C7888-7FB2-48BC-8D5F-6470931ADD8B}" Directory_="__1_Dir" Attributes="0" KeyPath="DefaultWsdlHelpGenerator.aspx_1" Type="0"/>
+    <ROW Component="DefaultWsdlHelpGenerator.aspx_2" ComponentId="{6CD31EAD-1084-4080-BD7A-8D90231B3F0F}" Directory_="__2_Dir" Attributes="0" KeyPath="DefaultWsdlHelpGenerator.aspx_2" Type="0"/>
+    <ROW Component="Hypogeum.exe" ComponentId="{FAD84917-FDC2-420D-8763-42FCAEAF40A2}" Directory_="APPDIR" Attributes="256" KeyPath="Hypogeum.exe"/>
+    <ROW Component="HypogeumDBConnector.dll" ComponentId="{41C667CB-09D1-4476-BA6A-79A9EE978948}" Directory_="Managed_Dir" Attributes="0" KeyPath="HypogeumDBConnector.dll"/>
+    <ROW Component="ICSharpCode.SharpZipLib.dll" ComponentId="{5D4CB48E-7CAE-4C2C-83CA-19857E7C4AFA}" Directory_="Managed_Dir" Attributes="0" KeyPath="ICSharpCode.SharpZipLib.dll"/>
+    <ROW Component="LamaGames" ComponentId="{E4185928-C377-4AD7-A08C-CAA841113A90}" Directory_="LamaGames_Dir" Attributes="0"/>
+    <ROW Component="Mono.Data.Sqlite.dll" ComponentId="{3E6B9582-A532-4066-9A7A-A16EB985DED1}" Directory_="Managed_Dir" Attributes="0" KeyPath="Mono.Data.Sqlite.dll"/>
+    <ROW Component="Mono.Posix.dll" ComponentId="{7306983C-1B05-4643-91AE-D45C9784C6AB}" Directory_="Managed_Dir" Attributes="0" KeyPath="Mono.Posix.dll"/>
+    <ROW Component="Mono.Security.dll" ComponentId="{F807B131-3C42-4AA0-927E-DB6A631C34B8}" Directory_="Managed_Dir" Attributes="0" KeyPath="Mono.Security.dll"/>
+    <ROW Component="Mono.WebBrowser.dll" ComponentId="{5E6374F2-E56D-43C5-B045-E0440469BC82}" Directory_="Managed_Dir" Attributes="0" KeyPath="Mono.WebBrowser.dll"/>
+    <ROW Component="MonoPosixHelper.dll" ComponentId="{CEE66CEF-BF5F-4145-AB3C-CA683BCCF0B6}" Directory_="EmbedRuntime_Dir" Attributes="256" KeyPath="MonoPosixHelper.dll"/>
+    <ROW Component="Novell.Directory.Ldap.dll" ComponentId="{D9B605FC-127B-4380-8D20-E012809B4188}" Directory_="Managed_Dir" Attributes="0" KeyPath="Novell.Directory.Ldap.dll"/>
+    <ROW Component="ProductInformation" ComponentId="{4D03F0C5-542A-49E2-AE35-5671D7C73C15}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
+    <ROW Component="System.ComponentModel.DataAnnotations.dll" ComponentId="{63BC6C1F-3056-4AF6-8A9A-7C92587AAF38}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.ComponentModel.DataAnnotations.dll"/>
+    <ROW Component="System.Configuration.dll" ComponentId="{20CB2583-FFA5-4214-BC58-9A799139F475}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Configuration.dll"/>
+    <ROW Component="System.Core.dll" ComponentId="{8435FC3C-22DC-410D-BE9F-804312D0FD60}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Core.dll"/>
+    <ROW Component="System.Data.dll" ComponentId="{E99EC19B-275C-4749-AAE5-9749C4985AFF}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Data.dll"/>
+    <ROW Component="System.Design.dll" ComponentId="{3DE75A9F-3B47-463D-9EC5-8C1444B312E0}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Design.dll"/>
+    <ROW Component="System.DirectoryServices.dll" ComponentId="{4366A242-651C-41B0-882B-3F015C6CA55A}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.DirectoryServices.dll"/>
+    <ROW Component="System.Drawing.Design.dll" ComponentId="{ECB98DA0-5A49-4629-AD4C-82698F13C9A5}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Drawing.Design.dll"/>
+    <ROW Component="System.Drawing.dll" ComponentId="{0B3F7D6E-D127-47D8-A2DE-DF7D5A978142}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Drawing.dll"/>
+    <ROW Component="System.EnterpriseServices.dll" ComponentId="{19BE41B6-251C-4D37-927D-DEDC4AB81775}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.EnterpriseServices.dll"/>
+    <ROW Component="System.Numerics.dll" ComponentId="{3F5BE8CD-D7F1-4116-ACE5-DF6FD90B4827}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Numerics.dll"/>
+    <ROW Component="System.Runtime.Serialization.Formatters.Soap.dll" ComponentId="{FBF6B5A6-AA57-43CD-94E1-807BF7004D15}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Runtime.Serialization.Formatters.Soap.dll"/>
+    <ROW Component="System.Security.dll" ComponentId="{AA677BC0-C66E-4F01-BB35-6F72B6A6656D}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Security.dll"/>
+    <ROW Component="System.Transactions.dll" ComponentId="{CDCEA1E5-AFC9-4B25-BF55-6C1D1FCE411B}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Transactions.dll"/>
+    <ROW Component="System.Web.ApplicationServices.dll" ComponentId="{A5C67F8E-73BE-465D-B1D6-E1F3CCC7F6D9}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Web.ApplicationServices.dll"/>
+    <ROW Component="System.Web.Services.dll" ComponentId="{FBD7D80B-43BF-42D1-A640-5724F2D5F206}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Web.Services.dll"/>
+    <ROW Component="System.Web.dll" ComponentId="{9A33B5E9-3742-421E-AEF9-78BA930B68D6}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Web.dll"/>
+    <ROW Component="System.Windows.Forms.dll" ComponentId="{52699750-CCFE-40DA-8E6E-1206E431CF60}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Windows.Forms.dll"/>
+    <ROW Component="System.Xml.dll" ComponentId="{1182DC3D-4238-4ABC-97CB-E0DD19A8283B}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.Xml.dll"/>
+    <ROW Component="System.dll" ComponentId="{B3A11CAC-169E-48E4-9480-6FADA6CD2969}" Directory_="Managed_Dir" Attributes="0" KeyPath="System.dll"/>
+    <ROW Component="Unity.Analytics.DataPrivacy.dll" ComponentId="{58F8A6F2-3FC0-4E83-9E0A-A5F0E76BEACC}" Directory_="Managed_Dir" Attributes="0" KeyPath="Unity.Analytics.DataPrivacy.dll"/>
+    <ROW Component="Unity.ProBuilder.KdTree.dll" ComponentId="{85E1C1C1-3F64-433A-A46E-A7C75A8784AB}" Directory_="Managed_Dir" Attributes="0" KeyPath="Unity.ProBuilder.KdTree.dll"/>
+    <ROW Component="Unity.ProBuilder.Poly2Tri.dll" ComponentId="{9D1A6E6F-AC9A-4E24-B9D9-ECD537E10F6D}" Directory_="Managed_Dir" Attributes="0" KeyPath="Unity.ProBuilder.Poly2Tri.dll"/>
+    <ROW Component="Unity.ProBuilder.Stl.dll" ComponentId="{EC53BFE3-ACAE-456D-B9AC-F649CC12C051}" Directory_="Managed_Dir" Attributes="0" KeyPath="Unity.ProBuilder.Stl.dll"/>
+    <ROW Component="Unity.ProBuilder.dll" ComponentId="{6B84654E-093B-44E2-8A1C-9C942FF7297C}" Directory_="Managed_Dir" Attributes="0" KeyPath="Unity.ProBuilder.dll"/>
+    <ROW Component="Unity.TextMeshPro.dll" ComponentId="{14AC75D4-7E2A-45A6-BC14-C500523EEA75}" Directory_="Managed_Dir" Attributes="0" KeyPath="Unity.TextMeshPro.dll"/>
+    <ROW Component="UnityCrashHandler64.exe" ComponentId="{CBD4BC4F-C85E-404E-804E-0B819510B03F}" Directory_="APPDIR" Attributes="256" KeyPath="UnityCrashHandler64.exe"/>
+    <ROW Component="UnityEngine.AIModule.dll" ComponentId="{B199F9FF-B6B4-4D96-AC03-7E5D1E13A628}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.AIModule.dll"/>
+    <ROW Component="UnityEngine.ARModule.dll" ComponentId="{F1B0B769-1B90-4096-AB93-B80454F19F68}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.ARModule.dll"/>
+    <ROW Component="UnityEngine.AccessibilityModule.dll" ComponentId="{5C309967-B970-4866-9B1E-0ED922ABA178}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.AccessibilityModule.dll"/>
+    <ROW Component="UnityEngine.AnimationModule.dll" ComponentId="{3DD13451-A5E6-4501-A09E-3F58783CF25E}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.AnimationModule.dll"/>
+    <ROW Component="UnityEngine.AssetBundleModule.dll" ComponentId="{B638C70B-ECFF-47E3-97F1-DB0DE1DA3E25}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.AssetBundleModule.dll"/>
+    <ROW Component="UnityEngine.AudioModule.dll" ComponentId="{AEDB5086-881A-411D-80F7-A1A208DABF08}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.AudioModule.dll"/>
+    <ROW Component="UnityEngine.BaselibModule.dll" ComponentId="{F6CF8F1A-3A82-439A-A9FE-CB1E5B630EEE}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.BaselibModule.dll"/>
+    <ROW Component="UnityEngine.ClothModule.dll" ComponentId="{2AF8A4B9-801D-486E-9640-42F371E19746}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.ClothModule.dll"/>
+    <ROW Component="UnityEngine.ClusterInputModule.dll" ComponentId="{400693DF-3DB5-4092-A3BC-62394961A545}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.ClusterInputModule.dll"/>
+    <ROW Component="UnityEngine.ClusterRendererModule.dll" ComponentId="{D19AF4F3-6A12-4E11-8D2D-EB4FDDDEB3FB}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.ClusterRendererModule.dll"/>
+    <ROW Component="UnityEngine.CoreModule.dll" ComponentId="{D463A375-8B37-41CF-9463-0A3F5F9FB6E4}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.CoreModule.dll"/>
+    <ROW Component="UnityEngine.CrashReportingModule.dll" ComponentId="{63523BD0-43EC-4758-9AE5-FD2409CC8E12}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.CrashReportingModule.dll"/>
+    <ROW Component="UnityEngine.DirectorModule.dll" ComponentId="{41FE7429-C511-44C2-A22C-63171D63A9AC}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.DirectorModule.dll"/>
+    <ROW Component="UnityEngine.FileSystemHttpModule.dll" ComponentId="{B6BE21CB-A361-4260-91CB-FB7035E1BEE9}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.FileSystemHttpModule.dll"/>
+    <ROW Component="UnityEngine.GameCenterModule.dll" ComponentId="{A012A5B5-8846-43DA-B941-C3907AA704F3}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.GameCenterModule.dll"/>
+    <ROW Component="UnityEngine.GridModule.dll" ComponentId="{BFDE7365-8BA4-4D36-A0FD-027F1F3A9F8C}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.GridModule.dll"/>
+    <ROW Component="UnityEngine.HotReloadModule.dll" ComponentId="{A0CA74FA-FAC6-456A-882D-A0A4FB44CFE3}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.HotReloadModule.dll"/>
+    <ROW Component="UnityEngine.IMGUIModule.dll" ComponentId="{05BD25D1-7E50-4F05-B544-BCF9BCD5297B}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.IMGUIModule.dll"/>
+    <ROW Component="UnityEngine.ImageConversionModule.dll" ComponentId="{AA4BE4E0-C102-435E-9280-AE30E7725345}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.ImageConversionModule.dll"/>
+    <ROW Component="UnityEngine.InputModule.dll" ComponentId="{386F91D5-D5AD-48A6-8511-5A5748F42BE9}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.InputModule.dll"/>
+    <ROW Component="UnityEngine.JSONSerializeModule.dll" ComponentId="{4AE4D661-CF2A-4C83-A9A4-B9B24A29C25E}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.JSONSerializeModule.dll"/>
+    <ROW Component="UnityEngine.LocalizationModule.dll" ComponentId="{257BE9B7-CBA4-4A47-9124-F11884841DD3}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.LocalizationModule.dll"/>
+    <ROW Component="UnityEngine.Networking.dll" ComponentId="{58D87BD9-563C-4C50-A79A-368C75DF67F9}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.Networking.dll"/>
+    <ROW Component="UnityEngine.ParticleSystemModule.dll" ComponentId="{A20139F9-4461-4E71-B45C-CD02FDE4D1E6}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.ParticleSystemModule.dll"/>
+    <ROW Component="UnityEngine.PerformanceReportingModule.dll" ComponentId="{62D464D9-988A-4917-964F-3563E4C86AFA}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.PerformanceReportingModule.dll"/>
+    <ROW Component="UnityEngine.Physics2DModule.dll" ComponentId="{E08FCE05-BBF0-4FD5-9BAC-7428F410CA9E}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.Physics2DModule.dll"/>
+    <ROW Component="UnityEngine.PhysicsModule.dll" ComponentId="{3E0CEB67-0D5E-4BFE-B13D-C3E5379C84DF}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.PhysicsModule.dll"/>
+    <ROW Component="UnityEngine.ProfilerModule.dll" ComponentId="{695F96C1-CE3F-47AA-9BEE-635F80DB51DF}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.ProfilerModule.dll"/>
+    <ROW Component="UnityEngine.ScreenCaptureModule.dll" ComponentId="{707A0DF7-0DDB-4319-A386-123A2062DFCE}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.ScreenCaptureModule.dll"/>
+    <ROW Component="UnityEngine.SharedInternalsModule.dll" ComponentId="{304F67BF-E507-4978-9681-51C282DA0FFD}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.SharedInternalsModule.dll"/>
+    <ROW Component="UnityEngine.SpatialTracking.dll" ComponentId="{DF4B114F-295C-4406-AE9C-43E8A25B6DA6}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.SpatialTracking.dll"/>
+    <ROW Component="UnityEngine.SpriteMaskModule.dll" ComponentId="{6646CC1A-EAA6-4583-A5DD-97AD7C780CF6}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.SpriteMaskModule.dll"/>
+    <ROW Component="UnityEngine.SpriteShapeModule.dll" ComponentId="{7A8F89E3-0373-4F74-83EA-DFCB027B247D}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.SpriteShapeModule.dll"/>
+    <ROW Component="UnityEngine.StreamingModule.dll" ComponentId="{CFE0846B-FD5D-471F-BB85-08CD28780883}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.StreamingModule.dll"/>
+    <ROW Component="UnityEngine.StyleSheetsModule.dll" ComponentId="{BDC8A1AE-74FC-4E42-A6C8-CB38DAC0D3AD}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.StyleSheetsModule.dll"/>
+    <ROW Component="UnityEngine.SubstanceModule.dll" ComponentId="{6453B9B1-DEA3-428B-A228-729F9DA88CDA}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.SubstanceModule.dll"/>
+    <ROW Component="UnityEngine.TLSModule.dll" ComponentId="{2EC1158C-DD3A-4402-9866-572C2FF55127}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.TLSModule.dll"/>
+    <ROW Component="UnityEngine.TerrainModule.dll" ComponentId="{0102CFC1-60A6-4443-8822-0D8089528858}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.TerrainModule.dll"/>
+    <ROW Component="UnityEngine.TerrainPhysicsModule.dll" ComponentId="{4C773D8A-F91A-494E-ABF8-11D87544E5AE}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.TerrainPhysicsModule.dll"/>
+    <ROW Component="UnityEngine.TextCoreModule.dll" ComponentId="{213F1C8E-4717-4F4A-A4E2-AC7276484747}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.TextCoreModule.dll"/>
+    <ROW Component="UnityEngine.TextRenderingModule.dll" ComponentId="{268E7E47-E92C-4187-8961-CF60FAB1AC84}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.TextRenderingModule.dll"/>
+    <ROW Component="UnityEngine.TilemapModule.dll" ComponentId="{D78D2EC0-0207-4543-AFF1-2C74CE8A2B26}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.TilemapModule.dll"/>
+    <ROW Component="UnityEngine.Timeline.dll" ComponentId="{7E1996DC-6C14-45A1-BE84-82395D7D6C0F}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.Timeline.dll"/>
+    <ROW Component="UnityEngine.TimelineModule.dll" ComponentId="{DD7197F1-EB0A-4E61-8BCE-B908812B21DF}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.TimelineModule.dll"/>
+    <ROW Component="UnityEngine.UI.dll" ComponentId="{32C87427-8E66-487A-8A1B-5974F54E6ABE}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UI.dll"/>
+    <ROW Component="UnityEngine.UIElementsModule.dll" ComponentId="{D0C5CD8B-EAFD-4F1E-99B5-081D0A1D3FA7}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UIElementsModule.dll"/>
+    <ROW Component="UnityEngine.UIModule.dll" ComponentId="{55096EF8-A4AC-4666-B5B5-999D03B4C7BB}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UIModule.dll"/>
+    <ROW Component="UnityEngine.UNETModule.dll" ComponentId="{3D1AB09E-E364-4817-8E05-679FC537371E}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UNETModule.dll"/>
+    <ROW Component="UnityEngine.UmbraModule.dll" ComponentId="{B7B26D84-70D4-4072-A1AC-F7AB26879CBD}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UmbraModule.dll"/>
+    <ROW Component="UnityEngine.UnityAnalyticsModule.dll" ComponentId="{644FEC57-16FF-4033-BBC0-0812577265E4}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UnityAnalyticsModule.dll"/>
+    <ROW Component="UnityEngine.UnityConnectModule.dll" ComponentId="{F3A7C1C0-EAA9-4533-AC07-87917E5FE362}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UnityConnectModule.dll"/>
+    <ROW Component="UnityEngine.UnityTestProtocolModule.dll" ComponentId="{6A8D3633-580D-4DBB-8FF3-740E08060AF7}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UnityTestProtocolModule.dll"/>
+    <ROW Component="UnityEngine.UnityWebRequestAssetBundleModule.dll" ComponentId="{377E56FE-DCE7-4ADB-B4B6-0F24F70CA202}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UnityWebRequestAssetBundleModule.dll"/>
+    <ROW Component="UnityEngine.UnityWebRequestAudioModule.dll" ComponentId="{777F1968-273E-4F93-9971-DCA06A991CF5}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UnityWebRequestAudioModule.dll"/>
+    <ROW Component="UnityEngine.UnityWebRequestModule.dll" ComponentId="{F901D4C5-A686-4E0B-85A2-CD4F548EE57C}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UnityWebRequestModule.dll"/>
+    <ROW Component="UnityEngine.UnityWebRequestTextureModule.dll" ComponentId="{43E5075E-02A4-4FF6-8BC3-2F204C00D11B}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UnityWebRequestTextureModule.dll"/>
+    <ROW Component="UnityEngine.UnityWebRequestWWWModule.dll" ComponentId="{EA3BB2D9-FB13-46F4-BA8E-169A2B89D5AA}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.UnityWebRequestWWWModule.dll"/>
+    <ROW Component="UnityEngine.VFXModule.dll" ComponentId="{D32DEFB8-5746-48FF-B6C5-3D51773086ED}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.VFXModule.dll"/>
+    <ROW Component="UnityEngine.VRModule.dll" ComponentId="{2BD6B31B-87FE-47AF-8EAA-8F2788DAEA96}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.VRModule.dll"/>
+    <ROW Component="UnityEngine.VehiclesModule.dll" ComponentId="{B6280A5B-CCB9-44FD-BAC3-5C71D9CBC588}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.VehiclesModule.dll"/>
+    <ROW Component="UnityEngine.VideoModule.dll" ComponentId="{ED49867E-AB58-44FB-BE85-D52117CD7482}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.VideoModule.dll"/>
+    <ROW Component="UnityEngine.WindModule.dll" ComponentId="{2F77B208-0D60-4C71-99D2-427CEDE3B31B}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.WindModule.dll"/>
+    <ROW Component="UnityEngine.XRModule.dll" ComponentId="{3170D3CB-7E1A-45D0-AE07-165F884AD9EA}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.XRModule.dll"/>
+    <ROW Component="UnityEngine.dll" ComponentId="{413C35E4-607C-4221-A4D8-0EED23845019}" Directory_="Managed_Dir" Attributes="0" KeyPath="UnityEngine.dll"/>
+    <ROW Component="UnityPlayer.dll" ComponentId="{59FD510C-ACC1-4DBB-BFA4-744923B721FB}" Directory_="APPDIR" Attributes="256" KeyPath="UnityPlayer.dll"/>
+    <ROW Component="WinPixEventRuntime.dll" ComponentId="{F995C5F1-1A97-4A41-B9BC-07C8D1F14A11}" Directory_="APPDIR" Attributes="256" KeyPath="WinPixEventRuntime.dll"/>
+    <ROW Component="app.info" ComponentId="{12A011BF-FF0D-46DB-BF29-ECD742059EEC}" Directory_="Hypogeum_Data_Dir" Attributes="0" KeyPath="app.info" Type="0"/>
+    <ROW Component="browscap.ini" ComponentId="{CA068ABC-E83C-490E-AC8B-F8D7F93DA9C2}" Directory_="mono_Dir" Attributes="0" KeyPath="browscap.ini" Type="0"/>
+    <ROW Component="config.xml" ComponentId="{3A6BC2E8-2995-4A71-BC14-3F4BD443BF60}" Directory_="mconfig_Dir" Attributes="0" KeyPath="config.xml" Type="0"/>
+    <ROW Component="mono2.0bdwgc.dll" ComponentId="{1BAD1CA7-EDCD-48EC-93C8-981EE50C1D16}" Directory_="EmbedRuntime_Dir" Attributes="256" KeyPath="mono2.0bdwgc.dll"/>
+    <ROW Component="mscorlib.dll" ComponentId="{8231EBC6-391E-4A56-9A03-F5F63AE6B042}" Directory_="Managed_Dir" Attributes="0" KeyPath="mscorlib.dll"/>
+    <ROW Component="unitydefaultresources" ComponentId="{E46E82BF-64A5-4C88-8FCD-1C7EA4D6F04A}" Directory_="Resources_Dir" Attributes="0" KeyPath="unitydefaultresources" Type="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="Hypogeum.exe" Component_="Hypogeum.exe" FileName="Hypogeum.exe" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="app.info" Component_="app.info" FileName="APP~1.INF|app.info" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\app.info" SelfReg="false"/>
+    <ROW File="boot.config" Component_="app.info" FileName="BOOT~1.CON|boot.config" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\boot.config" SelfReg="false"/>
+    <ROW File="globalgamemanagers" Component_="app.info" FileName="GLOBAL~1|globalgamemanagers" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\globalgamemanagers" SelfReg="false"/>
+    <ROW File="globalgamemanagers.assets" Component_="app.info" FileName="GLOBAL~1.ASS|globalgamemanagers.assets" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\globalgamemanagers.assets" SelfReg="false"/>
+    <ROW File="level0" Component_="app.info" FileName="level0" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\level0" SelfReg="false"/>
+    <ROW File="level0.resS" Component_="app.info" FileName="LEVEL0~1.RES|level0.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\level0.resS" SelfReg="false"/>
+    <ROW File="level1" Component_="app.info" FileName="level1" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\level1" SelfReg="false"/>
+    <ROW File="level1.resS" Component_="app.info" FileName="LEVEL1~1.RES|level1.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\level1.resS" SelfReg="false"/>
+    <ROW File="level2" Component_="app.info" FileName="level2" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\level2" SelfReg="false"/>
+    <ROW File="level2.resS" Component_="app.info" FileName="LEVEL2~1.RES|level2.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\level2.resS" SelfReg="false"/>
+    <ROW File="level3" Component_="app.info" FileName="level3" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\level3" SelfReg="false"/>
+    <ROW File="level3.resS" Component_="app.info" FileName="LEVEL3~1.RES|level3.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\level3.resS" SelfReg="false"/>
+    <ROW File="Accessibility.dll" Component_="Accessibility.dll" FileName="ACCESS~1.DLL|Accessibility.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Accessibility.dll" SelfReg="false"/>
+    <ROW File="AssemblyCSharp.dll" Component_="AssemblyCSharp.dll" FileName="ASSEMB~1.DLL|Assembly-CSharp.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Assembly-CSharp.dll" SelfReg="false"/>
+    <ROW File="AssemblyCSharp.dll.mdb" Component_="AssemblyCSharp.dll.mdb" FileName="ASSEMB~1.MDB|Assembly-CSharp.dll.mdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Assembly-CSharp.dll.mdb" SelfReg="false"/>
+    <ROW File="HypogeumDBConnector.dll" Component_="HypogeumDBConnector.dll" FileName="HYPOGE~1.DLL|HypogeumDBConnector.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\HypogeumDBConnector.dll" SelfReg="false"/>
+    <ROW File="ICSharpCode.SharpZipLib.dll" Component_="ICSharpCode.SharpZipLib.dll" FileName="ICSHAR~1.DLL|ICSharpCode.SharpZipLib.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\ICSharpCode.SharpZipLib.dll" SelfReg="false"/>
+    <ROW File="Mono.Data.Sqlite.dll" Component_="Mono.Data.Sqlite.dll" FileName="MONODA~1.DLL|Mono.Data.Sqlite.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Mono.Data.Sqlite.dll" SelfReg="false"/>
+    <ROW File="Mono.Posix.dll" Component_="Mono.Posix.dll" FileName="MONOPO~1.DLL|Mono.Posix.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Mono.Posix.dll" SelfReg="false"/>
+    <ROW File="Mono.Security.dll" Component_="Mono.Security.dll" FileName="MONOSE~1.DLL|Mono.Security.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Mono.Security.dll" SelfReg="false"/>
+    <ROW File="Mono.WebBrowser.dll" Component_="Mono.WebBrowser.dll" FileName="MONOWE~1.DLL|Mono.WebBrowser.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Mono.WebBrowser.dll" SelfReg="false"/>
+    <ROW File="mscorlib.dll" Component_="mscorlib.dll" FileName="mscorlib.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\mscorlib.dll" SelfReg="false"/>
+    <ROW File="Novell.Directory.Ldap.dll" Component_="Novell.Directory.Ldap.dll" FileName="NOVELL~1.DLL|Novell.Directory.Ldap.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Novell.Directory.Ldap.dll" SelfReg="false"/>
+    <ROW File="System.ComponentModel.DataAnnotations.dll" Component_="System.ComponentModel.DataAnnotations.dll" FileName="SYSTEM~1.DLL|System.ComponentModel.DataAnnotations.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.ComponentModel.DataAnnotations.dll" SelfReg="false"/>
+    <ROW File="System.Configuration.dll" Component_="System.Configuration.dll" FileName="SYSTEM~2.DLL|System.Configuration.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Configuration.dll" SelfReg="false"/>
+    <ROW File="System.Core.dll" Component_="System.Core.dll" FileName="SYSTEM~3.DLL|System.Core.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Core.dll" SelfReg="false"/>
+    <ROW File="System.Data.dll" Component_="System.Data.dll" FileName="SYSTEM~4.DLL|System.Data.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Data.dll" SelfReg="false"/>
+    <ROW File="System.Design.dll" Component_="System.Design.dll" FileName="SYSTEM~5.DLL|System.Design.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Design.dll" SelfReg="false"/>
+    <ROW File="System.DirectoryServices.dll" Component_="System.DirectoryServices.dll" FileName="SYSTEM~6.DLL|System.DirectoryServices.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.DirectoryServices.dll" SelfReg="false"/>
+    <ROW File="System.dll" Component_="System.dll" FileName="System.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Design.dll" Component_="System.Drawing.Design.dll" FileName="SYSTEM~7.DLL|System.Drawing.Design.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Drawing.Design.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.dll" Component_="System.Drawing.dll" FileName="SYSTEM~8.DLL|System.Drawing.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Drawing.dll" SelfReg="false"/>
+    <ROW File="System.EnterpriseServices.dll" Component_="System.EnterpriseServices.dll" FileName="SYSTEM~9.DLL|System.EnterpriseServices.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.EnterpriseServices.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.dll" Component_="System.Numerics.dll" FileName="SYSTE~10.DLL|System.Numerics.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Numerics.dll" SelfReg="false"/>
+    <ROW File="System.Runtime.Serialization.Formatters.Soap.dll" Component_="System.Runtime.Serialization.Formatters.Soap.dll" FileName="SYSTE~11.DLL|System.Runtime.Serialization.Formatters.Soap.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Runtime.Serialization.Formatters.Soap.dll" SelfReg="false"/>
+    <ROW File="System.Security.dll" Component_="System.Security.dll" FileName="SYSTE~12.DLL|System.Security.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Security.dll" SelfReg="false"/>
+    <ROW File="System.Transactions.dll" Component_="System.Transactions.dll" FileName="SYSTE~13.DLL|System.Transactions.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Transactions.dll" SelfReg="false"/>
+    <ROW File="System.Web.ApplicationServices.dll" Component_="System.Web.ApplicationServices.dll" FileName="SYSTE~14.DLL|System.Web.ApplicationServices.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Web.ApplicationServices.dll" SelfReg="false"/>
+    <ROW File="System.Web.dll" Component_="System.Web.dll" FileName="SYSTE~15.DLL|System.Web.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Web.dll" SelfReg="false"/>
+    <ROW File="System.Web.Services.dll" Component_="System.Web.Services.dll" FileName="SYSTE~16.DLL|System.Web.Services.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Web.Services.dll" SelfReg="false"/>
+    <ROW File="System.Windows.Forms.dll" Component_="System.Windows.Forms.dll" FileName="SYSTE~17.DLL|System.Windows.Forms.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Windows.Forms.dll" SelfReg="false"/>
+    <ROW File="System.Xml.dll" Component_="System.Xml.dll" FileName="SYSTE~18.DLL|System.Xml.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\System.Xml.dll" SelfReg="false"/>
+    <ROW File="Unity.Analytics.DataPrivacy.dll" Component_="Unity.Analytics.DataPrivacy.dll" FileName="UNITYA~1.DLL|Unity.Analytics.DataPrivacy.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.Analytics.DataPrivacy.dll" SelfReg="false"/>
+    <ROW File="Unity.Analytics.DataPrivacy.pdb" Component_="Unity.Analytics.DataPrivacy.dll" FileName="UNITYA~1.PDB|Unity.Analytics.DataPrivacy.pdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.Analytics.DataPrivacy.pdb" SelfReg="false"/>
+    <ROW File="Unity.ProBuilder.dll" Component_="Unity.ProBuilder.dll" FileName="UNITYP~1.DLL|Unity.ProBuilder.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.ProBuilder.dll" SelfReg="false"/>
+    <ROW File="Unity.ProBuilder.KdTree.dll" Component_="Unity.ProBuilder.KdTree.dll" FileName="UNITYP~2.DLL|Unity.ProBuilder.KdTree.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.ProBuilder.KdTree.dll" SelfReg="false"/>
+    <ROW File="Unity.ProBuilder.KdTree.pdb" Component_="Unity.ProBuilder.KdTree.dll" FileName="UNITYP~1.PDB|Unity.ProBuilder.KdTree.pdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.ProBuilder.KdTree.pdb" SelfReg="false"/>
+    <ROW File="Unity.ProBuilder.pdb" Component_="Unity.ProBuilder.dll" FileName="UNITYP~2.PDB|Unity.ProBuilder.pdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.ProBuilder.pdb" SelfReg="false"/>
+    <ROW File="Unity.ProBuilder.Poly2Tri.dll" Component_="Unity.ProBuilder.Poly2Tri.dll" FileName="UNITYP~3.DLL|Unity.ProBuilder.Poly2Tri.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.ProBuilder.Poly2Tri.dll" SelfReg="false"/>
+    <ROW File="Unity.ProBuilder.Poly2Tri.pdb" Component_="Unity.ProBuilder.Poly2Tri.dll" FileName="UNITYP~3.PDB|Unity.ProBuilder.Poly2Tri.pdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.ProBuilder.Poly2Tri.pdb" SelfReg="false"/>
+    <ROW File="Unity.ProBuilder.Stl.dll" Component_="Unity.ProBuilder.Stl.dll" FileName="UNITYP~4.DLL|Unity.ProBuilder.Stl.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.ProBuilder.Stl.dll" SelfReg="false"/>
+    <ROW File="Unity.ProBuilder.Stl.pdb" Component_="Unity.ProBuilder.Stl.dll" FileName="UNITYP~4.PDB|Unity.ProBuilder.Stl.pdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.ProBuilder.Stl.pdb" SelfReg="false"/>
+    <ROW File="Unity.TextMeshPro.dll" Component_="Unity.TextMeshPro.dll" FileName="UNITYT~1.DLL|Unity.TextMeshPro.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.TextMeshPro.dll" SelfReg="false"/>
+    <ROW File="Unity.TextMeshPro.pdb" Component_="Unity.TextMeshPro.dll" FileName="UNITYT~1.PDB|Unity.TextMeshPro.pdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\Unity.TextMeshPro.pdb" SelfReg="false"/>
+    <ROW File="UnityEngine.AccessibilityModule.dll" Component_="UnityEngine.AccessibilityModule.dll" FileName="UNITYE~1.DLL|UnityEngine.AccessibilityModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AccessibilityModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.AccessibilityModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~1.XML|UnityEngine.AccessibilityModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AccessibilityModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.AIModule.dll" Component_="UnityEngine.AIModule.dll" FileName="UNITYE~2.DLL|UnityEngine.AIModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AIModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.AIModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~2.XML|UnityEngine.AIModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AIModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.AnimationModule.dll" Component_="UnityEngine.AnimationModule.dll" FileName="UNITYE~3.DLL|UnityEngine.AnimationModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AnimationModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.AnimationModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~3.XML|UnityEngine.AnimationModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AnimationModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.ARModule.dll" Component_="UnityEngine.ARModule.dll" FileName="UNITYE~4.DLL|UnityEngine.ARModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ARModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.ARModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~4.XML|UnityEngine.ARModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ARModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.AssetBundleModule.dll" Component_="UnityEngine.AssetBundleModule.dll" FileName="UNITYE~5.DLL|UnityEngine.AssetBundleModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AssetBundleModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.AssetBundleModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~5.XML|UnityEngine.AssetBundleModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AssetBundleModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.AudioModule.dll" Component_="UnityEngine.AudioModule.dll" FileName="UNITYE~6.DLL|UnityEngine.AudioModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AudioModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.AudioModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~6.XML|UnityEngine.AudioModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.AudioModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.BaselibModule.dll" Component_="UnityEngine.BaselibModule.dll" FileName="UNITYE~7.DLL|UnityEngine.BaselibModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.BaselibModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.BaselibModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~7.XML|UnityEngine.BaselibModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.BaselibModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.ClothModule.dll" Component_="UnityEngine.ClothModule.dll" FileName="UNITYE~8.DLL|UnityEngine.ClothModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ClothModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.ClothModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~8.XML|UnityEngine.ClothModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ClothModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.ClusterInputModule.dll" Component_="UnityEngine.ClusterInputModule.dll" FileName="UNITYE~9.DLL|UnityEngine.ClusterInputModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ClusterInputModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.ClusterInputModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~9.XML|UnityEngine.ClusterInputModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ClusterInputModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.ClusterRendererModule.dll" Component_="UnityEngine.ClusterRendererModule.dll" FileName="UNITY~10.DLL|UnityEngine.ClusterRendererModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ClusterRendererModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.ClusterRendererModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~10.XML|UnityEngine.ClusterRendererModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ClusterRendererModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.CoreModule.dll" Component_="UnityEngine.CoreModule.dll" FileName="UNITY~11.DLL|UnityEngine.CoreModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.CoreModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.CoreModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~11.XML|UnityEngine.CoreModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.CoreModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.CrashReportingModule.dll" Component_="UnityEngine.CrashReportingModule.dll" FileName="UNITY~12.DLL|UnityEngine.CrashReportingModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.CrashReportingModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.CrashReportingModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~12.XML|UnityEngine.CrashReportingModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.CrashReportingModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.DirectorModule.dll" Component_="UnityEngine.DirectorModule.dll" FileName="UNITY~13.DLL|UnityEngine.DirectorModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.DirectorModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.DirectorModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~13.XML|UnityEngine.DirectorModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.DirectorModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.dll" Component_="UnityEngine.dll" FileName="UNITY~14.DLL|UnityEngine.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.FileSystemHttpModule.dll" Component_="UnityEngine.FileSystemHttpModule.dll" FileName="UNITY~15.DLL|UnityEngine.FileSystemHttpModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.FileSystemHttpModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.FileSystemHttpModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~14.XML|UnityEngine.FileSystemHttpModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.FileSystemHttpModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.GameCenterModule.dll" Component_="UnityEngine.GameCenterModule.dll" FileName="UNITY~16.DLL|UnityEngine.GameCenterModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.GameCenterModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.GameCenterModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~15.XML|UnityEngine.GameCenterModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.GameCenterModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.GridModule.dll" Component_="UnityEngine.GridModule.dll" FileName="UNITY~17.DLL|UnityEngine.GridModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.GridModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.GridModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~16.XML|UnityEngine.GridModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.GridModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.HotReloadModule.dll" Component_="UnityEngine.HotReloadModule.dll" FileName="UNITY~18.DLL|UnityEngine.HotReloadModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.HotReloadModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.HotReloadModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~17.XML|UnityEngine.HotReloadModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.HotReloadModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.ImageConversionModule.dll" Component_="UnityEngine.ImageConversionModule.dll" FileName="UNITY~19.DLL|UnityEngine.ImageConversionModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ImageConversionModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.ImageConversionModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~18.XML|UnityEngine.ImageConversionModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ImageConversionModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.IMGUIModule.dll" Component_="UnityEngine.IMGUIModule.dll" FileName="UNITY~20.DLL|UnityEngine.IMGUIModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.IMGUIModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.IMGUIModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~19.XML|UnityEngine.IMGUIModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.IMGUIModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.InputModule.dll" Component_="UnityEngine.InputModule.dll" FileName="UNITY~21.DLL|UnityEngine.InputModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.InputModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.InputModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~20.XML|UnityEngine.InputModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.InputModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.JSONSerializeModule.dll" Component_="UnityEngine.JSONSerializeModule.dll" FileName="UNITY~22.DLL|UnityEngine.JSONSerializeModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.JSONSerializeModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.JSONSerializeModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~21.XML|UnityEngine.JSONSerializeModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.JSONSerializeModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.LocalizationModule.dll" Component_="UnityEngine.LocalizationModule.dll" FileName="UNITY~23.DLL|UnityEngine.LocalizationModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.LocalizationModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.LocalizationModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~22.XML|UnityEngine.LocalizationModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.LocalizationModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.Networking.dll" Component_="UnityEngine.Networking.dll" FileName="UNITY~24.DLL|UnityEngine.Networking.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.Networking.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.Networking.dll.mdb" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~1.MDB|UnityEngine.Networking.dll.mdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.Networking.dll.mdb" SelfReg="false"/>
+    <ROW File="UnityEngine.ParticleSystemModule.dll" Component_="UnityEngine.ParticleSystemModule.dll" FileName="UNITY~25.DLL|UnityEngine.ParticleSystemModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ParticleSystemModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.ParticleSystemModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~23.XML|UnityEngine.ParticleSystemModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ParticleSystemModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.PerformanceReportingModule.dll" Component_="UnityEngine.PerformanceReportingModule.dll" FileName="UNITY~26.DLL|UnityEngine.PerformanceReportingModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.PerformanceReportingModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.PerformanceReportingModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~24.XML|UnityEngine.PerformanceReportingModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.PerformanceReportingModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.Physics2DModule.dll" Component_="UnityEngine.Physics2DModule.dll" FileName="UNITY~27.DLL|UnityEngine.Physics2DModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.Physics2DModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.Physics2DModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~25.XML|UnityEngine.Physics2DModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.Physics2DModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.PhysicsModule.dll" Component_="UnityEngine.PhysicsModule.dll" FileName="UNITY~28.DLL|UnityEngine.PhysicsModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.PhysicsModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.PhysicsModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~26.XML|UnityEngine.PhysicsModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.PhysicsModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.ProfilerModule.dll" Component_="UnityEngine.ProfilerModule.dll" FileName="UNITY~29.DLL|UnityEngine.ProfilerModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ProfilerModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.ProfilerModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~27.XML|UnityEngine.ProfilerModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ProfilerModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.ScreenCaptureModule.dll" Component_="UnityEngine.ScreenCaptureModule.dll" FileName="UNITY~30.DLL|UnityEngine.ScreenCaptureModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ScreenCaptureModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.ScreenCaptureModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~28.XML|UnityEngine.ScreenCaptureModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.ScreenCaptureModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.SharedInternalsModule.dll" Component_="UnityEngine.SharedInternalsModule.dll" FileName="UNITY~31.DLL|UnityEngine.SharedInternalsModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SharedInternalsModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.SharedInternalsModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~29.XML|UnityEngine.SharedInternalsModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SharedInternalsModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.SpatialTracking.dll" Component_="UnityEngine.SpatialTracking.dll" FileName="UNITY~32.DLL|UnityEngine.SpatialTracking.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SpatialTracking.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.SpatialTracking.dll.mdb" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~2.MDB|UnityEngine.SpatialTracking.dll.mdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SpatialTracking.dll.mdb" SelfReg="false"/>
+    <ROW File="UnityEngine.SpriteMaskModule.dll" Component_="UnityEngine.SpriteMaskModule.dll" FileName="UNITY~33.DLL|UnityEngine.SpriteMaskModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SpriteMaskModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.SpriteMaskModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~30.XML|UnityEngine.SpriteMaskModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SpriteMaskModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.SpriteShapeModule.dll" Component_="UnityEngine.SpriteShapeModule.dll" FileName="UNITY~34.DLL|UnityEngine.SpriteShapeModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SpriteShapeModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.SpriteShapeModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~31.XML|UnityEngine.SpriteShapeModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SpriteShapeModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.StreamingModule.dll" Component_="UnityEngine.StreamingModule.dll" FileName="UNITY~35.DLL|UnityEngine.StreamingModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.StreamingModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.StreamingModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~32.XML|UnityEngine.StreamingModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.StreamingModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.StyleSheetsModule.dll" Component_="UnityEngine.StyleSheetsModule.dll" FileName="UNITY~36.DLL|UnityEngine.StyleSheetsModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.StyleSheetsModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.StyleSheetsModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~33.XML|UnityEngine.StyleSheetsModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.StyleSheetsModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.SubstanceModule.dll" Component_="UnityEngine.SubstanceModule.dll" FileName="UNITY~37.DLL|UnityEngine.SubstanceModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SubstanceModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.SubstanceModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~34.XML|UnityEngine.SubstanceModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.SubstanceModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.TerrainModule.dll" Component_="UnityEngine.TerrainModule.dll" FileName="UNITY~38.DLL|UnityEngine.TerrainModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TerrainModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.TerrainModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~35.XML|UnityEngine.TerrainModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TerrainModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.TerrainPhysicsModule.dll" Component_="UnityEngine.TerrainPhysicsModule.dll" FileName="UNITY~39.DLL|UnityEngine.TerrainPhysicsModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TerrainPhysicsModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.TerrainPhysicsModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~36.XML|UnityEngine.TerrainPhysicsModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TerrainPhysicsModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.TextCoreModule.dll" Component_="UnityEngine.TextCoreModule.dll" FileName="UNITY~40.DLL|UnityEngine.TextCoreModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TextCoreModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.TextCoreModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~37.XML|UnityEngine.TextCoreModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TextCoreModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.TextRenderingModule.dll" Component_="UnityEngine.TextRenderingModule.dll" FileName="UNITY~41.DLL|UnityEngine.TextRenderingModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TextRenderingModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.TextRenderingModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~38.XML|UnityEngine.TextRenderingModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TextRenderingModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.TilemapModule.dll" Component_="UnityEngine.TilemapModule.dll" FileName="UNITY~42.DLL|UnityEngine.TilemapModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TilemapModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.TilemapModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~39.XML|UnityEngine.TilemapModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TilemapModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.Timeline.dll" Component_="UnityEngine.Timeline.dll" FileName="UNITY~43.DLL|UnityEngine.Timeline.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.Timeline.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.Timeline.dll.mdb" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~3.MDB|UnityEngine.Timeline.dll.mdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.Timeline.dll.mdb" SelfReg="false"/>
+    <ROW File="UnityEngine.TimelineModule.dll" Component_="UnityEngine.TimelineModule.dll" FileName="UNITY~44.DLL|UnityEngine.TimelineModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TimelineModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.TimelineModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~40.XML|UnityEngine.TimelineModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TimelineModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.TLSModule.dll" Component_="UnityEngine.TLSModule.dll" FileName="UNITY~45.DLL|UnityEngine.TLSModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TLSModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.TLSModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~41.XML|UnityEngine.TLSModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.TLSModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UI.dll" Component_="UnityEngine.UI.dll" FileName="UNITY~46.DLL|UnityEngine.UI.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UI.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UI.dll.mdb" Component_="AssemblyCSharp.dll.mdb" FileName="UNITYE~4.MDB|UnityEngine.UI.dll.mdb" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UI.dll.mdb" SelfReg="false"/>
+    <ROW File="UnityEngine.UIElementsModule.dll" Component_="UnityEngine.UIElementsModule.dll" FileName="UNITY~47.DLL|UnityEngine.UIElementsModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UIElementsModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UIElementsModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~42.XML|UnityEngine.UIElementsModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UIElementsModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UIModule.dll" Component_="UnityEngine.UIModule.dll" FileName="UNITY~48.DLL|UnityEngine.UIModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UIModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UIModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~43.XML|UnityEngine.UIModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UIModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UmbraModule.dll" Component_="UnityEngine.UmbraModule.dll" FileName="UNITY~49.DLL|UnityEngine.UmbraModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UmbraModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UmbraModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~44.XML|UnityEngine.UmbraModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UmbraModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UNETModule.dll" Component_="UnityEngine.UNETModule.dll" FileName="UNITY~50.DLL|UnityEngine.UNETModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UNETModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UNETModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~45.XML|UnityEngine.UNETModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UNETModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityAnalyticsModule.dll" Component_="UnityEngine.UnityAnalyticsModule.dll" FileName="UNITY~51.DLL|UnityEngine.UnityAnalyticsModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityAnalyticsModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityAnalyticsModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~46.XML|UnityEngine.UnityAnalyticsModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityAnalyticsModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityConnectModule.dll" Component_="UnityEngine.UnityConnectModule.dll" FileName="UNITY~52.DLL|UnityEngine.UnityConnectModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityConnectModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityConnectModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~47.XML|UnityEngine.UnityConnectModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityConnectModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityTestProtocolModule.dll" Component_="UnityEngine.UnityTestProtocolModule.dll" FileName="UNITY~53.DLL|UnityEngine.UnityTestProtocolModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityTestProtocolModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityTestProtocolModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~48.XML|UnityEngine.UnityTestProtocolModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityTestProtocolModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestAssetBundleModule.dll" Component_="UnityEngine.UnityWebRequestAssetBundleModule.dll" FileName="UNITY~54.DLL|UnityEngine.UnityWebRequestAssetBundleModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestAssetBundleModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~49.XML|UnityEngine.UnityWebRequestAssetBundleModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestAudioModule.dll" Component_="UnityEngine.UnityWebRequestAudioModule.dll" FileName="UNITY~55.DLL|UnityEngine.UnityWebRequestAudioModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestAudioModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~50.XML|UnityEngine.UnityWebRequestAudioModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestAudioModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestModule.dll" Component_="UnityEngine.UnityWebRequestModule.dll" FileName="UNITY~56.DLL|UnityEngine.UnityWebRequestModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~51.XML|UnityEngine.UnityWebRequestModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestTextureModule.dll" Component_="UnityEngine.UnityWebRequestTextureModule.dll" FileName="UNITY~57.DLL|UnityEngine.UnityWebRequestTextureModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestTextureModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~52.XML|UnityEngine.UnityWebRequestTextureModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestTextureModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestWWWModule.dll" Component_="UnityEngine.UnityWebRequestWWWModule.dll" FileName="UNITY~58.DLL|UnityEngine.UnityWebRequestWWWModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.UnityWebRequestWWWModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~53.XML|UnityEngine.UnityWebRequestWWWModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.UnityWebRequestWWWModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.VehiclesModule.dll" Component_="UnityEngine.VehiclesModule.dll" FileName="UNITY~59.DLL|UnityEngine.VehiclesModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.VehiclesModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.VehiclesModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~54.XML|UnityEngine.VehiclesModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.VehiclesModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.VFXModule.dll" Component_="UnityEngine.VFXModule.dll" FileName="UNITY~60.DLL|UnityEngine.VFXModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.VFXModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.VFXModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~55.XML|UnityEngine.VFXModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.VFXModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.VideoModule.dll" Component_="UnityEngine.VideoModule.dll" FileName="UNITY~61.DLL|UnityEngine.VideoModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.VideoModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.VideoModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~56.XML|UnityEngine.VideoModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.VideoModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.VRModule.dll" Component_="UnityEngine.VRModule.dll" FileName="UNITY~62.DLL|UnityEngine.VRModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.VRModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.VRModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~57.XML|UnityEngine.VRModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.VRModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.WindModule.dll" Component_="UnityEngine.WindModule.dll" FileName="UNITY~63.DLL|UnityEngine.WindModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.WindModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.WindModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~58.XML|UnityEngine.WindModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.WindModule.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~59.XML|UnityEngine.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.xml" SelfReg="false"/>
+    <ROW File="UnityEngine.XRModule.dll" Component_="UnityEngine.XRModule.dll" FileName="UNITY~64.DLL|UnityEngine.XRModule.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.XRModule.dll" SelfReg="false"/>
+    <ROW File="UnityEngine.XRModule.xml" Component_="AssemblyCSharp.dll.mdb" FileName="UNITY~60.XML|UnityEngine.XRModule.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Managed\UnityEngine.XRModule.xml" SelfReg="false"/>
+    <ROW File="unitydefaultresources" Component_="unitydefaultresources" FileName="UNITYD~1|unity default resources" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Resources\unity default resources" SelfReg="false"/>
+    <ROW File="unity_builtin_extra" Component_="unitydefaultresources" FileName="UNITY_~1|unity_builtin_extra" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\Resources\unity_builtin_extra" SelfReg="false"/>
+    <ROW File="resources.assets" Component_="app.info" FileName="RESOUR~1.ASS|resources.assets" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\resources.assets" SelfReg="false"/>
+    <ROW File="resources.assets.resS" Component_="app.info" FileName="RESOUR~1.RES|resources.assets.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\resources.assets.resS" SelfReg="false"/>
+    <ROW File="sharedassets0.assets" Component_="app.info" FileName="SHARED~1.ASS|sharedassets0.assets" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\sharedassets0.assets" SelfReg="false"/>
+    <ROW File="sharedassets0.assets.resS" Component_="app.info" FileName="SHARED~1.RES|sharedassets0.assets.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\sharedassets0.assets.resS" SelfReg="false"/>
+    <ROW File="sharedassets1.assets" Component_="app.info" FileName="SHARED~2.ASS|sharedassets1.assets" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\sharedassets1.assets" SelfReg="false"/>
+    <ROW File="sharedassets1.assets.resS" Component_="app.info" FileName="SHARED~2.RES|sharedassets1.assets.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\sharedassets1.assets.resS" SelfReg="false"/>
+    <ROW File="sharedassets2.assets" Component_="app.info" FileName="SHARED~3.ASS|sharedassets2.assets" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\sharedassets2.assets" SelfReg="false"/>
+    <ROW File="sharedassets2.assets.resS" Component_="app.info" FileName="SHARED~3.RES|sharedassets2.assets.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\sharedassets2.assets.resS" SelfReg="false"/>
+    <ROW File="sharedassets3.assets" Component_="app.info" FileName="SHARED~4.ASS|sharedassets3.assets" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\sharedassets3.assets" SelfReg="false"/>
+    <ROW File="sharedassets3.assets.resS" Component_="app.info" FileName="SHARED~4.RES|sharedassets3.assets.resS" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum_Data\sharedassets3.assets.resS" SelfReg="false"/>
+    <ROW File="mono2.0bdwgc.dll" Component_="mono2.0bdwgc.dll" FileName="MONO-2~1.DLL|mono-2.0-bdwgc.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll" SelfReg="false"/>
+    <ROW File="MonoPosixHelper.dll" Component_="MonoPosixHelper.dll" FileName="MONOPO~1.DLL|MonoPosixHelper.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\EmbedRuntime\MonoPosixHelper.dll" SelfReg="false"/>
+    <ROW File="Compat.browser" Component_="Compat.browser" FileName="COMPAT~1.BRO|Compat.browser" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\2.0\Browsers\Compat.browser" SelfReg="false"/>
+    <ROW File="DefaultWsdlHelpGenerator.aspx" Component_="DefaultWsdlHelpGenerator.aspx" FileName="DEFAUL~1.ASP|DefaultWsdlHelpGenerator.aspx" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\2.0\DefaultWsdlHelpGenerator.aspx" SelfReg="false"/>
+    <ROW File="machine.config" Component_="DefaultWsdlHelpGenerator.aspx" FileName="MACHIN~1.CON|machine.config" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\2.0\machine.config" SelfReg="false"/>
+    <ROW File="settings.map" Component_="DefaultWsdlHelpGenerator.aspx" FileName="settings.map" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\2.0\settings.map" SelfReg="false"/>
+    <ROW File="web.config" Component_="DefaultWsdlHelpGenerator.aspx" FileName="WEB~1.CON|web.config" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\2.0\web.config" SelfReg="false"/>
+    <ROW File="Compat.browser_1" Component_="Compat.browser_1" FileName="COMPAT~1.BRO|Compat.browser" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.0\Browsers\Compat.browser" SelfReg="false"/>
+    <ROW File="DefaultWsdlHelpGenerator.aspx_1" Component_="DefaultWsdlHelpGenerator.aspx_1" FileName="DEFAUL~1.ASP|DefaultWsdlHelpGenerator.aspx" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.0\DefaultWsdlHelpGenerator.aspx" SelfReg="false"/>
+    <ROW File="machine.config_1" Component_="DefaultWsdlHelpGenerator.aspx_1" FileName="MACHIN~1.CON|machine.config" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.0\machine.config" SelfReg="false"/>
+    <ROW File="settings.map_1" Component_="DefaultWsdlHelpGenerator.aspx_1" FileName="settings.map" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.0\settings.map" SelfReg="false"/>
+    <ROW File="web.config_1" Component_="DefaultWsdlHelpGenerator.aspx_1" FileName="WEB~1.CON|web.config" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.0\web.config" SelfReg="false"/>
+    <ROW File="Compat.browser_2" Component_="Compat.browser_2" FileName="COMPAT~1.BRO|Compat.browser" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.5\Browsers\Compat.browser" SelfReg="false"/>
+    <ROW File="DefaultWsdlHelpGenerator.aspx_2" Component_="DefaultWsdlHelpGenerator.aspx_2" FileName="DEFAUL~1.ASP|DefaultWsdlHelpGenerator.aspx" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.5\DefaultWsdlHelpGenerator.aspx" SelfReg="false"/>
+    <ROW File="machine.config_2" Component_="DefaultWsdlHelpGenerator.aspx_2" FileName="MACHIN~1.CON|machine.config" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.5\machine.config" SelfReg="false"/>
+    <ROW File="settings.map_2" Component_="DefaultWsdlHelpGenerator.aspx_2" FileName="settings.map" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.5\settings.map" SelfReg="false"/>
+    <ROW File="web.config_2" Component_="DefaultWsdlHelpGenerator.aspx_2" FileName="WEB~1.CON|web.config" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\4.5\web.config" SelfReg="false"/>
+    <ROW File="browscap.ini" Component_="browscap.ini" FileName="browscap.ini" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\browscap.ini" SelfReg="false"/>
+    <ROW File="config" Component_="browscap.ini" FileName="config" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\config" SelfReg="false"/>
+    <ROW File="config.xml" Component_="config.xml" FileName="config.xml" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\MonoBleedingEdge\etc\mono\mconfig\config.xml" SelfReg="false"/>
+    <ROW File="UnityCrashHandler64.exe" Component_="UnityCrashHandler64.exe" FileName="UNITYC~1.EXE|UnityCrashHandler64.exe" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\UnityCrashHandler64.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="UnityPlayer.dll" Component_="UnityPlayer.dll" FileName="UNITYP~1.DLL|UnityPlayer.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\UnityPlayer.dll" SelfReg="false"/>
+    <ROW File="WinPixEventRuntime.dll" Component_="WinPixEventRuntime.dll" FileName="WINPIX~1.DLL|WinPixEventRuntime.dll" Attributes="0" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\WinPixEventRuntime.dll" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Setup Files" Languages="en" InstallationType="4" UseLargeSchema="true" MsiPackageType="x64"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="LicenseAgreementDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\LicenseAgreementDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
+    <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="20" Y="60" Width="330" Height="120" Attributes="7" Text="..\..\..\..\..\..\Desktop\Hypogeum\Licenza.rtf" Order="400" TextLocId="Control.Text.LicenseAgreementDlg#AgreementText" MsiKey="LicenseAgreementDlg#AgreementText"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="LamaGames_Dir" Component_="LamaGames" ManualDelete="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#Hypogeum.exe]"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[AppDataFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
+    <ROW Feature_="MainFeature" Component_="ProductInformation"/>
+    <ROW Feature_="MainFeature" Component_="Hypogeum.exe"/>
+    <ROW Feature_="MainFeature" Component_="app.info"/>
+    <ROW Feature_="MainFeature" Component_="Accessibility.dll"/>
+    <ROW Feature_="MainFeature" Component_="AssemblyCSharp.dll"/>
+    <ROW Feature_="MainFeature" Component_="AssemblyCSharp.dll.mdb"/>
+    <ROW Feature_="MainFeature" Component_="HypogeumDBConnector.dll"/>
+    <ROW Feature_="MainFeature" Component_="ICSharpCode.SharpZipLib.dll"/>
+    <ROW Feature_="MainFeature" Component_="Mono.Data.Sqlite.dll"/>
+    <ROW Feature_="MainFeature" Component_="Mono.Posix.dll"/>
+    <ROW Feature_="MainFeature" Component_="Mono.Security.dll"/>
+    <ROW Feature_="MainFeature" Component_="Mono.WebBrowser.dll"/>
+    <ROW Feature_="MainFeature" Component_="mscorlib.dll"/>
+    <ROW Feature_="MainFeature" Component_="Novell.Directory.Ldap.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.ComponentModel.DataAnnotations.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Configuration.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Core.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Data.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Design.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.DirectoryServices.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Design.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.EnterpriseServices.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Runtime.Serialization.Formatters.Soap.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Transactions.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Web.ApplicationServices.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Web.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Web.Services.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Windows.Forms.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Xml.dll"/>
+    <ROW Feature_="MainFeature" Component_="Unity.Analytics.DataPrivacy.dll"/>
+    <ROW Feature_="MainFeature" Component_="Unity.ProBuilder.dll"/>
+    <ROW Feature_="MainFeature" Component_="Unity.ProBuilder.KdTree.dll"/>
+    <ROW Feature_="MainFeature" Component_="Unity.ProBuilder.Poly2Tri.dll"/>
+    <ROW Feature_="MainFeature" Component_="Unity.ProBuilder.Stl.dll"/>
+    <ROW Feature_="MainFeature" Component_="Unity.TextMeshPro.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.AccessibilityModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.AIModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.AnimationModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.ARModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.AssetBundleModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.AudioModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.BaselibModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.ClothModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.ClusterInputModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.ClusterRendererModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.CoreModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.CrashReportingModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.DirectorModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.FileSystemHttpModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.GameCenterModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.GridModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.HotReloadModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.ImageConversionModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.IMGUIModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.InputModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.JSONSerializeModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.LocalizationModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.Networking.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.ParticleSystemModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.PerformanceReportingModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.Physics2DModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.PhysicsModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.ProfilerModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.ScreenCaptureModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.SharedInternalsModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.SpatialTracking.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.SpriteMaskModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.SpriteShapeModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.StreamingModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.StyleSheetsModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.SubstanceModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.TerrainModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.TerrainPhysicsModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.TextCoreModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.TextRenderingModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.TilemapModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.Timeline.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.TimelineModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.TLSModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UI.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UIElementsModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UIModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UmbraModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UNETModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UnityAnalyticsModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UnityConnectModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UnityTestProtocolModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UnityWebRequestAssetBundleModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UnityWebRequestAudioModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UnityWebRequestModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UnityWebRequestTextureModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.UnityWebRequestWWWModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.VehiclesModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.VFXModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.VideoModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.VRModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.WindModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="UnityEngine.XRModule.dll"/>
+    <ROW Feature_="MainFeature" Component_="unitydefaultresources"/>
+    <ROW Feature_="MainFeature" Component_="mono2.0bdwgc.dll"/>
+    <ROW Feature_="MainFeature" Component_="MonoPosixHelper.dll"/>
+    <ROW Feature_="MainFeature" Component_="Compat.browser"/>
+    <ROW Feature_="MainFeature" Component_="DefaultWsdlHelpGenerator.aspx"/>
+    <ROW Feature_="MainFeature" Component_="Compat.browser_1"/>
+    <ROW Feature_="MainFeature" Component_="DefaultWsdlHelpGenerator.aspx_1"/>
+    <ROW Feature_="MainFeature" Component_="Compat.browser_2"/>
+    <ROW Feature_="MainFeature" Component_="DefaultWsdlHelpGenerator.aspx_2"/>
+    <ROW Feature_="MainFeature" Component_="browscap.ini"/>
+    <ROW Feature_="MainFeature" Component_="config.xml"/>
+    <ROW Feature_="MainFeature" Component_="UnityCrashHandler64.exe"/>
+    <ROW Feature_="MainFeature" Component_="UnityPlayer.dll"/>
+    <ROW Feature_="MainFeature" Component_="WinPixEventRuntime.dll"/>
+    <ROW Feature_="MainFeature" Component_="LamaGames"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="Hypogeum.exe" SourcePath="..\..\..\..\..\..\Desktop\Hypogeum\Hypogeum.exe" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT64 OR ((VersionNT &lt;&gt; 501) OR (ServicePackLevel = 3))) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel = 2))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="Hypogeum.exe" Directory_="LamaGames_Dir" Name="Hypogeum.exe" Component_="Hypogeum.exe" Target="[#Hypogeum.exe]" Description="Hypogeum.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="Hypogeum.exe_1" Directory_="DesktopFolder" Name="Hypogeum.exe" Component_="Hypogeum.exe" Target="[#Hypogeum.exe]" Description="Hypogeum.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>
