@@ -30,13 +30,13 @@ public class BulletCollisionManager : NetworkBehaviour
             }
             else
             {
+                hasExploded = true;                
+
                 var _explosion = Instantiate(explosion, transform.position, transform.rotation);
                 _explosion.name += Time.time.ToString();
 
                 Destroy(_explosion, 3.8f);
                 Destroy(gameObject, 3.8f);
-
-                hasExploded = true;
             }
         }
     }
