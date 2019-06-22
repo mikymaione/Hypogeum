@@ -46,6 +46,12 @@ public static class GB
     internal static EAnimal? Animal;
 
 
+    public static void DistruggiOggetti(Object[] oggetti)
+    {
+        foreach (var o in oggetti)
+            Object.Destroy(o);
+    }
+
     public static void AbilitaButton(UnityEngine.UI.Button b, bool abilitato)
     {
         var img = b.GetComponent<UnityEngine.UI.Image>();

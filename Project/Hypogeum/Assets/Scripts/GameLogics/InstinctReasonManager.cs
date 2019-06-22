@@ -1,114 +1,78 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+MIT License
+Copyright (c) 2019 Team Lama: Carrarini Andrea, Cerrato Loris, De Cosmo Andrea, Maione Michele
+Author: Carrarini Andrea
+Contributors: Maione Michele
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+*/
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class InstinctReasonManager : NetworkBehaviour
 {
 
-	private GameObject none, instinct, reason, damage, control;
+    private GameObject none, instinct, reason, damage, control;
 
-	//private GameObject reasonCoin;
-
-    // Start is called before the first frame update
-    void Start()
+    public override void OnStartLocalPlayer()
     {
-		none = GameObject.Find("None");
-		instinct = GameObject.Find("Instinct");
-		reason = GameObject.Find("Reason");
-		damage = GameObject.Find("Damage");
-		control = GameObject.Find("Control");
+        none = GameObject.Find("None");
+        instinct = GameObject.Find("Instinct");
+        reason = GameObject.Find("Reason");
+        damage = GameObject.Find("Damage");
+        control = GameObject.Find("Control");
 
-		instinct.SetActive(false);
-		reason.SetActive(false);
-		damage.SetActive(false);
-		control.SetActive(false);
-
+        instinct.SetActive(false);
+        reason.SetActive(false);
+        damage.SetActive(false);
+        control.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    [Command] //solo host
+    public void CmdOnInstinctChosen(GB.EAnimal animal)
     {
-        
+        //dici a tutti i client che l'animal ha preso un instinto
+        RpcOnInstinctChosen(animal);
+    }
+
+    [Command] //solo host
+    public void CmdOnReasonChosen(GB.EAnimal animal)
+    {
+        //dici a tutti i client che l'animal ha preso una ragione
+        RpcOnReasonChosen(animal);
     }
 
 
+    [ClientRpc] //tutti i client
+    public void RpcOnInstinctChosen(GB.EAnimal animal)
+    {
+        EliminaCoinsPerQuestoTeam(animal);
+    }
 
-	[Command]
-	public void CmdOnInstinctChosen(GB.EAnimal animal)
-	{
-		if (GB.Animal.Value == animal)
-		{
-			Destroy(GameObject.Find("CoinReason(Clone)"));
-			//assegna obiettivo al player
-			Destroy(GameObject.Find("CoinInstinct(Clone)"));
+    [ClientRpc] //tutti i client
+    public void RpcOnReasonChosen(GB.EAnimal animal)
+    {
+        EliminaCoinsPerQuestoTeam(animal);
+    }
 
-			//Changing buttons image
-			none.SetActive(false);
-			instinct.SetActive(true);
+    private void EliminaCoinsPerQuestoTeam(GB.EAnimal animal)
+    {
+        if (GB.Animal.Value == animal)
+        {
+            var coinsR = GameObject.FindGameObjectsWithTag("CoinReason");
+            var coinsI = GameObject.FindGameObjectsWithTag("CoinInstinct");
 
-			//Showing power-up
-			damage.SetActive(true);
+            GB.DistruggiOggetti(coinsR);
+            GB.DistruggiOggetti(coinsI);
 
-			RpcOnInstinctChosen(animal);
-		}
-	}
+            //Changing buttons image
+            none.SetActive(false);
+            instinct.SetActive(true);
 
-	[ClientRpc]
-	public void RpcOnInstinctChosen(GB.EAnimal animal)
-	{
-		if (GB.Animal.Value == animal)
-		{
-			Destroy(GameObject.Find("CoinReason(Clone)"));
-			//assegna obiettivo al player
-			Destroy(GameObject.Find("CoinInstinct(Clone)"));
+            //Showing power-up
+            damage.SetActive(true);
+        }
+    }
 
-			//Changing buttons image
-			none.SetActive(false);
-			instinct.SetActive(true);
-
-			//Showing power-up
-			damage.SetActive(true);
-		}
-	}
-
-	[Command]
-	public void CmdOnReasonChosen(GB.EAnimal animal)
-	{
-		if (GB.Animal.Value == animal)
-		{
-			Destroy(GameObject.Find("CoinInstinct(Clone)"));
-			//assegna obiettivo al player
-			Destroy(GameObject.Find("CoinReason(Clone)"));
-
-			//Changing buttons image
-			none.SetActive(false);
-			reason.SetActive(true);
-
-			//Showing power-up
-			control.SetActive(true);
-
-			RpcOnReasonChosen(animal);
-		}
-	}
-
-	[ClientRpc]
-	public void RpcOnReasonChosen(GB.EAnimal animal)
-	{
-		if (GB.Animal.Value == animal)
-		{
-			Destroy(GameObject.Find("CoinInstinct(Clone)"));
-			//assegna obiettivo al player
-			Destroy(GameObject.Find("CoinReason(Clone)"));
-
-			//Changing buttons image
-			none.SetActive(false);
-			reason.SetActive(true);
-
-			//Showing power-up
-			control.SetActive(true);
-		}
-	}
 
 }

@@ -11,26 +11,27 @@ using UnityEngine.Networking;
 
 public class CoinsCollisionManager : NetworkBehaviour
 {
-	private InstinctReasonManager instinctReasonManager;
 
-	void Start()
-	{
-		instinctReasonManager = GameObject.Find("InstinctReasonManager").GetComponent<InstinctReasonManager>();
-	}
+    private InstinctReasonManager instinctReasonManager;
+
+
+    public override void OnStartLocalPlayer()
+    {
+        instinctReasonManager = GameObject.Find("InstinctReasonManager").GetComponent<InstinctReasonManager>();
+    }
 
     void Update()
     {
         gameObject.transform.RotateAroundLocal(Vector3.up, 2 * Time.deltaTime);
     }
 
-	private void OnTriggerEnter(Collider otherObjectCollider)
-	{
-		if (gameObject.name == "CoinInstinct(Clone)")
-		{
-			instinctReasonManager.CmdOnInstinctChosen(GB.Animal.Value);
-			//Destroy(GameObject.Find("CoinInstinct(Clone)"));
-		}
-		else
-			instinctReasonManager.CmdOnReasonChosen(GB.Animal.Value);
-	}
+    private void OnTriggerEnter(Collider otherObjectCollider)
+    {
+        if (gameObject.CompareTag("CoinReason"))
+            instinctReasonManager.CmdOnReasonChosen(GB.Animal.Value);
+        else if (gameObject.CompareTag("CoinInstinct"))
+            instinctReasonManager.CmdOnInstinctChosen(GB.Animal.Value);
+    }
+
+
 }

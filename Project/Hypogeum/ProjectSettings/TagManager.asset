@@ -26,6 +26,8 @@ TagManager:
   - CoinsSpawner
   - Win
   - Loss
+  - CoinInstinct
+  - CoinReason
   layers:
   - Default
   - TransparentFX
