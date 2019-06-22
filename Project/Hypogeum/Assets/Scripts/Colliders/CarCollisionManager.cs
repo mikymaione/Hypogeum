@@ -17,13 +17,20 @@ public class CarCollisionManager : NetworkBehaviour
 
     private GeneralCar playerCar;
     private Rigidbody playerCar_RB;
+    private HudScriptManager HUD;
 
+
+    private void Start()
+    {
+        var HUDo = GameObject.FindGameObjectWithTag("HUD");
+        HUD = HUDo.GetComponent<HudScriptManager>();
+    }
 
     public override void OnStartLocalPlayer()
     {
         playerCar = GetComponent<GeneralCar>();
         playerCar_RB = GetComponent<Rigidbody>();
-    }   
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -85,8 +92,7 @@ public class CarCollisionManager : NetworkBehaviour
     {
         if (GB.Animal == animale)
         {
-            var win = GameObject.FindGameObjectWithTag("Win");
-            win.SetActive(true);
+            HUD.setWinLose(playerCar);
             StartCoroutine(EsciDalGioco());
         }
     }
@@ -104,8 +110,7 @@ public class CarCollisionManager : NetworkBehaviour
 
             Destroy(gameObject);
 
-            var loss = GameObject.FindGameObjectWithTag("Loss");
-            loss.SetActive(true);
+            HUD.setWinLose(playerCar);
             StartCoroutine(EsciDalGioco());
         }
     }

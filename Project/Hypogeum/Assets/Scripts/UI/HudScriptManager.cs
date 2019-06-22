@@ -17,11 +17,9 @@ public class HudScriptManager : MonoBehaviour
     private Text speedText;
 
     //To manage the team Health bar
-    private Slider healthBar;
-    private Slider hypeBar;
+    private Slider healthBar, hypeBar;
 
-    private GameObject controlsClosed;
-    private GameObject controlsOpen;
+    private GameObject controlsClosed, controlsOpen, win, loss;
 
     private bool GameControlsVisibile = false;
     private bool HoAvutoIlTempoDiLeggere = true;
@@ -37,6 +35,12 @@ public class HudScriptManager : MonoBehaviour
         speedText = GameObject.FindGameObjectWithTag("SpeedText").GetComponent<Text>();
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         hypeBar = GameObject.Find("HypeBar").GetComponent<Slider>();
+
+        win = GameObject.FindGameObjectWithTag("Win");
+        loss = GameObject.FindGameObjectWithTag("Loss");
+
+        win.SetActive(false);
+        loss.SetActive(false);
 
         setSpeed(0);
         setHealth(0, 0, 0);
@@ -73,6 +77,14 @@ public class HudScriptManager : MonoBehaviour
             setHealth(0, generalCar.Max_Health, generalCar.Health);
             setSpeed(generalCar.actualSpeed);
         }
+    }
+
+    public void setWinLose(GeneralCar generalCar)
+    {
+        var vivo = (generalCar.Health > 0);
+
+        win.SetActive(vivo);
+        loss.SetActive(!vivo);
     }
 
     private void setHype(float value)
