@@ -25,6 +25,7 @@ public class AutoGuida : NetworkBehaviour
     private Quaternion OriginalRotation;
     private Quaternion[] WheelErrorCorrectionR = new Quaternion[4];
     private WheelCollider[] Colliders = new WheelCollider[4];
+    private TrailRenderer[] Scie = new TrailRenderer[4];
     private GameObject[] Wheels = new GameObject[4];
 
     private CameraManager MyCamera;
@@ -47,7 +48,7 @@ public class AutoGuida : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
-        var i = 0;
+        var i = 0u;
         var wc = GetComponentsInChildren<WheelCollider>();
         var obj_figli = GetComponentsInChildren<MeshRenderer>();
 
@@ -59,6 +60,7 @@ public class AutoGuida : NetworkBehaviour
                     WheelErrorCorrectionR[i] = o.gameObject.transform.rotation;
                     Colliders[i] = w;
                     Wheels[i] = o.gameObject;
+                    Scie[i] = w.GetComponent<TrailRenderer>();
                     break;
                 }
 
@@ -157,7 +159,7 @@ public class AutoGuida : NetworkBehaviour
             Quaternion worldPose_rotation;
             Vector3 worldPose_position;
 
-            for (var i = 0; i < Colliders.Length; i++)
+            for (var i = 0u; i < Colliders.Length; i++)
             {
                 if (Colliders[i].tag.Equals("FrontWheel"))
                     Colliders[i].steerAngle = instantSteeringAngle;
@@ -199,18 +201,31 @@ public class AutoGuida : NetworkBehaviour
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
-            var RuoteCheCollidono = 0;
-            for (var j = 0; j < Colliders.Length; j++)
+            var RuoteCheCollidono = 0u;
+            for (var j = 0u; j < Colliders.Length; j++)
                 if (Colliders[j].isGrounded)
                     RuoteCheCollidono++;
 
             //quando sei in aria usa il centro di massa al centro del box 3d, altrimenti usa il centro di massa che Michele ha settato a mano per ogni auto            
             TheCarRigidBody.centerOfMass = (RuoteCheCollidono == 0 ? CentroDiMassa3D : CentroDiMassaAssettoCorsa);
 
+            GestioneScie(RuoteCheCollidono);
+
             SetCannonsPositions();
 
             HUD.setValues(generalCar);
         }
+    }
+
+    private void GestioneScie(uint RuoteCheCollidono)
+    {
+        var mostra = (generalCar.actualSpeed > 15 && RuoteCheCollidono == 0);
+
+        if (mostra)
+            generalCar.Hype++;
+
+        for (var i = 0u; i < Scie.Length; i++)
+            Scie[i].emitting = mostra;
     }
 
     private void SetCannonsPositions()

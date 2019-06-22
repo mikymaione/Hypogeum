@@ -13,6 +13,9 @@ public class GeneralCar : NetworkBehaviour
 {
 
     [SyncVar]
+    internal uint Hype = 0;
+
+    [SyncVar]
     internal float Health;
 
     [SyncVar]
