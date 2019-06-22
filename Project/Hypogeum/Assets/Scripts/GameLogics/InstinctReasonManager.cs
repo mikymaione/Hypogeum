@@ -12,16 +12,11 @@ using UnityEngine.Networking;
 public class InstinctReasonManager : NetworkBehaviour
 {
 
-    private GameObject none, instinct, reason, damage, control;
+    public GameObject none, instinct, reason, damage, control;
 
-    public override void OnStartLocalPlayer()
+
+    void Start()
     {
-        none = GameObject.Find("None");
-        instinct = GameObject.Find("Instinct");
-        reason = GameObject.Find("Reason");
-        damage = GameObject.Find("Damage");
-        control = GameObject.Find("Control");
-
         instinct.SetActive(false);
         reason.SetActive(false);
         damage.SetActive(false);
@@ -46,32 +41,44 @@ public class InstinctReasonManager : NetworkBehaviour
     [ClientRpc] //tutti i client
     public void RpcOnInstinctChosen(GB.EAnimal animal)
     {
-        EliminaCoinsPerQuestoTeam(animal);
+        if (GB.Animal.Value == animal)
+        {
+            EliminaCoins();
+            AttivaIR(GB.ECoin.Instinct);
+        }
     }
 
     [ClientRpc] //tutti i client
     public void RpcOnReasonChosen(GB.EAnimal animal)
     {
-        EliminaCoinsPerQuestoTeam(animal);
-    }
-
-    private void EliminaCoinsPerQuestoTeam(GB.EAnimal animal)
-    {
         if (GB.Animal.Value == animal)
         {
-            var coinsR = GameObject.FindGameObjectsWithTag("CoinReason");
-            var coinsI = GameObject.FindGameObjectsWithTag("CoinInstinct");
-
-            GB.DistruggiOggetti(coinsR);
-            GB.DistruggiOggetti(coinsI);
-
-            //Changing buttons image
-            none.SetActive(false);
-            instinct.SetActive(true);
-
-            //Showing power-up
-            damage.SetActive(true);
+            EliminaCoins();
+            AttivaIR(GB.ECoin.Reason);
         }
+    }
+
+    private void AttivaIR(GB.ECoin IR)
+    {
+        var I = (IR == GB.ECoin.Instinct);
+
+        //Changing buttons image
+        none.SetActive(false);
+        instinct.SetActive(I);
+        reason.SetActive(!I);
+
+        //Showing power-up
+        damage.SetActive(I);
+        control.SetActive(!I);
+    }
+
+    private void EliminaCoins()
+    {
+        var coinsR = GameObject.FindGameObjectsWithTag("CoinReason");
+        var coinsI = GameObject.FindGameObjectsWithTag("CoinInstinct");
+
+        GB.DistruggiOggetti(coinsR);
+        GB.DistruggiOggetti(coinsI);
     }
 
 
