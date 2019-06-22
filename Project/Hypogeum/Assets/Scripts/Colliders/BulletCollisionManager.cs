@@ -11,8 +11,10 @@ using UnityEngine.Networking;
 
 public class BulletCollisionManager : NetworkBehaviour
 {
+	private AudioSource audioSource;
+	private AudioClip explosionClip;
 
-    public GameObject explosion, sand;
+	public GameObject explosion, sand;
 
     private bool hasExploded = false;
 
@@ -23,7 +25,11 @@ public class BulletCollisionManager : NetworkBehaviour
         {
             if (collision.gameObject.CompareTag("Arena"))
             {
-                var _sand = Instantiate(sand, transform.position, Quaternion.Euler(-90, 0, 0));
+				explosionClip = Resources.Load("Audio/BulletExplosion") as AudioClip;
+				//audioSource.clip = explosionClip;
+				audioSource.PlayOneShot(explosionClip);
+
+				var _sand = Instantiate(sand, transform.position, Quaternion.Euler(-90, 0, 0));
 
                 Destroy(gameObject, 10);
                 Destroy(_sand, 10);

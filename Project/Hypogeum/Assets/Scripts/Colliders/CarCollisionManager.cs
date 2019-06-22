@@ -18,18 +18,22 @@ public class CarCollisionManager : NetworkBehaviour
     private GeneralCar playerCar;
     private Rigidbody playerCar_RB;
     private HudScriptManager HUD;
+	private AudioSource audioSource;
+	private AudioClip carCollisionAudioClip;
 
 
     private void Start()
     {
         var HUDo = GameObject.FindGameObjectWithTag("HUD");
         HUD = HUDo.GetComponent<HudScriptManager>();
+		audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     public override void OnStartLocalPlayer()
     {
         playerCar = GetComponent<GeneralCar>();
         playerCar_RB = GetComponent<Rigidbody>();
+		carCollisionAudioClip = Resources.Load("Audio/CarCollision") as AudioClip;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -40,7 +44,10 @@ public class CarCollisionManager : NetworkBehaviour
             {
                 if (playerCar != null)
                 {
-                    var damage = collision.relativeVelocity.magnitude / (playerCar.Defense * 0.1f);
+					//TODO must be networked to both team mates
+					audioSource.PlayOneShot(carCollisionAudioClip);
+
+					var damage = collision.relativeVelocity.magnitude / (playerCar.Defense * 0.1f);
 
                     CmdTakeDamage(GB.Animal.Value, gameObject, damage);
                 }

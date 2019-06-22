@@ -13,6 +13,7 @@ public class InstinctReasonManager : NetworkBehaviour
 {
 
     public GameObject none, instinct, reason, damage, control;
+	public AudioSource audioSource;
 
 
     void Start()
@@ -21,6 +22,7 @@ public class InstinctReasonManager : NetworkBehaviour
         reason.SetActive(false);
         damage.SetActive(false);
         control.SetActive(false);
+		audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     [Command] //solo host
@@ -43,6 +45,7 @@ public class InstinctReasonManager : NetworkBehaviour
     {
         if (GB.Animal.Value == animal)
         {
+			audioSource.Play();
             EliminaCoins();
             AttivaIR(GB.ECoin.Instinct);
         }
@@ -53,6 +56,7 @@ public class InstinctReasonManager : NetworkBehaviour
     {
         if (GB.Animal.Value == animal)
         {
+			audioSource.Play();
             EliminaCoins();
             AttivaIR(GB.ECoin.Reason);
         }

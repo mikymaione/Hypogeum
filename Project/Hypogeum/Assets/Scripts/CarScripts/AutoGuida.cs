@@ -45,6 +45,9 @@ public class AutoGuida : NetworkBehaviour
     //To manage the sand particle effect
     private ParticleSystem sandParticle;
 
+	private AudioSource carAudioSource, audienceConstantSoundAudioSource, hypeAudioSource;
+	
+
 
     public override void OnStartLocalPlayer()
     {
@@ -90,6 +93,13 @@ public class AutoGuida : NetworkBehaviour
         TheCarRigidBody.centerOfMass = CentroDiMassaAssettoCorsa;
 
         sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
+
+		carAudioSource = gameObject.GetComponent<AudioSource>();
+		audienceConstantSoundAudioSource = GameObject.Find("ConstantVoicesManager").GetComponent<AudioSource>();
+		audienceConstantSoundAudioSource.Play();
+
+		//TODO use this during jumps
+		hypeAudioSource = GameObject.Find("HypeVoicesManager").GetComponent<AudioSource>();
     }
 
     [Command] //only host
@@ -124,6 +134,18 @@ public class AutoGuida : NetworkBehaviour
 
             //Avanti-dietro
             instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
+
+			//Audio
+			if (instantTorque > 0 && carAudioSource.isPlaying == false)
+			{
+				carAudioSource.Play();
+				//TODO needs to be played on both team mates
+			}
+			else if (instantTorque <= 0 && carAudioSource.isPlaying == true)
+			{
+				carAudioSource.Stop();
+				//TODO needs to be stopped on both team mates
+			}
 
             Decellerazione = (instantTorque == 0 ? 1 : 0);
 
