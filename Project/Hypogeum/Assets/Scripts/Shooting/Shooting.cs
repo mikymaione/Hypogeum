@@ -48,16 +48,30 @@ public class Shooting : NetworkBehaviour
         {
             if (___car == null)
             {
-                var factionCarName = $"{GB.Animal.ToString()}sCar";
                 var cars = GameObject.FindGameObjectsWithTag("car");
 
                 foreach (var car in cars)
-                    if (car.name.Equals($"{factionCarName}(Clone)"))
+                {
+                    var gc = car.GetComponent<GeneralCar>();
+
+                    if (gc.AnimalType == GB.Animal && gc.MyCannon == null)
+                    {
                         ___car = car;
+                        CmdSetMyCannon(car, gameObject);
+                        break;
+                    }
+                }
             }
 
             return ___car;
         }
+    }
+
+    [Command] //only host
+    private void CmdSetMyCannon(GameObject car, GameObject cannon)
+    {
+        var gc = car.GetComponent<GeneralCar>();
+        gc.MyCannon = cannon;
     }
 
     void Update()
@@ -102,7 +116,7 @@ public class Shooting : NetworkBehaviour
         var bulletClass = projectile.GetComponent<Bullet>();
         bulletClass.AnimaleCheHaSparatoQuestoColpo = animal;
 
-        Destroy(projectile, 10);
+        //Destroy(projectile, 10);
         NetworkServer.SpawnWithClientAuthority(projectile, player);
 
         RpcShoot(projectile, velocity);

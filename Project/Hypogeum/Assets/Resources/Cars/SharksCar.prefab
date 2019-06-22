@@ -855,6 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b980ef33455a314ea69501e680dceaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimalType: 3
   Max_Health: 1000
   Speed: 200
   Defense: 7
@@ -1508,6 +1509,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1213090110905326061}
     m_Modifications:
+    - target: {fileID: 1000010715882420, guid: 14d81e2c407975245973a11cdfbeb902, type: 3}
+      propertyPath: m_Name
+      value: SandSwirlsEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 4000012573350444, guid: 14d81e2c407975245973a11cdfbeb902, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1551,10 +1556,6 @@ PrefabInstance:
     - target: {fileID: 4000012573350444, guid: 14d81e2c407975245973a11cdfbeb902, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010715882420, guid: 14d81e2c407975245973a11cdfbeb902, type: 3}
-      propertyPath: m_Name
-      value: SandSwirlsEffect
       objectReference: {fileID: 0}
     - target: {fileID: 198000010021673064, guid: 14d81e2c407975245973a11cdfbeb902,
         type: 3}

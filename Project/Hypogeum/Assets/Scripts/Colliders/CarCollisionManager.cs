@@ -23,7 +23,7 @@ public class CarCollisionManager : NetworkBehaviour
     {
         playerCar = GetComponent<GeneralCar>();
         playerCar_RB = GetComponent<Rigidbody>();
-    }
+    }   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -96,6 +96,12 @@ public class CarCollisionManager : NetworkBehaviour
     {
         if (GB.Animal == animale)
         {
+            var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+
+            foreach (var cannon in cannons)
+                if (cannon.Equals(playerCar.MyCannon))
+                    Destroy(cannon);
+
             Destroy(gameObject);
 
             var loss = GameObject.FindGameObjectWithTag("Loss");

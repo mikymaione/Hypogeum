@@ -28,6 +28,7 @@ TagManager:
   - Loss
   - CoinInstinct
   - CoinReason
+  - Arena
   layers:
   - Default
   - TransparentFX

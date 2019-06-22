@@ -83,7 +83,7 @@ namespace Prototype.NetworkLobby
             base.OnStartAuthority();
 
             //if we return from a game, color of text can still be the one for "Ready"
-            readyButton.transform.GetChild(0).GetComponent<Text>().color = Color.white;
+            readyButton.transform.GetChild(0).GetComponent<Text>().color = Color.black;
 
             SetupLocalPlayer();
         }
@@ -192,7 +192,7 @@ namespace Prototype.NetworkLobby
                 ChangeReadyButtonColor(isLocalPlayer ? JoinColor : NotReadyColor);
 
                 textComponent.text = isLocalPlayer ? "JOIN" : "...";
-                textComponent.color = Color.white;
+                textComponent.color = Color.black;
 
                 readyButton.interactable = isLocalPlayer;
                 colorButton.interactable = isLocalPlayer;
