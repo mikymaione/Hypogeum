@@ -214,7 +214,7 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
 
-            carAudioSource.volume = Mathf.Min(TheCarRigidBody.velocity.magnitude / 90, 1);
+            carAudioSource.volume = Mathf.Min(TheCarRigidBody.velocity.magnitude / 100, 1);
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
