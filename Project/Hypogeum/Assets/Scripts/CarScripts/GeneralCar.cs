@@ -30,10 +30,7 @@ public class GeneralCar : NetworkBehaviour
 
     [SyncVar]
     internal float actualSpeed = 0;
-
-	[SyncVar]
-	internal float zComponentOfVelocity = 0;
-
+	
     [Range(0, 250)]
     public int Speed;
 

@@ -43,8 +43,16 @@ public static class GB
     }
 
     internal static EGameType? GameType;
-    internal static EAnimal? Animal;    
+    internal static EAnimal? Animal;
 
+
+    public static void PlayCarEngine(AudioSource carAudioSource, float generalCar_actualSpeed)
+    {
+        carAudioSource.volume = Mathf.Min(generalCar_actualSpeed / 40, 1);
+
+        if (!carAudioSource.isPlaying && carAudioSource.volume > 0)
+            carAudioSource.Play();
+    }
 
     public static void DistruggiOggetti(Object[] oggetti)
     {
@@ -90,30 +98,30 @@ public static class GB
         return (T)values.GetValue(random);
     }
 
-	public static string GetCarNameInGameFromAnimalValue(GB.EAnimal animal)
-	{
-		string carName = "";
+    public static string GetCarNameInGameFromAnimalValue(GB.EAnimal animal)
+    {
+        string carName = "";
 
-		switch (animal)
-		{
-			case EAnimal.Rhino:
-				carName = "RhinosCar(Clone)";
-				break;
-			case EAnimal.Eagle:
-				carName = "EaglesCar(Clone)";
-				break;
-			case EAnimal.Lion:
-				carName = "LionsCar(Clone)";
-				break;
-			case EAnimal.Shark:
-				carName = "SharksCar(Clone)";
-				break;
-			default:
-				throw new System.NotImplementedException();
-		}
+        switch (animal)
+        {
+            case EAnimal.Rhino:
+                carName = "RhinosCar(Clone)";
+                break;
+            case EAnimal.Eagle:
+                carName = "EaglesCar(Clone)";
+                break;
+            case EAnimal.Lion:
+                carName = "LionsCar(Clone)";
+                break;
+            case EAnimal.Shark:
+                carName = "SharksCar(Clone)";
+                break;
+            default:
+                throw new System.NotImplementedException();
+        }
 
-		return carName;
-	}
+        return carName;
+    }
 
     public static GameObject LoadAnimalCar(EAnimal a)
     {

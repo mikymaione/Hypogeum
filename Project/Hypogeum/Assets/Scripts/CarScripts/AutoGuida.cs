@@ -129,15 +129,6 @@ public class AutoGuida : NetworkBehaviour
             var xAXIX = Input.GetAxis("Horizontal");
             var yAXIX = Input.GetAxis("Vertical");
 
-            //Audio
-            if (yAXIX > 0)
-            {
-                if (!carAudioSource.isPlaying)
-                {
-                    carAudioSource.Play();
-                }
-            }
-
             //DX-SX
             instantSteeringAngle = generalCar.maxSteeringAngle * xAXIX;
 
@@ -217,13 +208,12 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
 
-            generalCar.zComponentOfVelocity = TheCarRigidBody.velocity.z;
-            carAudioSource.volume = Mathf.Min(TheCarRigidBody.velocity.magnitude / 100, 1);
-
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
-            var RuoteCheCollidono = 0u;
+            GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
+
+             var RuoteCheCollidono = 0u;
             for (var j = 0u; j < Colliders.Length; j++)
                 if (Colliders[j].isGrounded)
                     RuoteCheCollidono++;
