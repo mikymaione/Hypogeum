@@ -23,7 +23,7 @@ public class GeneralCar : NetworkBehaviour
     internal uint Hype = 0;
 
     [SyncVar]
-    internal float Health;
+    internal float Health = float.MaxValue;
 
     [SyncVar]
     public int Max_Health;

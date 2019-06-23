@@ -76,11 +76,10 @@ public class Shooting : NetworkBehaviour
 
                 var velocity = cam.transform.forward * projectileClass.speed;
                 CmdIstantiateBulletAndShoot(GB.Animal.Value, gameObject, cam.transform.position, cam.transform.rotation, velocity);
-
-                AudioSource.PlayClipAtPoint(ShootSound, transform.position);
             }
 
-            HUD.setValues(generalCar);
+            HUD.generalCar = generalCar;
+            HUD.setValues();            
         }
     }
 
@@ -89,18 +88,15 @@ public class Shooting : NetworkBehaviour
     {
         var projectile_RB = projectile.GetComponent<Rigidbody>();
         projectile_RB.velocity = velocity;
-        if (GB.Animal.Value == animal)
-            projectile.GetComponent<AudioSource>().Play();
+
+        AudioSource.PlayClipAtPoint(ShootSound, transform.position);
     }
 
     [Command] //only host
     private void CmdIstantiateBulletAndShoot(GB.EAnimal animal, GameObject player, Vector3 position, Quaternion rotation, Vector3 velocity)
     {
         var projectile = Instantiate(projectilePrefab, position, rotation);
-
-        if (GB.Animal.Value == animal)
-            projectile.GetComponent<AudioSource>().Play();
-
+        
         var bulletClass = projectile.GetComponent<Bullet>();
         bulletClass.AnimaleCheHaSparatoQuestoColpo = animal;
 

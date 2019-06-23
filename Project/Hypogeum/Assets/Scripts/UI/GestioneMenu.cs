@@ -32,7 +32,10 @@ public sealed class GestioneMenu : MonoBehaviour
 
 
     void Start()
-    {
+    {        
+        GB.Animal = null;
+        GB.GameType = null;
+
         buttons_animal_mapping = new List<sAnimalMapping>() {
             new sAnimalMapping() {
                 car = car_lion,

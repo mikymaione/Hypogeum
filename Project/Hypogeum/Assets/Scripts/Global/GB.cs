@@ -43,7 +43,7 @@ public static class GB
     }
 
     internal static EGameType? GameType;
-    internal static EAnimal? Animal;
+    internal static EAnimal? Animal;    
 
 
     public static void DistruggiOggetti(Object[] oggetti)
@@ -171,6 +171,20 @@ public static class GB
         }
     }
 
+    public static void PulisciLobby()
+    {
+        if (LobbyManager.s_Singleton != null)
+        {
+            LobbyManager.s_Singleton.StopClient();
+            LobbyManager.s_Singleton.StopServer();
+
+            UnityEngine.Networking.NetworkServer.DisconnectAll();
+
+            Object.Destroy(LobbyManager.s_Singleton.gameObject);
+            Object.Destroy(LobbyManager.s_Singleton);
+        }
+    }
+
     public static void GotoSceneName(string name)
     {
         var LobbyMName = EScenes.LobbyM.ToString();
@@ -180,14 +194,7 @@ public static class GB
         SceneManager.LoadScene(p, LoadSceneMode.Single);
 
         if (s.name.Equals(LobbyMName))
-        {
-            LobbyManager.s_Singleton.StopClient();
-            LobbyManager.s_Singleton.StopServer();
-
-            UnityEngine.Networking.NetworkServer.DisconnectAll();
-
-            Object.Destroy(LobbyManager.s_Singleton.gameObject);
-        }
+            PulisciLobby();
     }
 
     public static void GotoScene(EScenes scene_name)
@@ -196,4 +203,6 @@ public static class GB
 
         GotoSceneName(name);
     }
+
+
 }

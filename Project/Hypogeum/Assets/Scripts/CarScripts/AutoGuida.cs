@@ -231,7 +231,8 @@ public class AutoGuida : NetworkBehaviour
 
             SetCannonsPositions();
 
-            HUD.setValues(generalCar);
+            HUD.generalCar = generalCar;
+            HUD.setValues();
         }
     }
 

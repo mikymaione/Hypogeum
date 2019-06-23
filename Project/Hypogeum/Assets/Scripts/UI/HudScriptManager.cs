@@ -7,6 +7,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,10 @@ public class HudScriptManager : MonoBehaviour
 
     private bool GameControlsVisibile = false;
     private bool HoAvutoIlTempoDiLeggere = true;
+
+    private int NumeroMassimoTeamVistiInCampo = 0;
+
+    internal GeneralCar generalCar;
 
 
     void Start()
@@ -60,6 +65,53 @@ public class HudScriptManager : MonoBehaviour
 
             StartCoroutine(TempoDiLettura());
         }
+
+        GestioneTeamRimastiVivi();
+    }
+
+    private void GestioneTeamRimastiVivi()
+    {
+        var TeamRimastiVivi = new HashSet<GB.EAnimal>();
+
+        var cars = GameObject.FindGameObjectsWithTag("car");
+        var cannons = GameObject.FindGameObjectsWithTag("Cannon");
+
+        foreach (var car in cars)
+        {
+            var gc = car.GetComponent<GeneralCar>();
+
+            if (!TeamRimastiVivi.Contains(gc.AnimalType))
+                TeamRimastiVivi.Add(gc.AnimalType);
+        }
+
+        foreach (var cannon in cannons)
+        {
+            var sh = cannon.GetComponent<Shooting>();
+
+            if (!TeamRimastiVivi.Contains(sh.TipoDiArma))
+                TeamRimastiVivi.Add(sh.TipoDiArma);
+        }
+
+        if (TeamRimastiVivi.Count > NumeroMassimoTeamVistiInCampo)
+            NumeroMassimoTeamVistiInCampo = TeamRimastiVivi.Count;
+
+        if (NumeroMassimoTeamVistiInCampo > 1)
+        {
+            if (TeamRimastiVivi.Count == 1)
+                win.SetActive(true);
+
+            if (TeamRimastiVivi.Count < 2)
+                StartCoroutine(EsciDalGioco());
+        }
+    }
+
+    private IEnumerator EsciDalGioco()
+    {
+        yield return new WaitForSeconds(3);
+        StopCoroutine(EsciDalGioco());
+
+        Cursor.visible = true;
+        GB.GotoScene(GB.EScenes.StartTitle);
     }
 
     private IEnumerator TempoDiLettura()
@@ -69,22 +121,22 @@ public class HudScriptManager : MonoBehaviour
         HoAvutoIlTempoDiLeggere = true;
     }
 
-    public void setValues(GeneralCar generalCar)
+    public void setValues()
     {
         if (generalCar != null)
         {
             setHype(generalCar.Hype);
             setHealth(0, generalCar.Max_Health, generalCar.Health);
             setSpeed(generalCar.actualSpeed);
+
+            var vivo = (generalCar.Health > 0);
+
+            if (!vivo)
+                if (NumeroMassimoTeamVistiInCampo == 1)
+                    NumeroMassimoTeamVistiInCampo = int.MaxValue;
+
+            loss.SetActive(!vivo);
         }
-    }
-
-    public void setWinLose(GeneralCar generalCar)
-    {
-        var vivo = (generalCar.Health > 0);
-
-        win.SetActive(vivo);
-        loss.SetActive(!vivo);
     }
 
     private void setHype(float value)

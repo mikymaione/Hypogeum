@@ -6,9 +6,6 @@ Contributors:
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
-using Prototype.NetworkLobby;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -17,23 +14,20 @@ public class CarCollisionManager : NetworkBehaviour
 
     private GeneralCar playerCar;
     private Rigidbody playerCar_RB;
-    private HudScriptManager HUD;
-	private AudioSource audioSource;
-	private AudioClip carCollisionAudioClip;
+    private AudioSource audioSource;
+    private AudioClip carCollisionAudioClip;
 
 
     private void Start()
     {
-        var HUDo = GameObject.FindGameObjectWithTag("HUD");
-        HUD = HUDo.GetComponent<HudScriptManager>();
-		audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     public override void OnStartLocalPlayer()
     {
         playerCar = GetComponent<GeneralCar>();
         playerCar_RB = GetComponent<Rigidbody>();
-		carCollisionAudioClip = Resources.Load("Audio/CarCollision") as AudioClip;
+        carCollisionAudioClip = Resources.Load("Audio/CarCollision") as AudioClip;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -44,10 +38,10 @@ public class CarCollisionManager : NetworkBehaviour
             {
                 if (playerCar != null)
                 {
-					//TODO must be networked to both team mates
-					audioSource.PlayOneShot(carCollisionAudioClip);
+                    //TODO must be networked to both team mates
+                    audioSource.PlayOneShot(carCollisionAudioClip);
 
-					var damage = collision.relativeVelocity.magnitude / (playerCar.Defense * 0.1f);
+                    var damage = collision.relativeVelocity.magnitude / (playerCar.Defense * 0.1f);
 
                     CmdTakeDamage(GB.Animal.Value, gameObject, damage);
                 }
@@ -60,75 +54,26 @@ public class CarCollisionManager : NetworkBehaviour
                 {
                     var otherTeamAttack = 8 * GB.GetTeamAttack(bullet.AnimaleCheHaSparatoQuestoColpo);
 
+                    otherTeamAttack = otherTeamAttack * 100;
+
                     CmdTakeDamage(GB.Animal.Value, gameObject, otherTeamAttack);
                 }
             }
         }
     }
 
+    private void Update()
+    {
+        if (isLocalPlayer)
+            if (Input.GetKey(KeyCode.R))
+                CmdTakeDamage(GB.Animal.Value, gameObject, 10000);
+    }
+
     [Command] //only host
     private void CmdTakeDamage(GB.EAnimal animale, GameObject player, float damage)
     {
-        var TeamsVivi = new HashSet<GB.EAnimal>();
-
         var p = player.GetComponent<GeneralCar>();
         p.Health -= damage;
-
-        foreach (var lobbyPlayer in LobbyManager.s_Singleton.Players)
-        {
-            if (p.Health <= 0)
-                if (lobbyPlayer.Value.animal == animale)
-                {
-                    lobbyPlayer.Value.vivo = false;
-                    RpcTeamRemoved(lobbyPlayer.Value.animal);
-                }
-
-            if (lobbyPlayer.Value.vivo)
-                if (!TeamsVivi.Contains(lobbyPlayer.Value.animal))
-                    TeamsVivi.Add(lobbyPlayer.Value.animal);
-        }
-
-        if (TeamsVivi.Count == 1)
-            foreach (var lobbyPlayer in LobbyManager.s_Singleton.Players)
-                if (lobbyPlayer.Value.vivo)
-                    RpcTeamWin(lobbyPlayer.Value.animal);
-    }
-
-    [ClientRpc] //all clients
-    private void RpcTeamWin(GB.EAnimal animale)
-    {
-        if (GB.Animal == animale)
-        {
-            HUD.setWinLose(playerCar);
-            StartCoroutine(EsciDalGioco());
-        }
-    }
-
-    [ClientRpc] //all clients
-    private void RpcTeamRemoved(GB.EAnimal animale)
-    {
-        if (GB.Animal == animale)
-        {
-            var cannons = GameObject.FindGameObjectsWithTag("Cannon");
-
-            foreach (var cannon in cannons)
-                if (cannon.Equals(playerCar.MyCannon))
-                    Destroy(cannon);
-
-            Destroy(gameObject);
-
-            HUD.setWinLose(playerCar);
-            StartCoroutine(EsciDalGioco());
-        }
-    }
-
-    private IEnumerator EsciDalGioco()
-    {
-        yield return new WaitForSeconds(2);
-        StopCoroutine(EsciDalGioco());
-
-        Cursor.visible = true;
-        GB.GotoScene(GB.EScenes.StartTitle);
     }
 
 

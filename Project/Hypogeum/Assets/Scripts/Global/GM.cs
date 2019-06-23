@@ -12,36 +12,59 @@ using UnityEngine.Networking;
 public class GM : NetworkBehaviour
 {
 
+    private GameObject[] cars, cannons;
+
     void FixedUpdate()
     {
-        PosizionamentoCannoni();
+        cars = GameObject.FindGameObjectsWithTag("car");
+        cannons = GameObject.FindGameObjectsWithTag("Cannon");
+
+        server_PosizionamentoCannoni();
+        server_GestioneVite();
     }
 
-    void PosizionamentoCannoni()
+    void server_GestioneVite()
     {
-        if (isServer)
+        foreach (var car in cars)
         {
-            var cars = GameObject.FindGameObjectsWithTag("car");
-            var weapons = GameObject.FindGameObjectsWithTag("Cannon");
+            var gc = car.GetComponent<GeneralCar>();
 
-            if (cars != null && weapons != null)
-                foreach (var car in cars)
+            if (gc.Health <= 0)
+            {
+                foreach (var cannon in cannons)
                 {
-                    var gc = car.GetComponent<GeneralCar>();
+                    var sh = cannon.GetComponent<Shooting>();
 
-                    if (gc.MyCannon == null)
-                        foreach (var weapon in weapons)
-                        {
-                            var sh = weapon.GetComponent<Shooting>();
-
-                            if (sh.TipoDiArma == gc.AnimalType && sh.Car == null)
-                            {
-                                //matched!
-                                gc.MyCannon = weapon;
-                                sh.Car = car;
-                            }
-                        }
+                    if (sh.TipoDiArma == gc.AnimalType)
+                        Destroy(cannon);
                 }
+
+                Destroy(car);
+            }
+        }
+    }
+
+    void server_PosizionamentoCannoni()
+    {
+        if (cannons.Length > 0)
+        {
+            foreach (var car in cars)
+            {
+                var gc = car.GetComponent<GeneralCar>();
+
+                if (gc.MyCannon == null)
+                    foreach (var cannon in cannons)
+                    {
+                        var sh = cannon.GetComponent<Shooting>();
+
+                        if (sh.TipoDiArma == gc.AnimalType && sh.Car == null)
+                        {
+                            //matched!
+                            gc.MyCannon = cannon;
+                            sh.Car = car;
+                        }
+                    }
+            }
         }
     }
 
