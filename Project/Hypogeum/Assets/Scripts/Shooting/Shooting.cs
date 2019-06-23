@@ -14,7 +14,11 @@ using UnityEngine.UI;
 public class Shooting : NetworkBehaviour
 {
 
+    public GB.EAnimal TipoDiArma;
     public GameObject projectilePrefab;
+
+    [SyncVar]
+    internal GameObject Car;
 
     private Bullet projectileClass;
     private bool canShoot = true;
@@ -39,33 +43,7 @@ public class Shooting : NetworkBehaviour
         HUD = HUDo.GetComponent<HudScriptManager>();
 
         MostraMirino();
-    }
-
-    private GameObject ___car;
-    private GameObject Car
-    {
-        get
-        {
-            if (___car == null)
-            {
-                var cars = GameObject.FindGameObjectsWithTag("car");
-
-                foreach (var car in cars)
-                {
-                    var gc = car.GetComponent<GeneralCar>();
-
-                    if (gc.AnimalType == GB.Animal && gc.MyCannon == null)
-                    {
-                        ___car = car;
-                        CmdSetMyCannon(car, gameObject);
-                        break;
-                    }
-                }
-            }
-
-            return ___car;
-        }
-    }
+    }      
 
     [Command] //only host
     private void CmdSetMyCannon(GameObject car, GameObject cannon)

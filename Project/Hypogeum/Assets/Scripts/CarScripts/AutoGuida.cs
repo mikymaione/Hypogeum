@@ -253,29 +253,10 @@ public class AutoGuida : NetworkBehaviour
 
     private void SetCannonsPositions()
     {
-        var weapons = GameObject.FindGameObjectsWithTag("Cannon");
-
-        if (weapons != null)
+        if (generalCar.MyCannon != null)
         {
-            var cars = GameObject.FindGameObjectsWithTag("car");
-
-            if (cars != null)
-                foreach (var w in weapons)
-                    foreach (var c in cars)
-                    {
-                        var i = 0;
-
-                        while (w.name[i] == c.name[i])
-                            i++;
-
-                        if (i > 3)
-                        {
-                            //è il mio cannone
-                            var cannonPositionMarker = c.transform.Find("CannonPosition");
-                            w.transform.position = cannonPositionMarker.position;
-                            break;
-                        }
-                    }
+            var cannonPositionMarker = gameObject.transform.Find("CannonPosition");
+            generalCar.MyCannon.transform.position = cannonPositionMarker.position;
         }
     }
 

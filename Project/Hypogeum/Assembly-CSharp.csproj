@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\GameLogics\CoinsSpawner.cs" />
     <Compile Include="Assets\Scripts\GameLogics\InstinctReasonManager.cs" />
     <Compile Include="Assets\Scripts\Global\GB.cs" />
+    <Compile Include="Assets\Scripts\Global\GM.cs" />
     <Compile Include="Assets\Scripts\Global\MyUpdater.cs" />
     <Compile Include="Assets\Scripts\Global\RandomNameGenerator.cs" />
     <Compile Include="Assets\Scripts\Global\SceneField.cs" />
