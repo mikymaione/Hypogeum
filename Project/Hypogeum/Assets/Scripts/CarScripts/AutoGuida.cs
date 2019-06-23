@@ -45,8 +45,8 @@ public class AutoGuida : NetworkBehaviour
     //To manage the sand particle effect
     private ParticleSystem sandParticle;
 
-	private AudioSource carAudioSource, audienceConstantSoundAudioSource, hypeAudioSource;
-	
+    private AudioSource carAudioSource, audienceConstantSoundAudioSource, hypeAudioSource;
+
 
 
     public override void OnStartLocalPlayer()
@@ -94,12 +94,10 @@ public class AutoGuida : NetworkBehaviour
 
         sandParticle = gameObject.GetComponentInChildren<ParticleSystem>();
 
-		carAudioSource = gameObject.GetComponent<AudioSource>();
-		audienceConstantSoundAudioSource = GameObject.Find("ConstantVoicesManager").GetComponent<AudioSource>();
-		audienceConstantSoundAudioSource.Play();
-
-		//TODO use this during jumps
-		hypeAudioSource = GameObject.Find("HypeVoicesManager").GetComponent<AudioSource>();
+        carAudioSource = gameObject.GetComponent<AudioSource>();
+        hypeAudioSource = GameObject.Find("HypeVoicesManager").GetComponent<AudioSource>();
+        audienceConstantSoundAudioSource = GameObject.Find("ConstantVoicesManager").GetComponent<AudioSource>();
+        audienceConstantSoundAudioSource.Play();
     }
 
     [Command] //only host
@@ -129,23 +127,19 @@ public class AutoGuida : NetworkBehaviour
             fullBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque : 0);
             handBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque * 2 : 0);
 
+            var xAXIX = Input.GetAxis("Horizontal");
+            var yAXIX = Input.GetAxis("Vertical");
+
+            //Audio //TODO needs to be stopped on both team mates
+            if (yAXIX > 0)
+                if (!carAudioSource.isPlaying)
+                    carAudioSource.Play();
+
             //DX-SX
-            instantSteeringAngle = generalCar.maxSteeringAngle * Input.GetAxis("Horizontal");
+            instantSteeringAngle = generalCar.maxSteeringAngle * xAXIX;
 
             //Avanti-dietro
-            instantTorque = generalCar.maxTorque * Input.GetAxis("Vertical");
-
-			//Audio
-			if (instantTorque > 0 && carAudioSource.isPlaying == false)
-			{
-				carAudioSource.Play();
-				//TODO needs to be played on both team mates
-			}
-			else if (instantTorque <= 0 && carAudioSource.isPlaying == true)
-			{
-				carAudioSource.Stop();
-				//TODO needs to be stopped on both team mates
-			}
+            instantTorque = generalCar.maxTorque * yAXIX;
 
             Decellerazione = (instantTorque == 0 ? 1 : 0);
 
@@ -220,6 +214,8 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
 
+            carAudioSource.volume = Mathf.Min(TheCarRigidBody.velocity.magnitude / 90, 1);
+
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
@@ -244,7 +240,12 @@ public class AutoGuida : NetworkBehaviour
         var mostra = (generalCar.actualSpeed > 15 && RuoteCheCollidono == 0);
 
         if (mostra)
+        {
             generalCar.Hype++;
+
+            if (!hypeAudioSource.isPlaying)
+                hypeAudioSource.Play();
+        }
 
         for (var i = 0u; i < Scie.Length; i++)
             Scie[i].emitting = mostra;
