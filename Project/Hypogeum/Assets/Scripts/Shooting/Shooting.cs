@@ -17,6 +17,8 @@ public class Shooting : NetworkBehaviour
     public GB.EAnimal TipoDiArma;
     public GameObject projectilePrefab;
 
+    public AudioClip ShootSound;
+
     [SyncVar]
     internal GameObject Car;
 
@@ -74,6 +76,8 @@ public class Shooting : NetworkBehaviour
 
                 var velocity = cam.transform.forward * projectileClass.speed;
                 CmdIstantiateBulletAndShoot(GB.Animal.Value, gameObject, cam.transform.position, cam.transform.rotation, velocity);
+
+                AudioSource.PlayClipAtPoint(ShootSound, transform.position);
             }
 
             HUD.setValues(generalCar);

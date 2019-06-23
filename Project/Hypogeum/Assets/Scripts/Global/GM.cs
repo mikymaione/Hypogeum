@@ -11,8 +11,13 @@ using UnityEngine.Networking;
 
 public class GM : NetworkBehaviour
 {
-    
+
     void FixedUpdate()
+    {
+        PosizionamentoCannoni();
+    }
+
+    void PosizionamentoCannoni()
     {
         if (isServer)
         {

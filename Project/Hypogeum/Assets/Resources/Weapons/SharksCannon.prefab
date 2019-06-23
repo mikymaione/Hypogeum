@@ -162,6 +162,7 @@ MonoBehaviour:
   TipoDiArma: 3
   projectilePrefab: {fileID: 336585627253792757, guid: 6f101c9656d43534dbeb58629845cdfa,
     type: 3}
+  ShootSound: {fileID: 8300000, guid: 7b3b97096ca38954b99657ef2301da60, type: 3}
 --- !u!1 &5793760883174275159
 GameObject:
   m_ObjectHideFlags: 0
