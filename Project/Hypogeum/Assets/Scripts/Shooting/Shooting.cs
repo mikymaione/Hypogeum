@@ -78,8 +78,12 @@ public class Shooting : NetworkBehaviour
                 CmdIstantiateBulletAndShoot(GB.Animal.Value, gameObject, cam.transform.position, cam.transform.rotation, velocity);
             }
 
-            HUD.generalCar = generalCar;
-            HUD.setValues();            
+            if (generalCar != null)
+            {
+                HUD.GeneralCarInstanziated = true;
+                HUD.generalCar = generalCar;
+                HUD.setValues();
+            }  
         }
     }
 

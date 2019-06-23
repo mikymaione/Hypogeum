@@ -27,6 +27,7 @@ public class HudScriptManager : MonoBehaviour
 
     private int NumeroMassimoTeamVistiInCampo = 0;
 
+    internal bool GeneralCarInstanziated = false;
     internal GeneralCar generalCar;
 
 
@@ -66,7 +67,8 @@ public class HudScriptManager : MonoBehaviour
             StartCoroutine(TempoDiLettura());
         }
 
-        GestioneTeamRimastiVivi();
+        setLoss();
+        GestioneTeamRimastiVivi();        
     }
 
     private void GestioneTeamRimastiVivi()
@@ -98,7 +100,12 @@ public class HudScriptManager : MonoBehaviour
         if (NumeroMassimoTeamVistiInCampo > 1)
         {
             if (TeamRimastiVivi.Count == 1)
-                win.SetActive(true);
+                foreach (var team in TeamRimastiVivi)
+                    if (team == GB.Animal)
+                    {
+                        if (!loss.active)
+                            win.SetActive(true);
+                    }
 
             if (TeamRimastiVivi.Count < 2)
                 StartCoroutine(EsciDalGioco());
@@ -128,8 +135,14 @@ public class HudScriptManager : MonoBehaviour
             setHype(generalCar.Hype);
             setHealth(0, generalCar.Max_Health, generalCar.Health);
             setSpeed(generalCar.actualSpeed);
+        }
+    }
 
-            var vivo = (generalCar.Health > 0);
+    private void setLoss()
+    {
+        if (GeneralCarInstanziated)
+        {
+            var vivo = ((generalCar?.Health ?? 0) > 0);
 
             if (!vivo)
                 if (NumeroMassimoTeamVistiInCampo == 1)

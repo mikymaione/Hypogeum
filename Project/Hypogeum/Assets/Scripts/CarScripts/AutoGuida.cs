@@ -231,8 +231,12 @@ public class AutoGuida : NetworkBehaviour
 
             SetCannonsPositions();
 
-            HUD.generalCar = generalCar;
-            HUD.setValues();
+            if (generalCar != null)
+            {
+                HUD.GeneralCarInstanziated = true;
+                HUD.generalCar = generalCar;
+                HUD.setValues();
+            }
         }
     }
 
