@@ -14,7 +14,7 @@ public class LoadSceneOnClick : MonoBehaviour
 {
     public enum eAzione
     {
-        cambiaScena, esci
+        cambiaScena, esci, fullscreen
     }
 
     private Button button;
@@ -31,6 +31,9 @@ public class LoadSceneOnClick : MonoBehaviour
         {
             switch (azione)
             {
+                case eAzione.fullscreen:
+                    GB.SwitchFullScreen();
+                    break;
                 case eAzione.cambiaScena:
                     GB.GotoSceneName(scena.SceneName);
                     break;

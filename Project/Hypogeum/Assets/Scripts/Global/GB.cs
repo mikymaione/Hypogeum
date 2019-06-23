@@ -142,6 +142,19 @@ public static class GB
         return Resources.Load($"Coins/Coin{coin.ToString()}") as GameObject;
     }
 
+    public static void SwitchFullScreen()
+    {
+        if (Screen.fullScreen)
+        {
+            Screen.fullScreen = false;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+            Screen.fullScreen = true;
+        }
+    }
+
     public static void GoBackToScene()
     {
         var s = SceneManager.GetActiveScene();
