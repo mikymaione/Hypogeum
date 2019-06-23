@@ -45,9 +45,10 @@ public class AutoGuida : NetworkBehaviour
     //To manage the sand particle effect
     private ParticleSystem sandParticle;
 
+    private uint HypeEnough_for_hypeAudioSource = 0;
     private AudioSource carAudioSource, audienceConstantSoundAudioSource, hypeAudioSource;
 
-	public override void OnStartLocalPlayer()
+    public override void OnStartLocalPlayer()
     {
         var i = 0u;
         var wc = GetComponentsInChildren<WheelCollider>();
@@ -125,17 +126,17 @@ public class AutoGuida : NetworkBehaviour
             fullBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque : 0);
             handBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque * 2 : 0);
 
-			var xAXIX = Input.GetAxis("Horizontal");
-			var yAXIX = Input.GetAxis("Vertical");
+            var xAXIX = Input.GetAxis("Horizontal");
+            var yAXIX = Input.GetAxis("Vertical");
 
-			//Audio
-			if (yAXIX > 0)
-			{
-				if (!carAudioSource.isPlaying)
-				{
-					carAudioSource.Play();
-				}
-			}
+            //Audio
+            if (yAXIX > 0)
+            {
+                if (!carAudioSource.isPlaying)
+                {
+                    carAudioSource.Play();
+                }
+            }
 
             //DX-SX
             instantSteeringAngle = generalCar.maxSteeringAngle * xAXIX;
@@ -216,7 +217,7 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
 
-			generalCar.zComponentOfVelocity = TheCarRigidBody.velocity.z;
+            generalCar.zComponentOfVelocity = TheCarRigidBody.velocity.z;
             carAudioSource.volume = Mathf.Min(TheCarRigidBody.velocity.magnitude / 100, 1);
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
@@ -249,10 +250,15 @@ public class AutoGuida : NetworkBehaviour
 
         if (mostra)
         {
+            HypeEnough_for_hypeAudioSource++;
             generalCar.Hype++;
 
-            if (!hypeAudioSource.isPlaying)
-                hypeAudioSource.Play();
+            if (HypeEnough_for_hypeAudioSource > 50)
+                if (!hypeAudioSource.isPlaying)
+                {
+                    hypeAudioSource.Play();
+                    HypeEnough_for_hypeAudioSource = 0;
+                }
         }
 
         for (var i = 0u; i < Scie.Length; i++)
