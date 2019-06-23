@@ -11,7 +11,7 @@ using UnityEngine.Networking;
 
 public class BulletCollisionManager : NetworkBehaviour
 {
-	public AudioSource audioSource;
+    public AudioSource audioSource;
 
     public AudioClip ExplosionSound;
 
@@ -28,7 +28,7 @@ public class BulletCollisionManager : NetworkBehaviour
             {
                 var _sand = Instantiate(sand, transform.position, Quaternion.Euler(-90, 0, 0));
 
-                Destroy(gameObject);
+                Destroy(gameObject, 5); //eliminare dopo 5 secondi così rimbalza e fa un altro po' di strada
                 Destroy(_sand, 10);
             }
             else
@@ -38,10 +38,9 @@ public class BulletCollisionManager : NetworkBehaviour
                 var _explosion = Instantiate(explosion, transform.position, transform.rotation);
                 _explosion.name += Time.time.ToString();
 
-				//AudioSource.PlayClipAtPoint(ExplosionSound, transform.position);
-				gameObject.GetComponent<AudioSource>().PlayOneShot(ExplosionSound);
+                gameObject.GetComponent<AudioSource>().PlayOneShot(ExplosionSound);
 
-                Destroy(gameObject, 2f);
+                Destroy(gameObject); //eliminare subito perché il proiettile è esploso, altrimenti vedo l'esplosione ma il proiettile continua ad andare
                 Destroy(_explosion, 3.8f);
             }
         }
