@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HypogeumDBConnector", "Hypo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester_WS", "Tester_WS\Tester_WS.csproj", "{0E03B70E-30FA-472E-8D72-834421A2D081}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{FC610E70-B364-41AD-B68C-A43358958C4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{0E03B70E-30FA-472E-8D72-834421A2D081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E03B70E-30FA-472E-8D72-834421A2D081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E03B70E-30FA-472E-8D72-834421A2D081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC610E70-B364-41AD-B68C-A43358958C4D}.Debug|Any CPU.ActiveCfg = Debug
+		{FC610E70-B364-41AD-B68C-A43358958C4D}.Debug|Any CPU.Build.0 = Debug
+		{FC610E70-B364-41AD-B68C-A43358958C4D}.Release|Any CPU.ActiveCfg = Release
+		{FC610E70-B364-41AD-B68C-A43358958C4D}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

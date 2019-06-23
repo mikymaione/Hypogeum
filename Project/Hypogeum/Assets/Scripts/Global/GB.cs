@@ -90,6 +90,31 @@ public static class GB
         return (T)values.GetValue(random);
     }
 
+	public static string GetCarNameInGameFromAnimalValue(GB.EAnimal animal)
+	{
+		string carName = "";
+
+		switch (animal)
+		{
+			case EAnimal.Rhino:
+				carName = "RhinosCar(Clone)";
+				break;
+			case EAnimal.Eagle:
+				carName = "EaglesCar(Clone)";
+				break;
+			case EAnimal.Lion:
+				carName = "LionsCar(Clone)";
+				break;
+			case EAnimal.Shark:
+				carName = "SharksCar(Clone)";
+				break;
+			default:
+				throw new System.NotImplementedException();
+		}
+
+		return carName;
+	}
+
     public static GameObject LoadAnimalCar(EAnimal a)
     {
         var s = "";

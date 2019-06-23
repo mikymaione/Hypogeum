@@ -47,9 +47,7 @@ public class AutoGuida : NetworkBehaviour
 
     private AudioSource carAudioSource, audienceConstantSoundAudioSource, hypeAudioSource;
 
-
-
-    public override void OnStartLocalPlayer()
+	public override void OnStartLocalPlayer()
     {
         var i = 0u;
         var wc = GetComponentsInChildren<WheelCollider>();
@@ -127,13 +125,17 @@ public class AutoGuida : NetworkBehaviour
             fullBrake = (Input.GetKey(KeyCode.K) ? generalCar.brakingTorque : 0);
             handBrake = (Input.GetKey(KeyCode.M) ? generalCar.brakingTorque * 2 : 0);
 
-            var xAXIX = Input.GetAxis("Horizontal");
-            var yAXIX = Input.GetAxis("Vertical");
+			var xAXIX = Input.GetAxis("Horizontal");
+			var yAXIX = Input.GetAxis("Vertical");
 
-            //Audio //TODO needs to be stopped on both team mates
-            if (yAXIX > 0)
-                if (!carAudioSource.isPlaying)
-                    carAudioSource.Play();
+			//Audio
+			if (yAXIX > 0)
+			{
+				if (!carAudioSource.isPlaying)
+				{
+					carAudioSource.Play();
+				}
+			}
 
             //DX-SX
             instantSteeringAngle = generalCar.maxSteeringAngle * xAXIX;
@@ -214,6 +216,7 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
 
+			generalCar.zComponentOfVelocity = TheCarRigidBody.velocity.z;
             carAudioSource.volume = Mathf.Min(TheCarRigidBody.velocity.magnitude / 100, 1);
 
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;

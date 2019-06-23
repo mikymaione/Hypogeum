@@ -11,6 +11,8 @@ using UnityEngine.Networking;
 
 public class BulletCollisionManager : NetworkBehaviour
 {
+	public AudioSource audioSource;
+
     public AudioClip ExplosionSound;
 
     public GameObject explosion, sand;
@@ -36,9 +38,10 @@ public class BulletCollisionManager : NetworkBehaviour
                 var _explosion = Instantiate(explosion, transform.position, transform.rotation);
                 _explosion.name += Time.time.ToString();
 
-                AudioSource.PlayClipAtPoint(ExplosionSound, transform.position);
+				//AudioSource.PlayClipAtPoint(ExplosionSound, transform.position);
+				gameObject.GetComponent<AudioSource>().PlayOneShot(ExplosionSound);
 
-                Destroy(gameObject);
+                Destroy(gameObject, 2f);
                 Destroy(_explosion, 3.8f);
             }
         }

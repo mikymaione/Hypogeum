@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Story.unity
     guid: 0bcacd371aeac77418446980dbc82157
   - enabled: 1
+    path: Assets/Scenes/Leaderbords.unity
+    guid: 0d4334ba0be39e142bf49645ae5ea8b2
+  - enabled: 1
     path: Assets/Scenes/Autori.unity
     guid: b2d27c089c0e734449d946604340d2e8
   m_configObjects: {}

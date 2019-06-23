@@ -17,6 +17,7 @@ public class Shooting : NetworkBehaviour
     public GB.EAnimal TipoDiArma;
     public GameObject projectilePrefab;
 
+	public AudioSource carAudioSource;
     public AudioClip ShootSound;
 
     [SyncVar]
@@ -78,7 +79,16 @@ public class Shooting : NetworkBehaviour
                 CmdIstantiateBulletAndShoot(GB.Animal.Value, gameObject, cam.transform.position, cam.transform.rotation, velocity);
             }
 
-            if (generalCar != null)
+			if ( generalCar.zComponentOfVelocity != 0)
+			{
+				carAudioSource.volume = Mathf.Min(generalCar.zComponentOfVelocity / 100, 1);
+				if (!carAudioSource.isPlaying)
+				{
+					carAudioSource.Play();
+				}
+			}
+
+			if (generalCar != null)
             {
                 HUD.GeneralCarInstanziated = true;
                 HUD.generalCar = generalCar;
