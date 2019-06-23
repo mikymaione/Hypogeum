@@ -45,7 +45,7 @@ public class Shooting : NetworkBehaviour
         HUD = HUDo.GetComponent<HudScriptManager>();
 
         MostraMirino();
-    }      
+    }
 
     [Command] //only host
     private void CmdSetMyCannon(GameObject car, GameObject cannon)
@@ -87,30 +87,27 @@ public class Shooting : NetworkBehaviour
     [ClientRpc] //all clients
     private void RpcShoot(GB.EAnimal animal, GameObject projectile, Vector3 velocity)
     {
-		var projectile_RB = projectile.GetComponent<Rigidbody>();
-		projectile_RB.velocity = velocity;
-		if (GB.Animal.Value == animal)
-			projectile.GetComponent<AudioSource>().Play();
-
-		//Only if we want all clients hear the sound
-		//projectile.GetComponent<AudioSource>().Play();
-	}
+        var projectile_RB = projectile.GetComponent<Rigidbody>();
+        projectile_RB.velocity = velocity;
+        if (GB.Animal.Value == animal)
+            projectile.GetComponent<AudioSource>().Play();
+    }
 
     [Command] //only host
     private void CmdIstantiateBulletAndShoot(GB.EAnimal animal, GameObject player, Vector3 position, Quaternion rotation, Vector3 velocity)
     {
-		var projectile = Instantiate(projectilePrefab, position, rotation);
+        var projectile = Instantiate(projectilePrefab, position, rotation);
 
-		if (GB.Animal.Value == animal)
-			projectile.GetComponent<AudioSource>().Play();
+        if (GB.Animal.Value == animal)
+            projectile.GetComponent<AudioSource>().Play();
 
-		var bulletClass = projectile.GetComponent<Bullet>();
-		bulletClass.AnimaleCheHaSparatoQuestoColpo = animal;
+        var bulletClass = projectile.GetComponent<Bullet>();
+        bulletClass.AnimaleCheHaSparatoQuestoColpo = animal;
 
-		//Destroy(projectile, 10);
-		NetworkServer.SpawnWithClientAuthority(projectile, player);
+        Destroy(projectile, 10);
+        NetworkServer.SpawnWithClientAuthority(projectile, player);
 
-		RpcShoot(animal, projectile, velocity);
+        RpcShoot(animal, projectile, velocity);
     }
 
     private IEnumerator RechargeWeapon()

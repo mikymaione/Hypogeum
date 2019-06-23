@@ -26,7 +26,7 @@ public class BulletCollisionManager : NetworkBehaviour
             {
                 var _sand = Instantiate(sand, transform.position, Quaternion.Euler(-90, 0, 0));
 
-                Destroy(gameObject, 10);
+                Destroy(gameObject);
                 Destroy(_sand, 10);
             }
             else
@@ -38,8 +38,8 @@ public class BulletCollisionManager : NetworkBehaviour
 
                 AudioSource.PlayClipAtPoint(ExplosionSound, transform.position);
 
+                Destroy(gameObject);
                 Destroy(_explosion, 3.8f);
-                Destroy(gameObject, 3.8f);
             }
         }
     }
