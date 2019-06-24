@@ -40,7 +40,7 @@ public class Shooting : NetworkBehaviour
     {
         get
         {
-            if (string.IsNullOrEmpty(CarName) || _Car == null)
+            if (!string.IsNullOrEmpty(CarName) && _Car == null)
             {
                 var cars = GameObject.FindGameObjectsWithTag("car");
 
