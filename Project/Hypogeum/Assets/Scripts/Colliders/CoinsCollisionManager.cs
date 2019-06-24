@@ -27,10 +27,15 @@ public class CoinsCollisionManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider otherObjectCollider)
     {
+        GB.ECoin? tipo = null;
+
         if (gameObject.CompareTag("CoinReason"))
-            instinctReasonManager.CmdOnReasonChosen(GB.Animal.Value);
+            tipo = GB.ECoin.Reason;
         else if (gameObject.CompareTag("CoinInstinct"))
-            instinctReasonManager.CmdOnInstinctChosen(GB.Animal.Value);
+            tipo = GB.ECoin.Instinct;
+
+        if (tipo.HasValue)
+            instinctReasonManager.Cmd_server_OnCoinChosed(GB.Animal.Value, tipo.Value, gameObject);
     }
 
 
