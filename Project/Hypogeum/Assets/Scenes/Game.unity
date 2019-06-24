@@ -3179,7 +3179,7 @@ MonoBehaviour:
     i13: 0
     i14: 0
     i15: 0
-  m_ServerOnly: 1
+  m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!1 &631386773
 GameObject:
@@ -6661,6 +6661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce2b5d814012ce49848c161c672d7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 598373586}
 --- !u!1001 &1193375751
 PrefabInstance:
   m_ObjectHideFlags: 0

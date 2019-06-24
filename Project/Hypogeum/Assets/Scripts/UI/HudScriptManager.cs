@@ -7,7 +7,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,10 +29,11 @@ public class HudScriptManager : MonoBehaviour
     internal bool GeneralCarInstanziated = false;
     internal GeneralCar generalCar;
 
+    public GM gm;
 
     void Start()
     {
-        //HUD
+        //HUD            
         controlsClosed = GameObject.Find("ControlsClosed");
         controlsOpen = GameObject.Find("ControlsOpen");
         controlsOpen.SetActive(GameControlsVisibile);
@@ -67,54 +67,40 @@ public class HudScriptManager : MonoBehaviour
             StartCoroutine(TempoDiLettura());
         }
 
-        setLoss();
-        GestioneTeamRimastiVivi();        
+        CheckAnimaliMorti();
     }
 
-    private void GestioneTeamRimastiVivi()
+    private void CheckAnimaliMorti()
     {
-        var TeamRimastiVivi = new HashSet<GB.EAnimal>();
-
-        var cars = GameObject.FindGameObjectsWithTag("car");
-        var cannons = GameObject.FindGameObjectsWithTag("Cannon");
-
-        foreach (var car in cars)
+        if (gm.NumeroAnimaliVistiVivi > 0)
         {
-            var gc = car.GetComponent<GeneralCar>();
+            var hoPerso = false;
+            var possoVincere = false;
 
-            if (!TeamRimastiVivi.Contains(gc.AnimalType))
-                TeamRimastiVivi.Add(gc.AnimalType);
-        }
+            if (gm.NumeroAnimaliVistiVivi > 1)
+                possoVincere = true;
 
-        foreach (var cannon in cannons)
-        {
-            var sh = cannon.GetComponent<Shooting>();
+            foreach (var a in gm.AnimaliMorti)
+                if ((int)GB.Animal == a)
+                {
+                    hoPerso = true;
+                    loss.SetActive(true);
+                    StartCoroutine(EsciDalGioco());
+                    break;
+                }
 
-            if (!TeamRimastiVivi.Contains(sh.TipoDiArma))
-                TeamRimastiVivi.Add(sh.TipoDiArma);
-        }
-
-        if (TeamRimastiVivi.Count > NumeroMassimoTeamVistiInCampo)
-            NumeroMassimoTeamVistiInCampo = TeamRimastiVivi.Count;
-
-        if (NumeroMassimoTeamVistiInCampo > 1)
-        {
-            if (TeamRimastiVivi.Count == 1)
-                foreach (var team in TeamRimastiVivi)
-                    if (team == GB.Animal)
-                    {
-                        if (!loss.active)
-                            win.SetActive(true);
-                    }
-
-            if (TeamRimastiVivi.Count < 2)
-                StartCoroutine(EsciDalGioco());
+            if (possoVincere && !hoPerso)
+                if (gm.NumeroAnimaliVistiVivi == gm.AnimaliMorti.Count + 1)
+                {
+                    win.SetActive(true);
+                    StartCoroutine(EsciDalGioco());
+                }
         }
     }
 
     private IEnumerator EsciDalGioco()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(8);
         StopCoroutine(EsciDalGioco());
 
         Cursor.visible = true;
@@ -135,20 +121,6 @@ public class HudScriptManager : MonoBehaviour
             setHype(generalCar.Hype);
             setHealth(0, generalCar.Max_Health, generalCar.Health);
             setSpeed(generalCar.actualSpeed);
-        }
-    }
-
-    private void setLoss()
-    {
-        if (GeneralCarInstanziated)
-        {
-            var vivo = ((generalCar?.Health ?? 0) > 0);
-
-            if (!vivo)
-                if (NumeroMassimoTeamVistiInCampo == 1)
-                    NumeroMassimoTeamVistiInCampo = int.MaxValue;
-
-            loss.SetActive(!vivo);
         }
     }
 

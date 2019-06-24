@@ -14,13 +14,26 @@ public class GM : NetworkBehaviour
 
     private GameObject[] cars, cannons;
 
+    [SyncVar]
+    internal SyncListInt AnimaliMorti = new SyncListInt();
+
+    [SyncVar]
+    internal int NumeroAnimaliVistiVivi = 0;
+
+
     void FixedUpdate()
     {
-        cars = GameObject.FindGameObjectsWithTag("car");
-        cannons = GameObject.FindGameObjectsWithTag("Cannon");
+        if (isServer)
+        {
+            cars = GameObject.FindGameObjectsWithTag("car");
+            cannons = GameObject.FindGameObjectsWithTag("Cannon");
 
-        server_PosizionamentoCannoni();
-        server_GestioneVite();
+            if (NumeroAnimaliVistiVivi < cars.Length)
+                NumeroAnimaliVistiVivi = cars.Length;
+
+            server_MatchCannoni();
+            server_GestioneVite();
+        }
     }
 
     void server_GestioneVite()
@@ -31,6 +44,8 @@ public class GM : NetworkBehaviour
 
             if (gc.Health <= 0)
             {
+                AnimaliMorti.Add((int)gc.AnimalType);
+
                 foreach (var cannon in cannons)
                 {
                     var sh = cannon.GetComponent<Shooting>();
@@ -44,10 +59,9 @@ public class GM : NetworkBehaviour
         }
     }
 
-    void server_PosizionamentoCannoni()
+    void server_MatchCannoni()
     {
         if (cannons.Length > 0)
-        {
             foreach (var car in cars)
             {
                 var gc = car.GetComponent<GeneralCar>();
@@ -59,14 +73,12 @@ public class GM : NetworkBehaviour
 
                         if (sh.TipoDiArma == gc.AnimalType && string.IsNullOrEmpty(sh.CarName))
                         {
-                            //matched!
+                            //matched!                            
                             gc.MyCannonName = cannon.name;
-                            gc.MyCannon = cannon;
                             sh.CarName = car.name;
                         }
                     }
             }
-        }
     }
 
 

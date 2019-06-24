@@ -17,6 +17,12 @@ public class CarCollisionManager : NetworkBehaviour
     private AudioSource audioSource;
     private AudioClip carCollisionAudioClip;
 
+    private void Update()
+    {
+        if (isLocalPlayer)
+            if (Input.GetKey(KeyCode.R))
+                CmdTakeDamage(GB.Animal.Value, gameObject, 20);
+    }
 
     private void Start()
     {
@@ -52,7 +58,7 @@ public class CarCollisionManager : NetworkBehaviour
 
                 if (bullet.AnimaleCheHaSparatoQuestoColpo != GB.Animal)
                 {
-                    var otherTeamAttack = 8 * GB.GetTeamAttack(bullet.AnimaleCheHaSparatoQuestoColpo);                    
+                    var otherTeamAttack = 40 * GB.GetTeamAttack(bullet.AnimaleCheHaSparatoQuestoColpo);                    
 
                     CmdTakeDamage(GB.Animal.Value, gameObject, otherTeamAttack);
                 }
