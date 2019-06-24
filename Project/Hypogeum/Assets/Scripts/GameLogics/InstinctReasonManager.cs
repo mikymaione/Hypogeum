@@ -13,57 +13,40 @@ public class InstinctReasonManager : NetworkBehaviour
 {
 
     public GameObject none, instinct, reason, damage, control;
-    private AudioSource audioSource;
 
 
-    void Start()
+    private AudioSource _audioSource;
+    private AudioSource audioSource
     {
-        instinct.SetActive(false);
-        reason.SetActive(false);
-        damage.SetActive(false);
-        control.SetActive(false);
+        get
+        {
+            if (_audioSource == null)
+                _audioSource = gameObject.GetComponent<AudioSource>();
 
-        audioSource = gameObject.GetComponent<AudioSource>();
+            return _audioSource;
+        }
     }
+
 
     [Command] //solo host
-    public void CmdOnInstinctChosen(GB.EAnimal animal)
+    public void Cmd_server_OnCoinChosed(GB.EAnimal animal, GB.ECoin tipo, GameObject coin)
     {
-        //dici a tutti i client che l'animal ha preso un instinto
-        RpcOnInstinctChosen(animal);
+        //dici a tutti i client che l'animal ha preso un coin
+        Rpc_client_OnCoinChosed(animal, tipo, coin);
     }
-
-    [Command] //solo host
-    public void CmdOnReasonChosen(GB.EAnimal animal)
-    {
-        //dici a tutti i client che l'animal ha preso una ragione
-        RpcOnReasonChosen(animal);
-    }
-
 
     [ClientRpc] //tutti i client
-    public void RpcOnInstinctChosen(GB.EAnimal animal)
+    public void Rpc_client_OnCoinChosed(GB.EAnimal animal, GB.ECoin tipo, GameObject coin)
     {
         if (GB.Animal.Value == animal)
         {
-            EliminaCoins();
-            AttivaIR(GB.ECoin.Instinct);
+            Destroy(coin);
+            client_AttivaIR(tipo);
             audioSource.Play();
         }
     }
 
-    [ClientRpc] //tutti i client
-    public void RpcOnReasonChosen(GB.EAnimal animal)
-    {
-        if (GB.Animal.Value == animal)
-        {
-            EliminaCoins();
-            AttivaIR(GB.ECoin.Reason);
-            audioSource.Play();
-        }
-    }
-
-    private void AttivaIR(GB.ECoin IR)
+    private void client_AttivaIR(GB.ECoin IR)
     {
         var I = (IR == GB.ECoin.Instinct);
 
@@ -75,15 +58,6 @@ public class InstinctReasonManager : NetworkBehaviour
         //Showing power-up
         damage.SetActive(I);
         control.SetActive(!I);
-    }
-
-    private void EliminaCoins()
-    {
-        var coinsR = GameObject.FindGameObjectsWithTag("CoinReason");
-        var coinsI = GameObject.FindGameObjectsWithTag("CoinInstinct");
-
-        GB.DistruggiOggetti(coinsR);
-        GB.DistruggiOggetti(coinsI);
     }
 
 

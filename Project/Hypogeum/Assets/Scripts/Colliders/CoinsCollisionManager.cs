@@ -27,10 +27,33 @@ public class CoinsCollisionManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider otherObjectCollider)
     {
+        GB.ECoin? tipo = null;
+
         if (gameObject.CompareTag("CoinReason"))
-            instinctReasonManager.CmdOnReasonChosen(GB.Animal.Value);
+            tipo = GB.ECoin.Reason;
         else if (gameObject.CompareTag("CoinInstinct"))
-            instinctReasonManager.CmdOnInstinctChosen(GB.Animal.Value);
+            tipo = GB.ECoin.Instinct;
+
+        if (tipo.HasValue)
+        {
+            GB.EAnimal? animale = null;
+            var go = otherObjectCollider.attachedRigidbody.gameObject;
+
+            if (go.CompareTag("car"))
+            {
+                var gc = go.GetComponent<GeneralCar>();
+                animale = gc.AnimalType;
+            }
+            else if (go.CompareTag("Bullet"))
+            {
+                var b = go.GetComponent<Bullet>();
+                animale = b.AnimaleCheHaSparatoQuestoColpo;
+            }
+
+            if (animale.HasValue)
+                instinctReasonManager.Cmd_server_OnCoinChosed(animale.Value, tipo.Value, gameObject);
+        }
+
     }
 
 
