@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 128369276}
   - component: {fileID: 128369275}
   m_Layer: 0
-  m_Name: Text
+  m_Name: FullscreenWindowText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -885,6 +885,7 @@ GameObject:
   - component: {fileID: 731786230}
   - component: {fileID: 731786229}
   - component: {fileID: 731786232}
+  - component: {fileID: 731786233}
   m_Layer: 0
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1003,8 +1004,57 @@ MonoBehaviour:
   m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates: []
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 731786233}
+          m_MethodName: OnCursorEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 731786233}
+          m_MethodName: onCursorExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &731786233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731786227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4619e6b73dcf6344ab2bbd7c26a1d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorInsideColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+  cursorOutsideColor: {r: 1, g: Infinity, b: 1, a: 1}
+  text: {fileID: 0}
 --- !u!1 &758580493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2807,6 +2857,7 @@ GameObject:
   - component: {fileID: 1909035192}
   - component: {fileID: 1909035191}
   - component: {fileID: 1909035190}
+  - component: {fileID: 1909035196}
   m_Layer: 0
   m_Name: FullScreen
   m_TagString: Untagged
@@ -2992,6 +3043,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909035188}
   m_CullTransparentMesh: 0
+--- !u!114 &1909035196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909035188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca7eb47c9817ac45b9c4c3f74611394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1914030386
 GameObject:
   m_ObjectHideFlags: 0
