@@ -19,8 +19,7 @@ public class Shooting : NetworkBehaviour
 
     public AudioSource carAudioSource;
     public AudioClip ShootSound;
-
-    [SyncVar]
+    
     internal GameObject Car;
 
     private Bullet projectileClass;

@@ -14,8 +14,7 @@ public class GeneralCar : NetworkBehaviour
 
     [SyncVar]
     public GB.EAnimal AnimalType;
-
-    [SyncVar]
+    
     internal GameObject MyCannon;
 
 

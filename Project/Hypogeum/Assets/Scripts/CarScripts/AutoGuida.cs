@@ -209,7 +209,7 @@ public class AutoGuida : NetworkBehaviour
             }
 
             var mySpeed = TheCarRigidBody.velocity.magnitude;
-            SetSpeed(gameObject, mySpeed);
+            generalCar.actualSpeed = mySpeed;
 
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
@@ -233,20 +233,6 @@ public class AutoGuida : NetworkBehaviour
         }
     }
 
-    [Command] //solo host
-    private void SetSpeed(GameObject car, float speed)
-    {
-        var p = car.GetComponent<GeneralCar>();
-        p.actualSpeed = speed;
-    }
-
-    [Command] //solo host
-    private void AddHype(GameObject car)
-    {
-        var p = car.GetComponent<GeneralCar>();
-        p.Hype++;
-    }
-
     private void GestioneScie(uint RuoteCheCollidono, float speed)
     {
         var mostra = (speed > 15 && RuoteCheCollidono == 0);
@@ -254,7 +240,7 @@ public class AutoGuida : NetworkBehaviour
         if (mostra)
         {
             HypeEnough_for_hypeAudioSource++;
-            AddHype(gameObject);
+            generalCar.Hype++;
 
             if (HypeEnough_for_hypeAudioSource > 50)
                 if (!hypeAudioSource.isPlaying)
