@@ -94,6 +94,8 @@ public class Shooting : NetworkBehaviour
                 CmdIstantiateBulletAndShoot(GB.Animal.Value, gameObject, cam.transform.position, cam.transform.rotation, velocity);
             }
 
+            GB.SetCannonsPositions();
+
             if (generalCar != null)
             {
                 HUD.generalCar = generalCar;
@@ -135,16 +137,6 @@ public class Shooting : NetworkBehaviour
         StopCoroutine(RechargeWeapon());
     }
 
-    //place and rotate the cannon along with the camera on axis Y
-    private void PlaceAndRotateCannon()
-    {
-        transform.rotation = Quaternion.Euler(0, cameraManager.rotY, 0);
-        transform.position = cannonPositionMarker.position;
-        cam.transform.position = CameraPos.position;
-
-        CmdSetRotationAndPositionOfCannon_onServer(gameObject.name, cameraManager.rotY);
-    }
-
     [Command] //only host
     private void CmdSetRotationAndPositionOfCannon_onServer(string NomeCannone, float rotY)
     {
@@ -177,5 +169,14 @@ public class Shooting : NetworkBehaviour
             }
     }
 
+    //place and rotate the cannon along with the camera on axis Y
+    private void PlaceAndRotateCannon()
+    {
+        transform.rotation = Quaternion.Euler(0, cameraManager.rotY, 0);
+        transform.position = cannonPositionMarker.position;
+        cam.transform.position = CameraPos.position;
+
+        CmdSetRotationAndPositionOfCannon_onServer(gameObject.name, cameraManager.rotY);
+    }
 
 }

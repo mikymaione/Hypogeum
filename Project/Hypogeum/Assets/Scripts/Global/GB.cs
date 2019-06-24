@@ -46,6 +46,33 @@ public static class GB
     internal static EAnimal? Animal;
 
 
+    internal static void SetCannonsPositions()
+    {
+        var weapons = GameObject.FindGameObjectsWithTag("Cannon");
+
+        if (weapons != null)
+        {
+            var cars = GameObject.FindGameObjectsWithTag("car");
+
+            if (cars != null)
+                foreach (var w in weapons)
+                {
+                    var razzaCannone = w.name.Replace("Cannon", "");
+
+                    foreach (var c in cars)
+                    {
+                        var razzaAuto = c.name.Replace("Car", "");
+
+                        if (razzaAuto.Equals(razzaCannone))
+                        {
+                            var cannonPositionMarker = c.transform.Find("CannonPosition");
+                            w.transform.position = cannonPositionMarker.position;
+                        }
+                    }
+                }
+        }
+    }
+
     public static void PlayCarEngine(AudioSource carAudioSource, float generalCar_actualSpeed)
     {
         if (carAudioSource != null)

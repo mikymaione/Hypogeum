@@ -225,7 +225,7 @@ public class AutoGuida : NetworkBehaviour
 
             GestioneScie(RuoteCheCollidono, mySpeed);
 
-            SetCannonsPositions();
+            GB.SetCannonsPositions();
 
             HUD.generalCar = generalCar;
             HUD.GeneralCarInstanziated = true;
@@ -262,30 +262,6 @@ public class AutoGuida : NetworkBehaviour
         var p = car.GetComponent<GeneralCar>();
         p.actualSpeed = speed;
         p.Hype += hype_increment_of;
-    }
-
-    private void SetCannonsPositions()
-    {
-        if (generalCar.MyCannonName != null)
-        {
-            if (generalCar.MyCannon == null)
-            {
-                var cannons = GameObject.FindGameObjectsWithTag("Cannon");
-
-                foreach (var c in cannons)
-                    if (c.name.Equals(generalCar.MyCannonName))
-                    {
-                        generalCar.MyCannon = c;
-                        break;
-                    }
-            }
-
-            if (generalCar.MyCannon != null)
-            {
-                var cannonPositionMarker = gameObject.transform.Find("CannonPosition");
-                generalCar.MyCannon.transform.position = cannonPositionMarker.position;
-            }
-        }
     }
 
 
