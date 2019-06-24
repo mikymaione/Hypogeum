@@ -16,10 +16,6 @@ public class GeneralCar : NetworkBehaviour
     public GB.EAnimal AnimalType;
 
     [SyncVar]
-    internal GameObject MyCannon;
-
-
-    [SyncVar]
     internal uint Hype = 0;
 
     [SyncVar]
@@ -30,7 +26,7 @@ public class GeneralCar : NetworkBehaviour
 
     [SyncVar]
     internal float actualSpeed = 0;
-	
+
     [Range(0, 250)]
     public int Speed;
 
@@ -53,6 +49,11 @@ public class GeneralCar : NetworkBehaviour
     public float maxTorque;
 
     internal float brakingTorque => maxTorque * 100;
+
+    [SyncVar]
+    internal string MyCannonName;
+
+    internal GameObject MyCannon;
 
 
 }

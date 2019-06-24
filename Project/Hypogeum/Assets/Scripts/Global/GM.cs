@@ -52,16 +52,16 @@ public class GM : NetworkBehaviour
             {
                 var gc = car.GetComponent<GeneralCar>();
 
-                if (gc.MyCannon == null)
+                if (gc.MyCannonName == null)
                     foreach (var cannon in cannons)
                     {
                         var sh = cannon.GetComponent<Shooting>();
 
-                        if (sh.TipoDiArma == gc.AnimalType && sh.Car == null)
+                        if (sh.TipoDiArma == gc.AnimalType && sh.CarName == null)
                         {
                             //matched!
-                            gc.MyCannon = cannon;
-                            sh.Car = car;
+                            gc.MyCannonName = cannon.name;
+                            sh.CarName = car.name;
                         }
                     }
             }
