@@ -52,15 +52,22 @@ public class GM : NetworkBehaviour
             {
                 var gc = car.GetComponent<GeneralCar>();
 
-                if (gc.MyCannon == null)
+                if (gc.MyCannonName == null)
                     foreach (var cannon in cannons)
                     {
                         var sh = cannon.GetComponent<Shooting>();
 
+<<<<<<< HEAD
                         if (sh.TipoDiArma == gc.AnimalType && string.IsNullOrEmpty(sh.CarName))
                         {
                             //matched!
                             gc.MyCannon = cannon;
+=======
+                        if (sh.TipoDiArma == gc.AnimalType && sh.CarName == null)
+                        {
+                            //matched!
+                            gc.MyCannonName = cannon.name;
+>>>>>>> master
                             sh.CarName = car.name;
                         }
                     }
