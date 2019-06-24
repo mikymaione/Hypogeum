@@ -211,6 +211,8 @@ public class AutoGuida : NetworkBehaviour
             var mySpeed = TheCarRigidBody.velocity.magnitude;
             generalCar.actualSpeed = mySpeed;
 
+            CmdSetDataCar(gameObject, mySpeed, 0);
+
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
             var RuoteCheCollidono = 0u;
@@ -240,7 +242,7 @@ public class AutoGuida : NetworkBehaviour
         if (mostra)
         {
             HypeEnough_for_hypeAudioSource++;
-            generalCar.Hype++;
+            CmdSetDataCar(gameObject, speed, 1);
 
             if (HypeEnough_for_hypeAudioSource > 50)
                 if (!hypeAudioSource.isPlaying)
@@ -252,6 +254,14 @@ public class AutoGuida : NetworkBehaviour
 
         for (var i = 0u; i < Scie.Length; i++)
             Scie[i].emitting = mostra;
+    }
+
+    [Command] //only host
+    private void CmdSetDataCar(GameObject car, float speed, uint hype_increment_of)
+    {
+        var p = car.GetComponent<GeneralCar>();
+        p.actualSpeed = speed;
+        p.Hype += hype_increment_of;
     }
 
     private void SetCannonsPositions()
