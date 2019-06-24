@@ -48,10 +48,13 @@ public static class GB
 
     public static void PlayCarEngine(AudioSource carAudioSource, float generalCar_actualSpeed)
     {
-        carAudioSource.volume = Mathf.Min(generalCar_actualSpeed / 40, 1);
+        if (carAudioSource != null)
+        {
+            carAudioSource.volume = Mathf.Min(generalCar_actualSpeed / 40, 1);
 
-        if (!carAudioSource.isPlaying && carAudioSource.volume > 0)
-            carAudioSource.Play();
+            if (!carAudioSource.isPlaying && carAudioSource.volume > 0)
+                carAudioSource.Play();
+        }
     }
 
     public static void DistruggiOggetti(Object[] oggetti)

@@ -211,9 +211,7 @@ public class AutoGuida : NetworkBehaviour
             generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
-            GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
-
-             var RuoteCheCollidono = 0u;
+            var RuoteCheCollidono = 0u;
             for (var j = 0u; j < Colliders.Length; j++)
                 if (Colliders[j].isGrounded)
                     RuoteCheCollidono++;
@@ -230,6 +228,8 @@ public class AutoGuida : NetworkBehaviour
                 HUD.GeneralCarInstanziated = true;
                 HUD.generalCar = generalCar;
                 HUD.setValues();
+
+                GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
             }
         }
     }

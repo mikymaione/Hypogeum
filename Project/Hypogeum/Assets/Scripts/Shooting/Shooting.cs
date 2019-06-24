@@ -77,15 +77,15 @@ public class Shooting : NetworkBehaviour
 
                 var velocity = cam.transform.forward * projectileClass.speed;
                 CmdIstantiateBulletAndShoot(GB.Animal.Value, gameObject, cam.transform.position, cam.transform.rotation, velocity);
-            }
-
-            GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
+            }            
 
             if (generalCar != null)
-            {
+            {                
                 HUD.GeneralCarInstanziated = true;
                 HUD.generalCar = generalCar;
                 HUD.setValues();
+
+                GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
             }
         }
     }
