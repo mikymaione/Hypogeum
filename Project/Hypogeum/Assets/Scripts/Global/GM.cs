@@ -60,6 +60,7 @@ public class GM : NetworkBehaviour
                         if (sh.TipoDiArma == gc.AnimalType && string.IsNullOrEmpty(sh.CarName))
                         {
                             //matched!
+                            gc.MyCannonName = cannon.name;
                             gc.MyCannon = cannon;
                             sh.CarName = car.name;
                         }
