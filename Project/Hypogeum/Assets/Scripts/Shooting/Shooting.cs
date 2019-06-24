@@ -19,8 +19,6 @@ public class Shooting : NetworkBehaviour
 
     public AudioSource carAudioSource;
     public AudioClip ShootSound;
-    
-    internal GameObject Car;
 
     private Bullet projectileClass;
     private bool canShoot = true;
@@ -34,6 +32,30 @@ public class Shooting : NetworkBehaviour
     private GeneralCar generalCar;
     private HudScriptManager HUD;
 
+    [SyncVar]
+    internal string CarName;
+
+    private GameObject _Car;
+    private GameObject Car
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(CarName) || _Car == null)
+            {
+                var cars = GameObject.FindGameObjectsWithTag("car");
+
+                foreach (var c in cars)
+                    if (CarName.Equals(c.name))
+                    {
+                        _Car = c;
+                        break;
+                    }
+            }
+
+            return _Car;
+        }
+    }
+
     public override void OnStartLocalPlayer()
     {
         cam = Camera.main;
@@ -45,13 +67,6 @@ public class Shooting : NetworkBehaviour
         HUD = HUDo.GetComponent<HudScriptManager>();
 
         MostraMirino();
-    }
-
-    [Command] //only host
-    private void CmdSetMyCannon(GameObject car, GameObject cannon)
-    {
-        var gc = car.GetComponent<GeneralCar>();
-        gc.MyCannon = cannon;
     }
 
     void Update()
@@ -76,12 +91,12 @@ public class Shooting : NetworkBehaviour
 
                 var velocity = cam.transform.forward * projectileClass.speed;
                 CmdIstantiateBulletAndShoot(GB.Animal.Value, gameObject, cam.transform.position, cam.transform.rotation, velocity);
-            }            
+            }
 
             if (generalCar != null)
             {
                 HUD.generalCar = generalCar;
-                HUD.GeneralCarInstanziated = true;                
+                HUD.GeneralCarInstanziated = true;
                 HUD.setValues();
 
                 GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
