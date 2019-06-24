@@ -1,9 +1,0 @@
-diff a/Project/Hypogeum/Assets/Scenes/Game.unity b/Project/Hypogeum/Assets/Scenes/Game.unity	(rejected hunks)
-@@ -7572,6 +7572,7 @@
-   m_Icon: {fileID: 0}
-   m_NavMeshLayer: 0
-   m_StaticEditorFlags: 0
-+  m_IsActive: 1
- --- !u!224 &1375924131
- RectTransform:
-   m_ObjectHideFlags: 0
