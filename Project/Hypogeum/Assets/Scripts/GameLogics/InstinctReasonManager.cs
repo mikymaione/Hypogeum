@@ -18,12 +18,15 @@ public class InstinctReasonManager : NetworkBehaviour
 
     void Start()
     {
-        instinct.SetActive(false);
-        reason.SetActive(false);
-        damage.SetActive(false);
-        control.SetActive(false);
+        if (isLocalPlayer)
+        {
+            instinct.SetActive(false);
+            reason.SetActive(false);
+            damage.SetActive(false);
+            control.SetActive(false);
 
-        audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource = gameObject.GetComponent<AudioSource>();
+        }
     }
 
     [Command] //solo host

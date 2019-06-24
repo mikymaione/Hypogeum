@@ -3647,7 +3647,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!82 &749810198
 AudioSource:
   m_ObjectHideFlags: 0
