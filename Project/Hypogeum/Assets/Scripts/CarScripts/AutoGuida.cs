@@ -222,9 +222,9 @@ public class AutoGuida : NetworkBehaviour
             GestioneScie(RuoteCheCollidono);
 
             SetCannonsPositions();
-
-            HUD.GeneralCarInstanziated = true;
+            
             HUD.generalCar = generalCar;
+            HUD.GeneralCarInstanziated = true;
             HUD.setValues();
 
             GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);

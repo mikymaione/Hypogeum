@@ -80,9 +80,9 @@ public class Shooting : NetworkBehaviour
             }            
 
             if (generalCar != null)
-            {                
-                HUD.GeneralCarInstanziated = true;
+            {
                 HUD.generalCar = generalCar;
+                HUD.GeneralCarInstanziated = true;                
                 HUD.setValues();
 
                 GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
