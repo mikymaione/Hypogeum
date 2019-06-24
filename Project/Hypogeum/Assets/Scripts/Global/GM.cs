@@ -57,17 +57,10 @@ public class GM : NetworkBehaviour
                     {
                         var sh = cannon.GetComponent<Shooting>();
 
-<<<<<<< HEAD
                         if (sh.TipoDiArma == gc.AnimalType && string.IsNullOrEmpty(sh.CarName))
                         {
                             //matched!
                             gc.MyCannon = cannon;
-=======
-                        if (sh.TipoDiArma == gc.AnimalType && sh.CarName == null)
-                        {
-                            //matched!
-                            gc.MyCannonName = cannon.name;
->>>>>>> master
                             sh.CarName = car.name;
                         }
                     }

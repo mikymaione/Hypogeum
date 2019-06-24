@@ -40,19 +40,6 @@ public class Shooting : NetworkBehaviour
     {
         get
         {
-<<<<<<< HEAD
-            if (!string.IsNullOrEmpty(CarName) && _Car == null)
-            {
-                var cars = GameObject.FindGameObjectsWithTag("car");
-
-                foreach (var c in cars)
-                    if (CarName.Equals(c.name))
-                    {
-                        _Car = c;
-                        break;
-                    }
-            }
-=======
             if (_Car == null)
                 if (!string.IsNullOrEmpty(CarName))
                 {
@@ -65,7 +52,6 @@ public class Shooting : NetworkBehaviour
                             break;
                         }
                 }
->>>>>>> master
 
             return _Car;
         }
@@ -110,10 +96,6 @@ public class Shooting : NetworkBehaviour
 
             if (generalCar != null)
             {
-<<<<<<< HEAD
-=======
-                HUD.GeneralCarInstanziated = true;
->>>>>>> master
                 HUD.generalCar = generalCar;
                 HUD.GeneralCarInstanziated = true;
                 HUD.setValues();

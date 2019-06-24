@@ -14,12 +14,6 @@ public class GeneralCar : NetworkBehaviour
 
     [SyncVar]
     public GB.EAnimal AnimalType;
-<<<<<<< HEAD
-    
-    internal GameObject MyCannon;
-
-=======
->>>>>>> master
 
     [SyncVar]
     internal uint Hype = 0;
