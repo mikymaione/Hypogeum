@@ -35,7 +35,25 @@ public class CoinsCollisionManager : MonoBehaviour
             tipo = GB.ECoin.Instinct;
 
         if (tipo.HasValue)
-            instinctReasonManager.Cmd_server_OnCoinChosed(GB.Animal.Value, tipo.Value, gameObject);
+        {
+            GB.EAnimal? animale = null;
+            var go = otherObjectCollider.attachedRigidbody.gameObject;
+
+            if (go.CompareTag("car"))
+            {
+                var gc = go.GetComponent<GeneralCar>();
+                animale = gc.AnimalType;
+            }
+            else if (go.CompareTag("Bullet"))
+            {
+                var b = go.GetComponent<Bullet>();
+                animale = b.AnimaleCheHaSparatoQuestoColpo;
+            }
+
+            if (animale.HasValue)
+                instinctReasonManager.Cmd_server_OnCoinChosed(animale.Value, tipo.Value, gameObject);
+        }
+
     }
 
 
