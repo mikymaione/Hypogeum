@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 8056708178706975207}
   - component: {fileID: 3414613064862697162}
   - component: {fileID: 3332145445565223921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RadarCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
