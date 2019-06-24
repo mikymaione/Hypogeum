@@ -84,6 +84,7 @@ public class HudScriptManager : MonoBehaviour
                 if ((int)GB.Animal == a)
                 {
                     hoPerso = true;
+                    generalCar.Health = 0;
                     loss.SetActive(true);
                     StartCoroutine(EsciDalGioco());
                     break;
