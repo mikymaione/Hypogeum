@@ -208,7 +208,9 @@ public class AutoGuida : NetworkBehaviour
                 Wheels[i].transform.rotation = worldPose_rotation * WheelErrorCorrectionR[i];
             }
 
-            generalCar.actualSpeed = TheCarRigidBody.velocity.magnitude;
+            var mySpeed = TheCarRigidBody.velocity.magnitude;
+            SetSpeed(gameObject, mySpeed);
+
             sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
 
             var RuoteCheCollidono = 0u;
@@ -219,26 +221,40 @@ public class AutoGuida : NetworkBehaviour
             //quando sei in aria usa il centro di massa al centro del box 3d, altrimenti usa il centro di massa che Michele ha settato a mano per ogni auto            
             TheCarRigidBody.centerOfMass = (RuoteCheCollidono == 0 ? CentroDiMassa3D : CentroDiMassaAssettoCorsa);
 
-            GestioneScie(RuoteCheCollidono);
+            GestioneScie(RuoteCheCollidono, mySpeed);
 
             SetCannonsPositions();
-            
+
             HUD.generalCar = generalCar;
             HUD.GeneralCarInstanziated = true;
             HUD.setValues();
 
-            GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
+            GB.PlayCarEngine(carAudioSource, mySpeed);
         }
     }
 
-    private void GestioneScie(uint RuoteCheCollidono)
+    [Command] //solo host
+    private void SetSpeed(GameObject car, float speed)
     {
-        var mostra = (generalCar.actualSpeed > 15 && RuoteCheCollidono == 0);
+        var p = car.GetComponent<GeneralCar>();
+        p.actualSpeed = speed;
+    }
+
+    [Command] //solo host
+    private void AddHype(GameObject car)
+    {
+        var p = car.GetComponent<GeneralCar>();
+        p.Hype++;
+    }
+
+    private void GestioneScie(uint RuoteCheCollidono, float speed)
+    {
+        var mostra = (speed > 15 && RuoteCheCollidono == 0);
 
         if (mostra)
         {
             HypeEnough_for_hypeAudioSource++;
-            generalCar.Hype++;
+            AddHype(gameObject);
 
             if (HypeEnough_for_hypeAudioSource > 50)
                 if (!hypeAudioSource.isPlaying)
