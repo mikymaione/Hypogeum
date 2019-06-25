@@ -84,27 +84,16 @@ public class HudScriptManager : MonoBehaviour
                 if ((int)GB.Animal == a)
                 {
                     hoPerso = true;                    
-                    loss.SetActive(true);
-                    StartCoroutine(EsciDalGioco());
+                    loss.SetActive(true);                    
                     break;
                 }
 
             if (possoVincere && !hoPerso)
                 if (gm.NumeroAnimaliVistiVivi == gm.AnimaliMorti.Count + 1)
                 {
-                    win.SetActive(true);
-                    StartCoroutine(EsciDalGioco());
+                    win.SetActive(true);                    
                 }
         }
-    }
-
-    private IEnumerator EsciDalGioco()
-    {
-        yield return new WaitForSeconds(8);
-        StopCoroutine(EsciDalGioco());
-
-        Cursor.visible = true;
-        GB.GotoScene(GB.EScenes.StartTitle);
     }
 
     private IEnumerator TempoDiLettura()
