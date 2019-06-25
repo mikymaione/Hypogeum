@@ -82,10 +82,8 @@ public class Shooting : NetworkBehaviour
             if (cannonPositionMarker == null)
                 cannonPositionMarker = Car?.transform.Find("CannonPosition");
 
-            if (cannonPositionMarker != null)
-                PlaceAndRotateCannon();
+            PlaceAndRotateCannon();
 
-            cam.transform.position = CameraPos.position;
             target = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
 
             if (canShoot && Input.GetMouseButtonDown(0))
@@ -177,13 +175,18 @@ public class Shooting : NetworkBehaviour
     {
         var rotY = cameraManager.rotY;
         transform.rotation = Quaternion.Euler(0, rotY, 0);
-        transform.position = cannonPositionMarker.position;
 
-        if (Mathf.Abs(LastPlaceAndRotateCannon_Rotation - rotY) > 8)
+        if (cannonPositionMarker != null)
+            transform.position = cannonPositionMarker.position;
+
+        cam.transform.position = CameraPos.position;
+
+        if (Mathf.Abs(LastPlaceAndRotateCannon_Rotation - rotY) > 10)
         {
             LastPlaceAndRotateCannon_Rotation = rotY;
             CmdSetRotationOfCannon_onServer(gameObject.name, rotY);
         }
     }
+
 
 }

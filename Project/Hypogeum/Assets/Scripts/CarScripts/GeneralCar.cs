@@ -12,12 +12,13 @@ using UnityEngine.Networking;
 public class GeneralCar : NetworkBehaviour
 {
 
+    //settata dal server
     [SyncVar]
     public string MyCannonName;
+    //settata dal server
 
-    [SyncVar]
-    public GB.EAnimal AnimalType;
 
+    //settata dal client
     [SyncVar]
     public uint Hype = 0;
 
@@ -26,8 +27,12 @@ public class GeneralCar : NetworkBehaviour
 
     [SyncVar]
     public float actualSpeed = 0;
+    //settata dal client
 
- 
+
+    //settate dal editor Unity
+    public GB.EAnimal AnimalType;
+
     [Range(0, 250)]
     public int Speed;
 
@@ -48,8 +53,11 @@ public class GeneralCar : NetworkBehaviour
 
     [Range(100f, 200f)]
     public float maxTorque;
+    //settate dal editor Unity
 
+
+    //calcolate
     public float brakingTorque => maxTorque * 100;
-
+    //calcolate
 
 }

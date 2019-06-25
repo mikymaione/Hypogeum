@@ -40,6 +40,8 @@ public class AutoGuida : NetworkBehaviour
     private HudScriptManager HUD;
     private int Decellerazione = 0;
 
+    private uint MyHype = 0;
+
     private float fullBrake, handBrake, instantSteeringAngle, instantTorque;
 
     //To manage the sand particle effect
@@ -47,6 +49,7 @@ public class AutoGuida : NetworkBehaviour
 
     private uint HypeEnough_for_hypeAudioSource = 0;
     private AudioSource carAudioSource, audienceConstantSoundAudioSource, hypeAudioSource;
+
 
     public override void OnStartLocalPlayer()
     {
@@ -69,7 +72,7 @@ public class AutoGuida : NetworkBehaviour
             i++;
         }
 
-        generalCar = GetComponent<GeneralCar>();        
+        generalCar = GetComponent<GeneralCar>();
 
         TheCarRigidBody = GetComponent<Rigidbody>();
         MyCamera = Camera.main.GetComponent<CameraManager>();
@@ -201,9 +204,8 @@ public class AutoGuida : NetworkBehaviour
             }
 
             var mySpeed = TheCarRigidBody.velocity.magnitude;
-            generalCar.actualSpeed = mySpeed;
 
-            sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? generalCar.actualSpeed / 10 : 0);
+            sandParticle.playbackSpeed = (generalCar.transform.position.y < PosizionePavimento ? mySpeed / 10 : 0);
 
             var RuoteCheCollidono = 0u;
             for (var j = 0u; j < Colliders.Length; j++)
@@ -213,11 +215,17 @@ public class AutoGuida : NetworkBehaviour
             //quando sei in aria usa il centro di massa al centro del box 3d, altrimenti usa il centro di massa che Michele ha settato a mano per ogni auto            
             TheCarRigidBody.centerOfMass = (RuoteCheCollidono == 0 ? CentroDiMassa3D : CentroDiMassaAssettoCorsa);
 
+            if (MyHype < generalCar.Hype)
+                MyHype = generalCar.Hype;
+
             GestioneScie(RuoteCheCollidono, mySpeed);
+
+            if (generalCar.actualSpeed != mySpeed)
+                CmdSetVarsCars(gameObject, MyHype, mySpeed);
 
             GB.SetCannonsPositions();
 
-            HUD.generalCar = generalCar;                       
+            HUD.generalCar = generalCar;
             GB.PlayCarEngine(carAudioSource, mySpeed);
         }
     }
@@ -229,7 +237,7 @@ public class AutoGuida : NetworkBehaviour
         if (mostra)
         {
             HypeEnough_for_hypeAudioSource++;
-            generalCar.Hype++;
+            MyHype++;
 
             if (HypeEnough_for_hypeAudioSource > 50)
                 if (!hypeAudioSource.isPlaying)
@@ -241,6 +249,15 @@ public class AutoGuida : NetworkBehaviour
 
         for (var i = 0u; i < Scie.Length; i++)
             Scie[i].emitting = mostra;
+    }
+
+    [Command]
+    private void CmdSetVarsCars(GameObject car, uint hype, float speed)
+    {
+        var gc = car.GetComponent<GeneralCar>();
+
+        gc.Hype = hype;
+        gc.actualSpeed = speed;
     }
 
 

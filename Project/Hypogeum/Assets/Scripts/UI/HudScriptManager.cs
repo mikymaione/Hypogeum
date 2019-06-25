@@ -139,7 +139,7 @@ public class HudScriptManager : MonoBehaviour
         if (max > healthBar.maxValue)
             healthBar.maxValue = max;
 
-        healthBar.value = value;
+        healthBar.value = (loss.active ? 0 : value);
     }
 
     private void setSpeed(float value)
