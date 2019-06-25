@@ -14,11 +14,12 @@ public class GM : NetworkBehaviour
 
     private GameObject[] cars, cannons;
 
-    [SyncVar]
-    internal SyncListInt AnimaliMorti = new SyncListInt();
+    public SyncListInt AnimaliMorti = new SyncListInt();
 
     [SyncVar]
-    internal int NumeroAnimaliVistiVivi = 0;
+    public int NumeroAnimaliVistiVivi = 0;
+
+    private int NumeroCannoniMatchati = 0;
 
 
     void FixedUpdate()
@@ -31,7 +32,9 @@ public class GM : NetworkBehaviour
             if (NumeroAnimaliVistiVivi < cars.Length)
                 NumeroAnimaliVistiVivi = cars.Length;
 
-            server_MatchCannoni();
+            if (Prototype.NetworkLobby.LobbyManager.s_Singleton.Players.Count > NumeroCannoniMatchati)
+                server_MatchCannoni();
+
             server_GestioneVite();
         }
     }
@@ -44,17 +47,22 @@ public class GM : NetworkBehaviour
 
             if (gc.Health <= 0)
             {
-                AnimaliMorti.Add((int)gc.AnimalType);
+                var a = (int)gc.AnimalType;
 
-                foreach (var cannon in cannons)
+                if (!AnimaliMorti.Contains(a))
                 {
-                    var sh = cannon.GetComponent<Shooting>();
+                    AnimaliMorti.Add(a);
 
-                    if (sh.TipoDiArma == gc.AnimalType)
-                        Destroy(cannon);
+                    foreach (var cannon in cannons)
+                    {
+                        var sh = cannon.GetComponent<Shooting>();
+
+                        if (sh.TipoDiArma == gc.AnimalType)
+                            Destroy(cannon);
+                    }
+
+                    Destroy(car);
                 }
-
-                Destroy(car);
             }
         }
     }
@@ -66,7 +74,7 @@ public class GM : NetworkBehaviour
             {
                 var gc = car.GetComponent<GeneralCar>();
 
-                if (gc.MyCannonName == null)
+                if (string.IsNullOrEmpty(gc.MyCannonName))
                     foreach (var cannon in cannons)
                     {
                         var sh = cannon.GetComponent<Shooting>();
@@ -76,6 +84,7 @@ public class GM : NetworkBehaviour
                             //matched!                            
                             gc.MyCannonName = cannon.name;
                             sh.CarName = car.name;
+                            NumeroCannoniMatchati++;
                         }
                     }
             }

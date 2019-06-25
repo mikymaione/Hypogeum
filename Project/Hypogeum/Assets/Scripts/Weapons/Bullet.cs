@@ -14,7 +14,7 @@ public class Bullet : NetworkBehaviour
     public float speed = 100;
 
     [SyncVar]
-    internal GB.EAnimal AnimaleCheHaSparatoQuestoColpo;
+    public GB.EAnimal AnimaleCheHaSparatoQuestoColpo;
 
 
 }

@@ -24,9 +24,8 @@ public class HudScriptManager : MonoBehaviour
     private bool GameControlsVisibile = false;
     private bool HoAvutoIlTempoDiLeggere = true;
 
-    private int NumeroMassimoTeamVistiInCampo = 0;
-
-    internal bool GeneralCarInstanziated = false;
+    //private int NumeroMassimoTeamVistiInCampo = 0;
+    
     internal GeneralCar generalCar;
 
     public GM gm;
@@ -68,6 +67,7 @@ public class HudScriptManager : MonoBehaviour
         }
 
         CheckAnimaliMorti();
+        setValues();
     }
 
     private void CheckAnimaliMorti()
@@ -83,8 +83,7 @@ public class HudScriptManager : MonoBehaviour
             foreach (var a in gm.AnimaliMorti)
                 if ((int)GB.Animal == a)
                 {
-                    hoPerso = true;
-                    generalCar.Health = 0;
+                    hoPerso = true;                    
                     loss.SetActive(true);
                     StartCoroutine(EsciDalGioco());
                     break;
@@ -115,14 +114,15 @@ public class HudScriptManager : MonoBehaviour
         HoAvutoIlTempoDiLeggere = true;
     }
 
-    public void setValues()
+    private void setValues()
     {
-        if (generalCar != null)
-        {
-            setHype(generalCar.Hype);
-            setHealth(0, generalCar.Max_Health, generalCar.Health);
-            setSpeed(generalCar.actualSpeed);
-        }
+        var l = generalCar?.Health ?? 0;
+        var h = generalCar?.Hype ?? 0;
+        var s = generalCar?.actualSpeed ?? 0;
+
+        setHype(h);
+        setHealth(0, l, l);
+        setSpeed(s);
     }
 
     private void setHype(float value)
@@ -132,10 +132,13 @@ public class HudScriptManager : MonoBehaviour
         hypeBar.value = value;
     }
 
-    private void setHealth(int min, int max, float value)
+    private void setHealth(int min, float max, float value)
     {
         healthBar.minValue = min;
-        healthBar.maxValue = max;
+
+        if (max > healthBar.maxValue)
+            healthBar.maxValue = max;
+
         healthBar.value = value;
     }
 

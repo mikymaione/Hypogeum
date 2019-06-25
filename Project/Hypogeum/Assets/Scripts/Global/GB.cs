@@ -50,11 +50,11 @@ public static class GB
     {
         var weapons = GameObject.FindGameObjectsWithTag("Cannon");
 
-        if (weapons != null)
+        if (weapons.Length > 0)
         {
             var cars = GameObject.FindGameObjectsWithTag("car");
 
-            if (cars != null)
+            if (cars.Length > 0)
                 foreach (var w in weapons)
                 {
                     var razzaCannone = w.name.Replace("Cannon", "");

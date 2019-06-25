@@ -13,23 +13,21 @@ public class GeneralCar : NetworkBehaviour
 {
 
     [SyncVar]
-    internal string MyCannonName;
+    public string MyCannonName;
 
     [SyncVar]
     public GB.EAnimal AnimalType;
 
     [SyncVar]
-    internal uint Hype = 0;
+    public uint Hype = 0;
 
     [SyncVar]
-    internal float Health = float.MaxValue;
+    public float Health = 1000;
 
     [SyncVar]
-    public int Max_Health;
+    public float actualSpeed = 0;
 
-    [SyncVar]
-    internal float actualSpeed = 0;
-
+ 
     [Range(0, 250)]
     public int Speed;
 
@@ -51,7 +49,7 @@ public class GeneralCar : NetworkBehaviour
     [Range(100f, 200f)]
     public float maxTorque;
 
-    internal float brakingTorque => maxTorque * 100;
+    public float brakingTorque => maxTorque * 100;
 
 
 }

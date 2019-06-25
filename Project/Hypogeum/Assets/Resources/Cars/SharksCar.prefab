@@ -858,8 +858,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b980ef33455a314ea69501e680dceaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyCannonName: 
   AnimalType: 3
+  Hype: 0
+  Health: 1000
   Max_Health: 1000
+  actualSpeed: 0
   Speed: 200
   Defense: 7
   Agility: 4
