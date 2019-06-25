@@ -84,59 +84,14 @@ public static class GB
         }
     }
 
-	public static RenderTexture getAnimalRenderTexture (GB.EAnimal animal, GB.EGameType gameType)
-	{
-		RenderTexture texture = null;
+    public static RenderTexture getAnimalRenderTexture(EAnimal animal, EGameType gameType)
+    {
+        var tipo = (gameType == EGameType.Shooting ? "Shooter" : "");
+        var percorso = $"Radar/RadarRenderTexture{animal}s{tipo}";
+        var texture = Resources.Load(percorso) as RenderTexture;
 
-		switch (animal)
-		{
-			case EAnimal.Eagle:
-				if (gameType == GB.EGameType.Driving)
-				{
-					texture = Resources.Load("Radar/RadarRenderTextureEagles") as RenderTexture;
-					break;
-				}
-				else
-				{
-					texture = Resources.Load("Radar/RadarRenderTextureEaglesShooter") as RenderTexture;
-					break;
-				}
-			case EAnimal.Lion:
-				if (gameType == GB.EGameType.Driving)
-				{
-					texture = Resources.Load("Radar/RadarRenderTextureLions") as RenderTexture;
-					break;
-				}
-				else
-				{
-					texture = Resources.Load("Radar/RadarRenderTextureLionsShooter") as RenderTexture;
-					break;
-				}
-			case EAnimal.Shark:
-				if (gameType == GB.EGameType.Driving)
-				{
-					texture = Resources.Load("Radar/RadarRenderTextureSharks") as RenderTexture;
-					break;
-				}
-				else
-				{
-					texture = Resources.Load("Radar/RadarRenderTextureSharksShooter") as RenderTexture;
-					break;
-				}
-			case EAnimal.Rhino:
-				if (gameType == GB.EGameType.Driving)
-				{
-					texture = Resources.Load("Radar/RadarRenderTextureRhinos") as RenderTexture;
-					break;
-				}
-				else
-				{
-					texture = Resources.Load("Radar/RadarRenderTextureRhinosShooter") as RenderTexture;
-					break;
-				}
-		}
-		return texture;
-	}
+        return texture;
+    }
 
     public static void DistruggiOggetti(Object[] oggetti)
     {

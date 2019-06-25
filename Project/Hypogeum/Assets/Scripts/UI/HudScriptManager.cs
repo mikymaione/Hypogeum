@@ -25,7 +25,7 @@ public class HudScriptManager : MonoBehaviour
     private bool HoAvutoIlTempoDiLeggere = true;
 
     //private int NumeroMassimoTeamVistiInCampo = 0;
-    
+
     internal GeneralCar generalCar;
 
     public GM gm;
@@ -83,16 +83,14 @@ public class HudScriptManager : MonoBehaviour
             foreach (var a in gm.AnimaliMorti)
                 if ((int)GB.Animal == a)
                 {
-                    hoPerso = true;                    
-                    loss.SetActive(true);                    
+                    hoPerso = true;
+                    loss.SetActive(true);
                     break;
                 }
 
             if (possoVincere && !hoPerso)
                 if (gm.NumeroAnimaliVistiVivi == gm.AnimaliMorti.Count + 1)
-                {
-                    win.SetActive(true);                    
-                }
+                    win.SetActive(true);
         }
     }
 
