@@ -171,11 +171,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyCannonName: 
-  AnimalType: 2
   Hype: 0
   Health: 1500
-  Max_Health: 1500
   actualSpeed: 0
+  AnimalType: 2
   Speed: 130
   Defense: 9
   Agility: 4
@@ -782,8 +781,8 @@ Camera:
   m_GameObject: {fileID: 1606761900889178647}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.6039216, g: 0.5882353, b: 0.5882353, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -915,7 +914,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f55944ffebf0a440a354b1cda314271, type: 2}
+  - {fileID: 2100000, guid: 084e1751f3ec6ef43803fe095b2a3efc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
