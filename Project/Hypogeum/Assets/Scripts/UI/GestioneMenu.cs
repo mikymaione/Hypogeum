@@ -25,9 +25,9 @@ public sealed class GestioneMenu : MonoBehaviour
 
     private struct sAnimalMapping
     {
-        internal GameObject car;
-        internal Button button;
-        internal GB.EAnimal animal;
+        public GameObject car;
+        public Button button;
+        public GB.EAnimal animal;
     }
 
 

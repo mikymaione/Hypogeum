@@ -32,8 +32,10 @@ public class Shooting : NetworkBehaviour
     private GeneralCar generalCar;
     private HudScriptManager HUD;
 
+    private float LastPlaceAndRotateCannon_Rotation = 0;
+
     [SyncVar]
-    internal string CarName;
+    public string CarName;
 
     private GameObject _Car;
     private GameObject Car
@@ -80,8 +82,7 @@ public class Shooting : NetworkBehaviour
             if (cannonPositionMarker == null)
                 cannonPositionMarker = Car?.transform.Find("CannonPosition");
 
-            if (cannonPositionMarker != null)
-                PlaceAndRotateCannon();
+            PlaceAndRotateCannon();
 
             target = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
 
@@ -99,9 +100,6 @@ public class Shooting : NetworkBehaviour
             if (generalCar != null)
             {
                 HUD.generalCar = generalCar;
-                HUD.GeneralCarInstanziated = true;
-                HUD.setValues();
-
                 GB.PlayCarEngine(carAudioSource, generalCar.actualSpeed);
             }
         }
@@ -132,25 +130,28 @@ public class Shooting : NetworkBehaviour
 
     private IEnumerator RechargeWeapon()
     {
-        yield return new WaitForSeconds(0.999f);
+        yield return new WaitForSeconds(1);
         canShoot = true;
         StopCoroutine(RechargeWeapon());
     }
 
     [Command] //only host
-    private void CmdSetRotationAndPositionOfCannon_onServer(string NomeCannone, float rotY)
+    private void CmdSetRotationOfCannon_onServer(string NomeCannone, float rotY)
     {
-        RpcSetRotationAndPositionOfCannon_onClient(NomeCannone, rotY);
+        RpcSetRotationOfCannon_onClient(NomeCannone, rotY);
     }
 
     [ClientRpc] //all clients
-    private void RpcSetRotationAndPositionOfCannon_onClient(string NomeCannone, float rotY)
+    private void RpcSetRotationOfCannon_onClient(string NomeCannone, float rotY)
     {
         var cannons = GameObject.FindGameObjectsWithTag("Cannon");
 
         foreach (var cannon in cannons)
             if (cannon.name.Equals(NomeCannone))
+            {
                 cannon.transform.rotation = Quaternion.Euler(0, rotY, 0);
+                break;
+            }
     }
 
     private void MostraMirino()
@@ -172,11 +173,20 @@ public class Shooting : NetworkBehaviour
     //place and rotate the cannon along with the camera on axis Y
     private void PlaceAndRotateCannon()
     {
-        transform.rotation = Quaternion.Euler(0, cameraManager.rotY, 0);
-        transform.position = cannonPositionMarker.position;
+        var rotY = cameraManager.rotY;
+        transform.rotation = Quaternion.Euler(0, rotY, 0);
+
+        if (cannonPositionMarker != null)
+            transform.position = cannonPositionMarker.position;
+
         cam.transform.position = CameraPos.position;
 
-        CmdSetRotationAndPositionOfCannon_onServer(gameObject.name, cameraManager.rotY);
+        if (Mathf.Abs(LastPlaceAndRotateCannon_Rotation - rotY) > 10)
+        {
+            LastPlaceAndRotateCannon_Rotation = rotY;
+            CmdSetRotationOfCannon_onServer(gameObject.name, rotY);
+        }
     }
+
 
 }

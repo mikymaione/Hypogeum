@@ -17,6 +17,12 @@ public class CarCollisionManager : NetworkBehaviour
     private AudioSource audioSource;
     private AudioClip carCollisionAudioClip;
 
+    private void Update()
+    {
+        if (isLocalPlayer)
+            if (Input.GetKey(KeyCode.R))
+                CmdAddDamage(gameObject, 20);
+    }
 
     private void Start()
     {
@@ -42,8 +48,7 @@ public class CarCollisionManager : NetworkBehaviour
                     audioSource.PlayOneShot(carCollisionAudioClip);
 
                     var damage = collision.relativeVelocity.magnitude / (playerCar.Defense * 0.1f);
-
-                    CmdTakeDamage(GB.Animal.Value, gameObject, damage);
+                    CmdAddDamage(gameObject, damage);
                 }
             }
             else if (collision.gameObject.CompareTag("Bullet"))
@@ -52,19 +57,18 @@ public class CarCollisionManager : NetworkBehaviour
 
                 if (bullet.AnimaleCheHaSparatoQuestoColpo != GB.Animal)
                 {
-                    var otherTeamAttack = 8 * GB.GetTeamAttack(bullet.AnimaleCheHaSparatoQuestoColpo);                    
-
-                    CmdTakeDamage(GB.Animal.Value, gameObject, otherTeamAttack);
+                    var otherTeamAttack = 40 * GB.GetTeamAttack(bullet.AnimaleCheHaSparatoQuestoColpo);
+                    CmdAddDamage(gameObject, otherTeamAttack);
                 }
             }
         }
     }
 
-    [Command] //only host
-    private void CmdTakeDamage(GB.EAnimal animale, GameObject player, float damage)
+    [Command]
+    private void CmdAddDamage(GameObject car, float damage)
     {
-        var p = player.GetComponent<GeneralCar>();
-        p.Health -= damage;
+        var gc = car.GetComponent<GeneralCar>();
+        gc.Health -= damage;
     }
 
 

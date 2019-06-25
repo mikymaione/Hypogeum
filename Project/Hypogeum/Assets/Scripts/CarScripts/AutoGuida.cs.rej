@@ -1,0 +1,9 @@
+diff a/Project/Hypogeum/Assets/Scripts/CarScripts/AutoGuida.cs b/Project/Hypogeum/Assets/Scripts/CarScripts/AutoGuida.cs	(rejected hunks)
+@@ -72,7 +72,6 @@
+             i++;
+         }
+ 
+-        generalCar = GetComponent<GeneralCar>();        
+         generalCar = GetComponent<GeneralCar>();
+ 
+         TheCarRigidBody = GetComponent<Rigidbody>();

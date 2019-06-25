@@ -14,13 +14,29 @@ public class GM : NetworkBehaviour
 
     private GameObject[] cars, cannons;
 
+    public SyncListInt AnimaliMorti = new SyncListInt();
+
+    [SyncVar]
+    public int NumeroAnimaliVistiVivi = 0;
+
+    private int NumeroCannoniMatchati = 0;
+
+
     void FixedUpdate()
     {
-        cars = GameObject.FindGameObjectsWithTag("car");
-        cannons = GameObject.FindGameObjectsWithTag("Cannon");
+        if (isServer)
+        {
+            cars = GameObject.FindGameObjectsWithTag("car");
+            cannons = GameObject.FindGameObjectsWithTag("Cannon");
 
-        server_PosizionamentoCannoni();
-        server_GestioneVite();
+            if (NumeroAnimaliVistiVivi < cars.Length)
+                NumeroAnimaliVistiVivi = cars.Length;
+
+            if (Prototype.NetworkLobby.LobbyManager.s_Singleton.Players.Count > NumeroCannoniMatchati)
+                server_MatchCannoni();
+
+            server_GestioneVite();
+        }
     }
 
     void server_GestioneVite()
@@ -31,42 +47,47 @@ public class GM : NetworkBehaviour
 
             if (gc.Health <= 0)
             {
-                foreach (var cannon in cannons)
+                var a = (int)gc.AnimalType;
+
+                if (!AnimaliMorti.Contains(a))
                 {
-                    var sh = cannon.GetComponent<Shooting>();
+                    AnimaliMorti.Add(a);
 
-                    if (sh.TipoDiArma == gc.AnimalType)
-                        Destroy(cannon);
+                    foreach (var cannon in cannons)
+                    {
+                        var sh = cannon.GetComponent<Shooting>();
+
+                        if (sh.TipoDiArma == gc.AnimalType)
+                            Destroy(cannon);
+                    }
+
+                    Destroy(car);
                 }
-
-                Destroy(car);
             }
         }
     }
 
-    void server_PosizionamentoCannoni()
+    void server_MatchCannoni()
     {
         if (cannons.Length > 0)
-        {
             foreach (var car in cars)
             {
                 var gc = car.GetComponent<GeneralCar>();
 
-                if (gc.MyCannonName == null)
+                if (string.IsNullOrEmpty(gc.MyCannonName))
                     foreach (var cannon in cannons)
                     {
                         var sh = cannon.GetComponent<Shooting>();
 
                         if (sh.TipoDiArma == gc.AnimalType && string.IsNullOrEmpty(sh.CarName))
                         {
-                            //matched!
+                            //matched!                            
                             gc.MyCannonName = cannon.name;
-                            gc.MyCannon = cannon;
                             sh.CarName = car.name;
+                            NumeroCannoniMatchati++;
                         }
                     }
             }
-        }
     }
 
 

@@ -27,10 +27,10 @@ public static class GB
 
     public enum EAnimal
     {
-        Eagle,
-        Lion,
-        Rhino,
-        Shark
+        Eagle = 0,
+        Lion = 1,
+        Rhino = 2,
+        Shark = 3
     }
 
     //Mantenere ordine corretto, serve per tornare indietro alla scende precedente con il tasto ESC
@@ -50,11 +50,11 @@ public static class GB
     {
         var weapons = GameObject.FindGameObjectsWithTag("Cannon");
 
-        if (weapons != null)
+        if (weapons.Length > 0)
         {
             var cars = GameObject.FindGameObjectsWithTag("car");
 
-            if (cars != null)
+            if (cars.Length > 0)
                 foreach (var w in weapons)
                 {
                     var razzaCannone = w.name.Replace("Cannon", "");
