@@ -84,6 +84,60 @@ public static class GB
         }
     }
 
+	public static RenderTexture getAnimalRenderTexture (GB.EAnimal animal, GB.EGameType gameType)
+	{
+		RenderTexture texture = null;
+
+		switch (animal)
+		{
+			case EAnimal.Eagle:
+				if (gameType == GB.EGameType.Driving)
+				{
+					texture = Resources.Load("Radar/RadarRenderTextureEagles") as RenderTexture;
+					break;
+				}
+				else
+				{
+					texture = Resources.Load("Radar/RadarRenderTextureEaglesShooter") as RenderTexture;
+					break;
+				}
+			case EAnimal.Lion:
+				if (gameType == GB.EGameType.Driving)
+				{
+					texture = Resources.Load("Radar/RadarRenderTextureLions") as RenderTexture;
+					break;
+				}
+				else
+				{
+					texture = Resources.Load("Radar/RadarRenderTextureLionsShooter") as RenderTexture;
+					break;
+				}
+			case EAnimal.Shark:
+				if (gameType == GB.EGameType.Driving)
+				{
+					texture = Resources.Load("Radar/RadarRenderTextureSharks") as RenderTexture;
+					break;
+				}
+				else
+				{
+					texture = Resources.Load("Radar/RadarRenderTextureSharksShooter") as RenderTexture;
+					break;
+				}
+			case EAnimal.Rhino:
+				if (gameType == GB.EGameType.Driving)
+				{
+					texture = Resources.Load("Radar/RadarRenderTextureRhinos") as RenderTexture;
+					break;
+				}
+				else
+				{
+					texture = Resources.Load("Radar/RadarRenderTextureRhinosShooter") as RenderTexture;
+					break;
+				}
+		}
+		return texture;
+	}
+
     public static void DistruggiOggetti(Object[] oggetti)
     {
         foreach (var o in oggetti)

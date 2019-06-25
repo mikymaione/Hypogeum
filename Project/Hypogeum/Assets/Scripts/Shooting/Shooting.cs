@@ -66,7 +66,7 @@ public class Shooting : NetworkBehaviour
         projectileClass = projectilePrefab.GetComponent<Bullet>();
         CameraPos = transform.Find("CameraPos");
 
-        var HUDo = GameObject.FindGameObjectWithTag("HUD");
+		var HUDo = GameObject.FindGameObjectWithTag("HUD");
         HUD = HUDo.GetComponent<HudScriptManager>();
 
         MostraMirino();

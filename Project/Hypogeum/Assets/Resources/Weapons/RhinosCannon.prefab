@@ -317,7 +317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7406371941297468990}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 77.88667, z: 0}
+  m_LocalPosition: {x: 0, y: 389.5, z: 0}
   m_LocalScale: {x: 0.01947167, y: 0.01947168, z: 0.01947168}
   m_Children: []
   m_Father: {fileID: 3762754772724187504}
@@ -332,8 +332,8 @@ Camera:
   m_GameObject: {fileID: 7406371941297468990}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.6039216, g: 0.5882353, b: 0.5882353, a: 0.7254902}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -355,7 +355,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 512
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: a360f3baec44c4a44a2d091aac0eb87c, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 40f48499d49a4b546bad361e75a943c1, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -462,6 +462,7 @@ MonoBehaviour:
     type: 3}
   carAudioSource: {fileID: 5577329121425212974}
   ShootSound: {fileID: 8300000, guid: 7b3b97096ca38954b99657ef2301da60, type: 3}
+  CarName: 
 --- !u!82 &5577329121425212974
 AudioSource:
   m_ObjectHideFlags: 0
