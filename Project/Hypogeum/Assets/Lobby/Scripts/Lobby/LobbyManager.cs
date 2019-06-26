@@ -62,9 +62,43 @@ namespace Prototype.NetworkLobby
         protected LobbyHook _lobbyHooks;
         #endregion
 
+
+        internal void Restart(bool MostraLobby)
+        {
+            if (!MostraLobby)
+            {
+                s_Singleton.StopClient();
+                s_Singleton.StopServer();
+                s_Singleton.StopHost();
+                s_Singleton.StopMatchMaker();
+
+                NetworkServer.DisconnectAll();
+            }
+
+            s_Singleton.gameObject.SetActive(MostraLobby);
+            s_Singleton.topPanel.gameObject.SetActive(MostraLobby);
+            s_Singleton.topPanel.ToggleVisibility(MostraLobby);
+            s_Singleton.mainMenuPanel.gameObject.SetActive(MostraLobby);
+
+            var lmm = s_Singleton.mainMenuPanel.GetComponent<LobbyMainMenu>();
+            lmm.lobbyServerList.gameObject.SetActive(!MostraLobby);
+
+            s_Singleton.infoPanel.gameObject.SetActive(!MostraLobby);
+            s_Singleton.lobbyPanel.gameObject.SetActive(!MostraLobby);
+            s_Singleton.countdownPanel.gameObject.SetActive(!MostraLobby);
+
+            Start();
+        }
+
         void Start()
         {
             s_Singleton = this;
+
+            Players.Clear();
+            _isMatchmaking = false;
+            _disconnectServer = false;
+            _playerNumber = 0;
+
             _lobbyHooks = GetComponent<LobbyHook>();
             currentPanel = mainMenuPanel;
 

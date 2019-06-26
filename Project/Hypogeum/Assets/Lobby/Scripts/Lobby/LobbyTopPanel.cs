@@ -29,24 +29,19 @@ namespace Prototype.NetworkLobby
             if (!isInGame)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                ToggleVisibility(!isDisplayed);
-            }
+            //if (Input.GetKeyDown(KeyCode.Escape)) ToggleVisibility(!isDisplayed);
         }
 
         public void ToggleVisibility(bool visible)
         {
             isDisplayed = visible;
             foreach (Transform t in transform)
-            {
                 t.gameObject.SetActive(isDisplayed);
-            }
 
             if (panelImage != null)
-            {
                 panelImage.enabled = isDisplayed;
-            }
         }
     }
+
+
 }

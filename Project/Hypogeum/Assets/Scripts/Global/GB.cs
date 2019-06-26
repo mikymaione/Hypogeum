@@ -243,30 +243,19 @@ public static class GB
         }
     }
 
-    public static void PulisciLobby()
-    {
-        if (LobbyManager.s_Singleton != null)
-        {
-            LobbyManager.s_Singleton.StopClient();
-            LobbyManager.s_Singleton.StopServer();
-
-            UnityEngine.Networking.NetworkServer.DisconnectAll();
-
-            Object.Destroy(LobbyManager.s_Singleton.gameObject);
-            Object.Destroy(LobbyManager.s_Singleton);
-        }
-    }
-
     public static void GotoSceneName(string name)
     {
         var LobbyMName = EScenes.LobbyM.ToString();
-        var s = SceneManager.GetActiveScene();
         var p = (name.Contains("Scenes/") ? name : $"Scenes/{name}");
 
-        SceneManager.LoadScene(p, LoadSceneMode.Single);
+        if (LobbyManager.s_Singleton != null)
+        {
+            var MostraLobby = name.Equals(LobbyMName);
 
-        if (s.name.Equals(LobbyMName))
-            PulisciLobby();
+            LobbyManager.s_Singleton.Restart(MostraLobby);
+        }
+
+        SceneManager.LoadScene(p, LoadSceneMode.Single);
     }
 
     public static void GotoScene(EScenes scene_name)
