@@ -80,6 +80,10 @@ namespace Prototype.NetworkLobby
         {
             previousPage = currentPage;
             currentPage = page;
+
+            if (lobbyManager.matchMaker == null)
+                lobbyManager.StartMatchMaker();
+
             lobbyManager.matchMaker.ListMatches(page, 6, "", true, 0, 0, OnGUIMatchList);
         }
 
