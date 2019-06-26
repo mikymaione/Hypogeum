@@ -13,10 +13,10 @@
     <ROW Property="ARPURLINFOABOUT" Value="http://www.maionemiky.it/"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="LamaGames"/>
-    <ROW Property="ProductCode" Value="1033:{D12EEF15-42CA-4191-BC43-184C21EAB67F} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{955C16BF-7FA3-41AB-9EA5-8122F7ECD300} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Hypogeum"/>
-    <ROW Property="ProductVersion" Value="20.19.0626" Type="32"/>
+    <ROW Property="ProductVersion" Value="20.19.0627" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{4987E71A-C7C5-4375-A65E-90E2958956FE}"/>
