@@ -85,10 +85,16 @@ public class GM : NetworkBehaviour
         }
 
         if (!FineGioco)
-            if (NumeroAnimaliVistiVivi == AnimaliMorti.Count + 1)
+            if (AnimaliMorti.Count > 0)
             {
-                FineGioco = true;
-                RpcSpegnetevi();
+                var single_PlayerGameEnded = (NumeroAnimaliVistiVivi == 1 && AnimaliMorti.Count == 1);
+                var multy_PlayerGameEnded = (NumeroAnimaliVistiVivi == AnimaliMorti.Count + 1);
+
+                if (single_PlayerGameEnded || multy_PlayerGameEnded)
+                {
+                    FineGioco = true;
+                    RpcSpegnetevi();
+                }
             }
     }
 

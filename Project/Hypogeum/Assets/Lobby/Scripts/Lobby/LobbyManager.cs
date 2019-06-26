@@ -87,7 +87,8 @@ namespace Prototype.NetworkLobby
             s_Singleton.lobbyPanel.gameObject.SetActive(!MostraLobby);
             s_Singleton.countdownPanel.gameObject.SetActive(!MostraLobby);
 
-            Start();
+            if (MostraLobby)
+                Start();
         }
 
         void Start()
