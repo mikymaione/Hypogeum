@@ -8,7 +8,7 @@ Since humans had left the Earth, centuries have passed and the blue Planet is no
 ## Minimum system requirements
 
 ### Desktop
-1. Windows 7 SP1+
+1. OS: Windows 7 SP1+, macOS 10.12+
 2. Graphics card with DX10 (shader model 4.0) capabilities
 3. CPU with SSE2 instruction set support
 
