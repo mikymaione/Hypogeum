@@ -18,7 +18,7 @@ http://www.maionemiky.it/Hypogeum.shtml
 
 ## IDE
 1. Visual Studio 2017 (http://visualstudio.microsoft.com)
-2. Unity 2018.1 (https://store.unity.com/download)
+2. Unity 2018.3.7 (https://store.unity.com/download)
 
 
 ## License
